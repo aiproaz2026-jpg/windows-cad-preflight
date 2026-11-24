@@ -1,0 +1,52 @@
+name: Official runtime plus Delta addon test
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: windows-2022
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download official FreeCAD 1.1.4 Windows portable and verify SHA256
+        shell: bash
+        run: |
+          base=https://github.com/FreeCAD/FreeCAD/releases/download/1.1.4
+          curl -fL --retry 3 -o fc.7z "$base/FreeCAD_1.1.4-Windows-x86_64-py311.7z"
+          curl -fL --retry 3 -o fc.sha "$base/FreeCAD_1.1.4-Windows-x86_64-py311.7z-SHA256.txt"
+          cat fc.sha
+          want=$(cut -d' ' -f1 fc.sha)
+          got=$(sha256sum fc.7z | cut -d' ' -f1)
+          echo "want=$want got=$got"
+          [ "$want" = "$got" ]
+          mkdir -p /c/fcrt
+          7z x fc.7z -o/c/fcrt -y > /dev/null
+          rm fc.7z
+          find /c/fcrt -maxdepth 3 -iname 'FreeCADCmd.exe' -o -maxdepth 3 -iname 'FreeCAD.exe'
+      - name: Unpack Delta source
+        shell: bash
+        run: |
+          mkdir -p /c/delta
+          unzip -q src/*DeltaEngineering-development-source-v58-10539385.zip -d /c/delta
+          ls /c/delta/DeltaEngineering | head -20
+      - name: Run Delta regression suites with official Windows FreeCADCmd
+        shell: pwsh
+        run: |
+          $cmd = (Get-ChildItem C:/fcrt -Recurse -Filter FreeCADCmd.exe | Select-Object -First 1).FullName
+          "FreeCADCmd: $cmd"
+          & $cmd --version
+          $env:PYTHONUTF8 = '1'
+          python C:/delta/DeltaEngineering/development/run_regression.py --runtime $cmd --timeout 240
+          $r = $LASTEXITCODE
+          "Regression exit: $r" | Tee-Object -Append $env:GITHUB_STEP_SUMMARY
+          Get-Content C:/delta/DeltaEngineering/evidence/developer-regression.json | Tee-Object -Append $env:GITHUB_STEP_SUMMARY
+          exit 0
+      - name: Upload small test evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: delta-windows-test-evidence
+          path: |
+            C:/delta/DeltaEngineering/evidence/developer-regression.json
+            C:/delta/DeltaEngineering/evidence/*.developer.log
+          retention-days: 7
