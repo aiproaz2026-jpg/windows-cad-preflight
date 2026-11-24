@@ -2,7 +2,7 @@ name: Official runtime plus Delta addon test
 on:
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
   test:
     runs-on: windows-2022
@@ -91,6 +91,23 @@ jobs:
           Compress-Archive -Path $pk -DestinationPath C:/pkg/DeltaEngineering-Windows-addon.zip -Force
           (Get-Item C:/pkg/DeltaEngineering-Windows-addon.zip).Length
           exit 0
+      - name: Probe actual measurement values
+        shell: pwsh
+        run: |
+          $cmd = 'C:/fcrt/FreeCAD_1.1.4-Windows-x86_64-py311/bin/FreeCADCmd.exe'
+          @('import sys','sys.path.insert(0,"C:/delta/DeltaEngineering")','import FreeCAD as A,Part','from types import SimpleNamespace as E','from DeltaEngineering.measurement import inspect','d=A.newDocument("M");p=d.addObject("App::Part","P");p.Placement=A.Placement(A.Vector(100,200,0),A.Rotation(A.Vector(0,0,1),90));b=d.addObject("Part::Box","B");b.Length=100;b.Width=50;b.Height=30;b.Placement.Base=A.Vector(10,0,0);p.addObject(b);d.recompute()','r=inspect([E(Object=b,SubElementNames=())])','print("MEAS_PROBE",repr(r["items"][0]["volume_mm3"]),repr(r["items"][0]["bounds_mm"]))') | Set-Content C:/probe.py
+          $o = & $cmd C:/probe.py 2>&1 | Out-String
+          $o | Tee-Object -Append $env:GITHUB_STEP_SUMMARY
+          $global:LASTEXITCODE = 0
+          exit 0
+      - name: Commit addon zip into repo for retrieval
+        shell: bash
+        run: |
+          git config user.name "ci"; git config user.email "ci@users.noreply.github.com"
+          mkdir -p dist && cp /c/pkg/DeltaEngineering-Windows-addon.zip dist/
+          git add dist/DeltaEngineering-Windows-addon.zip
+          git commit -m "Add built addon zip" || true
+          git push || true
       - name: Upload addon package
         uses: actions/upload-artifact@v4
         with:
