@@ -103,16 +103,19 @@ jobs:
           Write-Host "SHA256 verified. Installing to $Target ..."
           $p = Start-Process $tmp -ArgumentList '/S', "/D=$Target" -Wait -PassThru
           if ($p.ExitCode -ne 0) { throw "FreeCAD installer exit code $($p.ExitCode)" }
-          if (-not (Test-Path "$Target\bin\FreeCAD.exe")) { throw "FreeCAD.exe not found after install" }
-          New-Item -ItemType Directory -Force "$Target\Mod" | Out-Null
-          Copy-Item "$PSScriptRoot\Mod\DeltaEngineering" "$Target\Mod\DeltaEngineering" -Recurse -Force
-          Copy-Item "$PSScriptRoot\LaunchDelta.FCMacro" "$Target\LaunchDelta.FCMacro" -Force
+          $exe = Get-ChildItem $Target -Recurse -Filter FreeCAD.exe -ErrorAction SilentlyContinue | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
+          if (-not $exe) { throw "FreeCAD.exe not found after install" }
+          $Root = $exe.Directory.Parent.FullName
+          Write-Host "FreeCAD installed at $Root"
+          New-Item -ItemType Directory -Force "$Root\Mod" | Out-Null
+          Copy-Item "$PSScriptRoot\Mod\DeltaEngineering" "$Root\Mod\DeltaEngineering" -Recurse -Force
+          Copy-Item "$PSScriptRoot\LaunchDelta.FCMacro" "$Root\LaunchDelta.FCMacro" -Force
           if (-not $NoShortcut) {
             $dir = Join-Path $env:APPDATA 'Microsoft\Windows\Start Menu\Programs'
             $s = (New-Object -ComObject WScript.Shell).CreateShortcut((Join-Path $dir 'Delta Engineering.lnk'))
-            $s.TargetPath = "$Target\bin\FreeCAD.exe"
-            $s.Arguments = "`"$Target\LaunchDelta.FCMacro`""
-            $s.WorkingDirectory = $Target
+            $s.TargetPath = $exe.FullName
+            $s.Arguments = "`"$Root\LaunchDelta.FCMacro`""
+            $s.WorkingDirectory = $Root
             $s.Save()
           }
           Write-Host "Done. Start 'Delta Engineering' from the Start Menu."
@@ -145,11 +148,15 @@ jobs:
       - name: End-to-end test of Install-Delta.ps1 plus GUI launch screenshot
         shell: pwsh
         run: |
+          $ErrorActionPreference = 'Continue'
           Expand-Archive C:/pkg/DeltaEngineering-Windows-addon.zip C:/pkgtest -Force
           & powershell -NoProfile -ExecutionPolicy Bypass -File C:/pkgtest/DeltaEngineering-Windows-addon/Install-Delta.ps1 -Target C:\DeltaTest -NoShortcut 2>&1 | Out-String | Tee-Object -Append $env:GITHUB_STEP_SUMMARY
           "install exit $LASTEXITCODE" | Tee-Object -Append $env:GITHUB_STEP_SUMMARY
-          Get-ChildItem C:/DeltaTest | Select-Object -ExpandProperty Name | Tee-Object -Append $env:GITHUB_STEP_SUMMARY
-          Start-Process C:/DeltaTest/bin/FreeCAD.exe -ArgumentList 'C:\DeltaTest\LaunchDelta.FCMacro'
+          $exe = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
+          "FreeCAD at: $($exe.FullName)" | Tee-Object -Append $env:GITHUB_STEP_SUMMARY
+          $root = $exe.Directory.Parent.FullName
+          Get-ChildItem "$root/Mod" | Select-Object -ExpandProperty Name | Tee-Object -Append $env:GITHUB_STEP_SUMMARY
+          Start-Process $exe.FullName -ArgumentList "`"$root\LaunchDelta.FCMacro`""
           Start-Sleep -Seconds 75
           Add-Type -AssemblyName System.Windows.Forms,System.Drawing
           $b = [Windows.Forms.SystemInformation]::VirtualScreen
