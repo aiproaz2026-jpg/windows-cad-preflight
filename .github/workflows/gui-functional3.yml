@@ -1,0 +1,198 @@
+name: Functional GUI test 3 (route, update, measure, save-reopen, PDFs)
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  func:
+    runs-on: windows-2022
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install via packaged Install-Delta.ps1
+        shell: pwsh
+        run: |
+          Expand-Archive dist/DeltaEngineering-Windows-addon.zip C:/pkgtest -Force
+          & powershell -NoProfile -ExecutionPolicy Bypass -File C:/pkgtest/DeltaEngineering-Windows-addon/Install-Delta.ps1 -Target C:\DeltaTest -NoShortcut 2>&1 | Out-String
+          "install exit $LASTEXITCODE"
+      - name: Add Mesa llvmpipe software OpenGL (CI only)
+        shell: pwsh
+        run: |
+          $rel = Invoke-RestMethod https://api.github.com/repos/pal1000/mesa-dist-win/releases/latest
+          $a = $rel.assets | Where-Object { $_.name -match 'release-msvc\.7z$' } | Select-Object -First 1
+          Invoke-WebRequest $a.browser_download_url -OutFile C:/mesa.7z
+          7z x C:/mesa.7z -oC:/mesa -y | Out-Null
+          $exe = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
+          $bin = $exe.Directory.FullName
+          Copy-Item C:/mesa/x64/opengl32.dll $bin -Force
+          foreach ($n in 'libgallium_wgl.dll','libglapi.dll') { if (Test-Path "C:/mesa/x64/$n") { Copy-Item "C:/mesa/x64/$n" $bin -Force } }
+      - name: Drive more Delta GUI commands
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force C:/shots | Out-Null
+          $macro = @'
+          import os, json, traceback
+          OUT = 'C:/shots'
+          os.makedirs(OUT, exist_ok=True)
+          res = {'steps': {}, 'dialogs': [], 'done': False}
+          def save():
+              open(OUT + '/gui-result3.json', 'w', encoding='utf-8').write(json.dumps(res, ensure_ascii=False, indent=1, default=str))
+          try:
+              import FreeCAD as App, FreeCADGui as Gui
+              from PySide import QtCore, QtWidgets
+              import DeltaEngineering.core, DeltaEngineering.domain
+              from DeltaEngineering.gui import register
+              if 'DeltaWorkbench' not in Gui.listWorkbenches(): register()
+              Gui.activateWorkbench('DeltaWorkbench')
+              queue = []
+              counter = [0]
+              def handle():
+                  w = QtWidgets.QApplication.activeModalWidget()
+                  if not w: return
+                  counter[0] += 1
+                  info = {'n': counter[0], 'cls': type(w).__name__, 'title': w.windowTitle()}
+                  try:
+                      w.grab().save(OUT + '/dlg-%02d.png' % counter[0])
+                  except Exception:
+                      pass
+                  try:
+                      if isinstance(w, QtWidgets.QInputDialog):
+                          info['label'] = w.labelText()
+                          if not queue:
+                              info['note'] = 'unexpected dialog, rejected'
+                              w.reject()
+                              res['dialogs'].append(info); save(); return
+                          v = queue.pop(0)
+                          info['entered'] = v
+                          if isinstance(v, str): w.setTextValue(v)
+                          else: w.setDoubleValue(v)
+                          w.accept()
+                      elif isinstance(w, QtWidgets.QMessageBox):
+                          info['text'] = w.text()
+                          yes = [b for b in w.findChildren(QtWidgets.QPushButton) if b.text() in ('نعم', 'Yes', '&Yes')]
+                          if yes: yes[0].click()
+                          else: w.accept()
+                      else:
+                          info['note'] = 'other dialog accepted'
+                          w.accept()
+                  except Exception:
+                      info['handler_error'] = traceback.format_exc()
+                  res['dialogs'].append(info); save()
+              t = QtCore.QTimer(); t.setInterval(400); t.timeout.connect(handle); t.start()
+              def shot(name):
+                  try:
+                      Gui.getMainWindow().grab().save(OUT + '/' + name + '.png')
+                  except Exception:
+                      res['steps'][name + '_shot_error'] = traceback.format_exc()
+              def fit():
+                  try:
+                      v = Gui.activeDocument().activeView(); v.viewAxonometric(); v.fitAll()
+                  except Exception: pass
+              def run(name, fn):
+                  try:
+                      out = fn()
+                      res['steps'][name] = {'ok': True, 'detail': out}
+                  except Exception:
+                      res['steps'][name] = {'ok': False, 'detail': traceback.format_exc()}
+                  save()
+              def step():
+                  mw = Gui.getMainWindow()
+                  def s_route():
+                      Gui.runCommand('Delta_NewProject')
+                      import Part
+                      d = App.ActiveDocument
+                      o = d.addObject('Part::Feature', 'PathLines')
+                      o.Shape = Part.makePolygon([App.Vector(0,0,0), App.Vector(2000,0,0), App.Vector(2000,1500,0), App.Vector(3500,1500,0)])
+                      d.recompute()
+                      Gui.Selection.clearSelection(); Gui.Selection.addSelection(o)
+                      queue.extend([150.0, 114.3, 4.0])
+                      Gui.runCommand('Delta_RouteFromPath')
+                      r = [x for x in d.Objects if x.Name.startswith('RoundedRoute')][0]
+                      assert not r.Shape.isNull() and r.Shape.isValid() and r.Shape.Volume > 0
+                      fit(); shot('func3-1-route-from-path')
+                      return {'volume_mm3': r.Shape.Volume, 'validation': str(getattr(r, 'Validation', ''))}
+                  run('route_from_drawn_path_dialog_values', s_route)
+                  def s_demo_update():
+                      Gui.runCommand('Delta_Demo')
+                      d = App.ActiveDocument
+                      queue.extend([1200.0, 900.0, 200.0, 114.3, 4.0])
+                      Gui.runCommand('Delta_UpdatePiping')
+                      from DeltaEngineering.project import validate_project
+                      v = validate_project(d)
+                      assert abs(d.InletPipe.CenterlineLength.Value - 1200) < 1e-6 and abs(d.OutletPipe.CenterlineLength.Value - 900) < 1e-6
+                      assert abs(d.RouteElbow.BendRadius.Value - 200) < 1e-6
+                      fit(); shot('func3-2-after-update-piping')
+                      return {'inlet': d.InletPipe.CenterlineLength.Value, 'outlet': d.OutletPipe.CenterlineLength.Value, 'bend': d.RouteElbow.BendRadius.Value, 'centerline_mm': v['centerline_mm']}
+                  run('update_piping_dialog_values_continuity_kept', s_demo_update)
+                  def s_measure():
+                      d = App.ActiveDocument
+                      Gui.Selection.clearSelection(); Gui.Selection.addSelection(d.InletPipe)
+                      Gui.runCommand('Delta_MeasureSelection')
+                      from DeltaEngineering.measurement import inspect
+                      rep = inspect(Gui.Selection.getSelectionEx())
+                      return rep['items'][0]
+                  run('measure_selection_dialog', s_measure)
+                  def s_sheets():
+                      QtWidgets.QFileDialog.getSaveFileName = staticmethod(lambda *a, **k: (OUT + '/sheet.pdf', 'PDF (*.pdf)'))
+                      Gui.runCommand('Delta_Sheets')
+                      out = {}
+                      for f in ('sheet.pdf', 'sheet-electrical.pdf'):
+                          p = OUT + '/' + f
+                          out[f] = os.path.getsize(p) if os.path.exists(p) else None
+                      assert all(out.values()), out
+                      return out
+                  run('sheets_pdf_export_after_edit_native_dialog_stubbed', s_sheets)
+                  def s_saveopen():
+                      d = App.ActiveDocument
+                      n = len(d.Objects); name = d.Name
+                      path = OUT + '/proj.FCStd'
+                      d.saveAs(path)
+                      App.closeDocument(d.Name)
+                      d2 = App.openDocument(path)
+                      d2.recompute()
+                      from DeltaEngineering.project import validate_project
+                      v = validate_project(d2)
+                      assert len(d2.Objects) == n, (len(d2.Objects), n)
+                      assert abs(d2.InletPipe.CenterlineLength.Value - 1200) < 1e-6
+                      Gui.setActiveDocument(d2.Name); fit(); shot('func3-3-reopened')
+                      return {'objects_before': n, 'objects_after': len(d2.Objects), 'file_bytes': os.path.getsize(path), 'centerline_mm': v['centerline_mm']}
+                  run('save_close_reopen_project', s_saveopen)
+                  res['done'] = True; save()
+              QtCore.QTimer.singleShot(6000, step)
+          except Exception:
+              res['error'] = traceback.format_exc(); res['done'] = True; save()
+          '@
+          $exe = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
+          $root = $exe.Directory.Parent.FullName
+          Set-Content "$root\DeltaGuiTest3.FCMacro" $macro -Encoding utf8
+          $env:GALLIUM_DRIVER = 'llvmpipe'
+          $env:MESA_GL_VERSION_OVERRIDE = '4.5'
+          Start-Process $exe.FullName -ArgumentList "`"$root\DeltaGuiTest3.FCMacro`""
+          $t = 0
+          while ($t -lt 400) { Start-Sleep 5; $t += 5; if ((Test-Path C:/shots/gui-result3.json) -and (Select-String -Path C:/shots/gui-result3.json -Pattern '"done": true' -Quiet)) { break } }
+          Start-Sleep 3
+          Add-Type -AssemblyName System.Windows.Forms,System.Drawing
+          $b = [Windows.Forms.SystemInformation]::VirtualScreen
+          $bmp = New-Object Drawing.Bitmap $b.Width,$b.Height
+          $g = [Drawing.Graphics]::FromImage($bmp)
+          $g.CopyFromScreen($b.Left,$b.Top,0,0,$bmp.Size)
+          $bmp.Save('C:/shots/desktop3.png')
+          if (Test-Path C:/shots/gui-result3.json) { Get-Content C:/shots/gui-result3.json } else { 'no result json' }
+          exit 0
+      - name: Render exported PDFs to PNG for layout inspection
+        shell: pwsh
+        run: |
+          pip install pymupdf 2>&1 | Select-Object -Last 1
+          python -c "import fitz,glob;[fitz.open(f).load_page(0).get_pixmap(dpi=110).save(f.replace('.pdf','-page1.png')) for f in glob.glob('C:/shots/sheet*.pdf')]"
+          Get-ChildItem C:/shots | Select-Object Name,Length | Out-String
+          exit 0
+      - name: Commit evidence
+        shell: bash
+        run: |
+          git config user.name ci; git config user.email ci@users.noreply.github.com
+          git pull --rebase || true
+          mkdir -p dist/func3
+          cp /c/shots/*.png /c/shots/gui-result3.json /c/shots/*.pdf dist/func3/ || true
+          git add dist
+          git commit -m "Add functional GUI test 3 evidence"
+          git push
