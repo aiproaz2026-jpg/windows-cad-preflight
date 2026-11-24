@@ -87,7 +87,39 @@ jobs:
           New-Item -ItemType Directory -Force "$pk/Mod" | Out-Null
           Copy-Item C:/delta/DeltaEngineering/package/Mod/DeltaEngineering "$pk/Mod/DeltaEngineering" -Recurse -Force
           Copy-Item C:/delta/DeltaEngineering/COPYING "$pk/COPYING"
-          @('@echo off','setlocal','set "DEST=%APPDATA%\FreeCAD\Mod\DeltaEngineering"','if not exist "%ProgramFiles%\FreeCAD 1.1\bin\FreeCAD.exe" echo Install official FreeCAD 1.1.4 first from freecad.org','xcopy /E /I /Y "%~dp0Mod\DeltaEngineering" "%DEST%"','echo Installed to %DEST%. Start FreeCAD and choose the Delta workbench.','pause') | Set-Content "$pk/Install-Delta.cmd" -Encoding ascii
+          Copy-Item C:/delta/DeltaEngineering/LaunchDelta.FCMacro "$pk/LaunchDelta.FCMacro"
+          @'
+          param([string]$Target = "$env:LOCALAPPDATA\Programs\DeltaEngineering", [switch]$NoShortcut)
+          $ErrorActionPreference = 'Stop'
+          $ProgressPreference = 'SilentlyContinue'
+          $base = 'https://github.com/FreeCAD/FreeCAD/releases/download/1.1.4'
+          $name = 'FreeCAD_1.1.4-Windows-x86_64-py311-installer.exe'
+          $tmp = Join-Path $env:TEMP $name
+          Write-Host "Downloading official FreeCAD 1.1.4 (about 520 MB)..."
+          Invoke-WebRequest "$base/$name" -OutFile $tmp -UseBasicParsing
+          $want = (([string](Invoke-RestMethod "$base/$name-SHA256.txt")) -split '\s+')[0]
+          $got = (Get-FileHash $tmp -Algorithm SHA256).Hash
+          if ($got -ine $want) { throw "SHA256 mismatch: expected $want got $got" }
+          Write-Host "SHA256 verified. Installing to $Target ..."
+          $p = Start-Process $tmp -ArgumentList '/S', "/D=$Target" -Wait -PassThru
+          if ($p.ExitCode -ne 0) { throw "FreeCAD installer exit code $($p.ExitCode)" }
+          if (-not (Test-Path "$Target\bin\FreeCAD.exe")) { throw "FreeCAD.exe not found after install" }
+          New-Item -ItemType Directory -Force "$Target\Mod" | Out-Null
+          Copy-Item "$PSScriptRoot\Mod\DeltaEngineering" "$Target\Mod\DeltaEngineering" -Recurse -Force
+          Copy-Item "$PSScriptRoot\LaunchDelta.FCMacro" "$Target\LaunchDelta.FCMacro" -Force
+          if (-not $NoShortcut) {
+            $dir = Join-Path $env:APPDATA 'Microsoft\Windows\Start Menu\Programs'
+            $s = (New-Object -ComObject WScript.Shell).CreateShortcut((Join-Path $dir 'Delta Engineering.lnk'))
+            $s.TargetPath = "$Target\bin\FreeCAD.exe"
+            $s.Arguments = "`"$Target\LaunchDelta.FCMacro`""
+            $s.WorkingDirectory = $Target
+            $s.Save()
+          }
+          Write-Host "Done. Start 'Delta Engineering' from the Start Menu."
+          '@ | Set-Content "$pk/Install-Delta.ps1" -Encoding utf8
+          '@echo off' | Set-Content "$pk/Install-Delta.cmd" -Encoding ascii
+          'powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0Install-Delta.ps1"' | Add-Content "$pk/Install-Delta.cmd" -Encoding ascii
+          'pause' | Add-Content "$pk/Install-Delta.cmd" -Encoding ascii
           Compress-Archive -Path $pk -DestinationPath C:/pkg/DeltaEngineering-Windows-addon.zip -Force
           (Get-Item C:/pkg/DeltaEngineering-Windows-addon.zip).Length
           exit 0
@@ -105,8 +137,36 @@ jobs:
         run: |
           git config user.name "ci"; git config user.email "ci@users.noreply.github.com"
           mkdir -p dist && cp /c/pkg/DeltaEngineering-Windows-addon.zip dist/
-          git add dist/DeltaEngineering-Windows-addon.zip
+          base64 -w0 /c/pkg/DeltaEngineering-Windows-addon.zip > dist/DeltaEngineering-Windows-addon.zip.b64
+          sha256sum /c/pkg/DeltaEngineering-Windows-addon.zip > dist/DeltaEngineering-Windows-addon.zip.sha256
+          git add dist/DeltaEngineering-Windows-addon.zip dist/DeltaEngineering-Windows-addon.zip.b64 dist/DeltaEngineering-Windows-addon.zip.sha256
           git commit -m "Add built addon zip" || true
+          git push || true
+      - name: End-to-end test of Install-Delta.ps1 plus GUI launch screenshot
+        shell: pwsh
+        run: |
+          Expand-Archive C:/pkg/DeltaEngineering-Windows-addon.zip C:/pkgtest -Force
+          & powershell -NoProfile -ExecutionPolicy Bypass -File C:/pkgtest/DeltaEngineering-Windows-addon/Install-Delta.ps1 -Target C:\DeltaTest -NoShortcut 2>&1 | Out-String | Tee-Object -Append $env:GITHUB_STEP_SUMMARY
+          "install exit $LASTEXITCODE" | Tee-Object -Append $env:GITHUB_STEP_SUMMARY
+          Get-ChildItem C:/DeltaTest | Select-Object -ExpandProperty Name | Tee-Object -Append $env:GITHUB_STEP_SUMMARY
+          Start-Process C:/DeltaTest/bin/FreeCAD.exe -ArgumentList 'C:\DeltaTest\LaunchDelta.FCMacro'
+          Start-Sleep -Seconds 75
+          Add-Type -AssemblyName System.Windows.Forms,System.Drawing
+          $b = [Windows.Forms.SystemInformation]::VirtualScreen
+          $bmp = New-Object Drawing.Bitmap $b.Width,$b.Height
+          $g = [Drawing.Graphics]::FromImage($bmp)
+          $g.CopyFromScreen($b.Left,$b.Top,0,0,$bmp.Size)
+          New-Item -ItemType Directory -Force C:/shots | Out-Null
+          $bmp.Save('C:/shots/gui.png')
+          Get-Process | Where-Object { $_.ProcessName -like 'FreeCAD*' } | Select-Object ProcessName,MainWindowTitle | Out-String | Tee-Object -Append $env:GITHUB_STEP_SUMMARY
+          exit 0
+      - name: Commit GUI screenshot for viewing
+        shell: bash
+        run: |
+          git pull --rebase || true
+          cp /c/shots/gui.png dist/gui-launch.png || true
+          git add dist/gui-launch.png || true
+          git commit -m "Add GUI launch screenshot" || true
           git push || true
       - name: Upload addon package
         uses: actions/upload-artifact@v4
