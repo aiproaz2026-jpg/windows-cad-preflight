@@ -1,0 +1,29 @@
+**********************
+PowerShell transcript start
+Start time: 20261124231926
+Username: runnervmhh3zg\runneradmin
+RunAs User: runnervmhh3zg\runneradmin
+Configuration Name: 
+Machine: runnervmhh3zg (Microsoft Windows NT 10.0.20348.0)
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll -command . 'D:\a\_temp\009e09f3-630a-4739-aafb-1b5ba8748601.ps1'
+Process ID: 7016
+PSVersion: 7.6.10
+PSEdition: Core
+GitCommitId: 7.6.10
+OS: Microsoft Windows 10.0.20348
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+PS>TerminatingError(Invoke-WebRequest): "The request was canceled due to the configured HttpClient.Timeout of 8 seconds elapsing."
+network blocked OK
+addon import ok offline
+FreeCAD 1.1.4, Libs: 1.1.4R20260928 (Git shallow)
+(C) 2001-2026 FreeCAD contributors
+FreeCAD is free and open-source software licensed under the terms of LGPL2+ license.
+**********************
+PowerShell transcript end
+End time: 20261124231937
+**********************

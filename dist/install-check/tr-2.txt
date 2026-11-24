@@ -1,0 +1,41 @@
+**********************
+PowerShell transcript start
+Start time: 20261124231925
+Username: runnervmhh3zg\runneradmin
+RunAs User: runnervmhh3zg\runneradmin
+Configuration Name: 
+Machine: runnervmhh3zg (Microsoft Windows NT 10.0.20348.0)
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll -command . 'D:\a\_temp\2125327c-ae8e-4176-a996-0516256e93b8.ps1'
+Process ID: 568
+PSVersion: 7.6.10
+PSEdition: Core
+GitCommitId: 7.6.10
+OS: Microsoft Windows 10.0.20348
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+The password entered is longer than 14 characters.  Computers
+with Windows prior to Windows 2000 will not be able to use
+this account. Do you want to continue this operation? (Y/N) [Y]:
+There is no such global user or group: cadstd.
+
+More help is available by typing NET HELPMSG 3783.
+groups:
+PS>TerminatingError(Start-Process): "This command cannot be run due to the error: The parameter is incorrect."
+>> TerminatingError(Start-Process): "This command cannot be run due to the error: The parameter is incorrect."
+>> TerminatingError(Start-Process): "This command cannot be run due to the error: The parameter is incorrect."
+Start-Process: D:\a\_temp\2125327c-ae8e-4176-a996-0516256e93b8.ps1:15
+Line |
+  15 |  $p = Start-Process powershell.exe -Credential $cred -LoadUserProfile  …
+     |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | This command cannot be run due to the error: The parameter is incorrect.
+
+PS>$global:?
+False
+**********************
+PowerShell transcript end
+End time: 20261124231926
+**********************

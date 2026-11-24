@@ -1,0 +1,33 @@
+**********************
+PowerShell transcript start
+Start time: 20261124231711
+Username: runnervmhh3zg\runneradmin
+RunAs User: runnervmhh3zg\runneradmin
+Configuration Name: 
+Machine: runnervmhh3zg (Microsoft Windows NT 10.0.20348.0)
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll -command . 'D:\a\_temp\e7c62e0f-82dd-4bb3-a2d2-f9bcb6585fe6.ps1'
+Process ID: 7132
+PSVersion: 7.6.10
+PSEdition: Core
+GitCommitId: 7.6.10
+OS: Microsoft Windows 10.0.20348
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+Downloading official FreeCAD 1.1.4 (about 520 MB)...
+SHA256 verified. Installing to C:\Users\runneradmin\AppData\Local\Programs\DeltaEngineering ...
+FreeCAD installed at C:\Users\runneradmin\AppData\Local\Programs\DeltaEngineering\FreeCAD 1.1
+Done. Start 'Delta Engineering' from the Start Menu.
+install exit 0, seconds 130.6510847
+ADMIN installed size MB: 2107
+installer in temp MB: 495
+free disk C: GB 78
+FreeCADCmd: C:\Users\runneradmin\AppData\Local\Programs\DeltaEngineering\FreeCAD 1.1\bin\freecadcmd.exe
+admin identity: runnervmhh3zg\runneradmin elevated=True
+**********************
+PowerShell transcript end
+End time: 20261124231924
+**********************
