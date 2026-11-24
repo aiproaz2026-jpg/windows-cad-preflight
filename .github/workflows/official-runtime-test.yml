@@ -42,6 +42,13 @@ jobs:
           "Regression exit: $r" | Tee-Object -Append $env:GITHUB_STEP_SUMMARY
           Get-Content C:/delta/DeltaEngineering/evidence/developer-regression.json | Tee-Object -Append $env:GITHUB_STEP_SUMMARY
           exit 0
+      - name: Print failing suite logs
+        shell: pwsh
+        run: |
+          foreach ($n in 'measurement.py','arabic_presentation.py') {
+            "=== $n ===" | Tee-Object -Append $env:GITHUB_STEP_SUMMARY
+            Get-Content "C:/delta/DeltaEngineering/evidence/$n.developer.log" -TotalCount 60 | Tee-Object -Append $env:GITHUB_STEP_SUMMARY
+          }
       - name: Upload small test evidence
         uses: actions/upload-artifact@v4
         with:
