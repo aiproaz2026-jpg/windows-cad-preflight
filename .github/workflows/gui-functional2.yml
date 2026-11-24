@@ -1,0 +1,206 @@
+name: Functional GUI test 2 (editing, electrical, sheets)
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  func:
+    runs-on: windows-2022
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install via packaged Install-Delta.ps1
+        shell: pwsh
+        run: |
+          Expand-Archive dist/DeltaEngineering-Windows-addon.zip C:/pkgtest -Force
+          & powershell -NoProfile -ExecutionPolicy Bypass -File C:/pkgtest/DeltaEngineering-Windows-addon/Install-Delta.ps1 -Target C:\DeltaTest -NoShortcut 2>&1 | Out-String
+          "install exit $LASTEXITCODE"
+      - name: Add Mesa llvmpipe software OpenGL (CI only)
+        shell: pwsh
+        run: |
+          $rel = Invoke-RestMethod https://api.github.com/repos/pal1000/mesa-dist-win/releases/latest
+          $a = $rel.assets | Where-Object { $_.name -match 'release-msvc\.7z$' } | Select-Object -First 1
+          Invoke-WebRequest $a.browser_download_url -OutFile C:/mesa.7z
+          7z x C:/mesa.7z -oC:/mesa -y | Out-Null
+          $exe = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
+          $bin = $exe.Directory.FullName
+          Copy-Item C:/mesa/x64/opengl32.dll $bin -Force
+          foreach ($n in 'libgallium_wgl.dll','libglapi.dll') { if (Test-Path "C:/mesa/x64/$n") { Copy-Item "C:/mesa/x64/$n" $bin -Force } }
+      - name: Drive more Delta GUI commands
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force C:/shots | Out-Null
+          $macro = @'
+          import os, json, traceback
+          OUT = 'C:/shots'
+          os.makedirs(OUT, exist_ok=True)
+          res = {'steps': {}, 'dialogs': [], 'done': False}
+          def save():
+              open(OUT + '/gui-result2.json', 'w', encoding='utf-8').write(json.dumps(res, ensure_ascii=False, indent=1, default=str))
+          try:
+              import FreeCAD as App, FreeCADGui as Gui
+              from PySide import QtCore, QtWidgets
+              import DeltaEngineering.core, DeltaEngineering.domain
+              from DeltaEngineering.gui import register
+              if 'DeltaWorkbench' not in Gui.listWorkbenches(): register()
+              Gui.activateWorkbench('DeltaWorkbench')
+              queue = []
+              counter = [0]
+              def handle():
+                  w = QtWidgets.QApplication.activeModalWidget()
+                  if not w: return
+                  counter[0] += 1
+                  info = {'n': counter[0], 'cls': type(w).__name__, 'title': w.windowTitle()}
+                  try:
+                      w.grab().save(OUT + '/dlg-%02d.png' % counter[0])
+                  except Exception:
+                      pass
+                  try:
+                      if isinstance(w, QtWidgets.QInputDialog):
+                          info['label'] = w.labelText()
+                          v = queue.pop(0)
+                          info['entered'] = v
+                          if isinstance(v, str): w.setTextValue(v)
+                          else: w.setDoubleValue(v)
+                          w.accept()
+                      elif isinstance(w, QtWidgets.QMessageBox):
+                          info['text'] = w.text()
+                          yes = [b for b in w.findChildren(QtWidgets.QPushButton) if b.text() in ('نعم', 'Yes', '&Yes')]
+                          if yes: yes[0].click()
+                          else: w.accept()
+                      else:
+                          info['note'] = 'other dialog accepted'
+                          w.accept()
+                  except Exception:
+                      info['handler_error'] = traceback.format_exc()
+                  res['dialogs'].append(info); save()
+              t = QtCore.QTimer(); t.setInterval(400); t.timeout.connect(handle); t.start()
+              def shot(name):
+                  try:
+                      Gui.getMainWindow().grab().save(OUT + '/' + name + '.png')
+                  except Exception:
+                      res['steps'][name + '_shot_error'] = traceback.format_exc()
+              def fit():
+                  try:
+                      v = Gui.activeDocument().activeView(); v.viewAxonometric(); v.fitAll()
+                  except Exception: pass
+              def run(name, fn):
+                  try:
+                      out = fn()
+                      res['steps'][name] = {'ok': True, 'detail': out}
+                  except Exception:
+                      res['steps'][name] = {'ok': False, 'detail': traceback.format_exc()}
+                  save()
+              def step():
+                  mw = Gui.getMainWindow()
+                  def s_newproject():
+                      Gui.runCommand('Delta_NewProject')
+                      d = App.ActiveDocument
+                      return {'doc': d.Name, 'objects': [o.Name for o in d.Objects]}
+                  run('new_empty_project', s_newproject)
+                  def s_pipe():
+                      queue.extend([2500.0, 114.3, 4.0])
+                      Gui.runCommand('Delta_Pipe')
+                      d = App.ActiveDocument
+                      p = [o for o in d.Objects if o.Name.startswith('PipeRoute')][0]
+                      assert abs(p.CenterlineLength.Value - 2500) < 1e-6, p.CenterlineLength.Value
+                      assert abs(p.OuterDiameter.Value - 114.3) < 1e-6
+                      assert abs(p.WallThickness.Value - 4) < 1e-6
+                      assert p.Shape.isValid() and p.Shape.Volume > 0
+                      return {'length': p.CenterlineLength.Value, 'od': p.OuterDiameter.Value, 'wall': p.WallThickness.Value, 'volume_mm3': p.Shape.Volume}
+                  run('pipe_via_dialog_manual_values', s_pipe)
+                  def s_elbow():
+                      Gui.runCommand('Delta_Elbow')
+                      d = App.ActiveDocument
+                      e = [o for o in d.Objects if o.Name.startswith('Elbow')][0]
+                      assert e.Shape.isValid() and e.Shape.Volume > 0
+                      return {'elbow_volume_mm3': e.Shape.Volume}
+                  run('elbow', s_elbow)
+                  fit(); shot('func2-1-pipe-elbow')
+                  def s_devices():
+                      queue.extend(['P-101', 'M-101'])
+                      Gui.runCommand('Delta_Device'); Gui.runCommand('Delta_Device')
+                      d = App.ActiveDocument
+                      devs = [o for o in d.Objects if hasattr(o, 'DeviceType')]
+                      assert len(devs) == 2, len(devs)
+                      return [o.Label for o in devs]
+                  run('two_electrical_devices_via_dialog', s_devices)
+                  def s_connect():
+                      d = App.ActiveDocument
+                      devs = [o for o in d.Objects if hasattr(o, 'DeviceType')]
+                      Gui.Selection.clearSelection()
+                      for o in devs: Gui.Selection.addSelection(o)
+                      Gui.runCommand('Delta_Connect')
+                      from DeltaEngineering.domain import netlist
+                      rows = netlist(d)
+                      assert len(rows) >= 1
+                      return rows
+                  run('connect_two_devices_netlist', s_connect)
+                  def s_quant():
+                      Gui.runCommand('Delta_Quantities')
+                      return 'see dialogs'
+                  run('pipe_quantities_dialog', s_quant)
+                  def s_check():
+                      Gui.runCommand('Delta_ProjectCheck')
+                      return 'see dialogs'
+                  run('project_check_dialog', s_check)
+                  def s_elec_panel():
+                      Gui.runCommand('Delta_ElectricalEditor')
+                      shot('func2-2-electrical-editor')
+                      return 'panel opened'
+                  run('electrical_editor_panel', s_elec_panel)
+                  def s_draft_panel():
+                      Gui.runCommand('Delta_DraftingEditor')
+                      shot('func2-3-drafting-editor')
+                      return 'panel opened'
+                  run('drafting_editor_panel', s_draft_panel)
+                  def s_assembly():
+                      Gui.runCommand('Delta_Assembly')
+                      fit(); shot('func2-4-assembly')
+                      return {'doc': App.ActiveDocument.Name, 'objects': len(App.ActiveDocument.Objects)}
+                  run('mechanical_assembly_example', s_assembly)
+                  def s_sheets():
+                      Gui.runCommand('Delta_Demo')
+                      fit()
+                      QtWidgets.QFileDialog.getSaveFileName = staticmethod(lambda *a, **k: (OUT + '/sheet.pdf', 'PDF (*.pdf)'))
+                      Gui.runCommand('Delta_Sheets')
+                      out = {}
+                      for f in ('sheet.pdf', 'sheet-electrical.pdf'):
+                          p = OUT + '/' + f
+                          out[f] = os.path.getsize(p) if os.path.exists(p) else None
+                      assert all(out.values()), out
+                      return out
+                  run('sheets_pdf_export_native_file_dialog_stubbed', s_sheets)
+                  shot('func2-5-after-sheets')
+                  res['done'] = True; save()
+              QtCore.QTimer.singleShot(6000, step)
+          except Exception:
+              res['error'] = traceback.format_exc(); res['done'] = True; save()
+          '@
+          $exe = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
+          $root = $exe.Directory.Parent.FullName
+          Set-Content "$root\DeltaGuiTest2.FCMacro" $macro -Encoding utf8
+          $env:GALLIUM_DRIVER = 'llvmpipe'
+          $env:MESA_GL_VERSION_OVERRIDE = '4.5'
+          Start-Process $exe.FullName -ArgumentList "`"$root\DeltaGuiTest2.FCMacro`""
+          $t = 0
+          while ($t -lt 400) { Start-Sleep 5; $t += 5; if ((Test-Path C:/shots/gui-result2.json) -and (Select-String -Path C:/shots/gui-result2.json -Pattern '"done": true' -Quiet)) { break } }
+          Start-Sleep 3
+          Add-Type -AssemblyName System.Windows.Forms,System.Drawing
+          $b = [Windows.Forms.SystemInformation]::VirtualScreen
+          $bmp = New-Object Drawing.Bitmap $b.Width,$b.Height
+          $g = [Drawing.Graphics]::FromImage($bmp)
+          $g.CopyFromScreen($b.Left,$b.Top,0,0,$bmp.Size)
+          $bmp.Save('C:/shots/desktop2.png')
+          if (Test-Path C:/shots/gui-result2.json) { Get-Content C:/shots/gui-result2.json } else { 'no result json' }
+          exit 0
+      - name: Commit evidence
+        shell: bash
+        run: |
+          git config user.name ci; git config user.email ci@users.noreply.github.com
+          git pull --rebase || true
+          mkdir -p dist/func2
+          cp /c/shots/*.png /c/shots/gui-result2.json /c/shots/*.pdf dist/func2/ || true
+          git add dist
+          git commit -m "Add functional GUI test 2 evidence"
+          git push
