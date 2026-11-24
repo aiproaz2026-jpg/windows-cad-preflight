@@ -1,0 +1,213 @@
+name: Build v3 package (dimension label fix) and verify
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  v3:
+    runs-on: windows-2022
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Unpack source and apply patches (v2 gui + v3 drafting)
+        shell: bash
+        run: |
+          mkdir -p /c/delta patches/v3
+          unzip -q src/*DeltaEngineering-development-source-v58-10539385.zip -d /c/delta
+          cp -r /c/delta/DeltaEngineering /c/delta_orig
+          cat > patches/v3/apply_v3.py <<'PY'
+          """Delta Engineering v3 patches. Applied to the original v58 source zip. v2 (gui.py) + v3 (drafting.py)."""
+          import sys
+          root=sys.argv[1]
+          GUI_OLD="(title,'طول الحواف (mm)',item['length_mm'])"
+          GUI_NEW="(title,'مجموع أطوال حواف الجسم (mm)',item['length_mm'])"
+          GUI2_OLD="            if 'radius_mm' in item:values.append("
+          GUI2_ADD="            _o=App.ActiveDocument.getObject(item['object']) if App.ActiveDocument and item.get('object') else None\n            if _o is not None and hasattr(_o,'CenterlineLength'):values.append((title,'طول خط المركز للماسورة (mm)',_o.CenterlineLength.Value))\n"
+          DR_OLD="        labels.append((str(round(dim.Distance.Value,3))+' mm',middle.x-20,middle.y+15,'right'))"
+          DR_NEW=("        if abs(vector.y)>abs(vector.x):\n"
+          "            labels.append((str(round(dim.Distance.Value,3))+' mm',middle.x,middle.y,'right'))\n"
+          "        else:\n"
+          "            labels.append((str(round(dim.Distance.Value,3))+' mm',middle.x-20,middle.y+15,'right'))")
+          for base in (root+'/DeltaEngineering', root+'/package/Mod/DeltaEngineering/DeltaEngineering'):
+              p=base+'/gui.py'
+              s=open(p,encoding='utf-8').read()
+              assert GUI_OLD in s and GUI2_OLD in s
+              s=s.replace(GUI_OLD,GUI_NEW).replace(GUI2_OLD,GUI2_ADD+GUI2_OLD,1)
+              open(p,'w',encoding='utf-8').write(s)
+              p=base+'/drafting.py'
+              s=open(p,encoding='utf-8').read()
+              assert DR_OLD in s
+              open(p,'w',encoding='utf-8').write(s.replace(DR_OLD,DR_NEW))
+              print('patched',base)
+
+          PY
+          python patches/v3/apply_v3.py C:/delta/DeltaEngineering
+          cd /c && diff -ru delta_orig/DeltaEngineering delta/DeltaEngineering > /c/v3.patch || true
+          wc -l /c/v3.patch
+      - name: Build v3 addon zip from v2 zip with patched drafting.py
+        shell: pwsh
+        run: |
+          Expand-Archive dist/v2/DeltaEngineering-Windows-addon-v2.zip C:/v3 -Force
+          $d = 'C:/v3/DeltaEngineering-Windows-addon/Mod/DeltaEngineering/DeltaEngineering'
+          $s = 'C:/delta/DeltaEngineering/package/Mod/DeltaEngineering/DeltaEngineering'
+          "gui.py same as patched source: $((Get-FileHash $d/gui.py).Hash -eq (Get-FileHash $s/gui.py).Hash)"
+          Copy-Item $s/drafting.py $d/drafting.py -Force
+          $files = Get-ChildItem C:/v3 -Recurse -File
+          foreach ($f in $files) { $rel = $f.FullName.Substring(8); $o = 'C:/delta/DeltaEngineering/package/' + $rel }
+          Compress-Archive -Path C:/v3/DeltaEngineering-Windows-addon -DestinationPath C:/DeltaEngineering-Windows-addon-v3.zip -Force
+          (Get-FileHash C:/DeltaEngineering-Windows-addon-v3.zip -Algorithm SHA256).Hash
+      - name: Install via packaged Install-Delta.ps1 (v3 zip)
+        shell: pwsh
+        run: |
+          Expand-Archive C:/DeltaEngineering-Windows-addon-v3.zip C:/pkgtest -Force
+          & powershell -NoProfile -ExecutionPolicy Bypass -File C:/pkgtest/DeltaEngineering-Windows-addon/Install-Delta.ps1 -Target C:\DeltaTest -NoShortcut 2>&1 | Out-String
+          "install exit $LASTEXITCODE"
+      - name: Regression on installed build with patched source, 1e-6 mm tolerance in test copy
+        shell: bash
+        run: |
+          grep -rl 'read_text()' /c/delta/DeltaEngineering/tests | xargs sed -i "s/read_text()/read_text(encoding='utf-8')/g"
+          grep -rl '/tmp/cad-development' /c/delta/DeltaEngineering/tests | xargs -r sed -i 's#/tmp/cad-development#C:/delta/DeltaEngineering#g'
+          python - <<'PY'
+          p='C:/delta/DeltaEngineering/tests/measurement.py'
+          s=open(p,encoding='utf-8').read()
+          old="report['items'][0]['bounds_mm']['min']==[50.0,210.0,0.0]"
+          new="all(abs(a-b)<1e-6 for a,b in zip(report['items'][0]['bounds_mm']['min'],[50.0,210.0,0.0]))"
+          assert old in s
+          open(p,'w',encoding='utf-8').write(s.replace(old,new))
+          PY
+          cmd=$(find /c/DeltaTest -name FreeCADCmd.exe | head -1)
+          PYTHONUTF8=1 python C:/delta/DeltaEngineering/development/run_regression.py --runtime "$cmd" --timeout 240 || true
+          mkdir -p dist/v3
+          cp C:/delta/DeltaEngineering/evidence/developer-regression.json dist/v3/regression-v3.json
+          python -c "import json;d=json.load(open('dist/v3/regression-v3.json'));print('all_passed',d['all_passed'],len(d['results']),[r['suite'] for r in d['results'] if not r['passed']])"
+      - name: Add Mesa llvmpipe software OpenGL (CI only)
+        shell: pwsh
+        run: |
+          $rel = Invoke-RestMethod https://api.github.com/repos/pal1000/mesa-dist-win/releases/latest
+          $a = $rel.assets | Where-Object { $_.name -match 'release-msvc\.7z$' } | Select-Object -First 1
+          Invoke-WebRequest $a.browser_download_url -OutFile C:/mesa.7z
+          7z x C:/mesa.7z -oC:/mesa -y | Out-Null
+          $exe = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
+          $bin = $exe.Directory.FullName
+          Copy-Item C:/mesa/x64/opengl32.dll $bin -Force
+          foreach ($n in 'libgallium_wgl.dll','libglapi.dll') { if (Test-Path "C:/mesa/x64/$n") { Copy-Item "C:/mesa/x64/$n" $bin -Force } }
+      - name: Drive v3 GUI checks
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force C:/shots | Out-Null
+          $macro = @'
+          import os, json, traceback
+          OUT = 'C:/shots'
+          os.makedirs(OUT, exist_ok=True)
+          res = {'steps': {}, 'done': False}
+          def save():
+              open(OUT + '/gui-result5.json', 'w', encoding='utf-8').write(json.dumps(res, ensure_ascii=False, indent=1, default=str))
+          try:
+              import FreeCAD as App, FreeCADGui as Gui
+              from PySide import QtCore, QtWidgets
+              import DeltaEngineering.core, DeltaEngineering.domain
+              from DeltaEngineering.gui import register
+              if 'DeltaWorkbench' not in Gui.listWorkbenches(): register()
+              Gui.activateWorkbench('DeltaWorkbench')
+              mw = Gui.getMainWindow()
+              def scenario(tag, off, pts):
+                  from DeltaEngineering.drafting_panel import show_panel
+                  Gui.runCommand('Delta_NewProject')
+                  p = show_panel()
+                  for i, (x, y) in enumerate(pts):
+                      for c, v in ((0, x), (1, y), (2, 0)):
+                          p.table.item(i, c).setText(str(v))
+                  def click(text):
+                      b = [x for x in p.findChildren(QtWidgets.QPushButton) if x.text() == text][0]
+                      b.click(); QtWidgets.QApplication.processEvents()
+                  click('رسم مسار جديد')
+                  stat = []
+                  for a, b in ((1, 2), (2, 3)):
+                      p.start.setValue(a); p.end.setValue(b); p.offset.setValue(off)
+                      click('إضافة بعد مرتبط'); stat.append(p.status.text())
+                  QtWidgets.QFileDialog.getSaveFileName = staticmethod(lambda *a, **k: (OUT + '/dims-' + tag + '.pdf', 'PDF (*.pdf)'))
+                  click('إخراج الرسم والأبعاد PDF')
+                  sz = os.path.getsize(OUT + '/dims-' + tag + '.pdf')
+                  assert sz, tag
+                  return {'dims': stat, 'export': p.status.text(), 'pdf_bytes': sz}
+              def step():
+                  for tag, off, pts in (('A', 150, ((0,0),(1000,0),(1000,600))), ('B', -150, ((0,0),(1000,0),(1000,600))), ('C', 150, ((0,0),(-800,0),(-800,-500)))):
+                      try:
+                          res['steps'][tag] = {'ok': True, 'detail': scenario(tag, off, pts)}
+                      except Exception:
+                          res['steps'][tag] = {'ok': False, 'detail': traceback.format_exc()}
+                      save()
+                  res['done'] = True; save()
+              QtCore.QTimer.singleShot(6000, step)
+          except Exception:
+              res['error'] = traceback.format_exc(); res['done'] = True; save()
+
+          '@
+          $exe = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
+          $root = $exe.Directory.Parent.FullName
+          Set-Content "$root\DeltaGuiTest5.FCMacro" $macro -Encoding utf8
+          $env:GALLIUM_DRIVER = 'llvmpipe'
+          $env:MESA_GL_VERSION_OVERRIDE = '4.5'
+          Start-Process $exe.FullName -ArgumentList "`"$root\DeltaGuiTest5.FCMacro`""
+          $t = 0
+          while ($t -lt 400) { Start-Sleep 5; $t += 5; if ((Test-Path C:/shots/gui-result5.json) -and (Select-String -Path C:/shots/gui-result5.json -Pattern '"done": true' -Quiet)) { break } }
+          Start-Sleep 3
+          if (Test-Path C:/shots/gui-result5.json) { Get-Content C:/shots/gui-result5.json } else { 'no result json' }
+          exit 0
+      - name: Render PDFs and check label/line crossings
+        shell: pwsh
+        run: |
+          pip install pymupdf 2>&1 | Select-Object -Last 1
+          @'
+          import fitz,glob,json
+          out={}
+          for f in sorted(glob.glob('C:/shots/dims-*.pdf')):
+              page=fitz.open(f).load_page(0)
+              page.get_pixmap(dpi=130).save(f.replace('.pdf','-page1.png'))
+              words=page.get_text('words')
+              labels=[]
+              for i,w in enumerate(words):
+                  if w[4]=='mm' and i>0:
+                      n=words[i-1]
+                      labels.append((n[4],fitz.Rect(n[:4])|fitz.Rect(w[:4])))
+              segs=[]
+              for d in page.get_drawings():
+                  for it in d['items']:
+                      if it[0]=='l': segs.append((it[1],it[2]))
+                      elif it[0]=='re':
+                          r=it[1]; segs += [(r.tl,r.tr),(r.tr,r.br),(r.br,r.bl),(r.bl,r.tl)]
+              def hit(rect,a,b):
+                  # sample points along segment, shrink rect slightly
+                  r=fitz.Rect(rect.x0+1,rect.y0+1,rect.x1-1,rect.y1-1)
+                  for k in range(0,101):
+                      t=k/100; x=a.x+(b.x-a.x)*t; y=a.y+(b.y-a.y)*t
+                      if r.contains(fitz.Point(x,y)): return True
+                  return False
+              res=[]
+              for name,rect in labels:
+                  crossed=[(round(a.x,1),round(a.y,1),round(b.x,1),round(b.y,1)) for a,b in segs if hit(rect,a,b)]
+                  res.append({'label':name+' mm','rect':[round(v,1) for v in rect],'crossing_lines':crossed})
+              out[f.split('/')[-1]]=res
+          json.dump(out,open('C:/shots/label-check.json','w'),indent=1)
+          print(json.dumps(out,indent=1))
+          bad=[k for k,v in out.items() for l in v if l['crossing_lines']]
+          print('labels found:',sum(len(v) for v in out.values()),'crossed:',bad)
+
+          '@ | Set-Content C:/check.py -Encoding utf8
+          python C:/check.py
+          exit 0
+      - name: Commit v3 package, patches and evidence
+        shell: bash
+        run: |
+          git config user.name ci; git config user.email ci@users.noreply.github.com
+          git pull --rebase || true
+          mkdir -p dist/v3 patches/v3
+          cp /c/DeltaEngineering-Windows-addon-v3.zip dist/v3/
+          base64 -w0 /c/DeltaEngineering-Windows-addon-v3.zip > dist/v3/DeltaEngineering-Windows-addon-v3.zip.b64
+          sha256sum /c/DeltaEngineering-Windows-addon-v3.zip > dist/v3/DeltaEngineering-Windows-addon-v3.zip.sha256
+          cp /c/v3.patch patches/v3/v3-vs-original-v58.patch
+          for f in gui.py drafting.py; do cp /c/delta/DeltaEngineering/package/Mod/DeltaEngineering/DeltaEngineering/$f patches/v3/$f; done
+          cp /c/shots/*.png /c/shots/gui-result5.json /c/shots/label-check.json /c/shots/*.pdf dist/v3/ || true
+          git add dist patches
+          git commit -m "Add v3 package, versioned patches and evidence"
+          git push
