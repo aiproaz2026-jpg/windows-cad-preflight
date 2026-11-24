@@ -1,0 +1,57 @@
+name: GUI test with software OpenGL
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  gui:
+    runs-on: windows-2022
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install via packaged Install-Delta.ps1
+        shell: pwsh
+        run: |
+          Expand-Archive dist/DeltaEngineering-Windows-addon.zip C:/pkgtest -Force
+          & powershell -NoProfile -ExecutionPolicy Bypass -File C:/pkgtest/DeltaEngineering-Windows-addon/Install-Delta.ps1 -Target C:\DeltaTest -NoShortcut 2>&1 | Out-String
+          "install exit $LASTEXITCODE"
+      - name: Add Mesa llvmpipe software OpenGL next to FreeCAD.exe
+        shell: pwsh
+        run: |
+          $rel = Invoke-RestMethod https://api.github.com/repos/pal1000/mesa-dist-win/releases/latest
+          $a = $rel.assets | Where-Object { $_.name -match 'release-msvc\.7z$' } | Select-Object -First 1
+          "Mesa asset: $($a.name)"
+          Invoke-WebRequest $a.browser_download_url -OutFile C:/mesa.7z
+          7z x C:/mesa.7z -oC:/mesa -y | Out-Null
+          $exe = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
+          $bin = $exe.Directory.FullName
+          Get-ChildItem C:/mesa/x64 | Select-Object -ExpandProperty Name
+          Copy-Item C:/mesa/x64/opengl32.dll $bin -Force
+          foreach ($n in 'libgallium_wgl.dll','libglapi.dll') { if (Test-Path "C:/mesa/x64/$n") { Copy-Item "C:/mesa/x64/$n" $bin -Force } }
+      - name: Launch GUI and screenshot
+        shell: pwsh
+        run: |
+          $env:GALLIUM_DRIVER = 'llvmpipe'
+          $env:MESA_GL_VERSION_OVERRIDE = '4.5'
+          $exe = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
+          $root = $exe.Directory.Parent.FullName
+          Start-Process $exe.FullName -ArgumentList "`"$root\LaunchDelta.FCMacro`""
+          Start-Sleep -Seconds 90
+          Add-Type -AssemblyName System.Windows.Forms,System.Drawing
+          $b = [Windows.Forms.SystemInformation]::VirtualScreen
+          $bmp = New-Object Drawing.Bitmap $b.Width,$b.Height
+          $g = [Drawing.Graphics]::FromImage($bmp)
+          $g.CopyFromScreen($b.Left,$b.Top,0,0,$bmp.Size)
+          New-Item -ItemType Directory -Force C:/shots | Out-Null
+          $bmp.Save('C:/shots/gui2.png')
+          Get-Process | Where-Object { $_.ProcessName -like 'FreeCAD*' } | Select-Object ProcessName,MainWindowTitle | Out-String
+          exit 0
+      - name: Commit screenshot
+        shell: bash
+        run: |
+          git config user.name ci; git config user.email ci@users.noreply.github.com
+          git pull --rebase || true
+          cp /c/shots/gui2.png dist/gui-mesa.png
+          git add dist/gui-mesa.png
+          git commit -m "Add Mesa GUI screenshot"
+          git push
