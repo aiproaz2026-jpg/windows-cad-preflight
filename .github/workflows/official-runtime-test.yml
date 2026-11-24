@@ -30,6 +30,11 @@ jobs:
           mkdir -p /c/delta
           unzip -q src/*DeltaEngineering-development-source-v58-10539385.zip -d /c/delta
           ls /c/delta/DeltaEngineering | head -20
+      - name: Make test sources read UTF-8 explicitly (Windows default is cp1252)
+        shell: bash
+        run: |
+          grep -rl 'read_text()' /c/delta/DeltaEngineering/tests | xargs sed -i "s/read_text()/read_text(encoding='utf-8')/g"
+          grep -rn "read_text(" /c/delta/DeltaEngineering/tests | head -5
       - name: Run Delta regression suites with official Windows FreeCADCmd
         shell: pwsh
         run: |
@@ -47,8 +52,29 @@ jobs:
         run: |
           foreach ($n in 'measurement.py','arabic_presentation.py') {
             "=== $n ===" | Tee-Object -Append $env:GITHUB_STEP_SUMMARY
-            Get-Content "C:/delta/DeltaEngineering/evidence/$n.developer.log" -TotalCount 60 | Tee-Object -Append $env:GITHUB_STEP_SUMMARY
+            Get-Content "C:/delta/DeltaEngineering/evidence/$n.developer.log" -Tail 40 | Tee-Object -Append $env:GITHUB_STEP_SUMMARY
           }
+      - name: Smoke import from official runtime Mod folder and build addon package
+        shell: pwsh
+        run: |
+          $rt = (Get-ChildItem C:/fcrt -Recurse -Filter FreeCADCmd.exe | Select-Object -First 1).Directory.Parent.FullName
+          New-Item -ItemType Directory -Force "$rt/Mod" | Out-Null
+          Copy-Item C:/delta/DeltaEngineering/package/Mod/DeltaEngineering "$rt/Mod/DeltaEngineering" -Recurse -Force
+          "import FreeCAD, DeltaEngineering.core; print('DELTA_IMPORT_OK')" | Set-Content C:/smoke.py
+          & "$rt/bin/FreeCADCmd.exe" C:/smoke.py | Tee-Object -Append $env:GITHUB_STEP_SUMMARY
+          $pk = 'C:/pkg/DeltaEngineering-Windows-addon'
+          New-Item -ItemType Directory -Force "$pk/Mod" | Out-Null
+          Copy-Item C:/delta/DeltaEngineering/package/Mod/DeltaEngineering "$pk/Mod/DeltaEngineering" -Recurse -Force
+          Copy-Item C:/delta/DeltaEngineering/COPYING "$pk/COPYING"
+          @('@echo off','setlocal','set "DEST=%APPDATA%\FreeCAD\Mod\DeltaEngineering"','if not exist "%ProgramFiles%\FreeCAD 1.1\bin\FreeCAD.exe" echo Install official FreeCAD 1.1.4 first from freecad.org','xcopy /E /I /Y "%~dp0Mod\DeltaEngineering" "%DEST%"','echo Installed to %DEST%. Start FreeCAD and choose the Delta workbench.','pause') | Set-Content "$pk/Install-Delta.cmd" -Encoding ascii
+          Compress-Archive -Path $pk -DestinationPath C:/pkg/DeltaEngineering-Windows-addon.zip -Force
+          (Get-Item C:/pkg/DeltaEngineering-Windows-addon.zip).Length
+      - name: Upload addon package
+        uses: actions/upload-artifact@v4
+        with:
+          name: delta-windows-addon
+          path: C:/pkg/DeltaEngineering-Windows-addon.zip
+          retention-days: 14
       - name: Upload small test evidence
         uses: actions/upload-artifact@v4
         with:
