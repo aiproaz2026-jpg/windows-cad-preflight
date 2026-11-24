@@ -1,0 +1,132 @@
+{
+ "steps": {
+  "route_from_drawn_path_dialog_values": {
+   "ok": true,
+   "detail": {
+    "volume_mm3": 6751881.405824883,
+    "validation": "Geometric orthogonal route; catalog/design checks not performed"
+   }
+  },
+  "update_piping_dialog_values_continuity_kept": {
+   "ok": true,
+   "detail": {
+    "inlet": 1200.0,
+    "outlet": 900.0,
+    "bend": 200.0,
+    "centerline_mm": 2414.1592653589796
+   }
+  },
+  "measure_selection_dialog": {
+   "ok": true,
+   "detail": {
+    "object": "InletPipe",
+    "label": "InletPipe",
+    "selection": "Object",
+    "shape_type": "Compound",
+    "bounds_mm": {
+     "min": [
+      0.0,
+      -57.15,
+      142.85
+     ],
+     "max": [
+      1200.0,
+      57.15,
+      257.15
+     ]
+    },
+    "length_mm": 7572.141357527635,
+    "area_mm2": 834414.5486158176,
+    "volume_mm3": 1663284.8145165807,
+    "solid_count": 1
+   }
+  },
+  "sheets_pdf_export_after_edit_native_dialog_stubbed": {
+   "ok": true,
+   "detail": {
+    "sheet.pdf": 14895,
+    "sheet-electrical.pdf": 14119
+   }
+  },
+  "save_close_reopen_project": {
+   "ok": true,
+   "detail": {
+    "objects_before": 26,
+    "objects_after": 26,
+    "file_bytes": 28724,
+    "centerline_mm": 2414.1592653589796
+   }
+  }
+ },
+ "dialogs": [
+  {
+   "n": 1,
+   "cls": "QInputDialog",
+   "title": "مواسير من مسار",
+   "label": "نصف قطر الكوع (مم)",
+   "entered": 150.0
+  },
+  {
+   "n": 2,
+   "cls": "QInputDialog",
+   "title": "مواسير من مسار",
+   "label": "القطر الخارجي (مم)",
+   "entered": 114.3
+  },
+  {
+   "n": 3,
+   "cls": "QInputDialog",
+   "title": "مواسير من مسار",
+   "label": "سمك الجدار (مم)",
+   "entered": 4.0
+  },
+  {
+   "n": 4,
+   "cls": "QInputDialog",
+   "title": "تعديل مسار المشروع",
+   "label": "طول الدخول (مم)",
+   "entered": 1200.0
+  },
+  {
+   "n": 5,
+   "cls": "QInputDialog",
+   "title": "تعديل مسار المشروع",
+   "label": "طول الخروج (مم)",
+   "entered": 900.0
+  },
+  {
+   "n": 6,
+   "cls": "QInputDialog",
+   "title": "تعديل مسار المشروع",
+   "label": "نصف قطر الكوع (مم)",
+   "entered": 200.0
+  },
+  {
+   "n": 7,
+   "cls": "QInputDialog",
+   "title": "تعديل مسار المشروع",
+   "label": "القطر الخارجي (مم)",
+   "entered": 114.3
+  },
+  {
+   "n": 8,
+   "cls": "QInputDialog",
+   "title": "تعديل مسار المشروع",
+   "label": "سمك الجدار (مم)",
+   "entered": 4.0
+  },
+  {
+   "n": 9,
+   "cls": "QDialog",
+   "title": "قياس هندسي للقراءة فقط",
+   "note": "other dialog accepted"
+  },
+  {
+   "n": 10,
+   "cls": "QMessageBox",
+   "title": "اكتمل الإخراج",
+   "text": "تم حفظ اللوحتين من هندسة المشروع الحالية"
+  }
+ ],
+ "done": true
+}
