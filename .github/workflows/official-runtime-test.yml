@@ -34,6 +34,7 @@ jobs:
         shell: bash
         run: |
           grep -rl 'read_text()' /c/delta/DeltaEngineering/tests | xargs sed -i "s/read_text()/read_text(encoding='utf-8')/g"
+          grep -rl '/tmp/cad-development' /c/delta/DeltaEngineering/tests | xargs -r sed -i 's#/tmp/cad-development#C:/delta/DeltaEngineering#g'
           grep -rn "read_text(" /c/delta/DeltaEngineering/tests | head -5
       - name: Run Delta regression suites with official Windows FreeCADCmd
         shell: pwsh
@@ -54,6 +55,12 @@ jobs:
             "=== $n ===" | Tee-Object -Append $env:GITHUB_STEP_SUMMARY
             Get-Content "C:/delta/DeltaEngineering/evidence/$n.developer.log" -Tail 40 | Tee-Object -Append $env:GITHUB_STEP_SUMMARY
           }
+      - name: Show measurement error file
+        shell: pwsh
+        run: |
+          $f = 'C:/delta/DeltaEngineering/evidence/measurement-error.txt'
+          if (Test-Path $f) { "=== measurement-error.txt ===" | Tee-Object -Append $env:GITHUB_STEP_SUMMARY; Get-Content $f -Tail 40 | Tee-Object -Append $env:GITHUB_STEP_SUMMARY } else { "no measurement-error.txt" | Tee-Object -Append $env:GITHUB_STEP_SUMMARY }
+          exit 0
       - name: Diagnose measurement.py directly
         shell: pwsh
         run: |
@@ -68,7 +75,9 @@ jobs:
       - name: Smoke import from official runtime Mod folder and build addon package
         shell: pwsh
         run: |
-          $rt = (Get-ChildItem C:/fcrt -Recurse -Filter FreeCADCmd.exe | Select-Object -First 1).Directory.Parent.FullName
+          $rt = 'C:/fcrt/FreeCAD_1.1.4-Windows-x86_64-py311'
+          Get-ChildItem $rt -Directory | Select-Object -ExpandProperty Name
+          Get-ChildItem $rt/bin -Filter FreeCAD*.exe | Select-Object -ExpandProperty Name
           New-Item -ItemType Directory -Force "$rt/Mod" | Out-Null
           Copy-Item C:/delta/DeltaEngineering/package/Mod/DeltaEngineering "$rt/Mod/DeltaEngineering" -Recurse -Force
           @('import traceback','try:','    import FreeCAD, DeltaEngineering.core','    print("DELTA_IMPORT_OK")','except Exception:','    traceback.print_exc()') | Set-Content C:/smoke.py
