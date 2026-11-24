@@ -58,6 +58,10 @@ jobs:
                   try:
                       if isinstance(w, QtWidgets.QInputDialog):
                           info['label'] = w.labelText()
+                          if not queue:
+                              info['note'] = 'unexpected dialog, rejected'
+                              w.reject()
+                              res['dialogs'].append(info); save(); return
                           v = queue.pop(0)
                           info['entered'] = v
                           if isinstance(v, str): w.setTextValue(v)
@@ -130,6 +134,7 @@ jobs:
                       devs = [o for o in d.Objects if hasattr(o, 'DeviceType')]
                       Gui.Selection.clearSelection()
                       for o in devs: Gui.Selection.addSelection(o)
+                      queue.extend(['1', '2'])
                       Gui.runCommand('Delta_Connect')
                       from DeltaEngineering.domain import netlist
                       rows = netlist(d)
