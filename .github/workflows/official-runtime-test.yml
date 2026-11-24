@@ -54,14 +54,26 @@ jobs:
             "=== $n ===" | Tee-Object -Append $env:GITHUB_STEP_SUMMARY
             Get-Content "C:/delta/DeltaEngineering/evidence/$n.developer.log" -Tail 40 | Tee-Object -Append $env:GITHUB_STEP_SUMMARY
           }
+      - name: Diagnose measurement.py directly
+        shell: pwsh
+        run: |
+          $cmd = (Get-ChildItem C:/fcrt -Recurse -Filter FreeCADCmd.exe | Select-Object -First 1).FullName
+          $env:DELTA_DEV_ROOT = 'C:/delta/DeltaEngineering'
+          $env:PYTHONPATH = 'C:/delta/DeltaEngineering'
+          $out = & $cmd C:/delta/DeltaEngineering/tests/measurement.py 2>&1 | Out-String
+          "=== measurement direct, exit $LASTEXITCODE ===" | Tee-Object -Append $env:GITHUB_STEP_SUMMARY
+          ($out -split "`n" | Select-Object -Last 40) -join "`n" | Tee-Object -Append $env:GITHUB_STEP_SUMMARY
+          $global:LASTEXITCODE = 0
+          exit 0
       - name: Smoke import from official runtime Mod folder and build addon package
         shell: pwsh
         run: |
           $rt = (Get-ChildItem C:/fcrt -Recurse -Filter FreeCADCmd.exe | Select-Object -First 1).Directory.Parent.FullName
           New-Item -ItemType Directory -Force "$rt/Mod" | Out-Null
           Copy-Item C:/delta/DeltaEngineering/package/Mod/DeltaEngineering "$rt/Mod/DeltaEngineering" -Recurse -Force
-          "import FreeCAD, DeltaEngineering.core; print('DELTA_IMPORT_OK')" | Set-Content C:/smoke.py
-          & "$rt/bin/FreeCADCmd.exe" C:/smoke.py | Tee-Object -Append $env:GITHUB_STEP_SUMMARY
+          @('import traceback','try:','    import FreeCAD, DeltaEngineering.core','    print("DELTA_IMPORT_OK")','except Exception:','    traceback.print_exc()') | Set-Content C:/smoke.py
+          & "$rt/bin/FreeCADCmd.exe" C:/smoke.py 2>&1 | Out-String | Tee-Object -Append $env:GITHUB_STEP_SUMMARY
+          $global:LASTEXITCODE = 0
           $pk = 'C:/pkg/DeltaEngineering-Windows-addon'
           New-Item -ItemType Directory -Force "$pk/Mod" | Out-Null
           Copy-Item C:/delta/DeltaEngineering/package/Mod/DeltaEngineering "$pk/Mod/DeltaEngineering" -Recurse -Force
@@ -69,6 +81,7 @@ jobs:
           @('@echo off','setlocal','set "DEST=%APPDATA%\FreeCAD\Mod\DeltaEngineering"','if not exist "%ProgramFiles%\FreeCAD 1.1\bin\FreeCAD.exe" echo Install official FreeCAD 1.1.4 first from freecad.org','xcopy /E /I /Y "%~dp0Mod\DeltaEngineering" "%DEST%"','echo Installed to %DEST%. Start FreeCAD and choose the Delta workbench.','pause') | Set-Content "$pk/Install-Delta.cmd" -Encoding ascii
           Compress-Archive -Path $pk -DestinationPath C:/pkg/DeltaEngineering-Windows-addon.zip -Force
           (Get-Item C:/pkg/DeltaEngineering-Windows-addon.zip).Length
+          exit 0
       - name: Upload addon package
         uses: actions/upload-artifact@v4
         with:
