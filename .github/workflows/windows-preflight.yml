@@ -1,0 +1,52 @@
+name: Windows capacity preflight
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  capacity:
+    runs-on: windows-2022
+    timeout-minutes: 15
+    steps:
+      - name: Measure machine and compiler tools
+        shell: pwsh
+        run: |
+          Get-CimInstance Win32_OperatingSystem | Select-Object Caption,Version,TotalVisibleMemorySize,FreePhysicalMemory | Format-List
+          Get-CimInstance Win32_ComputerSystem | Select-Object NumberOfLogicalProcessors,TotalPhysicalMemory | Format-List
+          Get-PSDrive -PSProvider FileSystem | Select-Object Name,Used,Free | Format-Table
+          cmake --version
+          git --version
+          & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
+      - name: Compile and run isolated C++ probe
+        shell: pwsh
+        run: |
+          $p = Join-Path $env:RUNNER_TEMP 'compiler-probe'
+          New-Item -ItemType Directory -Path $p -Force | Out-Null
+          @'
+          cmake_minimum_required(VERSION 3.22)
+          project(CapacityProbe LANGUAGES CXX)
+          add_executable(probe main.cpp)
+          '@ | Set-Content "$p/CMakeLists.txt"
+          '#include <iostream>', 'int main(){std::cout << "Windows C++ probe passed"; return 0;}' | Set-Content "$p/main.cpp"
+          cmake -S $p -B "$p/build" -G "Visual Studio 17 2022" -A x64
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          cmake --build "$p/build" --config Release --parallel 2
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          & "$p/build/Release/probe.exe"
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+      - name: Inspect public FreeCAD source configuration only
+        timeout-minutes: 8
+        shell: pwsh
+        run: |
+          $src = 'C:/cad-preflight/FreeCAD'
+          git clone --depth 1 --branch 1.1.4 --single-branch https://github.com/FreeCAD/FreeCAD.git $src
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          git -C $src rev-parse HEAD
+          $bytes = (Get-ChildItem $src -Recurse -File -Force | Measure-Object -Property Length -Sum).Sum
+          Write-Output "Upstream source bytes: $bytes"
+          cmake -S $src -B 'C:/cad-preflight/configure' -G "Visual Studio 17 2022" -A x64 -DFREECAD_USE_CCACHE=OFF -DBUILD_GUI=ON
+          $result = $LASTEXITCODE
+          Write-Output "FreeCAD configure exit code: $result. Missing dependencies are diagnostic; no full build or application test is claimed."
+          Get-PSDrive -PSProvider FileSystem | Select-Object Name,Used,Free | Format-Table
+          "## Bounded Windows preflight`nPublic FreeCAD 1.1.4 source only. No custom application source, cache, uploaded artifact, installer or remote desktop. Configure exit code: $result. See logs for dependency findings. This is not Windows product acceptance." | Add-Content $env:GITHUB_STEP_SUMMARY
+          exit 0
