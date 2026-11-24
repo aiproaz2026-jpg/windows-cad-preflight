@@ -1,0 +1,84 @@
+name: Install check (size, standard user, offline run)
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  inst:
+    runs-on: windows-2022
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install as administrator (default per-user target) and measure
+        shell: pwsh
+        run: |
+          Start-Transcript -Path C:/tr-1.txt -Force | Out-Null
+          Expand-Archive dist/v4/DeltaEngineering-Windows-addon-v4.zip C:/pkgA -Force
+          $sw = [Diagnostics.Stopwatch]::StartNew()
+          & powershell -NoProfile -ExecutionPolicy Bypass -File C:/pkgA/DeltaEngineering-Windows-addon/Install-Delta.ps1 -NoShortcut 2>&1 | Out-String
+          "install exit $LASTEXITCODE, seconds $($sw.Elapsed.TotalSeconds)"
+          $t = "$env:LOCALAPPDATA\Programs\DeltaEngineering"
+          $sz = (Get-ChildItem $t -Recurse -File -ErrorAction SilentlyContinue | Measure-Object Length -Sum).Sum
+          "ADMIN installed size MB: $([math]::Round($sz/1MB))"
+          "installer in temp MB: $([math]::Round((Get-Item $env:TEMP/FreeCAD_1.1.4-Windows-x86_64-py311-installer.exe).Length/1MB))"
+          "free disk C: GB $([math]::Round((Get-PSDrive C).Free/1GB))"
+          $cmd = Get-ChildItem $t -Recurse -Filter FreeCADCmd.exe | Select-Object -First 1
+          "FreeCADCmd: $($cmd.FullName)"
+          "admin identity: $([Security.Principal.WindowsIdentity]::GetCurrent().Name) elevated=$((New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))"
+          Stop-Transcript | Out-Null
+      - name: Install as a standard (non-admin) user
+        shell: pwsh
+        continue-on-error: true
+        run: |
+          Start-Transcript -Path C:/tr-2.txt -Force | Out-Null
+          $pw = 'Zx9!' + [guid]::NewGuid().ToString('N').Substring(0,12)
+          net user cadstd $pw /add | Out-String
+          net localgroup Administrators cadstd /delete 2>&1 | Out-String
+          "groups:"; net user cadstd | Select-String 'Local Group'
+          Expand-Archive dist/v4/DeltaEngineering-Windows-addon-v4.zip C:/pkgB -Force
+          icacls C:/pkgB /grant 'cadstd:(OI)(CI)RX' /T | Out-Null
+          New-Item -ItemType Directory C:/outB -Force | Out-Null
+          icacls C:/outB /grant 'cadstd:(OI)(CI)F' | Out-Null
+          $sec = ConvertTo-SecureString $pw -AsPlainText -Force
+          $cred = New-Object Management.Automation.PSCredential('.\cadstd', $sec)
+          $script = 'whoami /groups > C:\outB\who.txt; $a=[Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent(); "admin=$($a.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))" | Out-File C:\outB\role.txt; try { & powershell -NoProfile -ExecutionPolicy Bypass -File C:\pkgB\DeltaEngineering-Windows-addon\Install-Delta.ps1 -NoShortcut *> C:\outB\install.txt; "exit $LASTEXITCODE" | Out-File C:\outB\exit.txt } catch { $_ | Out-File C:\outB\err.txt }'
+          $enc = [Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($script))
+          $p = Start-Process powershell.exe -Credential $cred -LoadUserProfile -WorkingDirectory C:/outB -ArgumentList '-NoProfile','-EncodedCommand',$enc -Wait -PassThru
+          "process exit $($p.ExitCode)"
+          foreach ($f in 'role.txt','exit.txt','err.txt') { if (Test-Path C:/outB/$f) { "--- $f"; Get-Content C:/outB/$f } }
+          if (Test-Path C:/outB/install.txt) { "--- install.txt tail"; Get-Content C:/outB/install.txt | Select-Object -Last 15 }
+          $t = 'C:\Users\cadstd\AppData\Local\Programs\DeltaEngineering'
+          "standard-user target exists: $(Test-Path $t)"
+          $cmd = Get-ChildItem $t -Recurse -Filter FreeCADCmd.exe -ErrorAction SilentlyContinue | Select-Object -First 1
+          "FreeCADCmd: $($cmd.FullName)"
+          if ($cmd) {
+            $root = $cmd.Directory.Parent.FullName
+            "addon present: $(Test-Path $root/Mod/DeltaEngineering/InitGui.py)"
+          }
+          Stop-Transcript | Out-Null
+          exit 0
+      - name: Addon loads after install with network blocked
+        shell: pwsh
+        continue-on-error: true
+        run: |
+          Start-Transcript -Path C:/tr-3.txt -Force | Out-Null
+          New-NetFirewallRule -DisplayName blockout -Direction Outbound -Action Block -Profile Any | Out-Null
+          try { Invoke-WebRequest https://github.com -TimeoutSec 8 -UseBasicParsing | Out-Null; "network STILL reachable" } catch { "network blocked OK" }
+          $cmd = Get-ChildItem "$env:LOCALAPPDATA\Programs\DeltaEngineering" -Recurse -Filter FreeCADCmd.exe | Select-Object -First 1
+          $env:PYTHONUTF8 = '1'
+          @('import FreeCAD, DeltaEngineering.core, DeltaEngineering.domain','print("addon import ok offline")') | Set-Content C:/off.py -Encoding utf8
+          & $cmd.FullName C:/off.py 2>&1 | Out-String
+          Remove-NetFirewallRule -DisplayName blockout
+          Stop-Transcript | Out-Null
+          exit 0
+      - name: Commit results
+        if: always()
+        shell: bash
+        run: |
+          git config user.name ci; git config user.email ci@users.noreply.github.com
+          git pull --rebase || true
+          mkdir -p dist/install-check
+          cp /c/tr-*.txt dist/install-check/ || true
+          git add dist
+          git commit -m "Add install check results" || true
+          git push
