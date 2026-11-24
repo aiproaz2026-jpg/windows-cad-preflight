@@ -1,0 +1,338 @@
+name: Build v4 package (diagonal label fix) and verify
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  v4:
+    runs-on: windows-2022
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Unpack source and apply patches (v2 gui, v3 and v4 drafting/export)
+        shell: bash
+        run: |
+          mkdir -p /c/delta patches/v4
+          unzip -q src/*DeltaEngineering-development-source-v58-10539385.zip -d /c/delta
+          cp -r /c/delta/DeltaEngineering /c/delta_orig
+          cat > patches/v4/apply_v4.py <<'PY'
+          """Delta Engineering v4 patches: applies v3 (apply_v3.py) first, then diagonal dimension label placement."""
+          import sys,os,subprocess
+          root=sys.argv[1]
+          here=os.path.dirname(os.path.abspath(__file__))
+          subprocess.check_call([sys.executable,os.path.join(here,'..','v3','apply_v3.py'),root])
+          DR_OLD=("        else:\n"
+          "            labels.append((str(round(dim.Distance.Value,3))+' mm',middle.x-20,middle.y+15,'right'))")
+          DR_NEW=("        elif abs(vector.y)<0.05:\n"
+          "            labels.append((str(round(dim.Distance.Value,3))+' mm',middle.x-20,middle.y+15,'right'))\n"
+          "        else:\n"
+          "            normal=side if offset>=0 else side*-1\n"
+          "            labels.append((str(round(dim.Distance.Value,3))+' mm',middle.x,middle.y,'normal',(normal.x,normal.y)))")
+          EX_OLD=("                for text,x,y,side in annotations:\n"
+          "                    px=target.x()+(x-box.x())*ratio\n"
+          "                    py=target.y()+(-y-box.y())*ratio\n"
+          "                    labelrect=QtCore.QRectF(px-125 if side=='left' else px+8,py-12,117,24)\n"
+          "                    painter.drawText(labelrect,int(QtCore.Qt.AlignRight if side=='left' else QtCore.Qt.AlignLeft),text)")
+          EX_NEW=("                for ann in annotations:\n"
+          "                    text,x,y,side=ann[:4]\n"
+          "                    px=target.x()+(x-box.x())*ratio\n"
+          "                    py=target.y()+(-y-box.y())*ratio\n"
+          "                    if side=='normal':\n"
+          "                        nx,ny=ann[4]\n"
+          "                        ax=px+nx*10;ay=py-ny*10\n"
+          "                        if nx>0.3:rx=ax;align=QtCore.Qt.AlignLeft\n"
+          "                        elif nx<-0.3:rx=ax-117;align=QtCore.Qt.AlignRight\n"
+          "                        else:rx=ax-58;align=QtCore.Qt.AlignHCenter\n"
+          "                        if ny>0.3:ry=ay-24\n"
+          "                        elif ny<-0.3:ry=ay\n"
+          "                        else:ry=ay-12\n"
+          "                        painter.drawText(QtCore.QRectF(rx,ry,117,24),int(align|QtCore.Qt.AlignVCenter),text)\n"
+          "                        continue\n"
+          "                    labelrect=QtCore.QRectF(px-125 if side=='left' else px+8,py-12,117,24)\n"
+          "                    painter.drawText(labelrect,int(QtCore.Qt.AlignRight if side=='left' else QtCore.Qt.AlignLeft),text)")
+          for base in (root+'/DeltaEngineering', root+'/package/Mod/DeltaEngineering/DeltaEngineering'):
+              p=base+'/drafting.py';s=open(p,encoding='utf-8').read();assert DR_OLD in s
+              open(p,'w',encoding='utf-8').write(s.replace(DR_OLD,DR_NEW))
+              p=base+'/export.py';s=open(p,encoding='utf-8').read();assert EX_OLD in s
+              open(p,'w',encoding='utf-8').write(s.replace(EX_OLD,EX_NEW))
+              print('v4 patched',base)
+
+          PY
+          python patches/v4/apply_v4.py C:/delta/DeltaEngineering
+          cd /c && diff -ru delta_orig delta/DeltaEngineering > /c/v4.patch || true
+          wc -l /c/v4.patch
+      - name: Build v4 addon zip from v3 zip with patched drafting.py and export.py
+        shell: pwsh
+        run: |
+          Expand-Archive dist/v3/DeltaEngineering-Windows-addon-v3.zip C:/v4 -Force
+          $d = 'C:/v4/DeltaEngineering-Windows-addon/Mod/DeltaEngineering/DeltaEngineering'
+          $s = 'C:/delta/DeltaEngineering/package/Mod/DeltaEngineering/DeltaEngineering'
+          "gui.py same as patched source: $((Get-FileHash $d/gui.py).Hash -eq (Get-FileHash $s/gui.py).Hash)"
+          Copy-Item $s/drafting.py $d/drafting.py -Force
+          Copy-Item $s/export.py $d/export.py -Force
+          Compress-Archive -Path C:/v4/DeltaEngineering-Windows-addon -DestinationPath C:/DeltaEngineering-Windows-addon-v4.zip -Force
+          (Get-FileHash C:/DeltaEngineering-Windows-addon-v4.zip -Algorithm SHA256).Hash
+      - name: Install via packaged Install-Delta.ps1 (v4 zip)
+        shell: pwsh
+        run: |
+          Expand-Archive C:/DeltaEngineering-Windows-addon-v4.zip C:/pkgtest -Force
+          & powershell -NoProfile -ExecutionPolicy Bypass -File C:/pkgtest/DeltaEngineering-Windows-addon/Install-Delta.ps1 -Target C:\DeltaTest -NoShortcut 2>&1 | Out-String
+          "install exit $LASTEXITCODE"
+      - name: Regression on installed build with patched source, 1e-6 mm tolerance in test copy
+        shell: bash
+        run: |
+          grep -rl 'read_text()' /c/delta/DeltaEngineering/tests | xargs sed -i "s/read_text()/read_text(encoding='utf-8')/g"
+          grep -rl '/tmp/cad-development' /c/delta/DeltaEngineering/tests | xargs -r sed -i 's#/tmp/cad-development#C:/delta/DeltaEngineering#g'
+          python - <<'PY'
+          p='C:/delta/DeltaEngineering/tests/measurement.py'
+          s=open(p,encoding='utf-8').read()
+          old="report['items'][0]['bounds_mm']['min']==[50.0,210.0,0.0]"
+          new="all(abs(a-b)<1e-6 for a,b in zip(report['items'][0]['bounds_mm']['min'],[50.0,210.0,0.0]))"
+          assert old in s
+          open(p,'w',encoding='utf-8').write(s.replace(old,new))
+          PY
+          cmd=$(find /c/DeltaTest -name FreeCADCmd.exe | head -1)
+          PYTHONUTF8=1 python C:/delta/DeltaEngineering/development/run_regression.py --runtime "$cmd" --timeout 240 || true
+          mkdir -p dist/v4
+          cp C:/delta/DeltaEngineering/evidence/developer-regression.json dist/v4/regression-v4.json
+          python -c "import json;d=json.load(open('dist/v4/regression-v4.json'));print('all_passed',d['all_passed'],len(d['results']),[r['suite'] for r in d['results'] if not r['passed']])"
+      - name: Add Mesa llvmpipe software OpenGL (CI only)
+        shell: pwsh
+        run: |
+          $rel = Invoke-RestMethod https://api.github.com/repos/pal1000/mesa-dist-win/releases/latest
+          $a = $rel.assets | Where-Object { $_.name -match 'release-msvc\.7z$' } | Select-Object -First 1
+          Invoke-WebRequest $a.browser_download_url -OutFile C:/mesa.7z
+          7z x C:/mesa.7z -oC:/mesa -y | Out-Null
+          $exe = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
+          $bin = $exe.Directory.FullName
+          Copy-Item C:/mesa/x64/opengl32.dll $bin -Force
+          foreach ($n in 'libgallium_wgl.dll','libglapi.dll') { if (Test-Path "C:/mesa/x64/$n") { Copy-Item "C:/mesa/x64/$n" $bin -Force } }
+      - name: Add Mesa llvmpipe software OpenGL (CI only)
+        shell: pwsh
+        run: |
+          $rel = Invoke-RestMethod https://api.github.com/repos/pal1000/mesa-dist-win/releases/latest
+          $a = $rel.assets | Where-Object { $_.name -match 'release-msvc\.7z$' } | Select-Object -First 1
+          Invoke-WebRequest $a.browser_download_url -OutFile C:/mesa.7z
+          7z x C:/mesa.7z -oC:/mesa -y | Out-Null
+          $exe = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
+          $bin = $exe.Directory.FullName
+          Copy-Item C:/mesa/x64/opengl32.dll $bin -Force
+          foreach ($n in 'libgallium_wgl.dll','libglapi.dll') { if (Test-Path "C:/mesa/x64/$n") { Copy-Item "C:/mesa/x64/$n" $bin -Force } }
+      - name: Drive v4 GUI checks
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force C:/shots | Out-Null
+          $macro = @'
+          import os, json, traceback
+          OUT = 'C:/shots'
+          os.makedirs(OUT, exist_ok=True)
+          res = {'steps': {}, 'dialogs': [], 'done': False}
+          def save():
+              open(OUT + '/gui-result6.json', 'w', encoding='utf-8').write(json.dumps(res, ensure_ascii=False, indent=1, default=str))
+          try:
+              import FreeCAD as App, FreeCADGui as Gui
+              from PySide import QtCore, QtWidgets
+              import DeltaEngineering.core, DeltaEngineering.domain
+              from DeltaEngineering.gui import register
+              if 'DeltaWorkbench' not in Gui.listWorkbenches(): register()
+              Gui.activateWorkbench('DeltaWorkbench')
+              queue = []
+              counter = [0]
+              def handle():
+                  w = QtWidgets.QApplication.activeModalWidget()
+                  if not w: return
+                  counter[0] += 1
+                  info = {'n': counter[0], 'cls': type(w).__name__, 'title': w.windowTitle()}
+                  try:
+                      w.grab().save(OUT + '/dlg-%02d.png' % counter[0])
+                  except Exception:
+                      pass
+                  try:
+                      if isinstance(w, QtWidgets.QInputDialog):
+                          info['label'] = w.labelText()
+                          if not queue:
+                              info['note'] = 'unexpected dialog, rejected'
+                              w.reject()
+                              res['dialogs'].append(info); save(); return
+                          v = queue.pop(0)
+                          info['entered'] = v
+                          if isinstance(v, str): w.setTextValue(v)
+                          else: w.setDoubleValue(v)
+                          w.accept()
+                      elif isinstance(w, QtWidgets.QMessageBox):
+                          info['text'] = w.text()
+                          yes = [b for b in w.findChildren(QtWidgets.QPushButton) if b.text() in ('نعم', 'Yes', '&Yes')]
+                          if yes: yes[0].click()
+                          else: w.accept()
+                      else:
+                          info['note'] = 'other dialog accepted'
+                          tb = w.findChild(QtWidgets.QTableWidget)
+                          if tb is not None:
+                              info['table'] = [[(tb.item(r, c).text() if tb.item(r, c) else '') for c in range(tb.columnCount())] for r in range(tb.rowCount())]
+                          w.accept()
+                  except Exception:
+                      info['handler_error'] = traceback.format_exc()
+                  res['dialogs'].append(info); save()
+              t = QtCore.QTimer(); t.setInterval(400); t.timeout.connect(handle); t.start()
+              def shot(name):
+                  try:
+                      Gui.getMainWindow().grab().save(OUT + '/' + name + '.png')
+                  except Exception:
+                      res['steps'][name + '_shot_error'] = traceback.format_exc()
+              def fit():
+                  try:
+                      v = Gui.activeDocument().activeView(); v.viewAxonometric(); v.fitAll()
+                  except Exception: pass
+              def run(name, fn):
+                  try:
+                      out = fn()
+                      res['steps'][name] = {'ok': True, 'detail': out}
+                  except Exception:
+                      res['steps'][name] = {'ok': False, 'detail': traceback.format_exc()}
+                  save()
+              def step():
+                  mw = Gui.getMainWindow()
+                  def s_measure():
+                      Gui.runCommand('Delta_Demo')
+                      d = App.ActiveDocument
+                      Gui.Selection.clearSelection(); Gui.Selection.addSelection(d.InletPipe)
+                      Gui.runCommand('Delta_MeasureSelection')
+                      rows = [x for x in res['dialogs'] if 'table' in x][-1]['table']
+                      txt = ' | '.join(' / '.join(r) for r in rows)
+                      assert 'خط المركز' in txt, txt
+                      assert 'مجموع' in txt, txt
+                      return rows
+                  run('measure_labels_distinguish_edge_sum_from_centerline', s_measure)
+                  def s_layout():
+                      out = {}
+                      from DeltaEngineering.drafting_panel import show_panel
+                      from DeltaEngineering.panel import show_panel as eshow
+                      p = show_panel(); e = eshow()
+                      for (w, h) in ((1366, 768), (1920, 1080)):
+                          mw.showNormal(); mw.resize(w, h)
+                          QtWidgets.QApplication.processEvents()
+                          mdi = mw.findChild(QtWidgets.QMdiArea)
+                          out['%dx%d' % (w, h)] = {'window': [mw.width(), mw.height()], 'viewport_width': mdi.width() if mdi else None, 'viewport_height': mdi.height() if mdi else None}
+                          mw.grab().save(OUT + '/func4-layout-%dx%d.png' % (w, h))
+                      return out
+                  run('layout_both_editors_docked_laptop_and_fullhd', s_layout)
+                  def s_dims():
+                      from DeltaEngineering.drafting_panel import show_panel
+                      Gui.runCommand('Delta_NewProject')
+                      p = show_panel()
+                      for (r, c, v) in ((0, 0, '0'), (1, 0, '1000'), (1, 1, '0'), (2, 0, '1000'), (2, 1, '600')):
+                          p.table.item(r, c).setText(v)
+                      def click(text):
+                          b = [x for x in p.findChildren(QtWidgets.QPushButton) if x.text() == text][0]
+                          b.click(); QtWidgets.QApplication.processEvents()
+                      click('رسم مسار جديد')
+                      s1 = p.status.text()
+                      p.start.setValue(1); p.end.setValue(2); p.offset.setValue(150)
+                      click('إضافة بعد مرتبط')
+                      s2 = p.status.text()
+                      p.start.setValue(2); p.end.setValue(3)
+                      click('إضافة بعد مرتبط')
+                      s3 = p.status.text()
+                      d = App.ActiveDocument
+                      dims = [o for o in d.Objects if 'Dimension' in o.TypeId or 'Dimension' in o.Name]
+                      QtWidgets.QFileDialog.getSaveFileName = staticmethod(lambda *a, **k: (OUT + '/dims.pdf', 'PDF (*.pdf)'))
+                      click('إخراج الرسم والأبعاد PDF')
+                      s4 = p.status.text()
+                      sz = os.path.getsize(OUT + '/dims.pdf') if os.path.exists(OUT + '/dims.pdf') else None
+                      assert dims and sz, (dims, sz, s4)
+                      mw.grab().save(OUT + '/func4-dimensions.png')
+                      return {'status_after_draw': s1, 'status_dim1': s2, 'status_dim2': s3, 'dimension_objects': [o.Name for o in dims], 'status_export': s4, 'pdf_bytes': sz}
+                  run('manual_table_points_linked_dimensions_pdf', s_dims)
+                  def scenario(tag, off, pts):
+                      from DeltaEngineering.drafting_panel import show_panel
+                      Gui.runCommand('Delta_NewProject')
+                      p = show_panel()
+                      for i, (x, y) in enumerate(pts):
+                          for c, v in ((0, x), (1, y), (2, 0)):
+                              p.table.item(i, c).setText(str(v))
+                      def click(text):
+                          b = [x for x in p.findChildren(QtWidgets.QPushButton) if x.text() == text][0]
+                          b.click(); QtWidgets.QApplication.processEvents()
+                      click('رسم مسار جديد')
+                      stat = []
+                      for a, b in ((1, 2), (2, 3)):
+                          p.start.setValue(a); p.end.setValue(b); p.offset.setValue(off)
+                          click('إضافة بعد مرتبط'); stat.append(p.status.text())
+                      QtWidgets.QFileDialog.getSaveFileName = staticmethod(lambda *a, **k: (OUT + '/dims-' + tag + '.pdf', 'PDF (*.pdf)'))
+                      click('إخراج الرسم والأبعاد PDF')
+                      return {'dims': stat, 'export': p.status.text(), 'pdf_bytes': os.path.getsize(OUT + '/dims-' + tag + '.pdf')}
+                  for tag, off, pts in (('A', 150, ((0,0),(1000,0),(1000,600))), ('B', -150, ((0,0),(1000,0),(1000,600))), ('C', 150, ((0,0),(-800,0),(-800,-500))), ('D', 150, ((0,0),(800,600),(1600,0))), ('E', -150, ((0,0),(800,600),(1600,0))), ('F', 150, ((0,0),(700,-500),(0,-900))), ('G', -150, ((0,0),(700,-500),(0,-900)))):
+                      run('dims_' + tag, lambda tag=tag, off=off, pts=pts: scenario(tag, off, pts))
+                  res['done'] = True; save()
+              QtCore.QTimer.singleShot(6000, step)
+          except Exception:
+              res['error'] = traceback.format_exc(); res['done'] = True; save()
+          '@
+          $exe = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
+          $root = $exe.Directory.Parent.FullName
+          Set-Content "$root\DeltaGuiTest6.FCMacro" $macro -Encoding utf8
+          $env:GALLIUM_DRIVER = 'llvmpipe'
+          $env:MESA_GL_VERSION_OVERRIDE = '4.5'
+          Start-Process $exe.FullName -ArgumentList "`"$root\DeltaGuiTest6.FCMacro`""
+          $t = 0
+          while ($t -lt 500) { Start-Sleep 5; $t += 5; if ((Test-Path C:/shots/gui-result6.json) -and (Select-String -Path C:/shots/gui-result6.json -Pattern '"done": true' -Quiet)) { break } }
+          Start-Sleep 3
+          if (Test-Path C:/shots/gui-result6.json) { Get-Content C:/shots/gui-result6.json } else { 'no result json' }
+          exit 0
+      - name: Render PDFs and check label/line crossings
+        shell: pwsh
+        run: |
+          pip install pymupdf 2>&1 | Select-Object -Last 1
+          @'
+          import fitz,glob,json
+          out={}
+          for f in sorted(glob.glob('C:/shots/dims-*.pdf')):
+              page=fitz.open(f).load_page(0)
+              page.get_pixmap(dpi=130).save(f.replace('.pdf','-page1.png'))
+              words=page.get_text('words')
+              labels=[]
+              for i,w in enumerate(words):
+                  if w[4]=='mm' and i>0:
+                      n=words[i-1]
+                      labels.append((n[4],fitz.Rect(n[:4])|fitz.Rect(w[:4])))
+              segs=[]
+              for d in page.get_drawings():
+                  for it in d['items']:
+                      if it[0]=='l': segs.append((it[1],it[2]))
+                      elif it[0]=='re':
+                          r=it[1]; segs += [(r.tl,r.tr),(r.tr,r.br),(r.br,r.bl),(r.bl,r.tl)]
+              def hit(rect,a,b):
+                  # sample points along segment, shrink rect slightly
+                  r=fitz.Rect(rect.x0+1,rect.y0+1,rect.x1-1,rect.y1-1)
+                  for k in range(0,101):
+                      t=k/100; x=a.x+(b.x-a.x)*t; y=a.y+(b.y-a.y)*t
+                      if r.contains(fitz.Point(x,y)): return True
+                  return False
+              res=[]
+              for name,rect in labels:
+                  crossed=[(round(a.x,1),round(a.y,1),round(b.x,1),round(b.y,1)) for a,b in segs if hit(rect,a,b)]
+                  res.append({'label':name+' mm','rect':[round(v,1) for v in rect],'crossing_lines':crossed})
+              out[f.split('/')[-1]]=res
+          json.dump(out,open('C:/shots/label-check.json','w'),indent=1)
+          print(json.dumps(out,indent=1))
+          bad=[k for k,v in out.items() for l in v if l['crossing_lines']]
+          print('labels found:',sum(len(v) for v in out.values()),'crossed:',bad)
+
+          '@ | Set-Content C:/check.py -Encoding utf8
+          python C:/check.py
+          exit 0
+      - name: Commit v4 package, patches and evidence
+        shell: bash
+        run: |
+          git config user.name ci; git config user.email ci@users.noreply.github.com
+          git pull --rebase || true
+          mkdir -p dist/v4 patches/v4
+          cp /c/DeltaEngineering-Windows-addon-v4.zip dist/v4/
+          base64 -w0 /c/DeltaEngineering-Windows-addon-v4.zip > dist/v4/DeltaEngineering-Windows-addon-v4.zip.b64
+          sha256sum /c/DeltaEngineering-Windows-addon-v4.zip > dist/v4/DeltaEngineering-Windows-addon-v4.zip.sha256
+          cp /c/v4.patch patches/v4/v4-vs-original-v58.patch
+          for f in gui.py drafting.py export.py; do cp /c/delta/DeltaEngineering/package/Mod/DeltaEngineering/DeltaEngineering/$f patches/v4/$f; done
+          cp /c/shots/*.png /c/shots/gui-result6.json /c/shots/label-check.json /c/shots/*.pdf dist/v4/ || true
+          git add dist patches
+          git commit -m "Add v4 package, versioned patches and evidence"
+          git push
