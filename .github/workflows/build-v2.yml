@@ -20,7 +20,7 @@ jobs:
           for p in ('C:/delta/DeltaEngineering/DeltaEngineering/gui.py','C:/delta/DeltaEngineering/package/Mod/DeltaEngineering/DeltaEngineering/gui.py'):
               s=open(p,encoding='utf-8').read()
               old="(title,'طول الحواف (mm)',item['length_mm'])"
-              new="(title,'مجموع أطوال كل حواف الجسم (mm)، وليس طول خط مركز الماسورة',item['length_mm'])"
+              new="(title,'مجموع أطوال حواف الجسم (mm)',item['length_mm'])"
               assert old in s
               s=s.replace(old,new)
               old2="            if 'radius_mm' in item:values.append("
