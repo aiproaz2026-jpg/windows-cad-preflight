@@ -1,102 +1,27 @@
-Only in delta/DeltaEngineering: ACCEPTANCE.ar.md
-Only in delta/DeltaEngineering: ARABIC-WORKFLOWS-v58.md
-Only in delta/DeltaEngineering: CONTINUATION.md
-Only in delta/DeltaEngineering: COPYING
-Only in delta/DeltaEngineering: DeltaEngineering
-Only in delta/DeltaEngineering: Init.py
-Only in delta/DeltaEngineering: InitGui.py
-Only in delta/DeltaEngineering: LaunchDelta.FCMacro
-Only in delta/DeltaEngineering: LaunchDelta.cmd
-Only in delta/DeltaEngineering: MANIFEST.sha256.json
-Only in delta/DeltaEngineering: README.md
-Only in delta/DeltaEngineering: TUBE-DIMENSION-SOURCES.md
-Only in delta/DeltaEngineering: WINDOWS-PACKAGING-FOLLOWTHROUGH.md
-Only in delta/DeltaEngineering: WINDOWS-PACKAGING-STATUS.md
-Only in delta/DeltaEngineering: WINDOWS-RELEASE-INPUT-REVIEW.md
-Only in delta/DeltaEngineering: WINDOWS-RELEASE-PREPARATION.md
-Only in delta_orig/DeltaEngineering: __init__.py
-Only in delta_orig/DeltaEngineering: arabic.py
-Only in delta_orig/DeltaEngineering: arabic_qt.py
-Only in delta/DeltaEngineering: arabic_ui_test.FCMacro
-Only in delta_orig/DeltaEngineering: branches.py
-Only in delta/DeltaEngineering: compact_ui_test.FCMacro
-Only in delta_orig/DeltaEngineering: connectivity.py
-Only in delta/DeltaEngineering: connectivity_test.FCMacro
-Only in delta_orig/DeltaEngineering: constraints.py
-Only in delta/DeltaEngineering: constraints_test.FCMacro
-Only in delta_orig/DeltaEngineering: coordinate_text.py
-Only in delta/DeltaEngineering: coordinate_text_test.FCMacro
-Only in delta_orig/DeltaEngineering: core.py
-Only in delta/DeltaEngineering: development
-Only in delta_orig/DeltaEngineering: documents.py
-Only in delta_orig/DeltaEngineering: domain.py
-Only in delta_orig/DeltaEngineering: drafting.py
-Only in delta_orig/DeltaEngineering: drafting_panel.py
-Only in delta/DeltaEngineering: drafting_workflow_test.FCMacro
-Only in delta_orig/DeltaEngineering: drawing.py
-Only in delta/DeltaEngineering: drawing_test.FCMacro
-Only in delta_orig/DeltaEngineering: electrical.py
-Only in delta/DeltaEngineering: electrical_layout_test.FCMacro
-Only in delta/DeltaEngineering: evidence
-Only in delta_orig/DeltaEngineering: export.py
-Only in delta/DeltaEngineering: export_command_test.FCMacro
-Only in delta/DeltaEngineering: export_limits_test.FCMacro
-Only in delta/DeltaEngineering: export_regression.FCMacro
-Only in delta/DeltaEngineering: fillet_restore_test.FCMacro
-Only in delta_orig/DeltaEngineering: fillets.py
-Only in delta/DeltaEngineering: fillets_test.FCMacro
-Only in delta/DeltaEngineering: general_project_test.FCMacro
-Only in delta_orig/DeltaEngineering: gui.py
-Only in delta/DeltaEngineering: gui_commands_test.FCMacro
-Only in delta_orig/DeltaEngineering: hybrid.py
-Only in delta/DeltaEngineering: hybrid_test.FCMacro
-Only in delta/DeltaEngineering: integrated_workflow_test.FCMacro
-Only in delta_orig/DeltaEngineering: interchange.py
-Only in delta/DeltaEngineering: interchange_test.FCMacro
-Only in delta_orig/DeltaEngineering: measurement.py
-Only in delta/DeltaEngineering: measurement_faces_test.FCMacro
-Only in delta/DeltaEngineering: measurement_pair_test.FCMacro
-Only in delta/DeltaEngineering: measurement_test.FCMacro
-Only in delta_orig/DeltaEngineering: mechanical.py
-Only in delta/DeltaEngineering: package
-Only in delta/DeltaEngineering: pagination_test.FCMacro
-Only in delta_orig/DeltaEngineering: panel.py
-Only in delta/DeltaEngineering: panel_workflow_test.FCMacro
-Only in delta/DeltaEngineering: path_workflow_test.FCMacro
-Only in delta_orig/DeltaEngineering: patterns.py
-Only in delta/DeltaEngineering: patterns_test.FCMacro
-Only in delta_orig/DeltaEngineering: port_connections.py
-Only in delta/DeltaEngineering: ports_test.FCMacro
-Only in delta_orig/DeltaEngineering: precision.py
-Only in delta_orig/DeltaEngineering: profile_panel.py
-Only in delta/DeltaEngineering: profile_test.FCMacro
-Only in delta_orig/DeltaEngineering: profiles.py
-Only in delta_orig/DeltaEngineering: project.py
-Only in delta_orig/DeltaEngineering: project_check.py
-Only in delta/DeltaEngineering: project_check_test.FCMacro
-Only in delta/DeltaEngineering: release-inputs
-Only in delta_orig/DeltaEngineering: revolutions.py
-Only in delta/DeltaEngineering: revolutions_test.FCMacro
-Only in delta/DeltaEngineering: ring_edit_test.FCMacro
-Only in delta/DeltaEngineering: robustness_test.FCMacro
-Only in delta_orig/DeltaEngineering: routing.py
-Only in delta_orig/DeltaEngineering: scaled_output.py
-Only in delta/DeltaEngineering: scaled_views_test.FCMacro
-Only in delta_orig/DeltaEngineering: selection_context.py
-Only in delta/DeltaEngineering: selection_test.FCMacro
-Only in delta/DeltaEngineering: snap_placement_test.FCMacro
-Only in delta_orig/DeltaEngineering: solid_edit.py
-Only in delta/DeltaEngineering: solid_edit_test.FCMacro
-Only in delta_orig/DeltaEngineering: symbols.py
-Only in delta/DeltaEngineering: symbols_test.FCMacro
-Only in delta/DeltaEngineering: tee_test.FCMacro
-Only in delta_orig/DeltaEngineering: templates
-Only in delta/DeltaEngineering: terminal_layout_test.FCMacro
-Only in delta/DeltaEngineering: tests
-Only in delta_orig/DeltaEngineering: tube_library.py
-Only in delta_orig/DeltaEngineering: tube_library_panel.py
-Only in delta/DeltaEngineering: tube_library_test.FCMacro
-Only in delta/DeltaEngineering: ui_test.FCMacro
-Only in delta_orig/DeltaEngineering: validation.py
-Only in delta/DeltaEngineering: world_output_test.FCMacro
-Only in delta/DeltaEngineering: world_step_test.FCMacro
+--- a/DeltaEngineering/gui.py	2026-11-24 09:45:40.000000000 +0200
++++ a/DeltaEngineering/gui.py	2026-11-25 00:51:21.036519770 +0200
+@@ -286,7 +286,9 @@
+         values=[]
+         for item in report['items']:
+             title=item['label']+' / '+({'Whole':'الجسم كاملاً','whole':'الجسم كاملاً','Object':'الجسم كاملاً'}.get(item['selection'],item['selection']))
+-            values.extend([(title,'طول الحواف (mm)',item['length_mm']),(title,'مساحة السطح (mm²)',item['area_mm2']),(title,'حجم المصمتات (mm³)',item['volume_mm3'])])
++            values.extend([(title,'مجموع أطوال حواف الجسم (mm)',item['length_mm']),(title,'مساحة السطح (mm²)',item['area_mm2']),(title,'حجم المصمتات (mm³)',item['volume_mm3'])])
++            _o=App.ActiveDocument.getObject(item['object']) if App.ActiveDocument and item.get('object') else None
++            if _o is not None and hasattr(_o,'CenterlineLength'):values.append((title,'طول خط المركز للماسورة (mm)',_o.CenterlineLength.Value))
+             if 'radius_mm' in item:values.append((title,'نصف قطر الحافة الدائرية (mm)',item['radius_mm']))
+             if 'point_mm' in item:
+                 for axis,value in zip(('X','Y','Z'),item['point_mm']):values.append((title,axis+' العالمي (mm)',value))
+--- s/DeltaEngineering/DeltaEngineering/drafting.py	2026-11-24 07:48:02.000000000 +0200
++++ s_test/DeltaEngineering/DeltaEngineering/drafting.py	2026-11-25 00:51:21.036699882 +0200
+@@ -108,7 +108,10 @@
+             for sign in (-1,1):
+                 shapes.append(Part.makeLine(tip,tip+direction*arrow+side*arrow*0.35*sign))
+         middle=(da+db)*0.5
+-        labels.append((str(round(dim.Distance.Value,3))+' mm',middle.x-20,middle.y+15,'right'))
++        if abs(vector.y)>abs(vector.x):
++            labels.append((str(round(dim.Distance.Value,3))+' mm',middle.x,middle.y,'right'))
++        else:
++            labels.append((str(round(dim.Distance.Value,3))+' mm',middle.x-20,middle.y+15,'right'))
+     svg=projection_svg(Part.makeCompound(shapes),App.Vector(0,0,1))
+     parent=os.path.dirname(os.path.abspath(target))
+     directory=path_for_python(parent)
