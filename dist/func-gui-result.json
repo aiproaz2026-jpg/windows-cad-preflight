@@ -1,0 +1,73 @@
+{
+ "doc": "IntegratedPilot",
+ "object_count": 26,
+ "objects": [
+  "ProjectInfo:App::FeaturePython",
+  "MechanicalAssembly:Assembly::AssemblyObject",
+  "Origin:App::Origin",
+  "X_Axis:App::Line",
+  "Y_Axis:App::Line",
+  "Z_Axis:App::Line",
+  "XY_Plane:App::Plane",
+  "XZ_Plane:App::Plane",
+  "YZ_Plane:App::Plane",
+  "Origin001:App::Point",
+  "Joints:Assembly::JointGroup",
+  "AssemblyBase:Part::Box",
+  "AssemblyShaft:Part::Cylinder",
+  "BaseInstance:App::Link",
+  "ShaftInstance:App::Link",
+  "GroundedBase:App::FeaturePython",
+  "PipingSystem:App::DocumentObjectGroup",
+  "InletPipe:PartDesign::FeaturePython",
+  "RouteElbow:PartDesign::FeaturePython",
+  "OutletPipe:PartDesign::FeaturePython",
+  "ElectricalSystem:App::DocumentObjectGroup",
+  "Panel:PartDesign::FeaturePython",
+  "Motor:PartDesign::FeaturePython",
+  "TerminalWire:PartDesign::FeaturePython",
+  "TerminalWire001:PartDesign::FeaturePython",
+  "TerminalWire002:PartDesign::FeaturePython"
+ ],
+ "validate_project": {
+  "centerline_mm": 1035.6194490192345,
+  "connections": [
+   {
+    "wire": "W1",
+    "source": {
+     "device": "P1",
+     "terminal": "L1"
+    },
+    "target": {
+     "device": "M1",
+     "terminal": "U1"
+    }
+   },
+   {
+    "wire": "W2",
+    "source": {
+     "device": "P1",
+     "terminal": "L2"
+    },
+    "target": {
+     "device": "M1",
+     "terminal": "V1"
+    }
+   },
+   {
+    "wire": "W3",
+    "source": {
+     "device": "P1",
+     "terminal": "L3"
+    },
+    "target": {
+     "device": "M1",
+     "terminal": "W1"
+    }
+   }
+  ],
+  "geometry_contacts_checked": true,
+  "design_calculations": false
+ },
+ "screenshot": "ok"
+}
