@@ -1,0 +1,57 @@
+name: Install check standard user
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  std:
+    runs-on: windows-2022
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install as standard user via scheduled task
+        shell: pwsh
+        continue-on-error: true
+        run: |
+          Start-Transcript -Path C:/tr-std.txt -Force | Out-Null
+          $pw = 'Zx9!' + [guid]::NewGuid().ToString('N').Substring(0,10)
+          net user cadstd $pw /add /y 2>&1 | Out-String
+          net localgroup Users cadstd /add 2>&1 | Out-String
+          net user cadstd | Select-String 'Local Group'
+          Expand-Archive dist/v4/DeltaEngineering-Windows-addon-v4.zip C:/pkgB -Force
+          icacls C:/pkgB /grant 'cadstd:(OI)(CI)RX' /T | Out-Null
+          New-Item -ItemType Directory C:/outB -Force | Out-Null
+          icacls C:/outB /grant 'cadstd:(OI)(CI)F' | Out-Null
+          $ps1 = @(
+            'whoami /groups > C:\outB\who.txt',
+            '$a=[Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()',
+            '"admin=$($a.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))" | Out-File C:\outB\role.txt',
+            'try { & powershell -NoProfile -ExecutionPolicy Bypass -File C:\pkgB\DeltaEngineering-Windows-addon\Install-Delta.ps1 -NoShortcut *> C:\outB\install.txt; "exit $LASTEXITCODE" | Out-File C:\outB\exit.txt } catch { $_ | Out-File C:\outB\err.txt }',
+            '"done" | Out-File C:\outB\done.txt')
+          $ps1 | Set-Content C:/outB/run.ps1 -Encoding ascii
+          icacls C:/outB/run.ps1 /grant 'cadstd:RX' | Out-Null
+          schtasks /create /tn cadstdtask /tr "powershell -NoProfile -ExecutionPolicy Bypass -File C:\outB\run.ps1" /sc once /st 23:59 /ru cadstd /rp $pw /rl LIMITED /f 2>&1 | Out-String
+          schtasks /run /tn cadstdtask 2>&1 | Out-String
+          $t = 0
+          while ($t -lt 900 -and -not (Test-Path C:/outB/done.txt)) { Start-Sleep 10; $t += 10 }
+          "waited $t s"
+          foreach ($f in 'role.txt','exit.txt','err.txt') { if (Test-Path C:/outB/$f) { "--- $f"; Get-Content C:/outB/$f } }
+          if (Test-Path C:/outB/install.txt) { "--- install tail"; Get-Content C:/outB/install.txt | Select-Object -Last 12 }
+          $tgt = 'C:\Users\cadstd\AppData\Local\Programs\DeltaEngineering'
+          "target exists: $(Test-Path $tgt)"
+          $c = Get-ChildItem $tgt -Recurse -Filter freecadcmd.exe -ErrorAction SilentlyContinue | Select-Object -First 1
+          "freecadcmd: $($c.FullName)"
+          if ($c) { "addon present: $(Test-Path (Join-Path $c.Directory.Parent.FullName 'Mod/DeltaEngineering/InitGui.py'))" }
+          Stop-Transcript | Out-Null
+      - name: Commit results
+        if: always()
+        shell: bash
+        run: |
+          git config user.name ci; git config user.email ci@users.noreply.github.com
+          git pull --rebase || true
+          mkdir -p dist/install-check
+          cp /c/tr-std.txt dist/install-check/ || true
+          cp /c/outB/*.txt dist/install-check/ 2>/dev/null || true
+          git add dist
+          git commit -m "Add standard-user install check" || true
+          git push
