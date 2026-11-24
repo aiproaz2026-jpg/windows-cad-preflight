@@ -1,0 +1,68 @@
+{
+ "shots\\dims-A.pdf": [
+  {
+   "label": "1000.0 mm",
+   "rect": [
+    584.3,
+    518.8,
+    623.4,
+    528.3
+   ],
+   "crossing_lines": []
+  },
+  {
+   "label": "600.0 mm",
+   "rect": [
+    896.2,
+    405.0,
+    931.0,
+    414.6
+   ],
+   "crossing_lines": []
+  }
+ ],
+ "shots\\dims-B.pdf": [
+  {
+   "label": "1000.0 mm",
+   "rect": [
+    535.0,
+    644.7,
+    574.0,
+    654.3
+   ],
+   "crossing_lines": []
+  },
+  {
+   "label": "600.0 mm",
+   "rect": [
+    985.5,
+    352.2,
+    1020.2,
+    361.8
+   ],
+   "crossing_lines": []
+  }
+ ],
+ "shots\\dims-C.pdf": [
+  {
+   "label": "800.0 mm",
+   "rect": [
+    580.9,
+    288.3,
+    615.6,
+    297.9
+   ],
+   "crossing_lines": []
+  },
+  {
+   "label": "500.0 mm",
+   "rect": [
+    347.5,
+    405.0,
+    382.3,
+    414.6
+   ],
+   "crossing_lines": []
+  }
+ ]
+}
