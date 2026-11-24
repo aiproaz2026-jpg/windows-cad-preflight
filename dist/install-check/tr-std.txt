@@ -1,0 +1,34 @@
+**********************
+PowerShell transcript start
+Start time: 20261124232217
+Username: runnervmhh3zg\runneradmin
+RunAs User: runnervmhh3zg\runneradmin
+Configuration Name: 
+Machine: runnervmhh3zg (Microsoft Windows NT 10.0.20348.0)
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll -command . 'D:\a\_temp\ca209068-62d6-4e98-80a1-fc845b7df9fb.ps1'
+Process ID: 2056
+PSVersion: 7.6.10
+PSEdition: Core
+GitCommitId: 7.6.10
+OS: Microsoft Windows 10.0.20348
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+The command completed successfully.
+System error 1378 has occurred.
+
+The specified account name is already a member of the group.
+
+Local Group Memberships      *Users
+WARNING: The task is registered, but may fail to start. Batch logon privilege needs to be enabled for the task principal.
+SUCCESS: Attempted to run the scheduled task "cadstdtask".
+waited 900 s
+target exists: False
+freecadcmd:
+**********************
+PowerShell transcript end
+End time: 20261124233718
+**********************
