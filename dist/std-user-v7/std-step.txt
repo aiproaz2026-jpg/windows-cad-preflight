@@ -1,12 +1,12 @@
 **********************
 PowerShell transcript start
-Start time: 20261125130722
+Start time: 20261125131656
 Username: runnervmhh3zg\runneradmin
 RunAs User: runnervmhh3zg\runneradmin
 Configuration Name: 
 Machine: runnervmhh3zg (Microsoft Windows NT 10.0.20348.0)
-Host Application: C:\Program Files\PowerShell\7\pwsh.dll -command . 'D:\a\_temp\5a623ff0-ec12-450c-a9f5-8ad677ead725.ps1'
-Process ID: 7512
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll -command . 'D:\a\_temp\2bb7a30c-6b40-40b2-993c-71eba1daed5b.ps1'
+Process ID: 1500
 PSVersion: 7.6.10
 PSEdition: Core
 GitCommitId: 7.6.10
@@ -17,24 +17,26 @@ PSRemotingProtocolVersion: 2.4
 SerializationVersion: 1.1.0.1
 WSManStackVersion: 3.0
 **********************
-The password entered is longer than 14 characters.  Computers
-with Windows prior to Windows 2000 will not be able to use
-this account. Do you want to continue this operation? (Y/N) [Y]: 
-No valid response was provided.
-There is no such global user or group: cadstd.
 
-More help is available by typing NET HELPMSG 3783.
-PS>TerminatingError(): "Exception calling "Translate" with "1" argument(s): "Some or all identity references could not be translated.""
->> TerminatingError(): "Exception calling "Translate" with "1" argument(s): "Some or all identity references could not be translated.""
-ParentContainsErrorRecordException: D:\a\_temp\5a623ff0-ec12-450c-a9f5-8ad677ead725.ps1:6
+Name   Enabled Description
+----   ------- -----------
+cadstd True
+System error 1377 has occurred.
+
+The specified account name is not a member of the group.
+sid S-1-5-21-688113535-2331092577-2868679288-1003
+PS>TerminatingError(Get-Content): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: Cannot find path 'C:\sec.inf' because it does not exist."
+>> TerminatingError(Get-Content): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: Cannot find path 'C:\sec.inf' because it does not exist."
+>> TerminatingError(Get-Content): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: Cannot find path 'C:\sec.inf' because it does not exist."
+Get-Content: D:\a\_temp\2bb7a30c-6b40-40b2-993c-71eba1daed5b.ps1:10
 Line |
-   6 |  $sid = (New-Object Security.Principal.NTAccount("$env:COMPUTERNAME\ca …
-     |  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-     | Exception calling "Translate" with "1" argument(s): "Some or all identity references could not be translated."
+  10 |  $c = Get-Content C:/sec.inf
+     |       ~~~~~~~~~~~~~~~~~~~~~~
+     | Cannot find path 'C:\sec.inf' because it does not exist.
 
 PS>$global:?
 False
 **********************
 PowerShell transcript end
-End time: 20261125130722
+End time: 20261125131657
 **********************
