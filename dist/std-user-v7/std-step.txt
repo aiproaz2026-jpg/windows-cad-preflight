@@ -1,12 +1,12 @@
 **********************
 PowerShell transcript start
-Start time: 20261125131656
+Start time: 20261125132748
 Username: runnervmhh3zg\runneradmin
 RunAs User: runnervmhh3zg\runneradmin
 Configuration Name: 
 Machine: runnervmhh3zg (Microsoft Windows NT 10.0.20348.0)
-Host Application: C:\Program Files\PowerShell\7\pwsh.dll -command . 'D:\a\_temp\2bb7a30c-6b40-40b2-993c-71eba1daed5b.ps1'
-Process ID: 1500
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll -command . 'D:\a\_temp\14ace8a8-dced-4790-8904-1c60ec95d1dc.ps1'
+Process ID: 4536
 PSVersion: 7.6.10
 PSEdition: Core
 GitCommitId: 7.6.10
@@ -25,18 +25,36 @@ System error 1377 has occurred.
 
 The specified account name is not a member of the group.
 sid S-1-5-21-688113535-2331092577-2868679288-1003
-PS>TerminatingError(Get-Content): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: Cannot find path 'C:\sec.inf' because it does not exist."
->> TerminatingError(Get-Content): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: Cannot find path 'C:\sec.inf' because it does not exist."
->> TerminatingError(Get-Content): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: Cannot find path 'C:\sec.inf' because it does not exist."
-Get-Content: D:\a\_temp\2bb7a30c-6b40-40b2-993c-71eba1daed5b.ps1:10
-Line |
-  10 |  $c = Get-Content C:/sec.inf
-     |       ~~~~~~~~~~~~~~~~~~~~~~
-     | Cannot find path 'C:\sec.inf' because it does not exist.
+                                                                           
+The task has completed successfully.
+See log %windir%\security\logs\scesrv.log for detail info.
+True
+Completed 6 percent (0/15) 	Process Privilege Rights area        
+Completed 13 percent (1/15) 	Process Privilege Rights area        
+Completed 20 percent (2/15) 	Process Privilege Rights area        
+Completed 26 percent (3/15) 	Process Privilege Rights area        
+Completed 33 percent (4/15) 	Process Privilege Rights area        
+Completed 40 percent (5/15) 	Process Privilege Rights area        
+Completed 46 percent (6/15) 	Process Privilege Rights area        
+Completed 53 percent (7/15) 	Process Privilege Rights area        
+Completed 60 percent (8/15) 	Process Privilege Rights area        
+Completed 66 percent (9/15) 	Process Privilege Rights area        
+Completed 73 percent (10/15) 	Process Privilege Rights area        
+Completed 80 percent (11/15) 	Process Privilege Rights area        
+Completed 86 percent (12/15) 	Process Privilege Rights area        
+Completed 93 percent (13/15) 	Process Privilege Rights area        
+Completed 100 percent (14/15) 	Process Privilege Rights area        
+Completed 100 percent (15/15) 	Process Privilege Rights area        
+                                                                           
+The task has completed successfully.
+See log %windir%\security\logs\scesrv.log for detail info.
+SUCCESS: The scheduled task "cadstdrun" has successfully been created.
+SUCCESS: Attempted to run the scheduled task "cadstdrun".
+waited 160 s
 
-PS>$global:?
-False
+Status:                               Ready
+Last Result:                          0
 **********************
 PowerShell transcript end
-End time: 20261125131657
+End time: 20261125133030
 **********************
