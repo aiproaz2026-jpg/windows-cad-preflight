@@ -888,6 +888,11 @@ jobs:
                       for o in (Q, K, O, M): Gui.Selection.addSelection(o)
                       Gui.activeDocument().activeView().viewTop(); Gui.SendMsgToActiveView('ViewSelection'); pump(30); Gui.Selection.clearSelection(); pump(10)
                       shot('fit12-F-electrical-view')
+                      out['bboxes'] = {o.Label: [round(v, 1) for v in (o.Shape.BoundBox.XMin, o.Shape.BoundBox.YMin, o.Shape.BoundBox.XMax, o.Shape.BoundBox.YMax)] for o in (Q, K, O, M)}
+                      out['wire_shape_lengths'] = [round(w.Shape.Length, 1) for w in wires]
+                      out['vis'] = {o.Label: bool(o.ViewObject.Visibility) for o in (Q, K, O, M)}
+                      pump(40); Gui.updateGui()
+                      Gui.activeDocument().activeView().saveImage(OUT + '/fit12-G-view-save.png', 1100, 700, 'White')
                       for o in doc_visible_others: o.ViewObject.Visibility = True
                       return_note = 'electrical view fitted on the 4 starter devices'
                       return out
