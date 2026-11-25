@@ -1,0 +1,708 @@
+name: Fittings panel GUI test 12 on installed v6 (new module patched into installed copy)
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  gap:
+    runs-on: windows-2022
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download private v5 installer and install silently
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download standalone-v6 -p DeltaEngineering-Setup-v6.exe -D C:/out
+          (Get-FileHash C:/out/DeltaEngineering-Setup-v6.exe -Algorithm SHA256).Hash
+          $p = Start-Process C:/out/DeltaEngineering-Setup-v6.exe -ArgumentList '/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART','/DIR=C:\DeltaTest' -Wait -PassThru
+          "setup exit $($p.ExitCode)"
+      - name: Add Mesa llvmpipe software OpenGL (CI only)
+        shell: pwsh
+        run: |
+          $rel = Invoke-RestMethod https://api.github.com/repos/pal1000/mesa-dist-win/releases/latest
+          $a = $rel.assets | Where-Object { $_.name -match 'release-msvc\.7z$' } | Select-Object -First 1
+          Invoke-WebRequest $a.browser_download_url -OutFile C:/mesa.7z
+          7z x C:/mesa.7z -oC:/mesa -y | Out-Null
+          $exe = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
+          $bin = $exe.Directory.FullName
+          Copy-Item C:/mesa/x64/opengl32.dll $bin -Force
+          foreach ($n in 'libgallium_wgl.dll','libglapi.dll') { if (Test-Path "C:/mesa/x64/$n") { Copy-Item "C:/mesa/x64/$n" $bin -Force } }
+      - name: Try larger display resolution
+        shell: pwsh
+        run: |
+          Add-Type @"
+          using System; using System.Runtime.InteropServices;
+          public class Disp {
+            [StructLayout(LayoutKind.Sequential, CharSet=CharSet.Ansi)] public struct DEVMODE {
+              [MarshalAs(UnmanagedType.ByValTStr, SizeConst=32)] public string dmDeviceName;
+              public short dmSpecVersion, dmDriverVersion, dmSize, dmDriverExtra; public int dmFields;
+              public int dmPositionX, dmPositionY, dmDisplayOrientation, dmDisplayFixedOutput;
+              public short dmColor, dmDuplex, dmYResolution, dmTTOption, dmCollate;
+              [MarshalAs(UnmanagedType.ByValTStr, SizeConst=32)] public string dmFormName;
+              public short dmLogPixels; public int dmBitsPerPel, dmPelsWidth, dmPelsHeight, dmDisplayFlags, dmDisplayFrequency;
+              public int dmICMMethod, dmICMIntent, dmMediaType, dmDitherType, dmReserved1, dmReserved2, dmPanningWidth, dmPanningHeight; }
+            [DllImport("user32.dll", CharSet=CharSet.Ansi)] public static extern bool EnumDisplaySettings(string d, int i, ref DEVMODE m);
+            [DllImport("user32.dll", CharSet=CharSet.Ansi)] public static extern int ChangeDisplaySettings(ref DEVMODE m, int f);
+          }
+          "@
+          $m = New-Object Disp+DEVMODE; $m.dmSize = [Runtime.InteropServices.Marshal]::SizeOf($m)
+          $modes = @(); $i = 0
+          while ([Disp]::EnumDisplaySettings($null, $i, [ref]$m)) { $modes += "$($m.dmPelsWidth)x$($m.dmPelsHeight)"; $i++ }
+          "modes: " + (($modes | Sort-Object -Unique) -join ' ')
+          foreach ($want in @(@(1366,768))) {
+            [void][Disp]::EnumDisplaySettings($null, -1, [ref]$m)
+            $m.dmPelsWidth = $want[0]; $m.dmPelsHeight = $want[1]; $m.dmFields = 0x180000
+            $r = [Disp]::ChangeDisplaySettings([ref]$m, 0)
+            "try $($want[0])x$($want[1]) result $r"
+            if ($r -eq 0) { break }
+          }
+          Add-Type -AssemblyName System.Windows.Forms
+          $s = [Windows.Forms.Screen]::PrimaryScreen.Bounds; "screen now $($s.Width)x$($s.Height)"
+          exit 0
+      - name: Patch new fittings module and tab into installed copy
+        shell: pwsh
+        run: |
+          $core = Get-ChildItem C:/DeltaTest -Recurse -Filter core.py | Where-Object { $_.Directory.Name -eq 'DeltaEngineering' } | Select-Object -First 1
+          $pkg = $core.Directory.FullName
+          "package dir: $pkg"
+          $fit = @'
+          # SPDX-License-Identifier: GPL-3.0-or-later
+          """Generic illustrative pump-station fittings with ports, port snapping,
+          continuity check and quantity takeoff.
+
+          SCOPE: original generic geometry only. Not a manufacturer catalog, not a flange
+          standard, no pressure rating, no hydraulic or pump-selection calculation.
+          A matching outer diameter at two ports means geometric size continuity only. It
+          does NOT imply pressure, material, standard or gasket compatibility.
+          """
+          import math
+          import FreeCAD as App
+          import Part
+          from .core import positive
+
+          SCOPE_AR = 'هندسة عامة توضيحية، ليست كتالوج مصنّع ولا معيار شفات. تطابق المقاس لا يعني توافق الضغط أو المعيار.'
+          SCOPE_EN = ('Generic illustrative geometry. Not a manufacturer catalog or flange standard. '
+                      'Matching port diameter is geometric continuity only, not pressure or standards compatibility.')
+          KINDS = {
+              'reducer': 'مخفّض متحد المحور',
+              'flange': 'شفة عامة',
+              'gate_valve': 'محبس بوابة عام',
+              'ball_valve': 'محبس كروي عام',
+              'check_valve': 'صمام عدم رجوع عام',
+              'pump': 'مضخة طرد مركزي عامة (غلاف تقريبي)',
+          }
+          SNAP_TOL = 0.01  # mm
+          DIR_TOL = 1e-6
+
+
+          def _x():
+              return App.Vector(1, 0, 0)
+
+
+          def _hollow(od, wall, length, start, axis):
+              return Part.makeCylinder(od / 2, length, start, axis).cut(
+                  Part.makeCylinder(od / 2 - wall, length, start, axis))
+
+
+          class GenericFitting:
+              def __init__(self, obj, kind, od1, wall1, od2=None, wall2=None, length=None):
+                  if kind not in KINDS:
+                      raise ValueError('Unknown fitting kind')
+                  obj.addProperty('App::PropertyString', 'FittingKind', 'Fitting')
+                  for key in ('OuterDiameter', 'WallThickness', 'OuterDiameter2', 'WallThickness2', 'Length'):
+                      obj.addProperty('App::PropertyLength', key, 'Fitting')
+                  obj.addProperty('App::PropertyVectorList', 'PortCenters', 'Connections')
+                  obj.addProperty('App::PropertyVectorList', 'PortDirections', 'Connections')
+                  obj.addProperty('App::PropertyFloatList', 'PortOuterDiameters', 'Connections')
+                  obj.addProperty('App::PropertyString', 'Scope', 'Status')
+                  obj.addProperty('App::PropertyString', 'Validation', 'Status')
+                  obj.FittingKind = kind
+                  obj.OuterDiameter = od1
+                  obj.WallThickness = wall1
+                  obj.OuterDiameter2 = od2 if od2 else od1
+                  obj.WallThickness2 = wall2 if wall2 else wall1
+                  obj.Length = length if length else self.default_length(kind, od1)
+                  obj.Scope = SCOPE_AR + ' | ' + SCOPE_EN
+                  for key in ('PortCenters', 'PortDirections', 'PortOuterDiameters', 'Scope', 'Validation'):
+                      obj.setEditorMode(key, 1)
+                  obj.Proxy = self
+                  if App.GuiUp:
+                      obj.ViewObject.Proxy = 0
+
+              @staticmethod
+              def default_length(kind, od):
+                  return {'reducer': 2.0 * od, 'flange': 0.2 * od, 'gate_valve': 2.5 * od,
+                          'ball_valve': 2.2 * od, 'check_valve': 2.5 * od, 'pump': 4.0 * od}[kind]
+
+              def execute(self, obj):
+                  try:
+                      kind = obj.FittingKind
+                      od1 = positive(obj.OuterDiameter.Value, 'Outer diameter')
+                      w1 = positive(obj.WallThickness.Value, 'Wall thickness')
+                      od2 = positive(obj.OuterDiameter2.Value, 'Second outer diameter')
+                      w2 = positive(obj.WallThickness2.Value, 'Second wall thickness')
+                      length = positive(obj.Length.Value, 'Length')
+                      if w1 >= od1 / 2 or w2 >= od2 / 2:
+                          raise ValueError('Wall must be less than radius')
+                      x = _x()
+                      if kind == 'reducer':
+                          if abs(od1 - od2) < 1e-9:
+                              raise ValueError('Reducer needs two different diameters')
+                          if length < 2 * abs(od1 - od2) / 2 * 2:
+                              raise ValueError('Reducer too short for its diameter change')
+                          outer = Part.makeCone(od1 / 2, od2 / 2, length, App.Vector(), x)
+                          inner = Part.makeCone(od1 / 2 - w1, od2 / 2 - w2, length, App.Vector(), x)
+                          shape = outer.cut(inner)
+                          centers = [App.Vector(), App.Vector(length, 0, 0)]
+                          dirs = [App.Vector(-1, 0, 0), x]
+                          ods = [od1, od2]
+                      elif kind == 'flange':
+                          fod = 1.6 * od1 + 20.0
+                          shape = Part.makeCylinder(fod / 2, length, App.Vector(), x).cut(
+                              Part.makeCylinder(od1 / 2 - w1, length, App.Vector(), x))
+                          centers = [App.Vector(), App.Vector(length, 0, 0)]
+                          dirs = [App.Vector(-1, 0, 0), x]
+                          ods = [od1, od1]
+                      elif kind in ('gate_valve', 'ball_valve', 'check_valve'):
+                          if length < 1.5 * od1:
+                              raise ValueError('Valve length must be at least 1.5 x outer diameter')
+                          r = od1 / 2
+                          body = Part.makeCylinder(r, length, App.Vector(), x)
+                          mid = App.Vector(length / 2, 0, 0)
+                          z = App.Vector(0, 0, 1)
+                          if kind == 'gate_valve':
+                              body = body.fuse(Part.makeCylinder(0.45 * od1, 0.9 * od1, App.Vector(length / 2, 0, r - w1 / 2), z))
+                              body = body.fuse(Part.makeCylinder(0.06 * od1, 1.9 * od1, App.Vector(length / 2, 0, r - w1 / 2), z))
+                              body = body.fuse(Part.makeCylinder(0.6 * od1, 0.08 * od1, App.Vector(length / 2, 0, r + 1.8 * od1), z))
+                          elif kind == 'ball_valve':
+                              body = body.fuse(Part.makeSphere(0.8 * od1, mid))
+                              body = body.fuse(Part.makeBox(0.9 * od1, 0.12 * od1, 0.1 * od1,
+                                                            App.Vector(length / 2, -0.06 * od1, 0.8 * od1 - 0.02 * od1)))
+                          else:
+                              body = body.fuse(Part.makeCylinder(0.55 * od1, 0.8 * od1, App.Vector(length / 2, 0, r - w1 / 2), z))
+                          shape = body.cut(Part.makeCylinder(r - w1, length + 2, App.Vector(-1, 0, 0), x))
+                          centers = [App.Vector(), App.Vector(length, 0, 0)]
+                          dirs = [App.Vector(-1, 0, 0), x]
+                          ods = [od1, od1]
+                      else:  # pump
+                          if length < 3 * max(od1, od2):
+                              raise ValueError('Pump casing length must be at least 3 x the larger port diameter')
+                          rc = 0.75 * max(od1, od2) + 40.0
+                          ln = od1
+                          xd = ln + length / 2
+                          zt = rc + od2
+                          solids = [Part.makeCylinder(od1 / 2, ln, App.Vector(), x),
+                                    Part.makeCylinder(rc, length, App.Vector(ln, 0, 0), x),
+                                    Part.makeCylinder(od2 / 2, zt, App.Vector(xd, 0, 0), App.Vector(0, 0, 1)),
+                                    Part.makeCylinder(0.55 * rc, 1.2 * length, App.Vector(ln + length, 0, 0), x)]
+                          body = solids[0]
+                          for s in solids[1:]:
+                              body = body.fuse(s)
+                          bore1 = Part.makeCylinder(od1 / 2 - w1, ln + length / 2 + 1, App.Vector(-1, 0, 0), x)
+                          bore2 = Part.makeCylinder(od2 / 2 - w2, zt + 2, App.Vector(xd, 0, 0), App.Vector(0, 0, 1))
+                          shape = body.cut(bore1).cut(bore2)
+                          centers = [App.Vector(), App.Vector(xd, 0, zt)]
+                          dirs = [App.Vector(-1, 0, 0), App.Vector(0, 0, 1)]
+                          ods = [od1, od2]
+                      shape = shape.removeSplitter()
+                      if not shape.isValid() or len(shape.Solids) != 1:
+                          raise ValueError('Fitting must be one valid solid')
+                      obj.Shape = shape
+                      obj.PortCenters = centers
+                      obj.PortDirections = dirs
+                      obj.PortOuterDiameters = ods
+                      obj.Validation = 'Valid generic geometry. ' + SCOPE_EN
+                  except (ValueError, RuntimeError) as exc:
+                      obj.Shape = Part.Shape()
+                      obj.PortCenters = []
+                      obj.PortDirections = []
+                      obj.PortOuterDiameters = []
+                      obj.Validation = str(exc)
+
+
+          # ---------------------------------------------------------------- creation
+          def create_fitting(doc, kind, nps1, nps2=None, length=None):
+              from .tube_library import PRESETS
+              from .documents import add_to
+              if nps1 not in PRESETS or (nps2 is not None and nps2 not in PRESETS):
+                  raise ValueError('Unknown nominal size')
+              p1 = PRESETS[nps1]
+              p2 = PRESETS[nps2] if nps2 else p1
+              doc.openTransaction('Generic fitting: ' + kind)
+              try:
+                  obj = doc.addObject('Part::FeaturePython', 'GenericFitting')
+                  obj.Label = KINDS[kind] + ' ' + nps1 + ('x' + nps2 if nps2 and nps2 != nps1 else '')
+                  GenericFitting(obj, kind, p1['od_mm'], p1['wall_mm'], p2['od_mm'], p2['wall_mm'], length)
+                  for key, val in (('SizePort1', 'NPS ' + nps1), ('SizePort2', 'NPS ' + (nps2 or nps1))):
+                      obj.addProperty('App::PropertyString', key, 'Dimensional provenance')
+                      setattr(obj, key, val)
+                      obj.setEditorMode(key, 1)
+                  add_to(doc, 'PipingSystem', obj)
+                  doc.recompute()
+                  if obj.Shape.isNull():
+                      raise ValueError(obj.Validation)
+                  if App.GuiUp:
+                      obj.ViewObject.ShapeColor = (0.25, 0.45, 0.75)
+                  doc.commitTransaction()
+                  return obj
+              except Exception:
+                  doc.abortTransaction()
+                  doc.recompute()
+                  raise
+
+
+          # ------------------------------------------------------------------- ports
+          def ports(obj):
+              """Global ports of an object: list of (center, unit direction, outer diameter)."""
+              result = []
+              if hasattr(obj, 'PortCenters') and hasattr(obj, 'PortDirections') and len(obj.PortCenters):
+                  pl = obj.getGlobalPlacement() if hasattr(obj, 'getGlobalPlacement') else obj.Placement
+                  ods = list(obj.PortOuterDiameters) if hasattr(obj, 'PortOuterDiameters') and len(obj.PortOuterDiameters) \
+                      else [obj.OuterDiameter.Value] * len(obj.PortCenters)
+                  for c, d, od in zip(obj.PortCenters, obj.PortDirections, ods):
+                      v = pl.Rotation.multVec(d)
+                      v.normalize()
+                      result.append((pl.multVec(c), v, float(od)))
+              elif hasattr(obj, 'PortSource') and hasattr(obj, 'StartPoint') and hasattr(obj, 'EndPoint') and not obj.Shape.isNull():
+                  axis = obj.EndPoint - obj.StartPoint
+                  if axis.Length > 0:
+                      axis.normalize()
+                      od = obj.OuterDiameter.Value
+                      result.append((obj.StartPoint, App.Vector(-axis.x, -axis.y, -axis.z), od))
+                      result.append((obj.EndPoint, axis, od))
+              return result
+
+
+          def port_objects(doc):
+              return [o for o in doc.Objects if ports(o)]
+
+
+          def snap(doc, moving, mport, fixed, fport):
+              """Place `moving` so its port mport meets fixed port fport, face to face.
+              Refuses a diameter mismatch (geometric continuity only)."""
+              if moving.Document != doc or fixed.Document != doc or moving == fixed:
+                  raise ValueError('Select two different objects in this document')
+              if not isinstance(getattr(moving, 'Proxy', None), GenericFitting):
+                  raise ValueError('Only a generic fitting can be moved by snapping')
+              if any(p.isDerivedFrom('App::Part') for p in moving.InListRecursive):
+                  raise ValueError('Fitting must stay at document root, outside Part containers')
+              mp, fp = ports(moving), ports(fixed)
+              if not (0 <= mport < len(mp)) or not (0 <= fport < len(fp)):
+                  raise ValueError('Invalid port index')
+              mc, md, mod = mp[mport]
+              fc, fd, fod = fp[fport]
+              if abs(mod - fod) > 1e-6:
+                  raise ValueError('Port diameter mismatch: %.3f mm vs %.3f mm. Geometric continuity only, no compatibility implied.' % (mod, fod))
+              target = App.Vector(-fd.x, -fd.y, -fd.z)
+              rot = App.Rotation(md, target)
+              old = moving.Placement
+              new_rot = rot.multiply(old.Rotation)
+              local_center = moving.PortCenters[mport]
+              new_pos = fc - new_rot.multVec(local_center)
+              doc.openTransaction('Snap fitting port to port')
+              try:
+                  moving.Placement = App.Placement(new_pos, new_rot)
+                  doc.recompute()
+                  c2, d2, _ = ports(moving)[mport]
+                  if (c2 - fc).Length > SNAP_TOL or d2.dot(fd) > -1 + 1e-6:
+                      raise ValueError('Snap verification failed')
+                  doc.commitTransaction()
+                  return moving
+              except Exception:
+                  doc.abortTransaction()
+                  doc.recompute()
+                  raise
+
+
+          # ------------------------------------------------------------- continuity
+          def check_continuity(doc, overlap_tol_mm3=1.0):
+              """Pairs of ports within SNAP_TOL are connections; they must face each other
+              and have equal diameter. Remaining ports are reported as open. Solids of
+              objects that are not directly connected must not overlap."""
+              items = []
+              for o in port_objects(doc):
+                  for i, (c, d, od) in enumerate(ports(o)):
+                      items.append((o, i, c, d, od))
+              connected, errors, used = [], [], set()
+              for a in range(len(items)):
+                  for b in range(a + 1, len(items)):
+                      oa, ia, ca, da, oda = items[a]
+                      ob, ib, cb, db, odb = items[b]
+                      if oa == ob or (ca - cb).Length > SNAP_TOL:
+                          continue
+                      used.add(a)
+                      used.add(b)
+                      name = '%s.%d <-> %s.%d' % (oa.Name, ia, ob.Name, ib)
+                      if da.dot(db) > -1 + 1e-6:
+                          errors.append(name + ': ports do not face each other')
+                      elif abs(oda - odb) > 1e-6:
+                          errors.append(name + ': diameter mismatch %.3f vs %.3f mm' % (oda, odb))
+                      else:
+                          connected.append(name)
+              open_ports = ['%s.%d' % (items[k][0].Name, items[k][1]) for k in range(len(items)) if k not in used]
+              linked = {frozenset((x.split(' <-> ')[0].split('.')[0], x.split(' <-> ')[1].split('.')[0])) for x in connected}
+              objs = port_objects(doc)
+              for a in range(len(objs)):
+                  for b in range(a + 1, len(objs)):
+                      if frozenset((objs[a].Name, objs[b].Name)) in linked:
+                          continue
+                      if not objs[a].Shape.BoundBox.intersect(objs[b].Shape.BoundBox):
+                          continue
+                      vol = objs[a].Shape.common(objs[b].Shape).Volume
+                      if vol > overlap_tol_mm3:
+                          errors.append('Overlap %s / %s: %.1f mm3' % (objs[a].Name, objs[b].Name, vol))
+              return {'connected': connected, 'open_ports': open_ports, 'errors': errors,
+                      'ok': not errors, 'scope': SCOPE_EN}
+
+
+          # ---------------------------------------------------------------- takeoff
+          def takeoff(doc):
+              """Count fittings by kind and size; sum straight tube length by diameter."""
+              rows = {}
+              for o in doc.Objects:
+                  if isinstance(getattr(o, 'Proxy', None), GenericFitting) and not o.Shape.isNull():
+                      size = o.SizePort1 if o.SizePort1 == o.SizePort2 else o.SizePort1 + ' x ' + o.SizePort2
+                      key = ('fitting', o.FittingKind, size)
+                      rows[key] = rows.get(key, 0) + 1
+                  elif hasattr(o, 'PortSource') and not o.Shape.isNull():
+                      key = ('tube', 'OD %.1f x %.2f mm' % (o.OuterDiameter.Value, o.WallThickness.Value), 'm')
+                      rows[key] = rows.get(key, 0.0) + o.CenterlineLength.Value / 1000.0
+                  elif o.TypeId == 'PartDesign::FeaturePython' and hasattr(o, 'SourcePath') and not o.Shape.isNull() \
+                          and hasattr(o, 'CenterlineLength'):
+                      key = ('tube', 'OD %.1f x %.2f mm' % (o.OuterDiameter.Value, o.WallThickness.Value), 'm')
+                      rows[key] = rows.get(key, 0.0) + o.CenterlineLength.Value / 1000.0
+              out = []
+              for (cls, a, b), n in sorted(rows.items()):
+                  if cls == 'fitting':
+                      out.append({'item': KINDS[a], 'kind': a, 'size': b, 'qty': n, 'unit': 'pcs'})
+                  else:
+                      out.append({'item': 'ماسورة مستقيمة', 'kind': 'tube', 'size': a, 'qty': round(n, 4), 'unit': b})
+              return out
+
+
+          def takeoff_csv(doc, path):
+              import csv
+              rows = takeoff(doc)
+              with open(path, 'w', encoding='utf-8-sig', newline='') as fh:
+                  w = csv.writer(fh)
+                  w.writerow(['# ' + SCOPE_AR])
+                  w.writerow(['# ' + SCOPE_EN])
+                  w.writerow(['item', 'kind', 'size', 'qty', 'unit'])
+                  for r in rows:
+                      w.writerow([r['item'], r['kind'], r['size'], r['qty'], r['unit']])
+              return rows
+          '@
+          Set-Content "$pkg\fittings.py" $fit -Encoding utf8
+          $fp = @'
+          # SPDX-License-Identifier: GPL-3.0-or-later
+          """Arabic panel for generic illustrative pump-station fittings."""
+          from PySide import QtWidgets, QtCore
+          import FreeCADGui as Gui
+          from . import fittings as F
+          from . import tube_library as library
+          from .precision import length
+
+
+          class FittingsPanel(QtWidgets.QWidget):
+              def __init__(self, panel):
+                  super().__init__()
+                  self.panel = panel
+                  form = QtWidgets.QFormLayout(self)
+                  form.setAlignment(QtCore.Qt.AlignTop)
+                  note = QtWidgets.QLabel(F.SCOPE_AR)
+                  note.setWordWrap(True)
+                  form.addRow(note)
+                  self.kind = QtWidgets.QComboBox()
+                  for key, label in F.KINDS.items():
+                      self.kind.addItem(label, key)
+                  self.size1 = QtWidgets.QComboBox()
+                  self.size1.addItems(list(library.PRESETS))
+                  self.size2 = QtWidgets.QComboBox()
+                  self.size2.addItems(list(library.PRESETS))
+                  self.size2.setCurrentIndex(max(0, self.size2.count() - 1))
+                  self.length = QtWidgets.QLineEdit('')
+                  self.length.setPlaceholderText('اتركه فارغاً للطول الافتراضي')
+                  self.length.setLayoutDirection(QtCore.Qt.LeftToRight)
+                  form.addRow('نوع القطعة', self.kind)
+                  form.addRow('المقاس الاسمي (المنفذ 1)', self.size1)
+                  form.addRow('المقاس الثاني (للمخفّض والمضخة)', self.size2)
+                  form.addRow('الطول (اختياري)', self.length)
+                  b = QtWidgets.QPushButton('إنشاء القطعة')
+                  b.clicked.connect(lambda checked=False: panel.safe(self.create))
+                  form.addRow(b)
+                  self.port_move = QtWidgets.QComboBox()
+                  self.port_move.addItems(['1', '2'])
+                  self.port_fixed = QtWidgets.QComboBox()
+                  self.port_fixed.addItems(['1', '2'])
+                  form.addRow('منفذ القطعة المتحركة', self.port_move)
+                  form.addRow('منفذ القطعة الثابتة', self.port_fixed)
+                  hint = QtWidgets.QLabel('حدد القطعة المراد تحريكها أولاً ثم القطعة الثابتة. يُرفض اختلاف قطر المنفذين.')
+                  hint.setWordWrap(True)
+                  form.addRow(hint)
+                  for text, fn in [('وصل المنفذ بالمنفذ', self.snap), ('فحص الاستمرارية والتداخل', self.check),
+                                   ('حصر الكميات وتصدير CSV', self.export_csv)]:
+                      b = QtWidgets.QPushButton(text)
+                      b.clicked.connect(lambda checked=False, f=fn: panel.safe(f))
+                      form.addRow(b)
+                  self.report = QtWidgets.QPlainTextEdit()
+                  self.report.setReadOnly(True)
+                  self.report.setMinimumHeight(120)
+                  form.addRow(self.report)
+
+              def create(self):
+                  kind = self.kind.currentData()
+                  two = kind in ('reducer', 'pump')
+                  n1 = self.size1.currentText()
+                  n2 = self.size2.currentText() if two else None
+                  text = self.length.text().strip()
+                  obj = F.create_fitting(self.panel.doc(), kind, n1, n2, length(text) if text else None)
+                  self.panel.profiles.select(obj)
+                  self.panel.status.setText('تم إنشاء ' + F.KINDS[kind] + '. ' + F.SCOPE_AR)
+                  return obj
+
+              def snap(self):
+                  sel = Gui.Selection.getSelection()
+                  if len(sel) != 2:
+                      raise ValueError('Select exactly two objects: first the one to move, then the fixed one')
+                  F.snap(self.panel.doc(), sel[0], self.port_move.currentIndex(), sel[1], self.port_fixed.currentIndex())
+                  self.panel.status.setText('تم وصل المنفذين هندسياً. لا يعني ذلك توافق الضغط أو المعيار.')
+
+              def check(self):
+                  rep = F.check_continuity(self.panel.doc())
+                  lines = ['وصلات متطابقة: %d' % len(rep['connected']), 'منافذ مفتوحة: %d' % len(rep['open_ports'])]
+                  lines += ['  ' + p for p in rep['open_ports']]
+                  if rep['errors']:
+                      lines.append('أخطاء: %d' % len(rep['errors']))
+                      lines += ['  ' + e for e in rep['errors']]
+                  else:
+                      lines.append('لا أخطاء هندسية في الاستمرارية أو التداخل.')
+                  lines.append(F.SCOPE_AR)
+                  self.report.setPlainText('\n'.join(lines))
+                  self.panel.status.setText('فحص هندسي للاستمرارية والتداخل فقط، ليس اعتماداً هندسياً.')
+                  return rep
+
+              def export_csv(self, path=None):
+                  rows = F.takeoff(self.panel.doc())
+                  if path is None:
+                      path, _ = QtWidgets.QFileDialog.getSaveFileName(self, 'حفظ جدول الكميات', 'الكميات.csv', 'CSV (*.csv)')
+                      if not path:
+                          return rows
+                  F.takeoff_csv(self.panel.doc(), path)
+                  self.report.setPlainText('\n'.join('%s | %s | %s %s' % (r['item'], r['size'], r['qty'], r['unit']) for r in rows) + '\n' + F.SCOPE_AR)
+                  self.panel.status.setText('تم حفظ جدول الكميات: ' + path)
+                  return rows
+          '@
+          Set-Content "$pkg\fittings_panel.py" $fp -Encoding utf8
+          $dp = Get-Content "$pkg\drafting_panel.py" -Raw -Encoding utf8
+          $old = "self.tubes=TubeLibraryPanel(self);tabs.addTab(self.tubes,'مقاسات مواسير')"
+          if (-not $dp.Contains($old)) { throw "anchor not found" }
+          $new = $old + ";from .fittings_panel import FittingsPanel;self.fittings=FittingsPanel(self);_fs=QtWidgets.QScrollArea();_fs.setWidgetResizable(True);_fs.setFrameShape(QtWidgets.QFrame.NoFrame);_fs.setWidget(self.fittings);tabs.addTab(_fs,'وصلات ومحطة')"
+          Set-Content "$pkg\drafting_panel.py" $dp.Replace($old,$new) -Encoding utf8 -NoNewline
+          "patched"
+      - name: Write macro
+        shell: pwsh
+        run: |
+          $macro = @'
+          import os, json, time, traceback, ctypes
+          from ctypes import wintypes
+          OUT = os.environ.get('DELTA_OUT','C:/fit12')
+          os.makedirs(OUT, exist_ok=True)
+          res = {'steps': {}, 'dialogs': [], 'done': False}
+          def save():
+              open(OUT + '/gui-result12.json', 'w', encoding='utf-8').write(json.dumps(res, ensure_ascii=False, indent=1, default=str))
+          def rss_mb():
+              ctypes.windll.kernel32.GetCurrentProcess.restype = wintypes.HANDLE
+              ctypes.windll.psapi.GetProcessMemoryInfo.argtypes = [wintypes.HANDLE, ctypes.c_void_p, wintypes.DWORD]
+              class PMC(ctypes.Structure):
+                  _fields_ = [('cb', wintypes.DWORD), ('PageFaultCount', wintypes.DWORD), ('PeakWorkingSetSize', ctypes.c_size_t), ('WorkingSetSize', ctypes.c_size_t), ('QuotaPeakPagedPoolUsage', ctypes.c_size_t), ('QuotaPagedPoolUsage', ctypes.c_size_t), ('QuotaPeakNonPagedPoolUsage', ctypes.c_size_t), ('QuotaNonPagedPoolUsage', ctypes.c_size_t), ('PagefileUsage', ctypes.c_size_t), ('PeakPagefileUsage', ctypes.c_size_t)]
+              c = PMC(); c.cb = ctypes.sizeof(c)
+              ctypes.windll.psapi.GetProcessMemoryInfo(ctypes.windll.kernel32.GetCurrentProcess(), ctypes.byref(c), c.cb)
+              return round(c.WorkingSetSize / 1048576), round(c.PeakWorkingSetSize / 1048576)
+          try:
+              import FreeCAD as App, FreeCADGui as Gui
+              from PySide import QtCore, QtWidgets
+              from PySide6 import QtTest
+              import DeltaEngineering.core, DeltaEngineering.domain
+              from DeltaEngineering.gui import register
+              if 'DeltaWorkbench' not in Gui.listWorkbenches(): register()
+              Gui.activateWorkbench('DeltaWorkbench')
+              mw = Gui.getMainWindow()
+              counter = [0]
+              def handle():
+                  w = QtWidgets.QApplication.activeModalWidget()
+                  if not w: return
+                  counter[0] += 1
+                  info = {'n': counter[0], 'cls': type(w).__name__, 'title': w.windowTitle()}
+                  try:
+                      w.grab().save(OUT + '/dlg9-%02d.png' % counter[0])
+                      if isinstance(w, QtWidgets.QInputDialog):
+                          info['label'] = w.labelText(); w.setTextValue('2 mm'); w.accept()
+                      elif isinstance(w, QtWidgets.QMessageBox):
+                          info['text'] = w.text()
+                          yes = [b for b in w.findChildren(QtWidgets.QPushButton) if b.text() in ('نعم', 'Yes', '&Yes')]
+                          if yes: yes[0].click()
+                          else: w.accept()
+                      elif isinstance(w, QtWidgets.QFileDialog):
+                          info['filedialog'] = True; w.reject()
+                      else:
+                          w.accept()
+                  except Exception:
+                      info['err'] = traceback.format_exc()
+                  res['dialogs'].append(info); save()
+              t = QtCore.QTimer(); t.setInterval(400); t.timeout.connect(handle); t.start()
+              def shot(name):
+                  try: mw.grab().save(OUT + '/' + name + '.png')
+                  except Exception: res['steps'][name + '_shot_err'] = traceback.format_exc()
+              def run(name, fn):
+                  t0 = time.time()
+                  try:
+                      out = fn(); res['steps'][name] = {'ok': True, 'secs': round(time.time() - t0, 2), 'detail': out}
+                  except Exception:
+                      res['steps'][name] = {'ok': False, 'secs': round(time.time() - t0, 2), 'detail': traceback.format_exc()}
+                  save()
+              def pump(n=5):
+                  for _ in range(n): QtWidgets.QApplication.processEvents()
+              def step():
+                  from DeltaEngineering.drafting_panel import show_panel
+                  S = {}
+                  W = QtWidgets
+                  def sel(*objs):
+                      Gui.Selection.clearSelection()
+                      for o in objs: Gui.Selection.addSelection(o)
+                  def click(panel, text):
+                      b = [x for x in panel.findChildren(W.QPushButton) if x.text() == text]
+                      assert b, 'button not found: ' + text
+                      b[0].click(); pump()
+                  def viewport():
+                      mdi = mw.findChild(W.QMdiArea); sub = mdi.activeSubWindow()
+                      cand = [w for w in sub.findChildren(W.QWidget) if 'GLWidget' in w.metaObject().className() and w.isVisible()]
+                      return cand[-1]
+                  def layout_state(tag):
+                      vw = viewport()
+                      docks = [{'name': d.objectName(), 'w': d.width(), 'h': d.height(), 'floating': d.isFloating()} for d in mw.findChildren(W.QDockWidget) if d.isVisible()]
+                      scr = mw.screen().geometry()
+                      mh = mw.minimumSizeHint(); return {'screen': [scr.width(), scr.height()], 'window': [mw.width(), mw.height()], 'window_min_hint': [mh.width(), mh.height()], 'window_fits_screen': mw.height() <= scr.height() and mw.width() <= scr.width(), 'window_top_left': [mw.x(), mw.y()], 'viewport_px': [vw.width(), vw.height()], 'docks': docks}
+                  def metrics(root):
+                      bad = []; n = 0; overlaps = []
+                      for w in root.findChildren(W.QWidget):
+                          if not w.isVisible() or not isinstance(w, (W.QPushButton, W.QLabel, W.QLineEdit, W.QComboBox, W.QCheckBox, W.QSpinBox, W.QDoubleSpinBox)): continue
+                          n += 1
+                          h = w.height(); wd = w.width(); txt = getattr(w, 'text', lambda: '')() if hasattr(w, 'text') else ''
+                          if isinstance(w, W.QLabel) and w.wordWrap():
+                              need = w.heightForWidth(wd) if w.hasHeightForWidth() else w.sizeHint().height()
+                          else:
+                              need = w.sizeHint().height()
+                          tw = w.fontMetrics().horizontalAdvance(txt) if (txt and not (isinstance(w, W.QLabel) and w.wordWrap())) else 0
+                          short = h < need - 1
+                          narrow = isinstance(w, W.QPushButton) and tw + 12 > wd
+                          if short or narrow: bad.append({'cls': type(w).__name__, 'text': txt[:40], 'h': h, 'need_h': need, 'w': wd, 'text_w': tw, 'short': short, 'narrow': narrow})
+                      for par in root.findChildren(W.QWidget):
+                          kids = [k for k in par.children() if isinstance(k, W.QPushButton) and k.isVisible()]
+                          for i in range(len(kids)):
+                              for j in range(i + 1, len(kids)):
+                                  if kids[i].geometry().intersects(kids[j].geometry()):
+                                      overlaps.append([kids[i].text()[:25], kids[j].text()[:25]])
+                      return {'checked_widgets': n, 'clipped_count': len(bad), 'clipped_first': bad[:14], 'overlapping_buttons': overlaps[:10], 'overlap_count': len(overlaps)}
+                  def s_panel_tab():
+                      Gui.runCommand('Delta_NewProject'); pump(10)
+                      p = show_panel(); S['p'] = p; pump(20)
+                      idx = [i for i in range(p.tabs.count()) if p.tabs.tabText(i) == 'وصلات ومحطة']
+                      assert idx, 'fittings tab missing: ' + str([p.tabs.tabText(i) for i in range(p.tabs.count())])
+                      p.tabs.setCurrentIndex(idx[0]); pump(15)
+                      out = {'tab_index': idx[0], 'metrics': metrics(p), 'layout': layout_state('fit')}
+                      shot('fit12-A-tab'); return out
+                  run('fittings_tab_present_and_layout', s_panel_tab)
+                  import DeltaEngineering.fittings as F
+                  def s_station_ui():
+                      p = S['p']; fp = p.fittings; d = App.ActiveDocument; out = {}
+                      def make(kind, n1, n2=None):
+                          fp.kind.setCurrentIndex(fp.kind.findData(kind)); fp.size1.setCurrentIndex(fp.size1.findText(n1))
+                          if n2: fp.size2.setCurrentIndex(fp.size2.findText(n2))
+                          fp.length.setText(''); before = set(o.Name for o in d.Objects)
+                          click(fp, 'إنشاء القطعة')
+                          new = [o for o in d.Objects if o.Name not in before and hasattr(o, 'FittingKind')]
+                          assert len(new) == 1, ('create via UI failed', kind, p.status.text())
+                          return new[0]
+                      def join(moving, mp, fixed, fp_):
+                          fp.port_move.setCurrentIndex(mp); fp.port_fixed.setCurrentIndex(fp_); sel(moving, fixed)
+                          click(fp, 'وصل المنفذ بالمنفذ')
+                      pump_o = make('pump', '3', '2')
+                      pump_o.Placement = App.Placement(App.Vector(1000, -400, 250), App.Rotation(App.Vector(1, 2, 3), 37)); d.recompute()
+                      f1 = make('flange', '2'); join(f1, 0, pump_o, 1)
+                      v1 = make('gate_valve', '2'); join(v1, 0, f1, 1)
+                      f2 = make('flange', '2'); join(f2, 0, v1, 1)
+                      rd = make('reducer', '2', '4'); join(rd, 0, f2, 1)
+                      bv = make('ball_valve', '4'); join(bv, 0, rd, 1)
+                      s1 = make('flange', '3'); join(s1, 0, pump_o, 0)
+                      cv = make('check_valve', '3'); join(cv, 0, s1, 1)
+                      S['objs'] = [pump_o, f1, v1, f2, rd, bv, s1, cv]
+                      rep = F.check_continuity(d)
+                      click(fp, 'فحص الاستمرارية والتداخل'); out['report_text'] = fp.report.toPlainText()
+                      out['connected'] = len(rep['connected']); out['open_ports'] = rep['open_ports']; out['errors'] = rep['errors']
+                      assert rep['ok'] and len(rep['connected']) == 7 and len(rep['open_ports']) == 2, rep
+                      v = Gui.ActiveDocument.ActiveView; v.viewAxonometric(); v.fitAll(); pump(40); shot('fit12-B-station')
+                      out['metrics_after'] = metrics(p); return out
+                  run('station_built_through_panel_buttons', s_station_ui)
+                  def s_mismatch_ui():
+                      p = S['p']; fp = p.fittings; d = App.ActiveDocument
+                      fp.kind.setCurrentIndex(fp.kind.findData('flange')); fp.size1.setCurrentIndex(fp.size1.findText('4'))
+                      before = set(o.Name for o in d.Objects); click(fp, 'إنشاء القطعة')
+                      fl4 = [o for o in d.Objects if o.Name not in before][0]; pl0 = App.Placement(fl4.Placement)
+                      fp.port_move.setCurrentIndex(0); fp.port_fixed.setCurrentIndex(1); sel(fl4, S['objs'][1]); n0 = len(res['dialogs'])
+                      click(fp, 'وصل المنفذ بالمنفذ'); pump(30); time.sleep(1.0); pump(30)
+                      same = fl4.Placement.isSame(pl0, 1e-9)
+                      assert same
+                      d.removeObject(fl4.Name); d.recompute()
+                      return {'placement_unchanged': same, 'status': p.status.text(), 'new_dialogs': res['dialogs'][n0:]}
+                  run('mismatch_refused_through_ui', s_mismatch_ui)
+                  def s_csv_ui():
+                      p = S['p']; fp = p.fittings; d = App.ActiveDocument
+                      path = 'C:/Users/Public/اختبار/الكميات.csv'; os.makedirs(os.path.dirname(path), exist_ok=True)
+                      rows = fp.export_csv(path); text = open(path, encoding='utf-8-sig').read()
+                      assert sum(r['qty'] for r in rows if r['kind'] != 'tube') == 8, rows
+                      assert 'continuity only' in text
+                      fp.report.setPlainText(fp.report.toPlainText()); pump(10); shot('fit12-C-after-export')
+                      return {'rows': rows, 'csv_bytes': os.path.getsize(path)}
+                  run('quantity_csv_through_panel', s_csv_ui)
+                  def s_save_reopen_gui():
+                      d = App.ActiveDocument; path = 'C:/Users/Public/اختبار/محطة.FCStd'
+                      vols = {o.Name: o.Shape.Volume for o in d.Objects if hasattr(o, 'FittingKind')}
+                      d.saveAs(path); App.closeDocument(d.Name); d2 = App.openDocument(path); d2.recompute(); pump(30)
+                      diff = max(abs(d2.getObject(n).Shape.Volume - v) for n, v in vols.items())
+                      rep = F.check_continuity(d2); assert rep['ok'] and len(rep['connected']) == 7 and diff < 1e-6, (rep, diff)
+                      return {'objects': len(vols), 'max_volume_diff': diff, 'connections': len(rep['connected'])}
+                  run('save_reopen_arabic_path', s_save_reopen_gui)
+                  res['done'] = True; save()
+                  QtCore.QTimer.singleShot(1500, lambda: os._exit(0))
+              QtCore.QTimer.singleShot(6000, step)
+          except Exception:
+              res['error'] = traceback.format_exc(); res['done'] = True; save()
+          '@
+          $exe = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
+          $root = $exe.Directory.Parent.FullName
+          Set-Content "$root\DeltaGuiTest12.FCMacro" $macro -Encoding utf8
+      - name: Run installed v6 test at 1366x768
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force C:/fit12 | Out-Null
+          $exe = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
+          $root = $exe.Directory.Parent.FullName
+          "installed panel.py has scroll wrapper: " + [bool](Select-String -Path (Get-ChildItem C:/DeltaTest -Recurse -Filter panel.py | Where-Object { $_.FullName -match 'DeltaEngineering' } | Select-Object -First 1).FullName -Pattern 'QScrollArea' -Quiet)
+          $env:DELTA_OUT = 'C:/fit12'; $env:GALLIUM_DRIVER = 'llvmpipe'; $env:MESA_GL_VERSION_OVERRIDE = '4.5'
+          Start-Process $exe.FullName -ArgumentList "`"$root\DeltaGuiTest12.FCMacro`""
+          $t = 0
+          while ($t -lt 600) { Start-Sleep 5; $t += 5; if ((Test-Path C:/fit12/gui-result12.json) -and (Select-String -Path C:/fit12/gui-result12.json -Pattern '"done": true' -Quiet)) { break } }
+          Start-Sleep 4; Get-Process FreeCAD -ErrorAction SilentlyContinue | Stop-Process -Force
+          exit 0
+      - name: Commit evidence
+        shell: bash
+        run: |
+          git config user.name ci; git config user.email ci@users.noreply.github.com
+          git pull --rebase || true
+          mkdir -p dist/v12fit; cp /c/fit12/*.png /c/fit12/gui-result12.json dist/v12fit/ || true
+          for f in dist/v12fit/fit12-*.png; do [ -f $f ] && base64 -w0 $f > $f.b64; done
+          git add dist
+          git commit -m "Add fittings panel GUI evidence" || true
+          git push
