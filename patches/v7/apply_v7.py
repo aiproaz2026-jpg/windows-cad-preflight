@@ -25,4 +25,9 @@ for base in bases:
         assert 'v7 additions' not in s
         add = open(os.path.join(here, 'symbols_append.py'), encoding='utf-8', newline='').read()
         open(sp, 'w', encoding='utf-8', newline='').write(s.rstrip('\n') + '\n' + add)
+sys.path.insert(0, here)
+import core_patches
+for base in bases:
+    if os.path.isfile(os.path.join(base, 'core.py')):
+        print('core patches', base, core_patches.apply(base))
 print('v7 patch applied')
