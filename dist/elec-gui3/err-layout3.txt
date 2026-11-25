@@ -1,0 +1,2 @@
+C:/seed/gui-layout3.FCMacro:49: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+  sg = v.getSceneGraph(); root = coin.SoSeparator(); root.setName("DeltaIdentifiers")
