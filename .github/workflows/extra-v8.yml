@@ -150,7 +150,7 @@ jobs:
           "lnk target=$($sc.TargetPath) args=$($sc.Arguments)" | Tee-Object -Append C:/seed/log.txt
           "user cfg exists: $(Test-Path 'C:\Users\cadstd\AppData\Roaming\FreeCAD\v1-1\user.cfg')" | Tee-Object -Append C:/seed/log.txt
           $cred = New-Object System.Management.Automation.PSCredential("$env:COMPUTERNAME\cadstd", (ConvertTo-SecureString $pw -AsPlainText -Force))
-          $cmdline = '/c set GALLIUM_DRIVER=llvmpipe&& set MESA_GL_VERSION_OVERRIDE=4.5&& "' + $sc.TargetPath + '" ' + $sc.Arguments
+          $cmdline = '/c set GALLIUM_DRIVER=llvmpipe&& set MESA_GL_VERSION_OVERRIDE=4.5&& "' + $ubin + '\FreeCAD.exe" ' + $sc.Arguments
           $lp = Start-Process cmd.exe -ArgumentList $cmdline -Credential $cred -LoadUserProfile -WorkingDirectory C:\outB -PassThru
           Start-Sleep 75
           $fc = Get-Process FreeCAD -ErrorAction SilentlyContinue | Select-Object -First 1
