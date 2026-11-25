@@ -2,8 +2,34 @@
  "steps": {
   "fittings_tab_present_and_layout": {
    "ok": true,
-   "secs": 1.25,
+   "secs": 1.57,
    "detail": {
+    "tasks_dock_before_panel": {
+     "exists": true,
+     "visible": true,
+     "size": [
+      380,
+      375
+     ],
+     "child_widgets": [
+      "QAbstractButton",
+      "QFrame",
+      "QScrollArea",
+      "QScrollBar",
+      "QToolButton",
+      "QWidget"
+     ],
+     "active_dialog": false
+    },
+    "viewport_before": [
+     1100,
+     537
+    ],
+    "tasks_dock_after_panel_visible": false,
+    "viewport_after": [
+     694,
+     537
+    ],
     "tab_index": 4,
     "metrics": {
      "checked_widgets": 22,
@@ -42,24 +68,24 @@
        "floating": false
       },
       {
-       "name": "Tasks",
-       "w": 380,
-       "h": 375,
-       "floating": false
-      },
-      {
        "name": "DeltaDraftingPanel",
        "w": 400,
        "h": 567,
        "floating": false
       }
      ]
-    }
+    },
+    "horizontal_scroll_needed": false,
+    "hbar_max": 0,
+    "content_w": 370,
+    "viewport_w": 370,
+    "vbar_max": 157,
+    "tasks_dock_visible_when_task_dialog_opens": true
    }
   },
   "station_built_through_panel_buttons": {
    "ok": true,
-   "secs": 5.99,
+   "secs": 5.78,
    "detail": {
     "report_text": "وصلات متطابقة: 7\nمنافذ مفتوحة: 2\n  GenericFitting005.1\n  GenericFitting007.1\nلا أخطاء هندسية في الاستمرارية أو التداخل.\nهندسة عامة توضيحية، ليست كتالوج مصنّع ولا معيار شفات. تطابق المقاس لا يعني توافق الضغط أو المعيار.",
     "connected": 7,
@@ -79,7 +105,7 @@
   },
   "mismatch_refused_through_ui": {
    "ok": true,
-   "secs": 1.75,
+   "secs": 2.02,
    "detail": {
     "placement_unchanged": true,
     "status": "لم يتم التعديل: تعذر إكمال العملية. راجع التحديد والقيم وحالة المصدر ثم أعد المحاولة. احتفظ بالتفصيل التقني عند طلب المساعدة:\nPort diameter mismatch: 114.300 mm vs 60.300 mm. Geometric continuity only, no compatibility implied.",
@@ -95,7 +121,7 @@
   },
   "quantity_csv_through_panel": {
    "ok": true,
-   "secs": 0.15,
+   "secs": 0.13,
    "detail": {
     "rows": [
      {
@@ -153,7 +179,7 @@
   },
   "save_reopen_arabic_path": {
    "ok": true,
-   "secs": 1.18,
+   "secs": 0.98,
    "detail": {
     "objects": 8,
     "max_volume_diff": 3.725290298461914e-09,
