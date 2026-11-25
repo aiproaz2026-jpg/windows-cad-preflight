@@ -92,6 +92,8 @@ jobs:
               'ball_valve': 'محبس كروي عام',
               'check_valve': 'صمام عدم رجوع عام',
               'pump': 'مضخة طرد مركزي عامة (غلاف تقريبي)',
+              'pipe': 'ماسورة مستقيمة بمنفذين',
+              'elbow90': 'كوع 90 درجة عام',
           }
           SNAP_TOL = 0.01  # mm
           DIR_TOL = 1e-6
@@ -134,7 +136,7 @@ jobs:
               @staticmethod
               def default_length(kind, od):
                   return {'reducer': 2.0 * od, 'flange': 0.2 * od, 'gate_valve': 2.5 * od,
-                          'ball_valve': 2.2 * od, 'check_valve': 2.5 * od, 'pump': 4.0 * od}[kind]
+                          'ball_valve': 2.2 * od, 'check_valve': 2.5 * od, 'pump': 4.0 * od, 'pipe': 1000.0, 'elbow90': 1.5 * od}[kind]
 
               def execute(self, obj):
                   try:
@@ -158,6 +160,27 @@ jobs:
                           centers = [App.Vector(), App.Vector(length, 0, 0)]
                           dirs = [App.Vector(-1, 0, 0), x]
                           ods = [od1, od2]
+                      elif kind == 'pipe':
+                          shape = _hollow(od1, w1, length, App.Vector(), x)
+                          centers = [App.Vector(), App.Vector(length, 0, 0)]
+                          dirs = [App.Vector(-1, 0, 0), x]
+                          ods = [od1, od1]
+                      elif kind == 'elbow90':
+                          if length <= od1 / 2 + 1e-6:
+                              raise ValueError('Bend radius must exceed half the outer diameter')
+                          rb = length
+                          a = App.Vector()
+                          mid = App.Vector(rb * math.sin(math.pi / 4), rb - rb * math.cos(math.pi / 4), 0)
+                          b = App.Vector(rb, rb, 0)
+                          path = Part.Wire(Part.Arc(a, mid, b).toShape())
+
+                          def swept(radius):
+                              prof = Part.Wire(Part.makeCircle(radius, a, x))
+                              return path.makePipeShell([prof], True, True)
+                          shape = swept(od1 / 2).cut(swept(od1 / 2 - w1))
+                          centers = [a, b]
+                          dirs = [App.Vector(-1, 0, 0), App.Vector(0, 1, 0)]
+                          ods = [od1, od1]
                       elif kind == 'flange':
                           fod = 1.6 * od1 + 20.0
                           shape = Part.makeCylinder(fod / 2, length, App.Vector(), x).cut(
@@ -362,7 +385,10 @@ jobs:
               """Count fittings by kind and size; sum straight tube length by diameter."""
               rows = {}
               for o in doc.Objects:
-                  if isinstance(getattr(o, 'Proxy', None), GenericFitting) and not o.Shape.isNull():
+                  if isinstance(getattr(o, 'Proxy', None), GenericFitting) and not o.Shape.isNull() and o.FittingKind == 'pipe':
+                      key = ('tube', 'OD %.1f x %.2f mm' % (o.OuterDiameter.Value, o.WallThickness.Value), 'm')
+                      rows[key] = rows.get(key, 0.0) + o.Length.Value / 1000.0
+                  elif isinstance(getattr(o, 'Proxy', None), GenericFitting) and not o.Shape.isNull():
                       size = o.SizePort1 if o.SizePort1 == o.SizePort2 else o.SizePort1 + ' x ' + o.SizePort2
                       key = ('fitting', o.FittingKind, size)
                       rows[key] = rows.get(key, 0) + 1
@@ -433,7 +459,7 @@ jobs:
                   form.addRow('نوع القطعة', self.kind)
                   form.addRow('المقاس الاسمي (المنفذ 1)', self.size1)
                   form.addRow('المقاس الثاني (للمخفّض والمضخة)', self.size2)
-                  form.addRow('الطول (اختياري)', self.length)
+                  form.addRow('الطول، أو نصف قطر الكوع (اختياري)', self.length)
                   b = QtWidgets.QPushButton('إنشاء القطعة')
                   b.clicked.connect(lambda checked=False: panel.safe(self.create))
                   form.addRow(b)
@@ -451,6 +477,10 @@ jobs:
                       b = QtWidgets.QPushButton(text)
                       b.clicked.connect(lambda checked=False, f=fn: panel.safe(f))
                       form.addRow(b)
+                  self._tasks_timer = QtCore.QTimer(self)
+                  self._tasks_timer.setInterval(1500)
+                  self._tasks_timer.timeout.connect(hide_empty_tasks)
+                  self._tasks_timer.start()
                   self.report = QtWidgets.QPlainTextEdit()
                   self.report.setReadOnly(True)
                   self.report.setMinimumHeight(120)
@@ -717,6 +747,73 @@ jobs:
                       rep = F.check_continuity(d2); assert rep['ok'] and len(rep['connected']) == 7 and diff < 1e-6, (rep, diff)
                       return {'objects': len(vols), 'max_volume_diff': diff, 'connections': len(rep['connected'])}
                   run('save_reopen_arabic_path', s_save_reopen_gui)
+                  def s_station2():
+                      import math as M
+                      Gui.runCommand('Delta_NewProject'); pump(15)
+                      p = S['p']; fp = p.fittings; d = App.ActiveDocument; out = {}
+                      from DeltaEngineering.tube_library import PRESETS as PR
+                      def make(kind, n1, n2=None, ln=None):
+                          fp.kind.setCurrentIndex(fp.kind.findData(kind)); fp.size1.setCurrentIndex(fp.size1.findText(n1))
+                          if n2: fp.size2.setCurrentIndex(fp.size2.findText(n2))
+                          fp.length.setText(('%g mm' % ln) if ln else ''); before = set(o.Name for o in d.Objects)
+                          click(fp, 'إنشاء القطعة')
+                          new = [o for o in d.Objects if o.Name not in before and hasattr(o, 'FittingKind')]
+                          assert len(new) == 1, ('create failed', kind, p.status.text()); return new[0]
+                      def join(a, ap, b, bp):
+                          fp.port_move.setCurrentIndex(ap); fp.port_fixed.setCurrentIndex(bp); sel(a, b); click(fp, 'وصل المنفذ بالمنفذ')
+                      pm = make('pump', '3', '2')
+                      chain = []
+                      def run_from(start, sp, items):
+                          prev, pp_ = start, sp
+                          for kind, n1, n2, ln in items:
+                              o = make(kind, n1, n2, ln); join(o, 0, prev, pp_); chain.append(o); prev, pp_ = o, 1
+                          return prev
+                      run_from(pm, 0, [('flange', '3', None, None), ('pipe', '3', None, 1200), ('check_valve', '3', None, None), ('pipe', '3', None, 600)])
+                      last = run_from(pm, 1, [('flange', '2', None, None), ('gate_valve', '2', None, None), ('flange', '2', None, None), ('pipe', '2', None, 800),
+                                              ('elbow90', '2', None, None), ('pipe', '2', None, 600), ('reducer', '2', '4', None), ('ball_valve', '4', None, None), ('pipe', '4', None, 1500)])
+                      elbows = [o for o in d.Objects if getattr(o, 'FittingKind', '') == 'elbow90']
+                      e = elbows[0]; R = e.Length.Value; ro = e.OuterDiameter.Value / 2; ri = ro - e.WallThickness.Value
+                      exp = M.pi * (ro * ro - ri * ri) * (M.pi * R / 2)
+                      out['elbow_volume'] = e.Shape.Volume; out['elbow_expected_pappus'] = exp
+                      assert abs(e.Shape.Volume - exp) / exp < 1e-6, (e.Shape.Volume, exp)
+                      rep = F.check_continuity(d); click(fp, 'فحص الاستمرارية والتداخل')
+                      out['report_text'] = fp.report.toPlainText(); out['connected'] = len(rep['connected']); out['open_ports'] = rep['open_ports']; out['errors'] = rep['errors']
+                      n_fit = len([o for o in d.Objects if hasattr(o, 'FittingKind')])
+                      assert rep['ok'] and len(rep['connected']) == n_fit - 1 and len(rep['open_ports']) == 2, (rep, n_fit)
+                      bom = F.takeoff(d); out['takeoff'] = bom
+                      tubes = {r['size']: r['qty'] for r in bom if r['kind'] == 'tube'}
+                      exp_t = {'OD 88.9 x 5.49 mm': 1.8, 'OD 60.3 x 3.91 mm': 1.4, 'OD 114.3 x 6.02 mm': 1.5}
+                      assert {k: round(v, 6) for k, v in tubes.items()} == exp_t, (tubes, exp_t)
+                      v = Gui.ActiveDocument.ActiveView; v.viewAxonometric(); v.fitAll(); pump(40); shot('fit12-D-station2'); out['model_extent_mm'] = [round(x) for x in (lambda bb: (bb.XLength, bb.YLength, bb.ZLength))(__import__('functools').reduce(lambda a, o: (a.add(o.Shape.BoundBox), a)[1], [o for o in d.Objects if hasattr(o, 'FittingKind')], App.BoundBox()))]
+                      return out
+                  run('station_with_pipes_elbow_through_panel', s_station2)
+                  def s_pdf():
+                      from DeltaEngineering.scaled_output import export_scaled
+                      d = App.ActiveDocument; out = {}; base = 'C:/Users/Public/اختبار'
+                      for view in ('Top', 'Front'):
+                          done = None
+                          for den in (10, 15, 20, 30, 50):
+                              path = base + '/محطة-' + view + '.pdf'
+                              try:
+                                  r = export_scaled(d, path, den, view_name=view); done = (den, r); break
+                              except ValueError as e:
+                                  out[view + '_denominator_%d_rejected' % den] = str(e)[:80]
+                          assert done, 'no scale fit'
+                          out[view] = {'denominator': done[0], 'bytes': os.path.getsize(path), 'result': done[1]}
+                          import shutil; shutil.copy(path, OUT + '/station-' + view + '.pdf')
+                      return out
+                  run('station_scaled_pdf', s_pdf)
+                  def s_tasks_after_dialog():
+                      class TaskStub:
+                          def __init__(self): self.form = W.QLabel('Test task panel')
+                          def getStandardButtons(self): return int(W.QDialogButtonBox.Close)
+                          def reject(self): Gui.Control.closeDialog()
+                      Gui.Control.showDialog(TaskStub()); pump(20); td = mw.findChild(W.QDockWidget, 'Tasks'); vis_open = bool(td and td.isVisible())
+                      Gui.Control.closeDialog(); t0 = time.time()
+                      while time.time() - t0 < 4: pump(5); time.sleep(0.1)
+                      vis_after = bool(td and td.isVisible()); shot('fit12-E-after-task-closed')
+                      return {'visible_while_task_open': vis_open, 'visible_after_close_and_4s': vis_after}
+                  run('tasks_dock_hidden_again_after_task_closes', s_tasks_after_dialog)
                   res['done'] = True; save()
                   QtCore.QTimer.singleShot(1500, lambda: os._exit(0))
               QtCore.QTimer.singleShot(6000, step)
@@ -744,7 +841,7 @@ jobs:
         run: |
           git config user.name ci; git config user.email ci@users.noreply.github.com
           git pull --rebase || true
-          mkdir -p dist/v12fit; cp /c/fit12/*.png /c/fit12/gui-result12.json dist/v12fit/ || true
+          mkdir -p dist/v12fit; cp /c/fit12/*.png /c/fit12/*.pdf /c/fit12/gui-result12.json dist/v12fit/ || true; for f in dist/v12fit/station-*.pdf; do [ -f $f ] && base64 -w0 $f > $f.b64; done
           for f in dist/v12fit/fit12-*.png; do [ -f $f ] && base64 -w0 $f > $f.b64; done
           git add dist
           git commit -m "Add fittings panel GUI evidence" || true
