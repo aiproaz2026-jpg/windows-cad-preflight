@@ -113,11 +113,11 @@ jobs:
               from PySide6 import QtTest
               import importlib.util
               _spec = importlib.util.find_spec('DeltaEngineering'); _pkg = list(_spec.submodule_search_locations)[0]
-          import os as _os
-          if _os.path.exists(_pkg + '/core_patches.py'):
-              _ns = {}; exec(open(_pkg + '/core_patches.py', encoding='utf-8-sig').read(), _ns); res['core_patches'] = _ns['apply'](_pkg)
-          else:
-              res['core_patches'] = 'absent (integration run: patches came from apply_v7 on the source tree)'
+              import os as _os
+              if _os.path.exists(_pkg + '/core_patches.py'):
+                  _ns = {}; exec(open(_pkg + '/core_patches.py', encoding='utf-8-sig').read(), _ns); res['core_patches'] = _ns['apply'](_pkg)
+              else:
+                  res['core_patches'] = 'absent (integration run: patches came from apply_v7 on the source tree)'
               import DeltaEngineering.core, DeltaEngineering.domain
               from DeltaEngineering.gui import register
               if 'DeltaWorkbench' not in Gui.listWorkbenches(): register()
