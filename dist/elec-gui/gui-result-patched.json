@@ -1,0 +1,11 @@
+{
+ "stage": "export done",
+ "route_count": 0,
+ "export_uses_terminal_side": true,
+ "export_return": "{'source_signature': '88eadf351a99413b6a354c99c1185e3cf28f6d4dc38b43f3f8154de443f064a2', 'centerline_mm': 0, 'wire_count': 9, 'synchronous_projection': True}",
+ "sizes": [
+  12411,
+  16942
+ ],
+ "done": true
+}
