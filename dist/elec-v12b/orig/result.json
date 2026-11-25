@@ -1,0 +1,235 @@
+{
+ "A_initial": {
+  "route_count": 0,
+  "nets": 15,
+  "endpoint_mismatch": []
+ },
+ "B_move_KM1": {
+  "route_count": 0,
+  "nets": 15,
+  "endpoint_mismatch": []
+ },
+ "B_netlist_equal": true,
+ "C_move_F1": {
+  "route_count": 0,
+  "nets": 15,
+  "endpoint_mismatch": []
+ },
+ "C_netlist_equal": true,
+ "D_flip_KM1_outputs_left": {
+  "route_count": 0,
+  "nets": 15,
+  "endpoint_mismatch": []
+ },
+ "D_netlist_equal": true,
+ "E_reopen": {
+  "route_count": 0,
+  "nets": 15,
+  "endpoint_mismatch": []
+ },
+ "E_netlist_equal": true,
+ "E_sides_persisted": [
+  "1=Left",
+  "3=Left",
+  "5=Left",
+  "A1=Left",
+  "A2=Left",
+  "2=Left",
+  "4=Left",
+  "6=Left"
+ ],
+ "F_legacy_has_TerminalSides": false,
+ "F_legacy_after_move": {
+  "route_count": 30,
+  "nets": 15,
+  "endpoint_mismatch": []
+ },
+ "F_legacy_netlist_equal": true,
+ "G_label_min_gap_same_side_mm": {
+  "Q1:Right": 14.0,
+  "KM1:Left": 14.0,
+  "KM1:Right": 28.0,
+  "F1:Left": 28.0,
+  "F1:Right": 28.0,
+  "M1:Left": 12.0
+ },
+ "G_labels": [
+  [
+   "Q1",
+   "1",
+   4060.0,
+   35.0,
+   "Right"
+  ],
+  [
+   "Q1",
+   "2",
+   4060.0,
+   21.0,
+   "Right"
+  ],
+  [
+   "Q1",
+   "3",
+   4060.0,
+   7.0,
+   "Right"
+  ],
+  [
+   "Q1",
+   "4",
+   4060.0,
+   -7.0,
+   "Right"
+  ],
+  [
+   "Q1",
+   "5",
+   4060.0,
+   -21.0,
+   "Right"
+  ],
+  [
+   "Q1",
+   "6",
+   4060.0,
+   -35.0,
+   "Right"
+  ],
+  [
+   "KM1",
+   "1",
+   4340.0,
+   49.0,
+   "Left"
+  ],
+  [
+   "KM1",
+   "2",
+   4460.0,
+   35.0,
+   "Right"
+  ],
+  [
+   "KM1",
+   "3",
+   4340.0,
+   21.0,
+   "Left"
+  ],
+  [
+   "KM1",
+   "4",
+   4460.0,
+   7.0,
+   "Right"
+  ],
+  [
+   "KM1",
+   "5",
+   4340.0,
+   -7.0,
+   "Left"
+  ],
+  [
+   "KM1",
+   "6",
+   4460.0,
+   -21.0,
+   "Right"
+  ],
+  [
+   "KM1",
+   "A1",
+   4340.0,
+   -35.0,
+   "Left"
+  ],
+  [
+   "KM1",
+   "A2",
+   4340.0,
+   -49.0,
+   "Left"
+  ],
+  [
+   "F1",
+   "1",
+   4740.0,
+   35.0,
+   "Left"
+  ],
+  [
+   "F1",
+   "2",
+   4860.0,
+   21.0,
+   "Right"
+  ],
+  [
+   "F1",
+   "3",
+   4740.0,
+   7.0,
+   "Left"
+  ],
+  [
+   "F1",
+   "4",
+   4860.0,
+   -7.0,
+   "Right"
+  ],
+  [
+   "F1",
+   "5",
+   4740.0,
+   -21.0,
+   "Left"
+  ],
+  [
+   "F1",
+   "6",
+   4860.0,
+   -35.0,
+   "Right"
+  ],
+  [
+   "M1",
+   "U",
+   5140.0,
+   18.0,
+   "Left"
+  ],
+  [
+   "M1",
+   "V",
+   5140.0,
+   6.0,
+   "Left"
+  ],
+  [
+   "M1",
+   "W",
+   5140.0,
+   -6.0,
+   "Left"
+  ],
+  [
+   "M1",
+   "PE",
+   5140.0,
+   -18.0,
+   "Left"
+  ]
+ ],
+ "H_pdf_label_side_differs_device_vs_terminal_rule": [
+  "KM1:2",
+  "KM1:4",
+  "KM1:6",
+  "F1:2",
+  "F1:4",
+  "F1:6"
+ ],
+ "H_export_py_uses_terminal_side": false
+}
