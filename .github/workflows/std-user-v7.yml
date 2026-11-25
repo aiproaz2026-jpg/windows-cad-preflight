@@ -32,12 +32,13 @@ jobs:
           net localgroup Administrators cadstd /delete 2>&1 | Out-String | Write-Host
           $sid = (New-Object Security.Principal.NTAccount("$env:COMPUTERNAME\cadstd")).Translate([Security.Principal.SecurityIdentifier]).Value
           "sid $sid"
-          secedit /export /cfg C:/sec.inf /areas USER_RIGHTS | Out-Null
-          $c = Get-Content C:/sec.inf
+          secedit /export /cfg C:\sec.inf /areas USER_RIGHTS 2>&1 | Out-String | Write-Host
+          Test-Path C:\sec.inf | Write-Host
+          $c = Get-Content C:\sec.inf
           $c = $c | ForEach-Object { if ($_ -match '^SeBatchLogonRight') { "$_,*$sid" } elseif ($_ -match '^SeInteractiveLogonRight') { "$_,*$sid" } else { $_ } }
           if (-not ($c -match '^SeBatchLogonRight')) { $c = $c -replace '\[Privilege Rights\]', "[Privilege Rights]`nSeBatchLogonRight = *$sid" }
-          Set-Content C:/sec2.inf $c -Encoding Unicode
-          secedit /configure /db C:/sec.sdb /cfg C:/sec2.inf /areas USER_RIGHTS 2>&1 | Out-String | Write-Host
+          Set-Content C:\sec2.inf $c -Encoding Unicode
+          secedit /configure /db C:\sec.sdb /cfg C:\sec2.inf /areas USER_RIGHTS 2>&1 | Out-String | Write-Host
           New-Item -ItemType Directory C:/outB -Force | Out-Null
           icacls C:/outB /grant 'cadstd:(OI)(CI)F' | Out-Null
           icacls C:/out /grant 'cadstd:(OI)(CI)RX' /T | Out-Null
