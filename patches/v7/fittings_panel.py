@@ -111,6 +111,26 @@ def _overlay_titles(mw):
             if w.parentWidget() is not None and w.parentWidget().objectName() == 'OverlayRight']
 
 
+class _ShowFilter(QtCore.QObject):
+    """Re-check right away when the Tasks dock or its overlay title is shown, instead of waiting for the timer."""
+    def eventFilter(self, obj, event):
+        if event.type() == QtCore.QEvent.Show:
+            QtCore.QTimer.singleShot(0, hide_empty_tasks)
+        return False
+
+
+_FILTER = {}
+
+
+def _install_filters(mw, dock, strips):
+    f = _FILTER.get('f')
+    if f is None:
+        f = _FILTER['f'] = _ShowFilter(mw)
+    for w in ([dock] if dock is not None else []) + list(strips):
+        if not w.property('_delta_filtered'):
+            w.installEventFilter(f); w.setProperty('_delta_filtered', True)
+
+
 def hide_empty_tasks():
     """Hide the empty Tasks dock and FreeCAD's leftover overlay title strip only while no task dialog is active.
     Both are shown again while a task dialog is open. Returns True if anything was hidden."""
@@ -122,6 +142,7 @@ def hide_empty_tasks():
     changed = False
     dock = mw.findChild(QtWidgets.QDockWidget, 'Tasks')
     strips = _overlay_titles(mw)
+    _install_filters(mw, dock, strips)
     if active:
         for w in strips:
             if getattr(w, '_delta_hidden', False):
