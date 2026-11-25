@@ -54,7 +54,9 @@ jobs:
           $root = $exe.Directory.Parent.FullName
           Copy-Item "$env:GITHUB_WORKSPACE/patches/v7/macro_gui_test.py" "$root\DeltaGuiTest12.FCMacro" -Force
           @'
-          import FreeCAD, importlib
+          import sys, importlib, traceback
+          d = open('C:/instdir.txt', encoding='utf-8-sig').read().strip()
+          sys.path.insert(0, d + '\\Mod\\DeltaEngineering')
           out = open('C:/fit12/import-check.txt', 'w', encoding='utf-8')
           for m in ['core','domain','symbols','export','fittings','documents','scaled_output','tube_library','drafting','electrical','connectivity']:
               try:
