@@ -1,0 +1,14 @@
+{
+ "stage": "export done",
+ "route_count": 0,
+ "workbench": "DeltaWorkbench",
+ "workbench_screenshot": 59336,
+ "workbench_error": "Traceback (most recent call last):\n  File \"C:/seed/gui-layout6.FCMacro\", line 51, in _run\n    res[\"A_overlay_present_fit\"] = has_overlay(); grab(\"A_fit\")\n                                   ^^^^^^^^^^^^^\n  File \"C:/seed/gui-layout6.FCMacro\", line 47, in has_overlay\n    sg = FreeCADGui.ActiveDocument.ActiveView.getSceneGraph()\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: No SWIG wrapped library loaded\n",
+ "export_uses_terminal_side": false,
+ "export_return": "{'source_signature': 'fe2110defe6dd8af78d91bdd39e6ff5e463a2202424da2dca086141545e1d0c6', 'centerline_mm': 0, 'wire_count': 9, 'synchronous_projection': True}",
+ "sizes": [
+  12411,
+  16954
+ ],
+ "done": true
+}

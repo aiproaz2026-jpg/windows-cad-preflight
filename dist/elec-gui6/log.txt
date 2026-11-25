@@ -1,0 +1,24 @@
+SHA256 MATCH C:\out\DeltaEngineering-Setup-v12.exe
+setup exit 0
+bin
+data
+DeltaDefaults
+doc
+Ext
+lib
+Mod
+export.py at C:\Users\runneradmin\AppData\Local\Programs\DeltaEngineering\Mod\DeltaEngineering\DeltaEngineering\export.py
+appmod root C:/Users/runneradmin/AppData/Local/Programs/DeltaEngineering/Mod
+export.py page layout patched
+export.py terminal label side patched
+symbols.py contactor outline patched
+InitGui at C:\Users\runneradmin\AppData\Local\Programs\DeltaEngineering\Mod\AddonManager\InitGui.py
+FreeCADGui.addCommand("Std_AddonMgr", AddonManager.CommandAddonManager())
+
+try:
+    from DeltaEngineering.identifiers import install as _delta_ids
+    from PySide import QtCore as _delta_qc
+    _delta_qc.QTimer.singleShot(2000, _delta_ids)
+except Exception:
+    pass
+mode layout6 exited=False exitcode= waited=27
