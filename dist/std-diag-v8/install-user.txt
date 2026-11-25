@@ -1,0 +1,27 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261125142816
+Username: runnervmhh3zg\cadstd
+RunAs User: runnervmhh3zg\cadstd
+Configuration Name: 
+Machine: runnervmhh3zg (Microsoft Windows NT 10.0.20348.0)
+Host Application: powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\outB\run.ps1
+Process ID: 2432
+PSVersion: 5.1.20348.5773
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.20348.5773
+BuildVersion: 10.0.20348.5773
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+whoami: runnervmhh3zg\cadstd admin=False
+setup exit 0
+target C:\Users\cadstd\AppData\Local\Programs\DeltaEngineering exists: True
+addon present: True
+freecad exe present: 1
+**********************
+Windows PowerShell transcript end
+End time: 20261125143026
+**********************

@@ -1,0 +1,23 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261125143343
+Username: runnervmhh3zg\cadstd
+RunAs User: runnervmhh3zg\cadstd
+Configuration Name: 
+Machine: runnervmhh3zg (Microsoft Windows NT 10.0.20348.0)
+Host Application: powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\outB\cmd.ps1
+Process ID: 1264
+PSVersion: 5.1.20348.5773
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.20348.5773
+BuildVersion: 10.0.20348.5773
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+FREECAD ['1', '1', '4']
+**********************
+Windows PowerShell transcript end
+End time: 20261125143344
+**********************

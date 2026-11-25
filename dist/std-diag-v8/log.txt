@@ -1,0 +1,20 @@
+lnk exists: True
+lnk target=C:\Users\runneradmin\AppData\Local\Programs\DeltaEngineering\bin\freecad.exe args="C:\Users\cadstd\AppData\Local\Programs\DeltaEngineering\LaunchDelta.FCMacro"
+user cfg exists: True
+variant A-macro : /c set GALLIUM_DRIVER=llvmpipe&& set MESA_GL_VERSION_OVERRIDE=4.5&& "C:\Users\cadstd\AppData\Local\Programs\DeltaEngineering\bin\FreeCAD.exe" --log-file C:\outB\A.log 
+  FreeCAD owner runnervmhh3zg\cadstd title=[Initialization of FreeCAD failed]
+variant B-nomacro : /c set GALLIUM_DRIVER=llvmpipe&& set MESA_GL_VERSION_OVERRIDE=4.5&& "C:\Users\cadstd\AppData\Local\Programs\DeltaEngineering\bin\FreeCAD.exe" --log-file C:\outB\B.log
+  FreeCAD owner runnervmhh3zg\cadstd title=[Initialization of FreeCAD failed]
+variant C-nomesa-macro : /c set GALLIUM_DRIVER=llvmpipe&& set MESA_GL_VERSION_OVERRIDE=4.5&& "C:\Users\cadstd\AppData\Local\Programs\DeltaEngineering\bin\FreeCAD.exe" --log-file C:\outB\C.log 
+  FreeCAD owner runnervmhh3zg\cadstd title=[Initialization of FreeCAD failed]
+
+    Directory: C:\outB
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---          11/25/2026  2:33 PM            764 cmd-out.txt
+-a---          11/25/2026  2:33 PM            249 cmd.ps1
+-a---          11/25/2026  2:27 PM            758 run.ps1
+-a---          11/25/2026  2:30 PM            917 user.txt
+
+
