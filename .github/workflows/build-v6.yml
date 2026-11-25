@@ -13,7 +13,7 @@ jobs:
         shell: bash
         run: |
           mkdir -p /c/delta patches/v4
-          unzip -q src/*DeltaEngineering-development-source-v68-10539385.zip -d /c/delta
+          unzip -q src/*DeltaEngineering-development-source-v58-10539385.zip -d /c/delta
           cp -r /c/delta/DeltaEngineering /c/delta_orig
           cat > patches/v4/apply_v4.py <<'PY'
           """Delta Engineering v4 patches: applies v3 (apply_v3.py) first, then diagonal dimension label placement."""
