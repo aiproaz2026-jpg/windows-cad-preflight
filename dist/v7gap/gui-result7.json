@@ -1,6 +1,135 @@
 {
- "steps": {},
- "dialogs": [],
- "done": true,
- "error": "Traceback (most recent call last):\n  File \"C:/DeltaTest/DeltaGuiTest7.FCMacro\", line 16, in <module>\n    from PySide import QtCore, QtWidgets, QtTest\nImportError: cannot import name 'QtTest' from 'PySide' (C:\\DeltaTest\\Ext\\PySide\\__init__.py)\n"
+ "steps": {
+  "visual_empty_project_with_parts_tab": {
+   "ok": true,
+   "secs": 1.17,
+   "detail": {
+    "tabs": [
+     "الجدول والأبعاد",
+     "يدوي ودقيق",
+     "مقاطع وأجزاء",
+     "مقاسات مواسير"
+    ],
+    "menu_titles": [
+     "&File",
+     "&Edit",
+     "&View",
+     "&Tools",
+     "&Macro",
+     "دلتا",
+     "&Windows",
+     "",
+     "&Help"
+    ]
+   }
+  },
+  "parts_circle_rect_extrude_edit_height": {
+   "ok": true,
+   "secs": 3.66,
+   "detail": {
+    "circle": "دائرة قابلة للتعديل",
+    "E1_100": 785398.16,
+    "E1_150": 1178097.25,
+    "E2": 320000.0
+   }
+  },
+  "boolean_cut_and_common_consistent": {
+   "ok": true,
+   "secs": 0.89,
+   "detail": {
+    "cut": 944885.85,
+    "common": 233211.4,
+    "base": 1178097.25,
+    "cut_plus_common_minus_base": -0.0
+   }
+  },
+  "fillet_one_edge": {
+   "ok": false,
+   "secs": 0.56,
+   "detail": "Traceback (most recent call last):\n  File \"C:/DeltaTest/DeltaGuiTest7.FCMacro\", line 50, in run\n    out = fn(); res['steps'][name] = {'ok': True, 'secs': round(time.time() - t0, 2), 'detail': out}\n          ^^^^\n  File \"C:/DeltaTest/DeltaGuiTest7.FCMacro\", line 108, in s_fillet\n    assert F is not None and F.TypeId == 'Part::Fillet', (F, st)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: (<PartDesign::FeaturePython>, 'لم يتم التعديل: تعذر تدوير الحواف. قلّل نصف القطر أو اختر حواف أخرى')\n"
+  },
+  "undo_redo_after_panel_action": {
+   "ok": true,
+   "secs": 0.41,
+   "detail": {
+    "before": 10,
+    "after_create": 11,
+    "after_undo": 10,
+    "after_redo": 11,
+    "undo_names": [
+     "Change extrusion height",
+     "Extrude selected profile",
+     "Create editable circle"
+    ]
+   }
+  },
+  "save_reopen_arabic_path_data_integrity": {
+   "ok": true,
+   "secs": 0.67,
+   "detail": {
+    "objects": 11,
+    "file_bytes": 20085,
+    "differences_after_reopen_recompute": {}
+   }
+  },
+  "step_export_import_roundtrip": {
+   "ok": false,
+   "secs": 0.0,
+   "detail": "Traceback (most recent call last):\n  File \"C:/DeltaTest/DeltaGuiTest7.FCMacro\", line 50, in run\n    out = fn(); res['steps'][name] = {'ok': True, 'secs': round(time.time() - t0, 2), 'detail': out}\n          ^^^^\n  File \"C:/DeltaTest/DeltaGuiTest7.FCMacro\", line 131, in s_step\n    E1 = [o for o in d.Objects if o.Label and o.TypeId.startswith('Part::') and hasattr(o, 'Shape') and o.Shape.Volume > 1e6][0]\n         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^\nIndexError: list index out of range\n"
+  },
+  "manual_viewport_mouse_pick_and_orbit": {
+   "ok": false,
+   "secs": 0.68,
+   "detail": "Traceback (most recent call last):\n  File \"C:/DeltaTest/DeltaGuiTest7.FCMacro\", line 50, in run\n    out = fn(); res['steps'][name] = {'ok': True, 'secs': round(time.time() - t0, 2), 'detail': out}\n          ^^^^\n  File \"C:/DeltaTest/DeltaGuiTest7.FCMacro\", line 142, in s_viewport\n    E = [o for o in d.Objects if hasattr(o, 'Shape') and o.TypeId.startswith('Part::') and not o.Shape.isNull() and o.Shape.Volume > 1e6][0]\n        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^\nIndexError: list index out of range\n"
+  },
+  "large_project_150_pipes_100_devices_99_wires": {
+   "ok": true,
+   "secs": 9.3,
+   "detail": {
+    "objects": 353,
+    "create_s": 1.07,
+    "recompute_s": 2.46,
+    "save_s": 0.64,
+    "file_MB": 0.56,
+    "open_s": 2.49,
+    "recompute_after_open_s": 0.0,
+    "project_check_s": 0.62,
+    "check_keys": [
+     "scope",
+     "error_count",
+     "issues",
+     "visible_model_objects",
+     "geometry",
+     "logical_nets"
+    ],
+    "check_issue_count": 1,
+    "netlist_len": 99,
+    "mem_working_set_MB_before_after_peak": [
+     [
+      0,
+      0
+     ],
+     [
+      0,
+      0
+     ]
+    ]
+   }
+  }
+ },
+ "dialogs": [
+  {
+   "n": 1,
+   "cls": "QInputDialog",
+   "title": "تدوير الحواف",
+   "label": "نصف قطر ثابت بوحدة طول. أي تغيير بالمصدر يستلزم إعادة اختيار الحواف."
+  },
+  {
+   "n": 2,
+   "cls": "QMessageBox",
+   "title": "تعذر الرسم",
+   "text": "تعذر تدوير الحواف. قلّل نصف القطر أو اختر حواف أخرى"
+  }
+ ],
+ "done": true
 }
