@@ -2,7 +2,7 @@
  "steps": {
   "fittings_tab_present_and_layout": {
    "ok": true,
-   "secs": 1.18,
+   "secs": 1.4,
    "detail": {
     "tasks_dock_before_panel": {
      "exists": true,
@@ -85,7 +85,7 @@
   },
   "station_built_through_panel_buttons": {
    "ok": true,
-   "secs": 5.15,
+   "secs": 6.13,
    "detail": {
     "report_text": "وصلات متطابقة: 7\nمنافذ مفتوحة: 2\n  GenericFitting005.1\n  GenericFitting007.1\nلا أخطاء هندسية في الاستمرارية أو التداخل.\nهندسة عامة توضيحية، ليست كتالوج مصنّع ولا معيار شفات. تطابق المقاس لا يعني توافق الضغط أو المعيار.",
     "connected": 7,
@@ -105,7 +105,7 @@
   },
   "mismatch_refused_through_ui": {
    "ok": true,
-   "secs": 1.77,
+   "secs": 1.83,
    "detail": {
     "placement_unchanged": true,
     "status": "لم يتم التعديل: تعذر إكمال العملية. راجع التحديد والقيم وحالة المصدر ثم أعد المحاولة. احتفظ بالتفصيل التقني عند طلب المساعدة:\nPort diameter mismatch: 114.300 mm vs 60.300 mm. Geometric continuity only, no compatibility implied.",
@@ -121,7 +121,7 @@
   },
   "quantity_csv_through_panel": {
    "ok": true,
-   "secs": 0.12,
+   "secs": 0.14,
    "detail": {
     "rows": [
      {
@@ -179,7 +179,7 @@
   },
   "save_reopen_arabic_path": {
    "ok": true,
-   "secs": 0.82,
+   "secs": 1.04,
    "detail": {
     "objects": 8,
     "max_volume_diff": 3.725290298461914e-09,
@@ -188,7 +188,7 @@
   },
   "station_with_pipes_elbow_through_panel": {
    "ok": true,
-   "secs": 8.65,
+   "secs": 11.18,
    "detail": {
     "elbow_volume": 98414.06548998691,
     "elbow_expected_pappus": 98414.0654899867,
@@ -287,7 +287,7 @@
   },
   "station_scaled_pdf": {
    "ok": true,
-   "secs": 2.2,
+   "secs": 2.6,
    "detail": {
     "Top_denominator_10_rejected": "View exceeds A3 drawing area at this scale; choose a larger denominator",
     "Top": {
@@ -346,7 +346,7 @@
   },
   "motor_starter_circuit_symbols_and_pdf": {
    "ok": true,
-   "secs": 1.77,
+   "secs": 1.88,
    "detail": {
     "template_combo_items": 10,
     "template_keys": [
@@ -615,7 +615,7 @@
     },
     "symbol_shapes_valid": true,
     "export": {
-     "source_signature": "1d77ff22864f5233e26778779ec6b16d30e0287eb0d8a0fb0de22181524dfa82",
+     "source_signature": "7cee080ec410f3c7bb9995ac6e419a6f5c54c2e3da18cbf2a0864b0c3dc7b0ff",
      "centerline_mm": 0,
      "wire_count": 9,
      "synchronous_projection": true
@@ -623,21 +623,21 @@
     "bboxes": {
      "Q1": [
       3955.0,
-      -30.0,
+      -49.0,
       4063.0,
-      30.0
+      49.0
      ],
      "KM1": [
       4337.0,
-      -30.0,
+      -63.0,
       4445.0,
-      30.0
+      63.0
      ],
      "F1": [
       4337.0,
-      -330.0,
+      -349.0,
       4445.0,
-      -270.0
+      -251.0
      ],
      "M1": [
       4337.0,
@@ -678,7 +678,11 @@
      "vo_visible": true,
      "camera": "Orthographic",
      "ctl_edges": 1
-    }
+    },
+    "overlay_titles_visible_after_view_steps": [
+     false
+    ],
+    "tasks_dock_visible_after_view_steps": false
    }
   },
   "strip_probe": {
@@ -722,24 +726,6 @@
        "QWidget:",
        "QWidget:qt_scrollarea_viewport",
        "QScrollArea:"
-      ]
-     },
-     {
-      "rect": [
-       580,
-       291,
-       380,
-       18
-      ],
-      "cls": "QWidget",
-      "name": "OverlayTitle",
-      "title": "",
-      "chain": [
-       "QWidget:OverlayTitle",
-       "QDockWidget:Tasks",
-       "QSplitter:",
-       "QTabWidget:OverlayRight",
-       "QMainWindow:"
       ]
      }
     ],
@@ -819,13 +805,13 @@
      {
       "name": "Tasks",
       "title": "Tasks",
-      "visible": true,
+      "visible": false,
       "floating": false,
       "geom": [
        0,
-       0,
+       187,
        380,
-       375
+       82
       ]
      }
     ]
@@ -833,7 +819,7 @@
   },
   "tasks_dock_hidden_again_after_task_closes": {
    "ok": true,
-   "secs": 4.24,
+   "secs": 4.44,
    "detail": {
     "visible_while_task_open": true,
     "visible_after_close_and_4s": false,
@@ -850,7 +836,7 @@
      false,
      false,
      false,
-     false
+     true
     ],
     "overlay_title_visible_while_task_open_2nd": [
      false,
@@ -865,7 +851,7 @@
      false,
      false,
      false,
-     false
+     true
     ]
    }
   }
@@ -878,5 +864,10 @@
    "text": "تعذر إكمال العملية. راجع التحديد والقيم وحالة المصدر ثم أعد المحاولة. احتفظ بالتفصيل التقني عند طلب المساعدة:\nPort diameter mismatch: 114.300 mm vs 60.300 mm. Geometric continuity only, no compatibility implied."
   }
  ],
- "done": true
+ "done": true,
+ "core_patches": {
+  "pitch": "patched",
+  "channels": "patched",
+  "wire_labels": "patched"
+ }
 }
