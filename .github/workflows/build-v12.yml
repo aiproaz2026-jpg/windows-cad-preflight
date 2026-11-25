@@ -263,7 +263,7 @@ jobs:
           git commit -m "Add v12 installer build evidence" || true
           git push
           [ -f /c/out/DeltaEngineering-Setup-v12.exe ] && { gh release view standalone-v12-r1 >/dev/null 2>&1 || gh release create standalone-v12-r1 --title "Delta Engineering v12 offline installer (unsigned, experimental, unverified)" --notes "Private. Built from the repo revision in dist/v12/source-revision.txt. Not certified; item acceptance still open." || echo "create failed"; }
-          for i in 1 2 3 4; do [ -f /c/out/DeltaEngineering-Setup-v12.exe ] && gh release upload standalone-v12-r1 /c/out/DeltaEngineering-Setup-v12.exe --clobber && echo "UPLOAD OK try $i" && break || { echo "upload try $i failed"; sleep 20; }; done
+          for i in 1 2 3 4; do E=/c/out/DeltaEngineering-Setup-v12.exe; N=DeltaEngineering-Setup-v12.exe; [ $i -gt 1 ] && { N=DeltaEngineering-Setup-v12.try$i.exe; cp $E /c/out/$N; E=/c/out/$N; }; [ -f $E ] && gh release upload standalone-v12-r1 $E && echo "UPLOAD OK try $i as $N" && break || { echo "upload try $i failed, no replace/delete; next try uses a new asset name"; sleep 20; }; done
       - name: Gate verdict (fails on timeout, absent result, error or failed step)
         if: always()
         shell: pwsh
