@@ -1,0 +1,77 @@
+name: v12 electrical GUI PDF export, page layout patch
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  gui:
+    runs-on: windows-2022
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download installer, verify SHA256, install, add Mesa (CI only)
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          New-Item -ItemType Directory C:/out,C:/seed -Force | Out-Null
+          foreach ($t in "standalone-v12-r1","standalone-v12-r2","standalone-v12-r3") { gh release download $t -p "DeltaEngineering-Setup-v12*.exe" -D C:/out; if ($LASTEXITCODE -eq 0) { break } }
+          $want = ((Get-Content dist/v12/DeltaEngineering-Setup-v12.exe.sha256 -Raw) -split '\s+')[0].ToLower()
+          $ok = $null
+          foreach ($f in Get-ChildItem C:/out -Filter "DeltaEngineering-Setup-v12*.exe") { if ((Get-FileHash $f.FullName -Algorithm SHA256).Hash.ToLower() -eq $want) { $ok = $f.FullName } }
+          if (-not $ok) { throw 'no downloaded asset matches the dist/v12 SHA256' }
+          "SHA256 MATCH $ok" | Tee-Object C:/seed/log.txt
+          $p = Start-Process $ok -ArgumentList '/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART' -Wait -PassThru
+          "setup exit $($p.ExitCode)" | Tee-Object -Append C:/seed/log.txt
+          $app = "$env:LOCALAPPDATA\Programs\DeltaEngineering"; $bin = "$app\bin"
+          Get-ChildItem $app -Directory | Select-Object -ExpandProperty Name | Tee-Object -Append C:/seed/log.txt
+          $rel = Invoke-RestMethod https://api.github.com/repos/pal1000/mesa-dist-win/releases/latest
+          $a = $rel.assets | Where-Object { $_.name -match 'release-msvc\.7z$' } | Select-Object -First 1
+          Invoke-WebRequest $a.browser_download_url -OutFile C:/mesa.7z
+          7z x C:/mesa.7z -oC:/mesa -y | Out-Null
+          Copy-Item C:/mesa/x64/opengl32.dll $bin -Force
+          foreach ($n in 'libgallium_wgl.dll','libglapi.dll') { if (Test-Path "C:/mesa/x64/$n") { Copy-Item "C:/mesa/x64/$n" $bin -Force } }
+      - name: GUI export, original export module then patched module
+        shell: pwsh
+        run: |
+          Add-Type -AssemblyName System.Windows.Forms,System.Drawing
+          $app = "$env:LOCALAPPDATA\Programs\DeltaEngineering"; $bin = "$app\bin"
+          $mt = [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String('aW1wb3J0IHN5cywgb3MsIGpzb24sIHRyYWNlYmFjawppbXBvcnQgRnJlZUNBRCBhcyBBcHAsIEZyZWVDQURHdWkKZnJvbSBQeVNpZGUgaW1wb3J0IFF0Q29yZQpPVVQgPSByIkBAT1VUQEAiOyBvcy5tYWtlZGlycyhPVVQsIGV4aXN0X29rPVRydWUpCnJlcyA9IHsic3RhZ2UiOiAic3RhcnQifQpkZWYgX3coKToKICAgIG9wZW4oT1VUICsgIi9ndWktcmVzdWx0Lmpzb24iLCAidyIsIGVuY29kaW5nPSJ1dGYtOCIpLndyaXRlKGpzb24uZHVtcHMocmVzLCBlbnN1cmVfYXNjaWk9RmFsc2UsIGluZGVudD0xKSkKZGVmIF9ydW4oKToKICAgIHRyeToKICAgICAgICBzeXMucGF0aC5pbnNlcnQoMCwgciJAQEFQUEBAIik7IHN5cy5wYXRoLmluc2VydCgwLCByIkBAQVBQQEAvRGVsdGFFbmdpbmVlcmluZyIpCiAgICAgICAgZnJvbSBEZWx0YUVuZ2luZWVyaW5nLnN5bWJvbHMgaW1wb3J0IGNyZWF0ZQogICAgICAgIGZyb20gRGVsdGFFbmdpbmVlcmluZy5kb21haW4gaW1wb3J0IGFkZF90ZXJtaW5hbF93aXJlCiAgICAgICAgZnJvbSBEZWx0YUVuZ2luZWVyaW5nLmVsZWN0cmljYWwgaW1wb3J0IHRlcm1pbmFsX2xheW91dCwgc2V0X3Rlcm1pbmFsX3NpZGVzCiAgICAgICAgZnJvbSBEZWx0YUVuZ2luZWVyaW5nIGltcG9ydCByb3V0ZWNoZWNrCiAgICAgICAgcmVzWyJzdGFnZSJdID0gImltcG9ydHMgb2siOyBfdygpCiAgICAgICAgUEFJUlMgPSAoKCdRJywgJ0snLCBbKCcyJywgJzEnKSwgKCc0JywgJzMnKSwgKCc2JywgJzUnKV0pLCAoJ0snLCAnRicsIFsoJzInLCAnMScpLCAoJzQnLCAnMycpLCAoJzYnLCAnNScpXSksICgnRicsICdNJywgWygnMicsICdVJyksICgnNCcsICdWJyksICgnNicsICdXJyldKSkKICAgICAgICBkZWYgYnVpbGQobmFtZSwgbmV3KToKICAgICAgICAgICAgZCA9IEFwcC5uZXdEb2N1bWVudChuYW1lKQogICAgICAgICAgICBYID0gKDQwMDAsIDQ0MDAsIDQ4MDAsIDUyMDApCiAgICAgICAgICAgIGRldiA9IHt9CiAgICAgICAgICAgIGZvciBrLCAodCwgdGFnLCB4KSBpbiB6aXAoJ1FLRk0nLCAoKCdCcmVha2VyIGNvbmNlcHQnLCAnUTEnLCBYWzBdKSwgKCdDb250YWN0b3IgY29uY2VwdCcsICdLTTEnLCBYWzFdKSwgKCdPdmVybG9hZCBjb25jZXB0JywgJ0YxJywgWFsyXSksICgnTW90b3IgY29uY2VwdCcsICdNMScsIFhbM10pKSk6CiAgICAgICAgICAgICAgICBkZXZba10gPSBjcmVhdGUoZCwgdCwgdGFnLCBBcHAuVmVjdG9yKHgsIDAsIDApKQogICAgICAgICAgICBmb3IgeCBpbiAoZGV2WydLJ10sIGRldlsnRiddLCBkZXZbJ00nXSk6IHRlcm1pbmFsX2xheW91dChkLCB4LCBsaXN0KHguVGVybWluYWxzKSwgJ0xlZnQnKQogICAgICAgICAgICBpZiBuZXc6CiAgICAgICAgICAgICAgICBzZXRfdGVybWluYWxfc2lkZXMoZCwgZGV2WydLJ10sIHsnMSc6ICdMZWZ0JywgJzMnOiAnTGVmdCcsICc1JzogJ0xlZnQnLCAnQTEnOiAnTGVmdCcsICdBMic6ICdMZWZ0JywgJzInOiAnUmlnaHQnLCAnNCc6ICdSaWdodCcsICc2JzogJ1JpZ2h0J30pCiAgICAgICAgICAgICAgICBzZXRfdGVybWluYWxfc2lkZXMoZCwgZGV2WydGJ10sIHsnMSc6ICdMZWZ0JywgJzMnOiAnTGVmdCcsICc1JzogJ0xlZnQnLCAnMic6ICdSaWdodCcsICc0JzogJ1JpZ2h0JywgJzYnOiAnUmlnaHQnfSkKICAgICAgICAgICAgbiA9IDA7IHdpcmVzID0gW10KICAgICAgICAgICAgZm9yIGEsIGIsIHBhaXJzIGluIFBBSVJTOgogICAgICAgICAgICAgICAgZm9yIHNhLCBzYiBpbiBwYWlyczoKICAgICAgICAgICAgICAgICAgICBuICs9IDE7IHdpcmVzLmFwcGVuZChhZGRfdGVybWluYWxfd2lyZShkLCBkZXZbYV0sIHNhLCBkZXZbYl0sIHNiLCAnVyVkJyAlIG4pKQogICAgICAgICAgICBkLnJlY29tcHV0ZSgpOyByZXR1cm4gZCwgZGV2CgogICAgICAgIGQsIGRldiA9IGJ1aWxkKCJHdWlFbGVjIiwgVHJ1ZSkKICAgICAgICByZXNbInJvdXRlX2NvdW50Il0gPSByb3V0ZWNoZWNrLmNoZWNrKGQpWyJjb3VudCJdOyByZXNbInN0YWdlIl0gPSAiYnVpbHQiOyBfdygpCiAgICAgICAgaW1wb3J0IHRpbWUKICAgICAgICBmcm9tIFB5U2lkZSBpbXBvcnQgUXRXaWRnZXRzCiAgICAgICAgZGVmIF9wdW1wKG4pOgogICAgICAgICAgICBmb3IgXyBpbiByYW5nZShuKToKICAgICAgICAgICAgICAgIFF0V2lkZ2V0cy5RQXBwbGljYXRpb24ucHJvY2Vzc0V2ZW50cygpOyB0aW1lLnNsZWVwKDAuMDUpCiAgICAgICAgdHJ5OgogICAgICAgICAgICBGcmVlQ0FER3VpLmFjdGl2YXRlV29ya2JlbmNoKCJEZWx0YVdvcmtiZW5jaCIpOyBfcHVtcCg2MCkKICAgICAgICAgICAgcmVzWyJ3b3JrYmVuY2giXSA9IEZyZWVDQURHdWkuYWN0aXZlV29ya2JlbmNoKCkubmFtZSgpCiAgICAgICAgICAgIHYgPSBGcmVlQ0FER3VpLkFjdGl2ZURvY3VtZW50LkFjdGl2ZVZpZXc7IHYudmlld1RvcCgpOyB2LmZpdEFsbCgpOyBfcHVtcCg2MCkKICAgICAgICAgICAgRnJlZUNBREd1aS5nZXRNYWluV2luZG93KCkuZ3JhYigpLnNhdmUoT1VUICsgIi93b3JrYmVuY2gucG5nIikKICAgICAgICAgICAgcmVzWyJ3b3JrYmVuY2hfc2NyZWVuc2hvdCJdID0gb3MucGF0aC5nZXRzaXplKE9VVCArICIvd29ya2JlbmNoLnBuZyIpCiAgICAgICAgZXhjZXB0IEV4Y2VwdGlvbjoKICAgICAgICAgICAgcmVzWyJ3b3JrYmVuY2hfZXJyb3IiXSA9IHRyYWNlYmFjay5mb3JtYXRfZXhjKClbLTgwMDpdCiAgICAgICAgX3coKQogICAgICAgIGltcG9ydCBEZWx0YUVuZ2luZWVyaW5nLmV4cG9ydCBhcyBleAogICAgICAgIHNyYyA9IG9wZW4oZXguX19maWxlX18ucmVwbGFjZSgiLnB5YyIsICIucHkiKSwgZW5jb2Rpbmc9InV0Zi04IikucmVhZCgpIGlmIGV4Ll9fZmlsZV9fIGVsc2UgIiIKICAgICAgICByZXNbImV4cG9ydF91c2VzX3Rlcm1pbmFsX3NpZGUiXSA9ICJ0ZXJtaW5hbF9zaWRlKGRldmljZSx0ZXJtaW5hbCkiIGluIHNyYwogICAgICAgIHBtID0gT1VUICsgIi9tZWNoLnBkZiI7IHBlID0gT1VUICsgIi9lbGVjLnBkZiIKICAgICAgICByZXNbInN0YWdlIl0gPSAiZXhwb3J0aW5nIjsgX3coKQogICAgICAgIHIgPSBleC5leHBvcnRfY3VycmVudChkLCBwbSwgcGUpCiAgICAgICAgcmVzWyJleHBvcnRfcmV0dXJuIl0gPSBzdHIocilbOjMwMF0KICAgICAgICByZXNbInNpemVzIl0gPSBbb3MucGF0aC5nZXRzaXplKHBtKSwgb3MucGF0aC5nZXRzaXplKHBlKV0KICAgICAgICByZXNbInN0YWdlIl0gPSAiZXhwb3J0IGRvbmUiCiAgICBleGNlcHQgRXhjZXB0aW9uOgogICAgICAgIHJlc1siZXJyb3IiXSA9IHRyYWNlYmFjay5mb3JtYXRfZXhjKClbLTE1MDA6XQogICAgcmVzWyJkb25lIl0gPSBUcnVlOyBfdygpClF0Q29yZS5RVGltZXIuc2luZ2xlU2hvdCg5MDAwLCBfcnVuKQo='))
+          $modroot = (Get-ChildItem $app -Recurse -Filter export.py | Select-Object -First 1)
+          "export.py at $($modroot.FullName)" | Tee-Object -Append C:/seed/log.txt
+          $appmod = $modroot.Directory.Parent.Parent.FullName -replace '\\','/'
+          "appmod root $appmod" | Tee-Object -Append C:/seed/log.txt
+          foreach ($mode in @('orig','layout2')) {
+            if ($mode -eq 'layout2') {
+              [IO.File]::WriteAllBytes('C:/patch_export2.py', [Convert]::FromBase64String('aW1wb3J0IHJlLCBzeXMKcCA9IHN5cy5hcmd2WzFdIGlmIGxlbihzeXMuYXJndikgPiAxIGVsc2UgcidDOi9Vc2Vycy9ydW5uZXJhZG1pbi9BcHBEYXRhL0xvY2FsL1Byb2dyYW1zL0RlbHRhRW5naW5lZXJpbmcvTW9kL0RlbHRhRW5naW5lZXJpbmcvRGVsdGFFbmdpbmVlcmluZy9leHBvcnQucHknCnMgPSBvcGVuKHAsIGVuY29kaW5nPSd1dGYtOCcpLnJlYWQoKQpkZWYgcmVwKG9sZCwgbmV3LCBjb3VudD0xKToKICAgIGdsb2JhbCBzCiAgICBhc3NlcnQgb2xkIGluIHMsICdub3QgZm91bmQ6ICcgKyBvbGRbOjYwXQogICAgcyA9IHMucmVwbGFjZShvbGQsIG5ldywgY291bnQpCiMgMS4gc2NoZW1hdGljIGdldHMgdGhlIGZ1bGwgcGFnZSB3aWR0aCBhbmQgdGhlIHVwcGVyIHBhcnQgb2YgdGhlIHBhZ2UKcmVwKCJyZWN0YW5nbGVzPVtRdENvcmUuUVJlY3RGKDY1LDIxMCx3KjAuNTIsaC00MzApXSIsICJyZWN0YW5nbGVzPVtRdENvcmUuUVJlY3RGKDY1LDIwMCx3LTEzMCxoKjAuNDQpXSIpCiMgMi4gYW5ub3RhdGlvbiBmb250IGZvbGxvd3MgdGhlIHBhZ2Ugc2NhbGUgc28gZGVuc2UgMTIgbW0gdGVybWluYWwgY29sdW1ucyBzdGF5IHJlYWRhYmxlCnJlcCgicGFpbnRlci5zZXRGb250KFF0R3VpLlFGb250KCdEZWphVnUgU2FucycsOCkpXG4gICAgICAgICAgICAgICAgZm9yIHRleHQseCx5LHNpZGUgaW4gYW5ub3RhdGlvbnM6IiwKICAgICJwYWludGVyLnNldEZvbnQoUXRHdWkuUUZvbnQoJ0RlamFWdSBTYW5zJyxtYXgoNC41LG1pbig4LjAsNi45KnJhdGlvKSkpKVxuICAgICAgICAgICAgICAgIGZvciB0ZXh0LHgseSxzaWRlIGluIGFubm90YXRpb25zOiIpCiMgMy4gd2lyZSBsaXN0IGluIHRocmVlIGNvbHVtbnMgdW5kZXIgdGhlIHNjaGVtYXRpYywgc2FtZSB3b3JkaW5nLCBzYW1lIGNvbnRpbnVhdGlvbiBwYWdlcwphID0gcy5pbmRleCgiICAgICAgICBpZiByb3dzIGlzIG5vdCBOb25lOlxuICAgICAgICAgICAgeD13KjAuNjUiKQpiID0gcy5pbmRleCgiICAgIGZpbmFsbHk6cGFpbnRlci5lbmQoKSIpCm5ld19ibG9jayA9ICcnJyAgICAgICAgaWYgcm93cyBpcyBub3QgTm9uZToKICAgICAgICAgICAgbmNvbHM9MztnYXA9MzA7Y29sdz0ody0xMzAtZ2FwKihuY29scy0xKSkvbmNvbHMKICAgICAgICAgICAgdG9wPWludCgyMDAraCowLjQ0KzcwKQogICAgICAgICAgICBwYWludGVyLmRyYXdMaW5lKDY1LHRvcC0zMCx3LTY1LHRvcC0zMCkKICAgICAgICAgICAgcGFpbnRlci5kcmF3VGV4dChRdENvcmUuUVJlY3RGKDY1LHRvcC0yNSx3LTEzMCw0MCksaW50KFF0Q29yZS5RdC5BbGlnblJpZ2h0KSwn2YLYp9im2YXYqSDYqtmI2LXZitmEINin2YTYo9i32LHYp9mBJykKICAgICAgICAgICAgeT10b3ArMzA7cGFnZV9udW1iZXI9MTtjb2w9MDtyb3doPTAKICAgICAgICAgICAgZmxhZ3M9aW50KFF0Q29yZS5RdC5BbGlnbkxlZnR8UXRDb3JlLlF0LlRleHRXcmFwQW55d2hlcmUpCiAgICAgICAgICAgIGZvciByb3cgaW4gcm93czoKICAgICAgICAgICAgICAgIGxpbmU9cm93Wyd3aXJlJ10rJyA6ICcrcm93Wydzb3VyY2UnXVsnZGV2aWNlJ10rJzonK3Jvd1snc291cmNlJ11bJ3Rlcm1pbmFsJ10rJyAtPiAnK3Jvd1sndGFyZ2V0J11bJ2RldmljZSddKyc6Jytyb3dbJ3RhcmdldCddWyd0ZXJtaW5hbCddCiAgICAgICAgICAgICAgICBpZiBsZW4obGluZSk+NDAwMDpyYWlzZSBWYWx1ZUVycm9yKCdDb25uZWN0aW9uIHJvdyBleGNlZWRzIHN1cHBvcnRlZCA0MDAwLWNoYXJhY3RlciBzYWZldHkgbGltaXQnKQogICAgICAgICAgICAgICAgcmVxdWlyZWQ9bWF4KDQ1LHBhaW50ZXIuZm9udE1ldHJpY3MoKS5ib3VuZGluZ1JlY3QoUXRDb3JlLlFSZWN0KDAsMCxpbnQoY29sdyksMTAwMDAwKSxmbGFncyxsaW5lKS5oZWlnaHQoKSsxNSkKICAgICAgICAgICAgICAgIGlmIHJlcXVpcmVkPmgtNDIwOnJhaXNlIFZhbHVlRXJyb3IoJ0Nvbm5lY3Rpb24gcm93IGlzIHRvbyBsYXJnZSBmb3Igb25lIHBhZ2UnKQogICAgICAgICAgICAgICAgaWYgY29sPT0wIGFuZCB5K3JlcXVpcmVkPmgtMTUwOgogICAgICAgICAgICAgICAgICAgIGlmIG5vdCB3cml0ZXIubmV3UGFnZSgpOnJhaXNlIElPRXJyb3IoJ0Nhbm5vdCBjcmVhdGUgY29udGludWF0aW9uIHBhZ2UnKQogICAgICAgICAgICAgICAgICAgIHBhZ2VfbnVtYmVyKz0xO3BhaW50ZXIuZmlsbFJlY3QoMCwwLHcsaCxRdEd1aS5RQ29sb3IoJ3doaXRlJykpCiAgICAgICAgICAgICAgICAgICAgcGFpbnRlci5kcmF3UmVjdCgyMCwyMCx3LTQwLGgtNDApCiAgICAgICAgICAgICAgICAgICAgcGFpbnRlci5kcmF3VGV4dChRdENvcmUuUVJlY3RGKDQ1LDM1LHctOTAsNzApLGludChRdENvcmUuUXQuQWxpZ25SaWdodCksJ9mC2KfYptmF2Kkg2KrZiNi12YrZhCDYp9mE2KPYt9ix2KfZgSB8INi12YHYrdipICcrc3RyKHBhZ2VfbnVtYmVyKSkKICAgICAgICAgICAgICAgICAgICBwYWludGVyLmRyYXdMaW5lKDIwLDExMCx3LTIwLDExMCkKICAgICAgICAgICAgICAgICAgICBwYWludGVyLmRyYXdUZXh0KFF0Q29yZS5RUmVjdEYoNDUsaC0xMDAsdy05MCw2MCksaW50KFF0Q29yZS5RdC5BbGlnblJpZ2h0KSwn2KrZiNi12YrZhNin2Kog2YXZhti32YLZitipINmB2YLYt9iMINio2K/ZiNmGINit2LPYp9io2KfYqiDYo9mIINin2LnYqtmF2KfYryDZh9mG2K/Ys9mKJykKICAgICAgICAgICAgICAgICAgICB5PTE4MAogICAgICAgICAgICAgICAgcGFpbnRlci5kcmF3VGV4dChRdENvcmUuUVJlY3RGKDY1K2NvbCooY29sdytnYXApLHksY29sdyxyZXF1aXJlZCksZmxhZ3MsbGluZSkKICAgICAgICAgICAgICAgIHJvd2g9bWF4KHJvd2gscmVxdWlyZWQpO2NvbCs9MQogICAgICAgICAgICAgICAgaWYgY29sPT1uY29sczoKICAgICAgICAgICAgICAgICAgICBjb2w9MDt5Kz1yb3doO3Jvd2g9MAonJycKcyA9IHNbOmFdICsgbmV3X2Jsb2NrICsgc1tiOl0Kb3BlbihwLCAndycsIGVuY29kaW5nPSd1dGYtOCcpLndyaXRlKHMpCnByaW50KCdleHBvcnQucHkgcGFnZSBsYXlvdXQgcGF0Y2hlZCcpCg=='))
+              python C:/patch_export2.py $modroot.FullName
+              if ($LASTEXITCODE -ne 0) { throw 'page layout patch failed' }
+              Get-ChildItem $app -Recurse -Filter '__pycache__' -Directory | Where-Object { $_.FullName -like '*DeltaEngineering*' } | ForEach-Object { Get-ChildItem $_.FullName -Filter 'export*.pyc' | Remove-Item -Force }
+            }
+            $out = "C:/seed/g-$mode"; New-Item -ItemType Directory $out -Force | Out-Null
+            $mm = $mt.Replace('@@OUT@@', $out).Replace('@@APP@@', $appmod)
+            [IO.File]::WriteAllText("C:/seed/gui-$mode.FCMacro", $mm, (New-Object Text.UTF8Encoding $false))
+            $env:GALLIUM_DRIVER = 'llvmpipe'; $env:MESA_GL_VERSION_OVERRIDE = '4.5'
+            $pr = Start-Process "$bin\FreeCAD.exe" -ArgumentList "C:\seed\gui-$mode.FCMacro" -WorkingDirectory $app -PassThru -RedirectStandardError "C:/seed/err-$mode.txt" -RedirectStandardOutput "C:/seed/stdout-$mode.txt"
+            $t = 0; while ($t -lt 150) { Start-Sleep 3; $t += 3; if ((Test-Path "$out/gui-result.json") -and (Select-String -Path "$out/gui-result.json" -Pattern '"done": true' -Quiet)) { break }; if ($pr.HasExited) { break } }
+            "mode $mode exited=$($pr.HasExited) exitcode=$(if ($pr.HasExited) { $pr.ExitCode }) waited=$t" | Tee-Object -Append C:/seed/log.txt
+            Start-Sleep 3
+            $b=[System.Windows.Forms.SystemInformation]::VirtualScreen; $bmp=New-Object System.Drawing.Bitmap $b.Width,$b.Height; $g=[System.Drawing.Graphics]::FromImage($bmp); $g.CopyFromScreen($b.Location,[System.Drawing.Point]::Empty,$b.Size); $bmp.Save("C:/seed/g-$mode.png")
+            Stop-Process -Id $pr.Id -Force -ErrorAction SilentlyContinue
+            Get-Process FreeCAD -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
+            Start-Sleep 3
+          }
+      - name: Commit evidence
+        if: always()
+        shell: pwsh
+        run: |
+          git config user.name ci; git config user.email ci@users.noreply.github.com
+          New-Item -ItemType Directory -Force dist/elec-gui2 | Out-Null
+          Copy-Item C:/seed/log.txt,C:/seed/err-*.txt,C:/seed/stdout-*.txt dist/elec-gui2/ -ErrorAction SilentlyContinue
+          foreach ($m in 'orig','layout2') {
+            if (Test-Path C:/seed/g-$m/gui-result.json) { Copy-Item C:/seed/g-$m/workbench.png C:/seed/null.png -ErrorAction SilentlyContinue; if (Test-Path C:/seed/g-$m/workbench.png) { [IO.File]::WriteAllText("$PWD/dist/elec-gui2/$m-workbench.png.b64", [Convert]::ToBase64String([IO.File]::ReadAllBytes("C:/seed/g-$m/workbench.png"))) }; Copy-Item C:/seed/g-$m/gui-result.json dist/elec-gui2/gui-result-$m.json }
+            foreach ($f in Get-ChildItem C:/seed/g-$m -Filter *.pdf -ErrorAction SilentlyContinue) { [IO.File]::WriteAllText("$PWD/dist/elec-gui2/$m-$($f.Name).b64", [Convert]::ToBase64String([IO.File]::ReadAllBytes($f.FullName))) }
+            if (Test-Path C:/seed/g-$m.png) { [IO.File]::WriteAllText("$PWD/dist/elec-gui2/g-$m.png.b64", [Convert]::ToBase64String([IO.File]::ReadAllBytes("C:/seed/g-$m.png"))) }
+          }
+          git add dist; git commit -m "Add elec-gui evidence" 2>&1 | Out-Null
+          foreach ($i in 1..4) { git pull --rebase 2>&1 | Out-Null; git push 2>&1 | Out-String | Write-Host; if ($LASTEXITCODE -eq 0) { break }; Start-Sleep 5 }
