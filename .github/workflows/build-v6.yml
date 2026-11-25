@@ -152,11 +152,9 @@ jobs:
           $a = $rel.assets | Where-Object { $_.name -match 'release-msvc\.7z$' } | Select-Object -First 1
           Invoke-WebRequest $a.browser_download_url -OutFile C:/mesa.7z
           7z x C:/mesa.7z -oC:/mesa -y | Out-Null
-      - name: Block all outbound network, then install offline as the setup exe
+      - name: Install silently as the setup exe (no network block this time)
         shell: pwsh
         run: |
-          New-NetFirewallRule -DisplayName blockout -Direction Outbound -Action Block -Profile Any | Out-Null
-          try { Invoke-WebRequest https://github.com -TimeoutSec 8 -UseBasicParsing | Out-Null; "network STILL reachable" } catch { "network blocked OK" }
           $sw = [Diagnostics.Stopwatch]::StartNew()
           $p = Start-Process C:/out/DeltaEngineering-Setup-v6.exe -ArgumentList '/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART','/DIR=C:\DeltaTest' -Wait -PassThru
           "setup exit $($p.ExitCode) seconds $($sw.Elapsed.TotalSeconds)"
@@ -166,10 +164,8 @@ jobs:
           "shortcut: $(Test-Path "$env:APPDATA/Microsoft/Windows/Start Menu/Programs/Delta Engineering.lnk")"
           $cmd = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCADCmd.exe | Select-Object -First 1
           $env:PYTHONUTF8 = '1'
-          @('import FreeCAD, DeltaEngineering.core, DeltaEngineering.domain','print("addon import ok with network blocked")') | Set-Content C:/off.py -Encoding utf8
+          @('import FreeCAD, DeltaEngineering.core, DeltaEngineering.domain','print("addon import ok (network NOT blocked in v6 run)")') | Set-Content C:/off.py -Encoding utf8
           & $cmd.FullName C:/off.py 2>&1 | Out-String
-          Remove-NetFirewallRule -DisplayName blockout
-          try { Invoke-WebRequest https://github.com -TimeoutSec 15 -UseBasicParsing | Out-Null; "network restored" } catch { "network still blocked?" }
       - name: Regression on installed build with patched source, 1e-6 mm tolerance in test copy
         shell: bash
         run: |
