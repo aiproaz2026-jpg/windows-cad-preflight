@@ -15,7 +15,9 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           New-Item -ItemType Directory C:/out,C:/evidence -Force | Out-Null
-          foreach ($t in "standalone-v12-r1","standalone-v12-r2","standalone-v12-r3") { gh release download $t -p DeltaEngineering-Setup-v12.exe -D C:/out; if ($LASTEXITCODE -eq 0) { break } }
+          foreach ($t in "standalone-v12-r1","standalone-v12-r2","standalone-v12-r3") { gh release download $t -p "DeltaEngineering-Setup-v12*.exe" -D C:/out; if ($LASTEXITCODE -eq 0) { break } }
+          $want0 = ((Get-Content dist/v12/DeltaEngineering-Setup-v12.exe.sha256 -Raw) -split '\s+')[0].ToLower()
+          foreach ($f in Get-ChildItem C:/out -Filter "DeltaEngineering-Setup-v12*.exe") { if ((Get-FileHash $f.FullName -Algorithm SHA256).Hash.ToLower() -eq $want0 -and $f.Name -ne 'DeltaEngineering-Setup-v12.exe') { Copy-Item $f.FullName C:/out/DeltaEngineering-Setup-v12.exe -Force } }
           $got = (Get-FileHash C:/out/DeltaEngineering-Setup-v12.exe -Algorithm SHA256).Hash.ToLower()
           $want = ((Get-Content dist/v12/DeltaEngineering-Setup-v12.exe.sha256 -Raw) -split '\s+')[0].ToLower()
           "got $got want $want"
