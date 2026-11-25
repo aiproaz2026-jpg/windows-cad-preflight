@@ -1,0 +1,373 @@
+name: Layout fix test 9 on installed v5 (GUI, save/open, undo, parts, viewport, limits)
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  gap:
+    runs-on: windows-2022
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download private v5 installer and install silently
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download standalone-v5 -p DeltaEngineering-Setup-v5.exe -D C:/out
+          (Get-FileHash C:/out/DeltaEngineering-Setup-v5.exe -Algorithm SHA256).Hash
+          $p = Start-Process C:/out/DeltaEngineering-Setup-v5.exe -ArgumentList '/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART','/DIR=C:\DeltaTest' -Wait -PassThru
+          "setup exit $($p.ExitCode)"
+      - name: Add Mesa llvmpipe software OpenGL (CI only)
+        shell: pwsh
+        run: |
+          $rel = Invoke-RestMethod https://api.github.com/repos/pal1000/mesa-dist-win/releases/latest
+          $a = $rel.assets | Where-Object { $_.name -match 'release-msvc\.7z$' } | Select-Object -First 1
+          Invoke-WebRequest $a.browser_download_url -OutFile C:/mesa.7z
+          7z x C:/mesa.7z -oC:/mesa -y | Out-Null
+          $exe = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
+          $bin = $exe.Directory.FullName
+          Copy-Item C:/mesa/x64/opengl32.dll $bin -Force
+          foreach ($n in 'libgallium_wgl.dll','libglapi.dll') { if (Test-Path "C:/mesa/x64/$n") { Copy-Item "C:/mesa/x64/$n" $bin -Force } }
+      - name: Try larger display resolution
+        shell: pwsh
+        run: |
+          Add-Type @"
+          using System; using System.Runtime.InteropServices;
+          public class Disp {
+            [StructLayout(LayoutKind.Sequential, CharSet=CharSet.Ansi)] public struct DEVMODE {
+              [MarshalAs(UnmanagedType.ByValTStr, SizeConst=32)] public string dmDeviceName;
+              public short dmSpecVersion, dmDriverVersion, dmSize, dmDriverExtra; public int dmFields;
+              public int dmPositionX, dmPositionY, dmDisplayOrientation, dmDisplayFixedOutput;
+              public short dmColor, dmDuplex, dmYResolution, dmTTOption, dmCollate;
+              [MarshalAs(UnmanagedType.ByValTStr, SizeConst=32)] public string dmFormName;
+              public short dmLogPixels; public int dmBitsPerPel, dmPelsWidth, dmPelsHeight, dmDisplayFlags, dmDisplayFrequency;
+              public int dmICMMethod, dmICMIntent, dmMediaType, dmDitherType, dmReserved1, dmReserved2, dmPanningWidth, dmPanningHeight; }
+            [DllImport("user32.dll", CharSet=CharSet.Ansi)] public static extern bool EnumDisplaySettings(string d, int i, ref DEVMODE m);
+            [DllImport("user32.dll", CharSet=CharSet.Ansi)] public static extern int ChangeDisplaySettings(ref DEVMODE m, int f);
+          }
+          "@
+          $m = New-Object Disp+DEVMODE; $m.dmSize = [Runtime.InteropServices.Marshal]::SizeOf($m)
+          $modes = @(); $i = 0
+          while ([Disp]::EnumDisplaySettings($null, $i, [ref]$m)) { $modes += "$($m.dmPelsWidth)x$($m.dmPelsHeight)"; $i++ }
+          "modes: " + (($modes | Sort-Object -Unique) -join ' ')
+          foreach ($want in @(@(1366,768))) {
+            [void][Disp]::EnumDisplaySettings($null, -1, [ref]$m)
+            $m.dmPelsWidth = $want[0]; $m.dmPelsHeight = $want[1]; $m.dmFields = 0x180000
+            $r = [Disp]::ChangeDisplaySettings([ref]$m, 0)
+            "try $($want[0])x$($want[1]) result $r"
+            if ($r -eq 0) { break }
+          }
+          Add-Type -AssemblyName System.Windows.Forms
+          $s = [Windows.Forms.Screen]::PrimaryScreen.Bounds; "screen now $($s.Width)x$($s.Height)"
+          exit 0
+      - name: Unpack source and prepare v6 patch
+        shell: bash
+        run: |
+          mkdir -p /c/delta patches/v6
+          unzip -q src/*DeltaEngineering-development-source-v58-10539385.zip -d /c/delta
+          cat > patches/v6/apply_v6.py <<'PY'
+          """Delta Engineering v6 patches: applies v4 first, then dock layout fixes (scroll-wrapped panels, tabified editor docks)."""
+          import sys,os,subprocess
+          root=sys.argv[1]
+          here=os.path.dirname(os.path.abspath(__file__))
+          subprocess.check_call([sys.executable,os.path.join(here,'..','v4','apply_v4.py'),root])
+          def rep(rel,old,new):
+              for base in (root+'/DeltaEngineering', root+'/package/Mod/DeltaEngineering/DeltaEngineering'):
+                  p=os.path.join(base,rel)
+                  s=open(p,encoding='utf-8',newline='').read()
+                  assert s.count(old)==1,(p,old,s.count(old))
+                  open(p,'w',encoding='utf-8',newline='').write(s.replace(old,new))
+          SC="_sc=QtWidgets.QScrollArea();_sc.setWidgetResizable(True);_sc.setFrameShape(QtWidgets.QFrame.NoFrame);_sc.setWidget(%s);self.setWidget(_sc)"
+          rep('drafting_panel.py',"shell=QtWidgets.QWidget();self.setWidget(shell);","shell=QtWidgets.QWidget();"+SC%'shell'+";")
+          rep('drafting_panel.py',"panel=DraftingPanel();Gui.getMainWindow().addDockWidget(QtCore.Qt.RightDockWidgetArea,panel);panel.show();","panel=DraftingPanel();Gui.getMainWindow().addDockWidget(QtCore.Qt.RightDockWidgetArea,panel);_other=Gui.getMainWindow().findChild(QtWidgets.QDockWidget,'DeltaElectricalPanel');(Gui.getMainWindow().tabifyDockWidget(_other,panel) if _other else None);panel.show();panel.raise_();")
+          rep('panel.py',"area=QtWidgets.QWidget();self.setWidget(area)","area=QtWidgets.QWidget();"+SC%'area')
+          rep('panel.py',"Gui.getMainWindow().addDockWidget(QtCore.Qt.RightDockWidgetArea,panel)","Gui.getMainWindow().addDockWidget(QtCore.Qt.RightDockWidgetArea,panel);_other=Gui.getMainWindow().findChild(QtWidgets.QDockWidget,'DeltaDraftingPanel');(Gui.getMainWindow().tabifyDockWidget(_other,panel) if _other else None);panel.raise_()")
+          print('v6 patch applied')
+          PY
+          python patches/v6/apply_v6.py /c/delta/DeltaEngineering
+      - name: Write macro
+        shell: pwsh
+        run: |
+          $macro = @'
+          import os, json, time, traceback, ctypes
+          from ctypes import wintypes
+          OUT = os.environ.get('DELTA_OUT','C:/shots9')
+          os.makedirs(OUT, exist_ok=True)
+          res = {'steps': {}, 'dialogs': [], 'done': False}
+          def save():
+              open(OUT + '/gui-result9.json', 'w', encoding='utf-8').write(json.dumps(res, ensure_ascii=False, indent=1, default=str))
+          def rss_mb():
+              ctypes.windll.kernel32.GetCurrentProcess.restype = wintypes.HANDLE
+              ctypes.windll.psapi.GetProcessMemoryInfo.argtypes = [wintypes.HANDLE, ctypes.c_void_p, wintypes.DWORD]
+              class PMC(ctypes.Structure):
+                  _fields_ = [('cb', wintypes.DWORD), ('PageFaultCount', wintypes.DWORD), ('PeakWorkingSetSize', ctypes.c_size_t), ('WorkingSetSize', ctypes.c_size_t), ('QuotaPeakPagedPoolUsage', ctypes.c_size_t), ('QuotaPagedPoolUsage', ctypes.c_size_t), ('QuotaPeakNonPagedPoolUsage', ctypes.c_size_t), ('QuotaNonPagedPoolUsage', ctypes.c_size_t), ('PagefileUsage', ctypes.c_size_t), ('PeakPagefileUsage', ctypes.c_size_t)]
+              c = PMC(); c.cb = ctypes.sizeof(c)
+              ctypes.windll.psapi.GetProcessMemoryInfo(ctypes.windll.kernel32.GetCurrentProcess(), ctypes.byref(c), c.cb)
+              return round(c.WorkingSetSize / 1048576), round(c.PeakWorkingSetSize / 1048576)
+          try:
+              import FreeCAD as App, FreeCADGui as Gui
+              from PySide import QtCore, QtWidgets
+              from PySide6 import QtTest
+              import DeltaEngineering.core, DeltaEngineering.domain
+              from DeltaEngineering.gui import register
+              if 'DeltaWorkbench' not in Gui.listWorkbenches(): register()
+              Gui.activateWorkbench('DeltaWorkbench')
+              mw = Gui.getMainWindow()
+              counter = [0]
+              def handle():
+                  w = QtWidgets.QApplication.activeModalWidget()
+                  if not w: return
+                  counter[0] += 1
+                  info = {'n': counter[0], 'cls': type(w).__name__, 'title': w.windowTitle()}
+                  try:
+                      w.grab().save(OUT + '/dlg9-%02d.png' % counter[0])
+                      if isinstance(w, QtWidgets.QInputDialog):
+                          info['label'] = w.labelText(); w.setTextValue('2 mm'); w.accept()
+                      elif isinstance(w, QtWidgets.QMessageBox):
+                          info['text'] = w.text()
+                          yes = [b for b in w.findChildren(QtWidgets.QPushButton) if b.text() in ('نعم', 'Yes', '&Yes')]
+                          if yes: yes[0].click()
+                          else: w.accept()
+                      elif isinstance(w, QtWidgets.QFileDialog):
+                          info['filedialog'] = True; w.reject()
+                      else:
+                          w.accept()
+                  except Exception:
+                      info['err'] = traceback.format_exc()
+                  res['dialogs'].append(info); save()
+              t = QtCore.QTimer(); t.setInterval(400); t.timeout.connect(handle); t.start()
+              def shot(name):
+                  try: mw.grab().save(OUT + '/' + name + '.png')
+                  except Exception: res['steps'][name + '_shot_err'] = traceback.format_exc()
+              def run(name, fn):
+                  t0 = time.time()
+                  try:
+                      out = fn(); res['steps'][name] = {'ok': True, 'secs': round(time.time() - t0, 2), 'detail': out}
+                  except Exception:
+                      res['steps'][name] = {'ok': False, 'secs': round(time.time() - t0, 2), 'detail': traceback.format_exc()}
+                  save()
+              def pump(n=5):
+                  for _ in range(n): QtWidgets.QApplication.processEvents()
+              def step():
+                  from DeltaEngineering.drafting_panel import show_panel
+                  S = {}
+                  W = QtWidgets
+                  def sel(*objs):
+                      Gui.Selection.clearSelection()
+                      for o in objs: Gui.Selection.addSelection(o)
+                  def click(panel, text):
+                      b = [x for x in panel.findChildren(W.QPushButton) if x.text() == text]
+                      assert b, 'button not found: ' + text
+                      b[0].click(); pump()
+                  def viewport():
+                      mdi = mw.findChild(W.QMdiArea); sub = mdi.activeSubWindow()
+                      cand = [w for w in sub.findChildren(W.QWidget) if 'GLWidget' in w.metaObject().className() and w.isVisible()]
+                      return cand[-1]
+                  def layout_state(tag):
+                      vw = viewport()
+                      docks = [{'name': d.objectName(), 'w': d.width(), 'h': d.height(), 'floating': d.isFloating()} for d in mw.findChildren(W.QDockWidget) if d.isVisible()]
+                      scr = mw.screen().geometry()
+                      mh = mw.minimumSizeHint(); return {'screen': [scr.width(), scr.height()], 'window': [mw.width(), mw.height()], 'window_min_hint': [mh.width(), mh.height()], 'window_fits_screen': mw.height() <= scr.height() and mw.width() <= scr.width(), 'window_top_left': [mw.x(), mw.y()], 'viewport_px': [vw.width(), vw.height()], 'docks': docks}
+                  def metrics(root):
+                      bad = []; n = 0; overlaps = []
+                      for w in root.findChildren(W.QWidget):
+                          if not w.isVisible() or not isinstance(w, (W.QPushButton, W.QLabel, W.QLineEdit, W.QComboBox, W.QCheckBox, W.QSpinBox, W.QDoubleSpinBox)): continue
+                          n += 1
+                          h = w.height(); wd = w.width(); txt = getattr(w, 'text', lambda: '')() if hasattr(w, 'text') else ''
+                          if isinstance(w, W.QLabel) and w.wordWrap():
+                              need = w.heightForWidth(wd) if w.hasHeightForWidth() else w.sizeHint().height()
+                          else:
+                              need = w.sizeHint().height()
+                          tw = w.fontMetrics().horizontalAdvance(txt) if (txt and not (isinstance(w, W.QLabel) and w.wordWrap())) else 0
+                          short = h < need - 1
+                          narrow = isinstance(w, W.QPushButton) and tw + 12 > wd
+                          if short or narrow: bad.append({'cls': type(w).__name__, 'text': txt[:40], 'h': h, 'need_h': need, 'w': wd, 'text_w': tw, 'short': short, 'narrow': narrow})
+                      for par in root.findChildren(W.QWidget):
+                          kids = [k for k in par.children() if isinstance(k, W.QPushButton) and k.isVisible()]
+                          for i in range(len(kids)):
+                              for j in range(i + 1, len(kids)):
+                                  if kids[i].geometry().intersects(kids[j].geometry()):
+                                      overlaps.append([kids[i].text()[:25], kids[j].text()[:25]])
+                      return {'checked_widgets': n, 'clipped_count': len(bad), 'clipped_first': bad[:14], 'overlapping_buttons': overlaps[:10], 'overlap_count': len(overlaps)}
+                  def s_layout():
+                      Gui.runCommand('Delta_NewProject'); pump(10)
+                      out = {'A_start': layout_state('A')}; shot('func9-A-start')
+                      p = show_panel(); S['p'] = p; pump(20)
+                      out['B_drafting_panel'] = layout_state('B'); shot('func9-B-drafting')
+                      pp = p.profiles
+                      for ti in range(p.tabs.count()):
+                          p.tabs.setCurrentIndex(ti); pump(10)
+                          out['tab%d_%s' % (ti, p.tabs.tabText(ti))] = metrics(p)
+                      p.tabs.setCurrentIndex(2); pump(10)
+                      for ci in range(4):
+                          pp.category.setCurrentIndex(ci); pump(10)
+                          out['profile_cat%d' % ci] = metrics(p)
+                          pp.grab().save(OUT + '/func9-profile-content-cat%d.png' % ci)
+                          out['profile_cat%d' % ci]['content_size'] = [pp.size().width(), pp.size().height()]
+                          out['profile_cat%d' % ci]['content_min_hint'] = [pp.minimumSizeHint().width(), pp.minimumSizeHint().height()]
+                          shot('func9-C-parts-cat%d' % ci)
+                      from DeltaEngineering.panel import show_panel as show_el
+                      e = show_el(); pump(20); out['D_electrical_panel_also_open'] = layout_state('D'); shot('func9-D-both-panels')
+                      out['electrical_metrics'] = metrics(e)
+                      return out
+                  run('layout_and_clipping_metrics', s_layout)
+                  def s_step():
+                      import DeltaEngineering.profile_panel as PPmod
+                      from DeltaEngineering.interchange import export_step, import_step
+                      d = App.ActiveDocument; p = S['p']; pp = p.profiles; out = {}
+                      pp.fields['radius'].setText('50 mm'); click(pp, 'إنشاء دائرة دقيقة')
+                      pp.fields['height'].setText('100 mm'); click(pp, 'بروز من المقطع المحدد')
+                      E = Gui.Selection.getSelection()[0]; v0 = E.Shape.Volume
+                      os.makedirs('C:/Users/Public/اختبار', exist_ok=True)
+                      direct = 'C:/Users/Public/اختبار/مباشر.step'
+                      export_step(d, [E], direct); out['direct_export_bytes'] = os.path.getsize(direct)
+                      imp = import_step(d, direct); out['direct_import_volume'] = round(imp.Shape.Volume, 3); out['source_volume'] = round(v0, 3)
+                      path = 'C:/Users/Public/اختبار/قطعة.step'
+                      class FD:
+                          @staticmethod
+                          def getSaveFileName(*a, **k): return (path, 'STEP (*.step)')
+                          @staticmethod
+                          def getOpenFileName(*a, **k): return (path, 'STEP (*.step *.stp)')
+                      class Shim:
+                          def __getattr__(self, n): return getattr(W, n)
+                          QFileDialog = FD
+                      orig = PPmod.QtWidgets; PPmod.QtWidgets = Shim()
+                      try:
+                          sel(E); click(pp, 'تصدير المحدد STEP'); out['panel_status_after_export'] = p.status.text()
+                          out['panel_export_exists'] = os.path.exists(path)
+                          if out['panel_export_exists']:
+                              out['panel_export_bytes'] = os.path.getsize(path)
+                              n0 = len(d.Objects); click(pp, 'استيراد STEP'); out['objects_added_by_panel_import'] = len(d.Objects) - n0
+                              sl = Gui.Selection.getSelection(); out['panel_imported_volume'] = round(sl[0].Shape.Volume, 3) if sl else None
+                              out['panel_status_after_import'] = p.status.text()
+                      finally:
+                          PPmod.QtWidgets = orig
+                      assert out['panel_export_exists'], out
+                      return out
+                  run('step_roundtrip_direct_and_via_panel', s_step)
+                  def s_view():
+                      d = App.ActiveDocument; v = Gui.ActiveDocument.ActiveView; v.viewAxonometric(); v.fitAll(); pump(20)
+                      vw = viewport(); out = {'viewport': [vw.width(), vw.height()]}
+                      E = [o for o in d.Objects if hasattr(o, 'Shape') and not o.Shape.isNull() and o.Shape.Volume > 1e5][0]
+                      c = E.Shape.BoundBox.Center
+                      def proj(): 
+                          x, y = v.getPointOnViewport(c); return (round(x, 1), round(y, 1))
+                      def ev(t, pos, btn, btns):
+                          from PySide6 import QtGui
+                          e = QtGui.QMouseEvent(t, QtCore.QPointF(pos), QtCore.QPointF(vw.mapToGlobal(pos)), btn, btns, QtCore.Qt.NoModifier)
+                          QtWidgets.QApplication.sendEvent(vw, e); pump(2)
+                      def drag(btn, btns_during, dx, dy, steps=12):
+                          ctr = vw.rect().center(); T = QtCore.QEvent
+                          ev(T.MouseButtonPress, ctr, btn, btn)
+                          if btns_during != btn:
+                              ev(T.MouseButtonPress, ctr, QtCore.Qt.RightButton, btns_during)
+                          for i in range(1, steps + 1):
+                              ev(T.MouseMove, ctr + QtCore.QPoint(dx * i // steps, dy * i // steps), QtCore.Qt.NoButton, btns_during)
+                          end = ctr + QtCore.QPoint(dx, dy)
+                          if btns_during != btn: ev(T.MouseButtonRelease, end, QtCore.Qt.RightButton, btn)
+                          ev(T.MouseButtonRelease, end, btn, QtCore.Qt.NoButton); pump(10)
+                      def cam(): 
+                          return [round(x, 4) for x in v.getCameraOrientation().Q]
+                      out['navigation_style_initial'] = v.getNavigationType() if hasattr(v, 'getNavigationType') else None
+                      p0 = proj(); c0 = cam()
+                      drag(QtCore.Qt.MiddleButton, QtCore.Qt.MiddleButton, 80, 40); p1 = proj()
+                      out['cad_pan_middle_drag'] = {'proj_before': p0, 'proj_after': p1, 'moved': p0 != p1}
+                      c1 = cam(); drag(QtCore.Qt.MiddleButton, QtCore.Qt.MiddleButton | QtCore.Qt.RightButton, 100, 50)
+                      c2 = cam(); out['cad_rotate_mmb_plus_rmb'] = {'before': c1, 'after': c2, 'changed': c1 != c2}
+                      from PySide6 import QtGui
+                      s0 = v.getCameraNode().getField('height').getValue() if hasattr(v.getCameraNode(), 'getField') else None
+                      v.fitAll(); pump(20)
+                      c_off = c + App.Vector(300, 0, 0)
+                      def proj2():
+                          x, y = v.getPointOnViewport(c_off); return (round(x, 1), round(y, 1))
+                      z0 = proj(); z0b = proj2()
+                      for _ in range(5):
+                          we = QtGui.QWheelEvent(QtCore.QPointF(vw.rect().center()), QtCore.QPointF(vw.mapToGlobal(vw.rect().center())), QtCore.QPoint(0, 0), QtCore.QPoint(0, 120), QtCore.Qt.NoButton, QtCore.Qt.NoModifier, QtCore.Qt.NoScrollPhase, False)
+                          QtWidgets.QApplication.sendEvent(vw, we); pump(3)
+                      pump(10); z1 = proj(); z1b = proj2()
+                      import math
+                      d0 = math.hypot(z0[0]-z0b[0], z0[1]-z0b[1]); d1 = math.hypot(z1[0]-z1b[0], z1[1]-z1b[1])
+                      out['wheel_zoom'] = {'px_distance_before_after': [round(d0,1), round(d1,1)], 'changed': abs(d1-d0) > 1}
+                      shot('func9-view-after-cad-nav')
+                      return out
+                  run('viewport_navigation_real_events', s_view)
+                  def s_plant():
+                      Gui.runCommand('Delta_NewProject'); d = App.ActiveDocument
+                      from DeltaEngineering.core import PipeRoute, Device
+                      out = {}
+                      for i in range(150):
+                          o = d.addObject('PartDesign::FeaturePython', 'PipeRoute'); o.Label = 'P%03d' % i
+                          PipeRoute(o, [App.Vector(0, i * 150, 0), App.Vector(2000, i * 150, 0), App.Vector(2000, i * 150, 800)], 100, 5)
+                      for i in range(100):
+                          o = d.addObject('PartDesign::FeaturePython', 'ElectricalDevice'); o.Label = 'D%03d' % i
+                          Device(o, 'D%03d' % i, App.Vector(i * 300, -500, 0))
+                      d.recompute(); v = Gui.ActiveDocument.ActiveView
+                      pipes = [o for o in d.Objects if o.Label.startswith('P0') or o.Label.startswith('P1')]
+                      vo = pipes[0].ViewObject
+                      out['pipe_default_color'] = [round(x, 2) for x in vo.ShapeColor[:3]]; out['pipe_display_mode'] = vo.DisplayMode
+                      out['pipe_bbox'] = [round(x) for x in (pipes[0].Shape.BoundBox.XLength, pipes[0].Shape.BoundBox.YLength, pipes[0].Shape.BoundBox.ZLength)]
+                      bb = App.BoundBox()
+                      for o in d.Objects:
+                          if hasattr(o, 'Shape') and not o.Shape.isNull(): bb.add(o.Shape.BoundBox)
+                      out['model_bbox_mm'] = [round(bb.XLength), round(bb.YLength), round(bb.ZLength)]
+                      for o in d.Objects:
+                          if hasattr(o, 'Position') and hasattr(o, 'Tag'): pass
+                      v.viewAxonometric(); v.fitAll(); pump(30); shot('func9-plant-fitAll')
+                      sel(*pipes); Gui.SendMsgToActiveView('ViewSelection'); pump(30); Gui.Selection.clearSelection(); pump(10); shot('func9-plant-fit-pipes')
+                      out['viewport_px'] = [viewport().width(), viewport().height()]
+                      for o in pipes: o.ViewObject.ShapeColor = (0.05, 0.68, 0.64)
+                      pump(20); shot('func9-plant-fit-pipes-colored')
+                      return out
+                  run('plant_rendering_diagnosis', s_plant)
+                  res['done'] = True; save()
+                  QtCore.QTimer.singleShot(1500, lambda: os._exit(0))
+              QtCore.QTimer.singleShot(6000, step)
+          except Exception:
+              res['error'] = traceback.format_exc(); res['done'] = True; save()
+          '@
+          $exe = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
+          $root = $exe.Directory.Parent.FullName
+          Set-Content "$root\DeltaGuiTest9.FCMacro" $macro -Encoding utf8
+      - name: Pass A baseline v5 code at 1366x768
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force C:/shots9a | Out-Null
+          $exe = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
+          $root = $exe.Directory.Parent.FullName
+          $env:DELTA_OUT = 'C:/shots9a'; $env:GALLIUM_DRIVER = 'llvmpipe'; $env:MESA_GL_VERSION_OVERRIDE = '4.5'
+          Start-Process $exe.FullName -ArgumentList "`"$root\DeltaGuiTest9.FCMacro`""
+          $t = 0
+          while ($t -lt 600) { Start-Sleep 5; $t += 5; if ((Test-Path C:/shots9a/gui-result9.json) -and (Select-String -Path C:/shots9a/gui-result9.json -Pattern '"done": true' -Quiet)) { break } }
+          Start-Sleep 4; Get-Process FreeCAD -ErrorAction SilentlyContinue | Stop-Process -Force
+          exit 0
+      - name: Apply v6 files to installed copy
+        shell: pwsh
+        run: |
+          $dst = (Get-ChildItem C:/DeltaTest -Recurse -Filter drafting_panel.py | Select-Object -First 1).Directory.FullName
+          "dst $dst"
+          Copy-Item C:/delta/DeltaEngineering/package/Mod/DeltaEngineering/DeltaEngineering/drafting_panel.py $dst -Force
+          Copy-Item C:/delta/DeltaEngineering/package/Mod/DeltaEngineering/DeltaEngineering/panel.py $dst -Force
+          Get-ChildItem $dst -Recurse -Filter __pycache__ | Remove-Item -Recurse -Force
+          Select-String -Path "$dst/panel.py" -Pattern 'QScrollArea' | Select-Object -First 1
+      - name: Pass B v6 patched code at 1366x768
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force C:/shots9b | Out-Null
+          $exe = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
+          $root = $exe.Directory.Parent.FullName
+          $env:DELTA_OUT = 'C:/shots9b'; $env:GALLIUM_DRIVER = 'llvmpipe'; $env:MESA_GL_VERSION_OVERRIDE = '4.5'
+          Start-Process $exe.FullName -ArgumentList "`"$root\DeltaGuiTest9.FCMacro`""
+          $t = 0
+          while ($t -lt 600) { Start-Sleep 5; $t += 5; if ((Test-Path C:/shots9b/gui-result9.json) -and (Select-String -Path C:/shots9b/gui-result9.json -Pattern '"done": true' -Quiet)) { break } }
+          Start-Sleep 4; Get-Process FreeCAD -ErrorAction SilentlyContinue | Stop-Process -Force
+          exit 0
+      - name: Commit evidence
+        shell: bash
+        run: |
+          git config user.name ci; git config user.email ci@users.noreply.github.com
+          git pull --rebase || true
+          for p in a b; do mkdir -p dist/v9gap/$p; cp /c/shots9$p/*.png /c/shots9$p/gui-result9.json dist/v9gap/$p/ || true; for f in dist/v9gap/$p/func9-A-start.png dist/v9gap/$p/func9-B-drafting.png dist/v9gap/$p/func9-C-parts-cat1.png dist/v9gap/$p/func9-D-both-panels.png dist/v9gap/$p/func9-plant-fit-pipes-colored.png; do [ -f $f ] && base64 -w0 $f > $f.b64; done; done
+          git add dist patches
+          git commit -m "Add layout fix test evidence and v6 patch" || true
+          git push
