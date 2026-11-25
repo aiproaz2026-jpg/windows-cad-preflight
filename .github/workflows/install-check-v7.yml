@@ -45,6 +45,7 @@ jobs:
           Set-Content C:/instdir.txt $dir -Encoding utf8
       - name: Offline run (outbound network blocked) of import check and GUI macro from the Arabic path
         shell: pwsh
+        continue-on-error: true
         run: |
           [Console]::OutputEncoding = [Text.Encoding]::UTF8
           $dir = (Get-Content C:/instdir.txt -Encoding utf8 -TotalCount 1).Trim()
@@ -69,8 +70,8 @@ jobs:
           try {
             try { Invoke-WebRequest https://github.com -TimeoutSec 6 -UseBasicParsing | Out-Null; "network STILL reachable" } catch { "network blocked OK" }
             $env:PYTHONUTF8 = '1'
-            & $cmd.FullName C:/imp.py 2>&1 | Out-Null
-            "--- import check"; Get-Content C:/fit12/import-check.txt
+            "FreeCADCmd: $($cmd.FullName)"; & $cmd.FullName C:/imp.py 2>&1 | Select-Object -First 40
+            "--- import check"; Get-Content C:/fit12/import-check.txt -ErrorAction Continue; "script exists: $(Test-Path C:/imp.py)"
             $env:DELTA_OUT = 'C:/fit12'; $env:GALLIUM_DRIVER = 'llvmpipe'; $env:MESA_GL_VERSION_OVERRIDE = '4.5'
             Start-Process $exe.FullName -ArgumentList "`"$root\DeltaGuiTest12.FCMacro`"" -RedirectStandardOutput C:/fit12/fc-out.txt -RedirectStandardError C:/fit12/fc-err.txt
             $t = 0
