@@ -1,0 +1,3 @@
+C:/seed/gui-layout5.FCMacro:49: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+  sg = v.getSceneGraph(); root = coin.SoAnnotation(); root.setName("DeltaIdentifiers")
+PartDesign::FeaturePython: Link(s) to object(s) 'ShaftInstance' go out of the allowed scope 'Motor'. Instead, the linked object(s) reside within 'MechanicalAssembly'.
