@@ -1,0 +1,24 @@
+
+FullName
+--------
+C:\DeltaAscii\bin\Lib\site-packages\numpy\f2py\setup.cfg
+C:\DeltaAscii\bin\Lib\site-packages\pkg_resources\tests\data\my-test-package-source\setup.cfg
+C:\DeltaAscii\bin\Lib\turtledemo\turtle.cfg
+C:\DeltaAscii\data\Gui\PreferencePacks\Dark behave\Dark behave.cfg
+C:\DeltaAscii\data\Gui\PreferencePacks\FreeCAD Classic\FreeCAD Classic.cfg
+C:\DeltaAscii\data\Gui\PreferencePacks\FreeCAD Dark\FreeCAD Dark.cfg
+C:\DeltaAscii\data\Gui\PreferencePacks\FreeCAD Light\FreeCAD Light.cfg
+C:\DeltaAscii\data\Gui\PreferencePackTemplates\Arch_Colors.cfg
+C:\DeltaAscii\data\Gui\PreferencePackTemplates\Console_Colors.cfg
+C:\DeltaAscii\data\Gui\PreferencePackTemplates\Draft_Colors.cfg
+C:\DeltaAscii\data\Gui\PreferencePackTemplates\Editor_Colors.cfg
+C:\DeltaAscii\data\Gui\PreferencePackTemplates\Editor_Font.cfg
+C:\DeltaAscii\data\Gui\PreferencePackTemplates\Main_window_layout.cfg
+C:\DeltaAscii\data\Gui\PreferencePackTemplates\Part_Colors.cfg
+C:\DeltaAscii\data\Gui\PreferencePackTemplates\Path_Colors.cfg
+C:\DeltaAscii\data\Gui\PreferencePackTemplates\Shortcuts.cfg
+C:\DeltaAscii\data\Gui\PreferencePackTemplates\Sketcher_Colors.cfg
+C:\DeltaAscii\data\Gui\PreferencePackTemplates\TechDraw_Colors.cfg
+C:\DeltaAscii\data\Gui\PreferencePackTemplates\View.cfg
+C:\DeltaAscii\data\Gui\PreferencePackTemplates\Window_Colors.cfg
+

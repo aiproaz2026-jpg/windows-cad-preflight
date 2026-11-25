@@ -1,0 +1,12 @@
+
+FullName                                                                                           Length
+--------                                                                                           ------
+C:\Users\runneradmin\AppData\Roaming\FreeCAD\v1-1                                                  
+C:\Users\runneradmin\AppData\Roaming\FreeCAD\v1-1\Macro                                            
+C:\Users\runneradmin\AppData\Roaming\FreeCAD\v1-1\SavedPreferencePacks                             
+C:\Users\runneradmin\AppData\Roaming\FreeCAD\v1-1\system.cfg                                       1100
+C:\Users\runneradmin\AppData\Roaming\FreeCAD\v1-1\user.cfg                                         17328
+C:\Users\runneradmin\AppData\Roaming\FreeCAD\v1-1\SavedPreferencePacks\Backups                     
+C:\Users\runneradmin\AppData\Roaming\FreeCAD\v1-1\SavedPreferencePacks\user.cfg.backup             5427
+C:\Users\runneradmin\AppData\Roaming\FreeCAD\v1-1\SavedPreferencePacks\Backups\user.1795613322.cfg 5427
+
