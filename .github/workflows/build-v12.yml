@@ -1,0 +1,272 @@
+name: Build v12 standalone offline installer and verify
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  v12:
+    runs-on: windows-2022
+    timeout-minutes: 80
+    steps:
+      - uses: actions/checkout@v4
+      - name: Write v12 patch files (electrical per-terminal side)
+        shell: bash
+        run: |
+          mkdir -p patches/v12
+          echo 'IiIiRGVsdGEgRW5naW5lZXJpbmcgdjEyIHBhdGNoOiB2NyBjaGFpbiwgdGhlbiBwZXItdGVybWluYWwgc2NoZW1hdGljIHNpZGUgKG9wdGlvbmFsLCBiYWNrd2FyZCBjb21wYXRpYmxlKSwKc3RhZ2dlcmVkIFogcm91dGluZyBmb3Igc3VjaCBkZXZpY2VzLCBhbmQgYSByZXBvcnQtb25seSByb3V0ZSBjaGVjay4iIiIKaW1wb3J0IHN5cywgb3MsIHN1YnByb2Nlc3MsIHNodXRpbApyb290ID0gc3lzLmFyZ3ZbMV0KaGVyZSA9IG9zLnBhdGguZGlybmFtZShvcy5wYXRoLmFic3BhdGgoX19maWxlX18pKQpzdWJwcm9jZXNzLmNoZWNrX2NhbGwoW3N5cy5leGVjdXRhYmxlLCBvcy5wYXRoLmpvaW4oaGVyZSwgJy4uJywgJ3Y3JywgJ2FwcGx5X3Y3LnB5JyksIHJvb3RdKQpiYXNlcyA9IFtiIGZvciBiIGluIChyb290ICsgJy9EZWx0YUVuZ2luZWVyaW5nJywgcm9vdCArICcvcGFja2FnZS9Nb2QvRGVsdGFFbmdpbmVlcmluZy9EZWx0YUVuZ2luZWVyaW5nJykgaWYgb3MucGF0aC5pc2RpcihiKV0KZGVmIHN1YihwYXRoLCBvbGQsIG5ldywgbWFya2VyKToKICAgIHMgPSBvcGVuKHBhdGgsIGVuY29kaW5nPSd1dGYtOCcsIG5ld2xpbmU9JycpLnJlYWQoKQogICAgaWYgbWFya2VyIGluIHM6CiAgICAgICAgcmV0dXJuCiAgICBhc3NlcnQgcy5jb3VudChvbGQpID09IDEsIChwYXRoLCBvbGRbOjYwXSwgcy5jb3VudChvbGQpKQogICAgb3BlbihwYXRoLCAndycsIGVuY29kaW5nPSd1dGYtOCcsIG5ld2xpbmU9JycpLndyaXRlKHMucmVwbGFjZShvbGQsIG5ldykpCmZvciBiYXNlIGluIGJhc2VzOgogICAgc2h1dGlsLmNvcHlmaWxlKG9zLnBhdGguam9pbihoZXJlLCAncm91dGVjaGVjay5weScpLCBvcy5wYXRoLmpvaW4oYmFzZSwgJ3JvdXRlY2hlY2sucHknKSkKICAgIGNvcmUgPSBvcy5wYXRoLmpvaW4oYmFzZSwgJ2NvcmUucHknKQogICAgIyBwZXItdGVybWluYWwgc2lkZSBsb29rdXA7IGRldmljZXMgd2l0aG91dCB0aGUgb3B0aW9uYWwgcHJvcGVydHkgYmVoYXZlIGV4YWN0bHkgYXMgYmVmb3JlCiAgICBzdWIoY29yZSwgImRlZiB0ZXJtaW5hbF9wb3NpdGlvbihkZXZpY2UsbmFtZSk6XG4iLAogICAgICAgICJkZWYgdGVybWluYWxfc2lkZShkZXZpY2UsbmFtZSk6ICAjIHYxMlxuIgogICAgICAgICIgICAgZm9yIGl0ZW0gaW4gbGlzdChnZXRhdHRyKGRldmljZSwnVGVybWluYWxTaWRlcycsW10pIG9yIFtdKTpcbiIKICAgICAgICAiICAgICAgICBrZXksXyx2YWw9aXRlbS5ycGFydGl0aW9uKCc9JylcbiIKICAgICAgICAiICAgICAgICBpZiBrZXk9PW5hbWUgYW5kIHZhbCBpbiAoJ0xlZnQnLCdSaWdodCcpOnJldHVybiB2YWxcbiIKICAgICAgICAiICAgIHJldHVybiBnZXRhdHRyKGRldmljZSwnVGVybWluYWxTaWRlJywnUmlnaHQnKVxuXG5cbiIKICAgICAgICAiZGVmIHRlcm1pbmFsX3Bvc2l0aW9uKGRldmljZSxuYW1lKTpcbiIsICdkZWYgdGVybWluYWxfc2lkZSgnKQogICAgc3ViKGNvcmUsICIgICAgc2lkZT0tMSBpZiBnZXRhdHRyKGRldmljZSwnVGVybWluYWxTaWRlJywnUmlnaHQnKT09J0xlZnQnIGVsc2UgMVxuIiwKICAgICAgICAiICAgIHNpZGU9LTEgaWYgdGVybWluYWxfc2lkZShkZXZpY2UsbmFtZSk9PSdMZWZ0JyBlbHNlIDFcbiIsICd0ZXJtaW5hbF9zaWRlKGRldmljZSxuYW1lKT09JykKICAgIHN1Yihjb3JlLCAiICAgICAgICAgICAgc291cmNlX3NpZ249LTEgaWYgb2JqLlNvdXJjZURldmljZS5UZXJtaW5hbFNpZGU9PSdMZWZ0JyBlbHNlIDFcbiAgICAgICAgICAgIHRhcmdldF9zaWduPS0xIGlmIG9iai5UYXJnZXREZXZpY2UuVGVybWluYWxTaWRlPT0nTGVmdCcgZWxzZSAxXG4iLAogICAgICAgICIgICAgICAgICAgICBzb3VyY2Vfc2lnbj0tMSBpZiB0ZXJtaW5hbF9zaWRlKG9iai5Tb3VyY2VEZXZpY2UsZ2V0YXR0cihvYmosJ1NvdXJjZVRlcm1pbmFsJyxOb25lKSk9PSdMZWZ0JyBlbHNlIDFcbiAgICAgICAgICAgIHRhcmdldF9zaWduPS0xIGlmIHRlcm1pbmFsX3NpZGUob2JqLlRhcmdldERldmljZSxnZXRhdHRyKG9iaiwnVGFyZ2V0VGVybWluYWwnLE5vbmUpKT09J0xlZnQnIGVsc2UgMVxuIiwgJ3Rlcm1pbmFsX3NpZGUob2JqLlNvdXJjZURldmljZScpCiAgICBzdWIoY29yZSwgIiAgICAgICAgICAgIG9iai5TaGFwZSA9IFBhcnQubWFrZVBvbHlnb24oW2EsIEFwcC5WZWN0b3IoYi54LGEueSxhLnopLCBiXSkgaWYgYWJzKGEueS1iLnkpPjFlLTYgYW5kIGFicyhhLngtYi54KT4xZS02IGVsc2UgUGFydC5tYWtlTGluZShhLGIpXG4iLAogICAgICAgICIgICAgICAgICAgICBpZiBoYXNhdHRyKG9iaiwnU291cmNlVGVybWluYWwnKSBhbmQgKGdldGF0dHIob2JqLlNvdXJjZURldmljZSwnVGVybWluYWxTaWRlcycsTm9uZSkgb3IgZ2V0YXR0cihvYmouVGFyZ2V0RGV2aWNlLCdUZXJtaW5hbFNpZGVzJyxOb25lKSkgYW5kIGFicyhhLnktYi55KT4xZS02IGFuZCBhYnMoYS54LWIueCk+MWUtNjogICMgdjEyIHN0YWdnZXJlZCBaIHJvdXRlXG4iCiAgICAgICAgICAgICIgICAgICAgICAgICAgICAgX249bWF4KDEsbGVuKG9iai5Tb3VyY2VEZXZpY2UuVGVybWluYWxzKSk7X2k9bGlzdChvYmouU291cmNlRGV2aWNlLlRlcm1pbmFscykuaW5kZXgob2JqLlNvdXJjZVRlcm1pbmFsKVxuIgogICAgICAgICAgICAiICAgICAgICAgICAgICAgIF9teD0oYS54K2IueCkvMisoOCBpZiBiLnk+YS55IGVsc2UgLTgpKihfaS0oX24tMSkvMilcbiIKICAgICAgICAgICAgIiAgICAgICAgICAgICAgICBvYmouU2hhcGU9UGFydC5tYWtlUG9seWdvbihbYSxBcHAuVmVjdG9yKF9teCxhLnksYS56KSxBcHAuVmVjdG9yKF9teCxiLnksYS56KSxiXSlcbiIKICAgICAgICAgICAgIiAgICAgICAgICAgIGVsc2U6XG4iCiAgICAgICAgICAgICIgICAgICAgICAgICAgICAgb2JqLlNoYXBlID0gUGFydC5tYWtlUG9seWdvbihbYSwgQXBwLlZlY3RvcihiLngsYS55LGEueiksIGJdKSBpZiBhYnMoYS55LWIueSk+MWUtNiBhbmQgYWJzKGEueC1iLngpPjFlLTYgZWxzZSBQYXJ0Lm1ha2VMaW5lKGEsYilcbiIsICd2MTIgc3RhZ2dlcmVkJykKICAgIGVsID0gb3MucGF0aC5qb2luKGJhc2UsICdlbGVjdHJpY2FsLnB5JykKICAgIHMgPSBvcGVuKGVsLCBlbmNvZGluZz0ndXRmLTgnLCBuZXdsaW5lPScnKS5yZWFkKCkKICAgIGlmICdkZWYgc2V0X3Rlcm1pbmFsX3NpZGVzJyBub3QgaW4gczoKICAgICAgICBzID0gcy5yc3RyaXAoJ1xuJykgKyAnJycKCgpkZWYgc2V0X3Rlcm1pbmFsX3NpZGVzKGRvYyxkZXZpY2UsbWFwcGluZyk6CiAgICAiIiJPcHRpb25hbCBwZXItdGVybWluYWwgc2NoZW1hdGljIHNpZGUge25hbWU6ICdMZWZ0J3wnUmlnaHQnfS4gVGVybWluYWxzIG5vdCBsaXN0ZWQga2VlcCB0aGUgZGV2aWNlIHNpZGUuIEVuZHBvaW50cyBhbmQgbmV0bGlzdCBhcmUgdW5jaGFuZ2VkLiIiIgogICAgaWYgZGV2aWNlLkRvY3VtZW50IT1kb2Mgb3Igbm90IGhhc2F0dHIoZGV2aWNlLCdUZXJtaW5hbHMnKTpyYWlzZSBWYWx1ZUVycm9yKCdTZWxlY3QgYSB0ZXJtaW5hbCBkZXZpY2UgaW4gdGhpcyBkb2N1bWVudCcpCiAgICBmb3IgbmFtZSxzaWRlIGluIG1hcHBpbmcuaXRlbXMoKToKICAgICAgICBpZiBuYW1lIG5vdCBpbiBkZXZpY2UuVGVybWluYWxzIG9yIHNpZGUgbm90IGluICgnTGVmdCcsJ1JpZ2h0Jyk6cmFpc2UgVmFsdWVFcnJvcignVW5rbm93biB0ZXJtaW5hbCBvciBzaWRlOiAnK3N0cihuYW1lKSkKICAgIGRlZiBhY3Rpb24oKToKICAgICAgICBpZiBub3QgaGFzYXR0cihkZXZpY2UsJ1Rlcm1pbmFsU2lkZXMnKTpkZXZpY2UuYWRkUHJvcGVydHkoJ0FwcDo6UHJvcGVydHlTdHJpbmdMaXN0JywnVGVybWluYWxTaWRlcycsJ0VsZWN0cmljYWwnKQogICAgICAgIGtlcHQ9W2kgZm9yIGkgaW4gZGV2aWNlLlRlcm1pbmFsU2lkZXMgaWYgaS5ycGFydGl0aW9uKCc9JylbMF0gbm90IGluIG1hcHBpbmddCiAgICAgICAgZGV2aWNlLlRlcm1pbmFsU2lkZXM9a2VwdCtbbisnPScrcyBmb3IgbixzIGluIG1hcHBpbmcuaXRlbXMoKV0KICAgIHJldHVybiBfdHJhbnNhY3Rpb24oZG9jLCdTZXQgcGVyLXRlcm1pbmFsIHNjaGVtYXRpYyBzaWRlJyxhY3Rpb24pCicnJwogICAgICAgIG9wZW4oZWwsICd3JywgZW5jb2Rpbmc9J3V0Zi04JywgbmV3bGluZT0nJykud3JpdGUocykKcHJpbnQoJ3YxMiBwYXRjaCBhcHBsaWVkJykK' | base64 -d > patches/v12/apply_v12.py
+          echo 'IyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogR1BMLTMuMC1vci1sYXRlcgoiIiJSZXBvcnQtb25seSBnZW9tZXRyeSBjaGVjayBvZiBzY2hlbWF0aWMgd2lyZXM6IG92ZXJsYXBzLCBjcm9zc2luZ3MsIHdpcmVzIHBhc3Npbmcgb3RoZXIgdGVybWluYWxzLgpJdCBuZXZlciBlZGl0cyBvciBtZXJnZXMgYW55dGhpbmcuIEEgcmVwb3J0IGZpbmRpbmcgaXMgbm90IGEgd2lyaW5nIGVycm9yIGJ5IGl0c2VsZiAoanVuY3Rpb25zIGNhbiBiZSBpbnRlbnRpb25hbCkuIiIiCmltcG9ydCBpdGVydG9vbHMKZnJvbSAuY29yZSBpbXBvcnQgdGVybWluYWxfcG9zaXRpb24KCgpkZWYgX3BvbHlsaW5lKHNoYXBlKToKICAgIHB0cyA9IFtdCiAgICBmb3IgZSBpbiBzaGFwZS5FZGdlczoKICAgICAgICBhLCBiID0gZS5WZXJ0ZXhlc1swXS5Qb2ludCwgZS5WZXJ0ZXhlc1stMV0uUG9pbnQKICAgICAgICBwdHMuYXBwZW5kKCgocm91bmQoYS54LCA2KSwgcm91bmQoYS55LCA2KSksIChyb3VuZChiLngsIDYpLCByb3VuZChiLnksIDYpKSkpCiAgICByZXR1cm4gcHRzCgoKZGVmIF9vdmVybGFwKHMsIHQpOgogICAgKGEsIGIpLCAoYywgZCkgPSBzLCB0CiAgICBmb3IgYXggaW4gKDAsIDEpOgogICAgICAgIG8gPSAxIC0gYXgKICAgICAgICBpZiBhYnMoYVtvXSAtIGJbb10pIDwgMWUtNiBhbmQgYWJzKGFbb10gLSBjW29dKSA8IDFlLTYgYW5kIGFicyhhW29dIC0gZFtvXSkgPCAxZS02OgogICAgICAgICAgICBsbyA9IG1heChtaW4oYVtheF0sIGJbYXhdKSwgbWluKGNbYXhdLCBkW2F4XSkpOyBoaSA9IG1pbihtYXgoYVtheF0sIGJbYXhdKSwgbWF4KGNbYXhdLCBkW2F4XSkpCiAgICAgICAgICAgIGlmIGhpIC0gbG8gPiAxZS02OgogICAgICAgICAgICAgICAgcmV0dXJuIGhpIC0gbG8KICAgIHJldHVybiAwCgoKZGVmIF9jcm9zcyhzLCB0KToKICAgIGZvciAocCwgcSksIChyLCB1KSBpbiAoKHMsIHQpLCAodCwgcykpOgogICAgICAgIGlmIGFicyhwWzFdIC0gcVsxXSkgPCAxZS05IGFuZCBhYnMoclswXSAtIHVbMF0pIDwgMWUtOToKICAgICAgICAgICAgaWYgbWluKHBbMF0sIHFbMF0pIDwgclswXSA8IG1heChwWzBdLCBxWzBdKSBhbmQgbWluKHJbMV0sIHVbMV0pIDwgcFsxXSA8IG1heChyWzFdLCB1WzFdKToKICAgICAgICAgICAgICAgIHJldHVybiAoclswXSwgcFsxXSkKICAgIHJldHVybiBOb25lCgoKZGVmIF9vbihzLCBwdCwgdG9sPTMuMCk6CiAgICAoYSwgYikgPSBzCiAgICBpZiBhYnMoYVswXSAtIGJbMF0pIDwgMWUtOToKICAgICAgICByZXR1cm4gYWJzKHB0WzBdIC0gYVswXSkgPD0gdG9sIGFuZCBtaW4oYVsxXSwgYlsxXSkgLSB0b2wgPD0gcHRbMV0gPD0gbWF4KGFbMV0sIGJbMV0pICsgdG9sCiAgICBpZiBhYnMoYVsxXSAtIGJbMV0pIDwgMWUtOToKICAgICAgICByZXR1cm4gYWJzKHB0WzFdIC0gYVsxXSkgPD0gdG9sIGFuZCBtaW4oYVswXSwgYlswXSkgLSB0b2wgPD0gcHRbMF0gPD0gbWF4KGFbMF0sIGJbMF0pICsgdG9sCiAgICByZXR1cm4gRmFsc2UKCgpkZWYgY2hlY2soZG9jKToKICAgIHdpcmVzID0gW28gZm9yIG8gaW4gZG9jLk9iamVjdHMgaWYgaGFzYXR0cihvLCAnU291cmNlVGVybWluYWwnKSBhbmQgbm90IG8uU2hhcGUuaXNOdWxsKCldCiAgICBwb2x5cyA9IHt3LldpcmVJZDogX3BvbHlsaW5lKHcuU2hhcGUpIGZvciB3IGluIHdpcmVzfQogICAgZmluZGluZ3MgPSBbXQogICAgZm9yIHcxLCB3MiBpbiBpdGVydG9vbHMuY29tYmluYXRpb25zKHNvcnRlZChwb2x5cyksIDIpOgogICAgICAgIGZvciBzIGluIHBvbHlzW3cxXToKICAgICAgICAgICAgZm9yIHQgaW4gcG9seXNbdzJdOgogICAgICAgICAgICAgICAgbyA9IF9vdmVybGFwKHMsIHQpCiAgICAgICAgICAgICAgICBpZiBvOgogICAgICAgICAgICAgICAgICAgIGZpbmRpbmdzLmFwcGVuZCh7J2tpbmQnOiAnb3ZlcmxhcCcsICd3aXJlcyc6IFt3MSwgdzJdLCAnbGVuZ3RoJzogcm91bmQobywgMil9KQogICAgICAgICAgICAgICAgYyA9IF9jcm9zcyhzLCB0KQogICAgICAgICAgICAgICAgaWYgYzoKICAgICAgICAgICAgICAgICAgICBmaW5kaW5ncy5hcHBlbmQoeydraW5kJzogJ2Nyb3NzaW5nJywgJ3dpcmVzJzogW3cxLCB3Ml0sICdhdCc6IFtyb3VuZChjWzBdLCAyKSwgcm91bmQoY1sxXSwgMildfSkKICAgIHRlcm1zID0gW10KICAgIGZvciBkIGluIFtvIGZvciBvIGluIGRvYy5PYmplY3RzIGlmIGhhc2F0dHIobywgJ0RldmljZVR5cGUnKSBhbmQgaGFzYXR0cihvLCAnVGVybWluYWxzJyldOgogICAgICAgIGZvciBuIGluIGQuVGVybWluYWxzOgogICAgICAgICAgICBwID0gdGVybWluYWxfcG9zaXRpb24oZCwgbik7IHRlcm1zLmFwcGVuZCgoZC5UYWcsIG4sIChwLngsIHAueSkpKQogICAgZm9yIHcgaW4gd2lyZXM6CiAgICAgICAgb3duID0geyh3LlNvdXJjZURldmljZS5UYWcsIHcuU291cmNlVGVybWluYWwpLCAody5UYXJnZXREZXZpY2UuVGFnLCB3LlRhcmdldFRlcm1pbmFsKX0KICAgICAgICBmb3IgdGFnLCBuLCBwdCBpbiB0ZXJtczoKICAgICAgICAgICAgaWYgKHRhZywgbikgaW4gb3duOgogICAgICAgICAgICAgICAgY29udGludWUKICAgICAgICAgICAgaWYgYW55KF9vbihzLCBwdCkgZm9yIHMgaW4gcG9seXNbdy5XaXJlSWRdKToKICAgICAgICAgICAgICAgIGZpbmRpbmdzLmFwcGVuZCh7J2tpbmQnOiAndGhyb3VnaF90ZXJtaW5hbCcsICd3aXJlJzogdy5XaXJlSWQsICd0ZXJtaW5hbCc6IHRhZyArICc6JyArIG59KQogICAgcmV0dXJuIHsnd2lyZXMnOiBsZW4od2lyZXMpLCAnZmluZGluZ3MnOiBmaW5kaW5ncywgJ2NvdW50JzogbGVuKGZpbmRpbmdzKSwKICAgICAgICAgICAgJ3Njb3BlJzogJ0dlb21ldHJ5IHJlcG9ydCBvbmx5LiBObyBlbGVjdHJpY2FsIG1lYW5pbmcsIG5vIGp1bmN0aW9uIGluZmVyZW5jZSwgbm90aGluZyBpcyBjaGFuZ2VkLid9Cg==' | base64 -d > patches/v12/routecheck.py
+          echo 'aW1wb3J0IHN5cywganNvbiwgb3MsIHRyYWNlYmFjawppbXBvcnQgRnJlZUNBRCBhcyBBcHAKc3lzLnBhdGguaW5zZXJ0KDAsICdDOi9EZWx0YVRlc3QvTW9kJyk7IHN5cy5wYXRoLmluc2VydCgwLCAnQzovRGVsdGFUZXN0L01vZC9EZWx0YUVuZ2luZWVyaW5nJykKT1VUID0gJ0M6L3NlZWQvZWxlYyc7IG9zLm1ha2VkaXJzKE9VVCwgZXhpc3Rfb2s9VHJ1ZSkKcmVzID0ge30KZnJvbSBEZWx0YUVuZ2luZWVyaW5nLnN5bWJvbHMgaW1wb3J0IGNyZWF0ZQpmcm9tIERlbHRhRW5naW5lZXJpbmcuZG9tYWluIGltcG9ydCBhZGRfdGVybWluYWxfd2lyZSwgbmV0bGlzdApmcm9tIERlbHRhRW5naW5lZXJpbmcuZWxlY3RyaWNhbCBpbXBvcnQgdGVybWluYWxfbGF5b3V0LCB3aXJlX29mZnNldCwgc2V0X3Rlcm1pbmFsX3NpZGVzCmZyb20gRGVsdGFFbmdpbmVlcmluZyBpbXBvcnQgY29ubmVjdGl2aXR5LCByb3V0ZWNoZWNrClBBSVJTID0gKCgnUScsICdLJywgWygnMicsICcxJyksICgnNCcsICczJyksICgnNicsICc1JyldKSwgKCdLJywgJ0YnLCBbKCcyJywgJzEnKSwgKCc0JywgJzMnKSwgKCc2JywgJzUnKV0pLCAoJ0YnLCAnTScsIFsoJzInLCAnVScpLCAoJzQnLCAnVicpLCAoJzYnLCAnVycpXSkpCmRlZiBidWlsZChuYW1lLCBuZXcpOgogICAgZCA9IEFwcC5uZXdEb2N1bWVudChuYW1lKQogICAgWCA9ICg0MDAwLCA0NDAwLCA0ODAwLCA1MjAwKSBpZiBuZXcgZWxzZSAoNDAwMCwgNDQwMCwgNDQwMCwgNDQwMCkKICAgIFkgPSAoMCwgMCwgMCwgMCkgaWYgbmV3IGVsc2UgKDAsIDAsIC0zMDAsIC02MDApCiAgICBRID0gY3JlYXRlKGQsICdCcmVha2VyIGNvbmNlcHQnLCAnUTEnLCBBcHAuVmVjdG9yKFhbMF0sIFlbMF0sIDApKTsgSyA9IGNyZWF0ZShkLCAnQ29udGFjdG9yIGNvbmNlcHQnLCAnS00xJywgQXBwLlZlY3RvcihYWzFdLCBZWzFdLCAwKSkKICAgIEYgPSBjcmVhdGUoZCwgJ092ZXJsb2FkIGNvbmNlcHQnLCAnRjEnLCBBcHAuVmVjdG9yKFhbMl0sIFlbMl0sIDApKTsgTSA9IGNyZWF0ZShkLCAnTW90b3IgY29uY2VwdCcsICdNMScsIEFwcC5WZWN0b3IoWFszXSwgWVszXSwgMCkpCiAgICBkZXYgPSB7J1EnOiBRLCAnSyc6IEssICdGJzogRiwgJ00nOiBNfQogICAgZm9yIHggaW4gKEssIEYsIE0pOiB0ZXJtaW5hbF9sYXlvdXQoZCwgeCwgbGlzdCh4LlRlcm1pbmFscyksICdMZWZ0JykKICAgIGlmIG5ldzoKICAgICAgICBzZXRfdGVybWluYWxfc2lkZXMoZCwgSywgeycxJzogJ0xlZnQnLCAnMyc6ICdMZWZ0JywgJzUnOiAnTGVmdCcsICdBMSc6ICdMZWZ0JywgJ0EyJzogJ0xlZnQnLCAnMic6ICdSaWdodCcsICc0JzogJ1JpZ2h0JywgJzYnOiAnUmlnaHQnfSkKICAgICAgICBzZXRfdGVybWluYWxfc2lkZXMoZCwgRiwgeycxJzogJ0xlZnQnLCAnMyc6ICdMZWZ0JywgJzUnOiAnTGVmdCcsICcyJzogJ1JpZ2h0JywgJzQnOiAnUmlnaHQnLCAnNic6ICdSaWdodCd9KQogICAgbiA9IDA7IHdpcmVzID0gW10KICAgIGZvciBhLCBiLCBwYWlycyBpbiBQQUlSUzoKICAgICAgICBmb3Igc2EsIHNiIGluIHBhaXJzOgogICAgICAgICAgICBuICs9IDE7IHdpcmVzLmFwcGVuZChhZGRfdGVybWluYWxfd2lyZShkLCBkZXZbYV0sIHNhLCBkZXZbYl0sIHNiLCAnVyVkJyAlIG4pKQogICAgaWYgbm90IG5ldzoKICAgICAgICBmb3IgaSwgdyBpbiBlbnVtZXJhdGUod2lyZXNbMzo2XSk6IHdpcmVfb2Zmc2V0KGQsIHcsIC0oMTUgKyAxMiAqIGkpKQogICAgICAgIGZvciBpLCB3IGluIGVudW1lcmF0ZSh3aXJlc1s2OjldKTogd2lyZV9vZmZzZXQoZCwgdywgLSgxNSArIDEyICogaSkpCiAgICBkLnJlY29tcHV0ZSgpCiAgICByZXR1cm4gZApkZWYgbmwoZCk6CiAgICByZXR1cm4gc29ydGVkKChyWyd3aXJlJ10sIHJbJ3NvdXJjZSddWydkZXZpY2UnXSwgclsnc291cmNlJ11bJ3Rlcm1pbmFsJ10sIHJbJ3RhcmdldCddWydkZXZpY2UnXSwgclsndGFyZ2V0J11bJ3Rlcm1pbmFsJ10pIGZvciByIGluIG5ldGxpc3QoZCkpCmRlZiBzdmcoZCwgcGF0aCk6CiAgICBzZWdzID0gW107IHhzID0gW107IHlzID0gW10KICAgIGRlZiBhZGQoc2hhcGUsIGNvbCwgdyk6CiAgICAgICAgZm9yIGUgaW4gc2hhcGUuRWRnZXM6CiAgICAgICAgICAgIHB0cyA9IGUuZGlzY3JldGl6ZSgyNCkgaWYgZS5DdXJ2ZS5fX2NsYXNzX18uX19uYW1lX18gIT0gJ0xpbmUnIGVsc2UgW2UuVmVydGV4ZXNbMF0uUG9pbnQsIGUuVmVydGV4ZXNbLTFdLlBvaW50XQogICAgICAgICAgICBzZWdzLmFwcGVuZCgocHRzLCBjb2wsIHcpKQogICAgICAgICAgICBmb3IgcCBpbiBwdHM6IHhzLmFwcGVuZChwLngpOyB5cy5hcHBlbmQocC55KQogICAgZm9yIG8gaW4gZC5PYmplY3RzOgogICAgICAgIGlmIGhhc2F0dHIobywgJ0RldmljZVR5cGUnKSBhbmQgbm90IG8uU2hhcGUuaXNOdWxsKCk6IGFkZChvLlNoYXBlLCAnIzE0M2E1YycsIDEuNSkKICAgIGZvciBvIGluIGQuT2JqZWN0czoKICAgICAgICBpZiBoYXNhdHRyKG8sICdTb3VyY2VUZXJtaW5hbCcpIGFuZCBub3Qgby5TaGFwZS5pc051bGwoKTogYWRkKG8uU2hhcGUsICcjYzAzOTJiJywgMS4yKQogICAgeDAsIHgxLCB5MCwgeTEgPSBtaW4oeHMpIC0gNDAsIG1heCh4cykgKyA0MCwgbWluKHlzKSAtIDQwLCBtYXgoeXMpICsgNDAKICAgIHNjID0gMTQwMC4wIC8gKHgxIC0geDApOyBIID0gKHkxIC0geTApICogc2MKICAgIG91dCA9IFsnPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDAwIiBoZWlnaHQ9IiVkIiB2aWV3Qm94PSIwIDAgMTQwMCAlZCI+PHJlY3Qgd2lkdGg9IjEwMCUlIiBoZWlnaHQ9IjEwMCUlIiBmaWxsPSJ3aGl0ZSIvPicgJSAoSCwgSCldCiAgICBmb3IgcHRzLCBjb2wsIHcgaW4gc2VnczoKICAgICAgICBvdXQuYXBwZW5kKCc8cG9seWxpbmUgZmlsbD0ibm9uZSIgc3Ryb2tlPSIlcyIgc3Ryb2tlLXdpZHRoPSIlcyIgcG9pbnRzPSIlcyIvPicgJSAoY29sLCB3LCAnICcuam9pbignJS4xZiwlLjFmJyAlICgocC54IC0geDApICogc2MsICh5MSAtIHAueSkgKiBzYykgZm9yIHAgaW4gcHRzKSkpCiAgICBmb3IgbyBpbiBkLk9iamVjdHM6CiAgICAgICAgaWYgaGFzYXR0cihvLCAnRGV2aWNlVHlwZScpOgogICAgICAgICAgICBmcm9tIERlbHRhRW5naW5lZXJpbmcuY29yZSBpbXBvcnQgdGVybWluYWxfcG9zaXRpb24KICAgICAgICAgICAgZm9yIHQgaW4gby5UZXJtaW5hbHM6CiAgICAgICAgICAgICAgICBwID0gdGVybWluYWxfcG9zaXRpb24obywgdCkKICAgICAgICAgICAgICAgIG91dC5hcHBlbmQoJzx0ZXh0IHg9IiUuMWYiIHk9IiUuMWYiIGZvbnQtc2l6ZT0iOSIgZmlsbD0iIzU1NSI+JXM6JXM8L3RleHQ+JyAlICgocC54IC0geDApICogc2MgKyAzLCAoeTEgLSBwLnkpICogc2MgLSAzLCBvLlRhZywgdCkpCiAgICBvdXQuYXBwZW5kKCc8L3N2Zz4nKTsgb3BlbihwYXRoLCAndycsIGVuY29kaW5nPSd1dGYtOCcpLndyaXRlKCdcbicuam9pbihvdXQpKQpmb3IgbmFtZSwgbmV3IGluICgoJ2xlZ2FjeScsIEZhbHNlKSwgKCduZXcnLCBUcnVlKSk6CiAgICB0cnk6CiAgICAgICAgZCA9IGJ1aWxkKCdFXycgKyBuYW1lLCBuZXcpCiAgICAgICAgciA9IHsnbmV0bGlzdCc6IG5sKGQpLCAncm91dGUnOiByb3V0ZWNoZWNrLmNoZWNrKGQpLCAnY29ubmVjdGl2aXR5X25ldHMnOiBsZW4oY29ubmVjdGl2aXR5Lmluc3BlY3QoZClbJ25ldHMnXSl9CiAgICAgICAgc3ZnKGQsIE9VVCArICcvJyArIG5hbWUgKyAnLnN2ZycpCiAgICAgICAgcCA9IE9VVCArICcvJyArIG5hbWUgKyAnLkZDU3RkJzsgZC5zYXZlQXMocCk7IEFwcC5jbG9zZURvY3VtZW50KGQuTmFtZSkKICAgICAgICBkMiA9IEFwcC5vcGVuRG9jdW1lbnQocCk7IGQyLnJlY29tcHV0ZSgpCiAgICAgICAgclsncmVvcGVuX25ldGxpc3RfZXF1YWwnXSA9IChubChkMikgPT0gclsnbmV0bGlzdCddKTsgclsncmVvcGVuX3JvdXRlX2NvdW50J10gPSByb3V0ZWNoZWNrLmNoZWNrKGQyKVsnY291bnQnXQogICAgICAgIHJbJ3Jlb3Blbl93aXJlX2xlbmd0aHMnXSA9IFtyb3VuZChvLlNoYXBlLkxlbmd0aCwgMikgZm9yIG8gaW4gZDIuT2JqZWN0cyBpZiBoYXNhdHRyKG8sICdTb3VyY2VUZXJtaW5hbCcpXQogICAgICAgIHN2ZyhkMiwgT1VUICsgJy8nICsgbmFtZSArICdfcmVvcGVuLnN2ZycpCiAgICAgICAgcmVzW25hbWVdID0gcgogICAgICAgIEFwcC5jbG9zZURvY3VtZW50KGQyLk5hbWUpCiAgICBleGNlcHQgRXhjZXB0aW9uOgogICAgICAgIHJlc1tuYW1lXSA9IHsnZXJyb3InOiB0cmFjZWJhY2suZm9ybWF0X2V4YygpfQppZiAnbmV0bGlzdCcgaW4gcmVzLmdldCgnbGVnYWN5Jywge30pIGFuZCAnbmV0bGlzdCcgaW4gcmVzLmdldCgnbmV3Jywge30pOgogICAgc3RyaXAgPSBsYW1iZGEgTDogc29ydGVkKHhbMTpdIGZvciB4IGluIEwpCiAgICByZXNbJ2VuZHBvaW50c19lcXVhbF9sZWdhY3lfdnNfbmV3J10gPSBzdHJpcChyZXNbJ2xlZ2FjeSddWyduZXRsaXN0J10pID09IHN0cmlwKHJlc1snbmV3J11bJ25ldGxpc3QnXSkKICAgIHJlc1snd2lyZV9pZHNfZXF1YWwnXSA9IHNvcnRlZCh4WzBdIGZvciB4IGluIHJlc1snbGVnYWN5J11bJ25ldGxpc3QnXSkgPT0gc29ydGVkKHhbMF0gZm9yIHggaW4gcmVzWyduZXcnXVsnbmV0bGlzdCddKQpvcGVuKE9VVCArICcvcmVzdWx0Lmpzb24nLCAndycsIGVuY29kaW5nPSd1dGYtOCcpLndyaXRlKGpzb24uZHVtcHMocmVzLCBlbnN1cmVfYXNjaWk9RmFsc2UsIGluZGVudD0xKSkKcHJpbnQoanNvbi5kdW1wcyh7azogKHYgaWYgay5zdGFydHN3aXRoKCdlbmQnKSBvciBrLnN0YXJ0c3dpdGgoJ3dpcmUnKSBlbHNlIHtrazogKHZ2IGlmIGtrICE9ICduZXRsaXN0JyBlbHNlIGxlbih2dikpIGZvciBraywgdnYgaW4gdi5pdGVtcygpIGlmIGtrICE9ICdyb3V0ZSd9IHwgKHsncm91dGVfY291bnQnOiB2Wydyb3V0ZSddWydjb3VudCddfSBpZiAncm91dGUnIGluIHYgZWxzZSB7fSkpIGZvciBrLCB2IGluIHJlcy5pdGVtcygpfSwgZW5zdXJlX2FzY2lpPUZhbHNlKSkK' | base64 -d > patches/v12/elec_test.py
+      - name: Unpack v58 source and apply patches/v12 chain (v3 to v12)
+        shell: bash
+        run: |
+          mkdir -p /c/delta /c/out
+          unzip -q src/*DeltaEngineering-development-source-v58-10539385.zip -d /c/delta
+          python patches/v12/apply_v12.py C:/delta/DeltaEngineering
+          git rev-parse HEAD | tee /c/out/source-revision.txt
+          sha256sum src/*DeltaEngineering-development-source-v58-10539385.zip patches/v7/*.py patches/v6/*.py patches/v4/*.py patches/v3/*.py | tee -a /c/out/source-revision.txt
+      - name: Import check of patched package with plain python syntax compile
+        shell: bash
+        run: |
+          python -m compileall -q C:/delta/DeltaEngineering/package/Mod/DeltaEngineering && echo "compile ok"
+          ls C:/delta/DeltaEngineering/package/Mod/DeltaEngineering/DeltaEngineering/*.py | wc -l
+      - name: Stage official FreeCAD 1.1.4 plus Delta addon (offline bundle)
+        shell: pwsh
+        run: |
+          $base = 'https://github.com/FreeCAD/FreeCAD/releases/download/1.1.4'
+          $name = 'FreeCAD_1.1.4-Windows-x86_64-py311-installer.exe'
+          Invoke-WebRequest "$base/$name" -OutFile C:/fc.exe -UseBasicParsing
+          $want = (([string](Invoke-RestMethod "$base/$name-SHA256.txt")) -split '\s+')[0]
+          $got = (Get-FileHash C:/fc.exe -Algorithm SHA256).Hash
+          if ($got -ine $want) { throw "SHA256 mismatch" }
+          "FreeCAD installer SHA256 verified: $got"
+          $p = Start-Process C:/fc.exe -ArgumentList '/S','/D=C:\stagebase' -Wait -PassThru
+          "official installer exit $($p.ExitCode)"
+          $exe = Get-ChildItem C:/stagebase -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
+          $root = $exe.Directory.Parent.FullName
+          New-Item -ItemType Directory C:/stage -Force | Out-Null
+          Copy-Item "$root/*" C:/stage -Recurse -Force
+          Get-ChildItem C:/stage -Filter 'Uninstall*' -ErrorAction SilentlyContinue | Remove-Item -Force
+          New-Item -ItemType Directory C:/stage/Mod -Force | Out-Null
+          Copy-Item C:/delta/DeltaEngineering/package/Mod/DeltaEngineering C:/stage/Mod/DeltaEngineering -Recurse -Force
+          Copy-Item C:/delta/DeltaEngineering/LaunchDelta.FCMacro C:/stage/LaunchDelta.FCMacro -Force
+          Copy-Item C:/out/source-revision.txt C:/stage/DELTA-SOURCE-REVISION.txt -Force
+          @'
+          Delta Engineering v12 offline installer (unsigned, experimental, NOT certified for engineering use).
+          Contains: FreeCAD 1.1.4 (LGPL-2.1-or-later, https://github.com/FreeCAD/FreeCAD/releases/tag/1.1.4 , source at the same tag),
+          and the Delta Engineering Python addon (GPL-3.0-or-later).
+          Generic fittings and electrical symbols are illustrative geometry. Drawings are geometric drafts.
+          Full license inventory is NOT complete yet.
+
+          '@ | Set-Content C:/stage/DELTA-NOTICE.txt -Encoding utf8
+          @'
+          # Delta Engineering launcher: activates the Delta workbench and closes FreeCAD's stock Start tab.
+          import FreeCAD as App
+          import FreeCADGui as Gui
+          import DeltaEngineering.core
+          import DeltaEngineering.domain
+          from DeltaEngineering.gui import register
+          if 'DeltaWorkbench' not in Gui.listWorkbenches(): register()
+          Gui.activateWorkbench('DeltaWorkbench')
+          try:
+              try:
+                  from PySide6 import QtWidgets, QtCore
+              except Exception:
+                  from PySide import QtWidgets, QtCore
+              def _close_start():
+                  for sw in Gui.getMainWindow().findChildren(QtWidgets.QMdiSubWindow):
+                      w = sw.widget()
+                      cn = w.metaObject().className() if w is not None else ''
+                      if 'StartView' in cn or (sw.windowTitle().strip() == 'Start' and not App.listDocuments()):
+                          sw.close()
+              _tries = [0]
+              _st = {'docked': False, 'was_active': False}
+              def _tidy(hide_empty):
+                  try:
+                      mw = Gui.getMainWindow()
+                      active = bool(Gui.Control.activeDialog())
+                      for dk in mw.findChildren(QtWidgets.QDockWidget):
+                          if dk.objectName() != 'Tasks':
+                              continue
+                          if active:
+                              _st['was_active'] = True
+                          elif _st['was_active'] and _st['docked'] and not dk.isFloating():
+                              _st['was_active'] = False
+                              _st['docked'] = False
+                              dk.hide()
+                              continue
+                          if not active:
+                              if hide_empty and not dk.isFloating():
+                                  dk.hide()
+                              continue
+                          # task dialog active: if the dock is not part of the main window dock layout, dock it on the right
+                          area = mw.dockWidgetArea(dk)
+                          if int(getattr(area, 'value', area)) == 0 and not dk.isFloating() and _tries[0] < 4:
+                              try:
+                                  right = QtCore.Qt.DockWidgetArea.RightDockWidgetArea
+                              except Exception:
+                                  right = QtCore.Qt.RightDockWidgetArea
+                              _tries[0] += 1
+                              _st['docked'] = True
+                              mw.addDockWidget(right, dk)
+                              dk.show()
+                  except Exception as e2:
+                      App.Console.PrintWarning('Delta layout: ' + str(e2) + '\n')
+              for ms in (1500, 4000, 8000):
+                  QtCore.QTimer.singleShot(ms, _close_start)
+                  QtCore.QTimer.singleShot(ms + 300, lambda: _tidy(True))
+              _dock_timer = QtCore.QTimer(Gui.getMainWindow())
+              _dock_timer.setInterval(700)
+              _dock_timer.timeout.connect(lambda: _tidy(False))
+              _dock_timer.start()
+          except Exception as e:
+              App.Console.PrintWarning('Delta launcher: ' + str(e) + '\n')
+          '@ | Set-Content C:/stage/LaunchDelta.FCMacro -Encoding utf8
+          New-Item -ItemType Directory C:/stage/DeltaDefaults -Force | Out-Null
+          @'
+          <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+          <FCParameters>
+            <FCParamGroup Name="Root">
+              <FCParamGroup Name="BaseApp">
+                <FCParamGroup Name="Preferences">
+                  <FCParamGroup Name="General">
+                    <FCText Name="Language">Arabic</FCText>
+                  </FCParamGroup>
+                </FCParamGroup>
+              </FCParamGroup>
+            </FCParamGroup>
+          </FCParameters>
+          '@ | Set-Content C:/stage/DeltaDefaults/user.cfg -Encoding utf8
+          $sz = (Get-ChildItem C:/stage -Recurse -File | Measure-Object Length -Sum).Sum
+          "staged size MB $([math]::Round($sz/1MB))"
+      - name: Build offline installer with Inno Setup
+        shell: pwsh
+        run: |
+          $iscc = 'C:/Program Files (x86)/Inno Setup 6/ISCC.exe'
+          if (-not (Test-Path $iscc)) { choco install innosetup -y --no-progress | Out-Null }
+          if (-not (Test-Path $iscc)) { throw 'ISCC not found' }
+          @'
+          [Setup]
+          AppName=Delta Engineering
+          AppVersion=8
+          AppPublisher=Delta Engineering (unsigned build)
+          DefaultDirName={localappdata}\Programs\DeltaEngineering
+          DefaultGroupName=Delta Engineering
+          PrivilegesRequired=lowest
+          Compression=lzma2/fast
+          SolidCompression=yes
+          OutputDir=C:\out
+          OutputBaseFilename=DeltaEngineering-Setup-v12
+          ArchitecturesAllowed=x64
+          ArchitecturesInstallIn64BitMode=x64
+          DisableProgramGroupPage=yes
+          UninstallDisplayName=Delta Engineering
+          [Files]
+          Source: "C:\stage\*"; DestDir: "{app}"; Flags: recursesubdirs createallsubdirs ignoreversion
+          Source: "C:\stage\DeltaDefaults\user.cfg"; DestDir: "{userappdata}\FreeCAD\v1-1"; Flags: onlyifdoesntexist uninsneveruninstall
+          [Icons]
+          Name: "{autoprograms}\Delta Engineering"; Filename: "{app}\bin\FreeCAD.exe"; Parameters: """{app}\LaunchDelta.FCMacro"""; WorkingDir: "{app}"
+          Name: "{autodesktop}\Delta Engineering"; Filename: "{app}\bin\FreeCAD.exe"; Parameters: """{app}\LaunchDelta.FCMacro"""; WorkingDir: "{app}"
+          [Run]
+          Filename: "{app}\bin\FreeCAD.exe"; Parameters: """{app}\LaunchDelta.FCMacro"""; Description: "Start Delta Engineering"; Flags: postinstall nowait skipifsilent unchecked
+
+          '@ | Set-Content C:/delta.iss -Encoding ascii
+          & $iscc C:/delta.iss 2>&1 | Select-Object -Last 15
+          Get-Item C:/out/DeltaEngineering-Setup-v12.exe | Select-Object Name,Length
+          (Get-FileHash C:/out/DeltaEngineering-Setup-v12.exe -Algorithm SHA256).Hash
+      - name: Add Mesa llvmpipe software OpenGL (CI only)
+        shell: pwsh
+        run: |
+          $rel = Invoke-RestMethod https://api.github.com/repos/pal1000/mesa-dist-win/releases/latest
+          $a = $rel.assets | Where-Object { $_.name -match 'release-msvc\.7z$' } | Select-Object -First 1
+          Invoke-WebRequest $a.browser_download_url -OutFile C:/mesa.7z
+          7z x C:/mesa.7z -oC:/mesa -y | Out-Null
+      - name: Install silently as the setup exe (per-user, no admin) and check files
+        shell: pwsh
+        run: |
+          $sw = [Diagnostics.Stopwatch]::StartNew()
+          $p = Start-Process C:/out/DeltaEngineering-Setup-v12.exe -ArgumentList '/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART','/DIR=C:\DeltaTest' -Wait -PassThru
+          "setup exit $($p.ExitCode) seconds $($sw.Elapsed.TotalSeconds)"
+          if ($p.ExitCode -ne 0) { throw 'setup failed' }
+          $sz = (Get-ChildItem C:/DeltaTest -Recurse -File | Measure-Object Length -Sum).Sum
+          "installed size MB $([math]::Round($sz/1MB))"
+          "addon present: $(Test-Path C:/DeltaTest/Mod/DeltaEngineering/InitGui.py)"
+          "fittings module present: $(Test-Path C:/DeltaTest/Mod/DeltaEngineering/DeltaEngineering/fittings.py)"
+          "shortcut: $(Test-Path "$env:APPDATA/Microsoft/Windows/Start Menu/Programs/Delta Engineering.lnk")"
+          $cmd = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCADCmd.exe | Select-Object -First 1
+          $env:PYTHONUTF8 = '1'
+          $mods = 'core','domain','symbols','export','fittings','documents','scaled_output','tube_library','drafting','electrical','connectivity'
+          $lines = @('import sys, FreeCAD, importlib','sys.path.insert(0, ''C:/DeltaTest/Mod'')','sys.path.insert(0, ''C:/DeltaTest/Mod/DeltaEngineering'')'); foreach ($m in $mods) { $lines += "try:`n    importlib.import_module('DeltaEngineering.$m'); print('OK $m')`nexcept Exception as e:`n    print('FAIL $m', repr(e))" }
+          $lines | Set-Content C:/imp.py -Encoding utf8
+          $o = & $cmd.FullName -c "exec(open('C:/imp.py',encoding='utf-8').read())" 2>&1 | Out-String; $o
+          $okc = @([regex]::Matches($o, '(?m)^OK (\w+)') | ForEach-Object { $_.Groups[1].Value } | Sort-Object -Unique).Count
+          "distinct OK imports: $okc"
+          if ($okc -ne 11) { throw "import check: expected 11 OK, got $okc" }
+          if ($o -match 'FAIL ') { throw 'import check failed' }
+      - name: Copy Mesa into installed app (CI only)
+        shell: pwsh
+        run: |
+          $exe = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
+          $bin = $exe.Directory.FullName
+          Copy-Item C:/mesa/x64/opengl32.dll $bin -Force
+          foreach ($n in 'libgallium_wgl.dll','libglapi.dll') { if (Test-Path "C:/mesa/x64/$n") { Copy-Item "C:/mesa/x64/$n" $bin -Force } }
+      - name: Run GUI macro (patches/v7/macro_gui_test.py) on the installed v12 at 1366x768
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force C:/fit12 | Out-Null
+          $exe = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
+          $root = $exe.Directory.Parent.FullName
+          Copy-Item "$env:GITHUB_WORKSPACE/patches/v7/macro_gui_test.py" "$root\DeltaGuiTest12.FCMacro" -Force
+          $env:DELTA_OUT = 'C:/fit12'; $env:GALLIUM_DRIVER = 'llvmpipe'; $env:MESA_GL_VERSION_OVERRIDE = '4.5'
+          Start-Process $exe.FullName -ArgumentList "`"$root\DeltaGuiTest12.FCMacro`"" -RedirectStandardOutput C:/fit12/fc-out.txt -RedirectStandardError C:/fit12/fc-err.txt
+          $t = 0
+          while ($t -lt 420) { Start-Sleep 5; $t += 5; if ((Test-Path C:/fit12/gui-result12.json) -and (Select-String -Path C:/fit12/gui-result12.json -Pattern '"done": true' -Quiet)) { break } }
+          if (-not (Test-Path C:/fit12/gui-result12.json) -or -not (Select-String -Path C:/fit12/gui-result12.json -Pattern '"done": true' -Quiet)) {
+            try { Add-Type -AssemblyName System.Windows.Forms,System.Drawing; $b=[System.Windows.Forms.SystemInformation]::VirtualScreen; $bmp=New-Object System.Drawing.Bitmap $b.Width,$b.Height; $g=[System.Drawing.Graphics]::FromImage($bmp); $g.CopyFromScreen($b.Location,[System.Drawing.Point]::Empty,$b.Size); $bmp.Save('C:/fit12/fit12-hang.png') } catch { "screenshot failed: $_" | Out-File C:/fit12/diag.txt -Append }
+            Get-Process | Where-Object { $_.MainWindowTitle } | ForEach-Object { "$($_.ProcessName) | $($_.MainWindowTitle)" } | Out-File C:/fit12/diag.txt -Append
+          }
+          Start-Sleep 4; Get-Process FreeCAD -ErrorAction SilentlyContinue | Stop-Process -Force
+          exit 0
+      - name: Electrical wiring route test on the installed v12 (headless FreeCAD)
+        continue-on-error: true
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force C:/seed/elec | Out-Null
+          $cmd = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCADCmd.exe | Select-Object -First 1
+          $env:PYTHONUTF8 = '1'
+          Copy-Item patches/v12/elec_test.py C:/elec_test.py -Force
+          $o = & $cmd.FullName -c "exec(open('C:/elec_test.py',encoding='utf-8').read())" 2>&1 | Out-String
+          $o | Set-Content C:/seed/elec/out.txt -Encoding utf8
+          $o
+      - name: Publish installer as private release asset and commit evidence
+        if: always()
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name ci; git config user.email ci@users.noreply.github.com
+          git pull --rebase || true
+          mkdir -p dist/v12
+          sha256sum /c/out/DeltaEngineering-Setup-v12.exe | tee dist/v12/DeltaEngineering-Setup-v12.exe.sha256 || true
+          cp /c/out/source-revision.txt dist/v12/ || true
+          mkdir -p dist/v12/elec; cp /c/seed/elec/* dist/v12/elec/ || true
+          cp /c/fit12/*.png /c/fit12/*.pdf /c/fit12/gui-result12.json /c/fit12/fc-err.txt /c/fit12/diag.txt dist/v12/ || true
+          for f in dist/v12/*.png dist/v12/station-*.pdf; do [ -f "$f" ] && base64 -w0 "$f" > "$f.b64"; done
+          git add dist
+          git commit -m "Add v12 installer build evidence" || true
+          git push
+          [ -f /c/out/DeltaEngineering-Setup-v12.exe ] && gh release create standalone-v12 /c/out/DeltaEngineering-Setup-v12.exe --title "Delta Engineering v12 offline installer (unsigned, experimental, unverified)" --notes "Private. Built from the repo revision in dist/v12/source-revision.txt. Not certified; item acceptance still open." || echo "release failed"
+      - name: Gate verdict (fails on timeout, absent result, error or failed step)
+        if: always()
+        shell: pwsh
+        run: |
+          $f = 'C:/fit12/gui-result12.json'
+          if (-not (Test-Path $f)) { throw 'GATE FAIL: no result file written' }
+          $r = Get-Content $f -Raw -Encoding utf8 | ConvertFrom-Json
+          if (-not $r.done) { throw 'GATE FAIL: macro did not finish' }
+          if ($r.error) { throw 'GATE FAIL: macro error recorded' }
+          $bad = @($r.steps.PSObject.Properties | Where-Object { $_.Value.PSObject.Properties.Name -contains 'ok' -and -not $_.Value.ok } | ForEach-Object { $_.Name })
+          if ($bad.Count -gt 0) { throw ('GATE FAIL: failed steps: ' + ($bad -join ', ')) }
+          $t = $r.steps.tasks_dock_hidden_again_after_task_closes.detail
+          if (-not ($t.dialog_active_when_open -eq $true -and $t.dialog_active_after_close -eq $false)) { throw 'GATE FAIL: fake task dialog did not open and close' }
+          "GATE PASS"
+
