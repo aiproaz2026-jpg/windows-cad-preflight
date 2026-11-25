@@ -1,0 +1,20 @@
+{
+ "stage": "export done",
+ "route_count": 0,
+ "workbench": "DeltaWorkbench",
+ "overlay_labels": 37,
+ "sg_children": 9,
+ "view_png": 6152,
+ "workbench_screenshot": 60834,
+ "export_uses_terminal_side": false,
+ "export_return": "{'source_signature': 'fe2110defe6dd8af78d91bdd39e6ff5e463a2202424da2dca086141545e1d0c6', 'centerline_mm': 0, 'wire_count': 9, 'synchronous_projection': True}",
+ "sizes": [
+  12411,
+  16954
+ ],
+ "starter": [
+  14919,
+  14153
+ ],
+ "done": true
+}
