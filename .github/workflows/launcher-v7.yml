@@ -40,7 +40,6 @@ jobs:
             foreach ($n in 'libgallium_wgl.dll','libglapi.dll') { if (Test-Path "C:/mesa/x64/$n") { Copy-Item "C:/mesa/x64/$n" $bin -Force } }
             Set-Content "C:/evidence/instdir-$k.txt" $dir -Encoding utf8
           }
-      - name: Probe FreeCADCmd import check (ASCII vs Arabic path, with and without PYTHONUTF8)
       - name: Launch exactly as the shortcut does (FreeCAD.exe + LaunchDelta.FCMacro), screenshot
         shell: pwsh
         continue-on-error: true
