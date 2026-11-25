@@ -1,0 +1,123 @@
+name: v8 standard-user launch standard-user launch of v9 (PsExec interactive)
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  stdlaunch:
+    runs-on: windows-2022
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download the v9 release asset, verify SHA256, fetch Mesa (CI only)
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          New-Item -ItemType Directory C:/out,C:/evidence -Force | Out-Null
+          gh release download standalone-v9 -p DeltaEngineering-Setup-v9.exe -D C:/out
+          $got = (Get-FileHash C:/out/DeltaEngineering-Setup-v9.exe -Algorithm SHA256).Hash.ToLower()
+          $want = ((Get-Content dist/v9/DeltaEngineering-Setup-v9.exe.sha256 -Raw) -split '\s+')[0].ToLower()
+          "got $got want $want"
+          if ($got -ne $want) { throw 'SHA256 mismatch' }
+          "SHA256 MATCH" | Tee-Object C:/evidence/sha.txt
+          $rel = Invoke-RestMethod https://api.github.com/repos/pal1000/mesa-dist-win/releases/latest
+          $a = $rel.assets | Where-Object { $_.name -match 'release-msvc\.7z$' } | Select-Object -First 1
+          Invoke-WebRequest $a.browser_download_url -OutFile C:/mesa.7z
+          7z x C:/mesa.7z -oC:/mesa -y | Out-Null
+      - name: Standard user install via scheduled task (batch logon right granted)
+        shell: pwsh
+        continue-on-error: true
+        timeout-minutes: 20
+        run: |
+          Start-Transcript -Path C:/evidence/std-step.txt -Force | Out-Null
+          $pw = 'Zx9!' + [guid]::NewGuid().ToString('N').Substring(0,12)
+          New-LocalUser -Name cadstd -Password (ConvertTo-SecureString $pw -AsPlainText -Force) -PasswordNeverExpires | Out-String | Write-Host
+          Add-LocalGroupMember -Group Users -Member cadstd -ErrorAction SilentlyContinue
+          net localgroup Administrators cadstd /delete 2>&1 | Out-String | Write-Host
+          $sid = (New-Object Security.Principal.NTAccount("$env:COMPUTERNAME\cadstd")).Translate([Security.Principal.SecurityIdentifier]).Value
+          "sid $sid"
+          secedit /export /cfg C:\sec.inf /areas USER_RIGHTS 2>&1 | Out-String | Write-Host
+          Test-Path C:\sec.inf | Write-Host
+          $c = Get-Content C:\sec.inf
+          $c = $c | ForEach-Object { if ($_ -match '^SeBatchLogonRight') { "$_,*$sid" } elseif ($_ -match '^SeInteractiveLogonRight') { "$_,*$sid" } else { $_ } }
+          if (-not ($c -match '^SeBatchLogonRight')) { $c = $c -replace '\[Privilege Rights\]', "[Privilege Rights]`nSeBatchLogonRight = *$sid" }
+          Set-Content C:\sec2.inf $c -Encoding Unicode
+          secedit /configure /db C:\sec.sdb /cfg C:\sec2.inf /areas USER_RIGHTS 2>&1 | Out-String | Write-Host
+          New-Item -ItemType Directory C:/outB -Force | Out-Null
+          icacls C:/outB /grant 'cadstd:(OI)(CI)F' | Out-Null
+          icacls C:/out /grant 'cadstd:(OI)(CI)RX' /T | Out-Null
+          @'
+          Start-Transcript -Path C:\outB\user.txt -Force | Out-Null
+          $a=[Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()
+          "whoami: $([Security.Principal.WindowsIdentity]::GetCurrent().Name) admin=$($a.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))"
+          $p = Start-Process C:\out\DeltaEngineering-Setup-v9.exe -ArgumentList '/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART' -Wait -PassThru
+          "setup exit $($p.ExitCode)"
+          $t = "$env:LOCALAPPDATA\Programs\DeltaEngineering"
+          "target $t exists: $(Test-Path $t)"
+          "addon present: $(Test-Path "$t\Mod\DeltaEngineering\InitGui.py")"
+          "freecad exe present: $(@(Get-ChildItem $t -Recurse -Filter FreeCAD.exe -ErrorAction SilentlyContinue).Count)"
+          Stop-Transcript | Out-Null
+          '@ | Set-Content C:/outB/run.ps1 -Encoding utf8
+          schtasks /Create /TN cadstdrun /TR "powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\outB\run.ps1" /SC ONCE /ST 23:59 /RU "$env:COMPUTERNAME\cadstd" /RP $pw /RL LIMITED /F 2>&1 | Out-String | Write-Host
+          schtasks /Run /TN cadstdrun 2>&1 | Out-String | Write-Host
+          $t = 0
+          while ($t -lt 600) { Start-Sleep 5; $t += 5; if ((Test-Path C:/outB/user.txt) -and (Select-String C:/outB/user.txt -Pattern 'addon present' -Quiet)) { break } }
+          "waited $t s"
+          schtasks /Query /TN cadstdrun /V /FO LIST 2>&1 | Select-String 'Last Result|Status' | Out-String | Write-Host
+          Stop-Transcript | Out-Null
+          if (Test-Path C:/outB/user.txt) { Copy-Item C:/outB/user.txt C:/evidence/standard-user.txt }
+          Add-Type -AssemblyName System.Windows.Forms,System.Drawing
+          Add-Type @"
+          using System; using System.Runtime.InteropServices;
+          public class W { [DllImport("user32.dll")] public static extern bool ShowWindow(IntPtr h,int c); [DllImport("user32.dll")] public static extern bool SetForegroundWindow(IntPtr h); }
+          "@
+          New-Item -ItemType Directory -Force C:/seed | Out-Null
+          Copy-Item C:/outB/user.txt C:/seed/install-user.txt -ErrorAction SilentlyContinue
+          $uapp = 'C:\Users\cadstd\AppData\Local\Programs\DeltaEngineering'
+          $ubin = "$uapp\bin"
+          Copy-Item C:/mesa/x64/opengl32.dll $ubin -Force
+          foreach ($n in 'libgallium_wgl.dll','libglapi.dll') { if (Test-Path "C:/mesa/x64/$n") { Copy-Item "C:/mesa/x64/$n" $ubin -Force } }
+          $lnk = 'C:\Users\cadstd\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Delta Engineering.lnk'
+          "lnk exists: $(Test-Path $lnk)" | Tee-Object -Append C:/seed/log.txt
+          $sc = (New-Object -ComObject WScript.Shell).CreateShortcut($lnk)
+          "lnk target=$($sc.TargetPath) args=$($sc.Arguments)" | Tee-Object -Append C:/seed/log.txt
+          "user cfg exists: $(Test-Path 'C:\Users\cadstd\AppData\Roaming\FreeCAD\v1-1\user.cfg')" | Tee-Object -Append C:/seed/log.txt
+          $cred = New-Object System.Management.Automation.PSCredential("$env:COMPUTERNAME\cadstd", (ConvertTo-SecureString $pw -AsPlainText -Force))
+          function Shot($n) { $b=[System.Windows.Forms.SystemInformation]::VirtualScreen; $bmp=New-Object System.Drawing.Bitmap $b.Width,$b.Height; $g=[System.Drawing.Graphics]::FromImage($bmp); $g.CopyFromScreen($b.Location,[System.Drawing.Point]::Empty,$b.Size); $bmp.Save("C:/seed/$n.png") }
+          $sid = [System.Diagnostics.Process]::GetCurrentProcess().SessionId
+          "runner session id $sid" | Tee-Object -Append C:/seed/log.txt
+          Invoke-WebRequest https://live.sysinternals.com/PsExec64.exe -OutFile C:/PsExec64.exe
+          "psexec present: $(Test-Path C:/PsExec64.exe)" | Tee-Object -Append C:/seed/log.txt
+          $bat = "@echo off`r`nset GALLIUM_DRIVER=llvmpipe`r`nset MESA_GL_VERSION_OVERRIDE=4.5`r`nwhoami > C:\outB\who.txt`r`nwhoami /groups >> C:\outB\who.txt`r`n`"$ubin\FreeCAD.exe`" $($sc.Arguments)`r`n"
+          Set-Content C:\outB\launch.cmd $bat -Encoding ascii
+          Get-Content C:\outB\launch.cmd | Tee-Object -Append C:/seed/log.txt
+          $pa = "-accepteula -nobanner -d -i $sid -u $env:COMPUTERNAME\cadstd -p $pw -w C:\outB C:\outB\launch.cmd"
+          $pp = Start-Process C:/PsExec64.exe -ArgumentList $pa -PassThru -Wait -RedirectStandardOutput C:/seed/psexec-out.txt -RedirectStandardError C:/seed/psexec-err.txt
+          "psexec exit $($pp.ExitCode)" | Tee-Object -Append C:/seed/log.txt
+          Start-Sleep 70
+          $fc = Get-Process FreeCAD -ErrorAction SilentlyContinue | Select-Object -First 1
+          if ($fc) { $o = (Get-CimInstance Win32_Process -Filter "ProcessId=$($fc.Id)") | Invoke-CimMethod -MethodName GetOwner; "FreeCAD owner $($o.Domain)\$($o.User) session=$($fc.SessionId) title=[$($fc.MainWindowTitle)]" | Tee-Object -Append C:/seed/log.txt; if ($fc.MainWindowHandle -ne 0) { [W]::ShowWindow($fc.MainWindowHandle, 3) | Out-Null; [W]::SetForegroundWindow($fc.MainWindowHandle) | Out-Null; Start-Sleep 4 } } else { "FreeCAD process not found" | Tee-Object -Append C:/seed/log.txt }
+          Shot "std-psexec"
+          if (Test-Path C:\outB\who.txt) { $wt = Get-Content C:\outB\who.txt; $wt | Select-Object -First 1 | Tee-Object -Append C:/seed/log.txt; "token high-integrity group present: $([bool]($wt -match 'High Mandatory')); medium: $([bool]($wt -match 'Medium Mandatory'))" | Tee-Object -Append C:/seed/log.txt; "member of Administrators (enabled): $([bool]($wt -match 'BUILTIN.Administrators.*(Mandatory group, Enabled by default, Enabled group)'))" | Tee-Object -Append C:/seed/log.txt }
+          Get-Process FreeCAD -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
+          Get-Content C:/seed/psexec-err.txt -ErrorAction SilentlyContinue | Tee-Object -Append C:/seed/log.txt
+          Add-Content C:/outB/cmd.ps1 'Start-Transcript -Path C:\outB\cmd-out.txt -Force | Out-Null'
+          Add-Content C:/outB/cmd.ps1 "& '$ubin\FreeCADCmd.exe' -c `"import FreeCAD; print('FREECAD', FreeCAD.Version()[:3])`" 2>&1 | Out-String"
+          Add-Content C:/outB/cmd.ps1 'Stop-Transcript | Out-Null'
+          schtasks /Create /TN cadstdcmd /TR "powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\outB\cmd.ps1" /SC ONCE /ST 23:59 /RU "$env:COMPUTERNAME\cadstd" /RP $pw /RL LIMITED /F 2>&1 | Out-String | Write-Host
+          schtasks /Run /TN cadstdcmd 2>&1 | Out-String | Write-Host
+          Start-Sleep 40
+          if (Test-Path C:/outB/cmd-out.txt) { Copy-Item C:/outB/cmd-out.txt C:/seed/std-cmd-out.txt }
+          Get-ChildItem C:\outB | Out-String | Tee-Object -Append C:/seed/log.txt
+      - name: Commit evidence
+        if: always()
+        shell: pwsh
+        run: |
+          git config user.name ci; git config user.email ci@users.noreply.github.com
+          New-Item -ItemType Directory -Force dist/std-diag4-v9 | Out-Null
+          Copy-Item C:/seed/*.txt,C:/seed/*.json dist/std-diag4-v9/ -ErrorAction SilentlyContinue
+          Get-ChildItem C:/seed/*.png -ErrorAction SilentlyContinue | ForEach-Object { [IO.File]::WriteAllText("$PWD/dist/std-diag4-v9/$($_.Name).b64", [Convert]::ToBase64String([IO.File]::ReadAllBytes($_.FullName))) }
+          git add dist; git commit -m "Add std launch evidence" 2>&1 | Out-Null
+          foreach ($i in 1..4) { git pull --rebase 2>&1 | Out-Null; git push 2>&1 | Out-String | Write-Host; if ($LASTEXITCODE -eq 0) { break }; Start-Sleep 5 }
+          Get-Content C:/seed/log.txt
