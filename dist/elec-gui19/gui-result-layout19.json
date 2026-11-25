@@ -1,0 +1,232 @@
+{
+ "stage": "export done",
+ "P_paired_flag": [
+  true,
+  true,
+  false
+ ],
+ "P_contactor_y": {
+  "1": 28.0,
+  "2": 28.0,
+  "3": 14.0,
+  "4": 14.0,
+  "5": 0.0,
+  "6": 0.0,
+  "A1": -14.0,
+  "A2": -28.0
+ },
+ "P_overload_y": {
+  "1": 14.0,
+  "2": 14.0,
+  "3": 0.0,
+  "4": 0.0,
+  "5": -14.0,
+  "6": -14.0
+ },
+ "P_legacy_contactor_y": {
+  "1": 49.0,
+  "2": 35.0,
+  "3": 21.0,
+  "4": 7.0,
+  "5": -7.0,
+  "6": -21.0,
+  "A1": -35.0,
+  "A2": -49.0
+ },
+ "P_reopen_flags": [
+  true,
+  true,
+  null
+ ],
+ "P_reopen_same": true,
+ "route_count": 0,
+ "workbench": "DeltaWorkbench",
+ "workbench_screenshot": 58910,
+ "A_overlay_present_fit": true,
+ "D_docks": [
+  [
+   "Selection view",
+   "Selection View",
+   false,
+   false,
+   [
+    0,
+    0,
+    210,
+    127
+   ]
+  ],
+  [
+   "Model",
+   "Model",
+   true,
+   false,
+   [
+    0,
+    130,
+    260,
+    567
+   ]
+  ],
+  [
+   "Python console",
+   "Python Console",
+   false,
+   false,
+   [
+    0,
+    0,
+    100,
+    92
+   ]
+  ],
+  [
+   "Report view",
+   "Report View",
+   false,
+   false,
+   [
+    0,
+    0,
+    100,
+    92
+   ]
+  ],
+  [
+   "Tasks",
+   "Tasks",
+   false,
+   false,
+   [
+    0,
+    0,
+    380,
+    375
+   ]
+  ]
+ ],
+ "D_floating_visible_toplevels": [],
+ "T_toggle_actions": 1,
+ "T_toolbars_with_toggle": [
+  "المعرّفات"
+ ],
+ "T_action_text": [
+  "المعرّفات"
+ ],
+ "T_cmd_registered": true,
+ "T_overlay_after_off": false,
+ "T_overlay_after_on": true,
+ "T_param_after": true,
+ "M_mdi": true,
+ "M_sub": true,
+ "M_cands": [
+  [
+   "QMainWindow",
+   407046
+  ],
+  [
+   "QStackedWidget",
+   407046
+  ],
+  [
+   "QGraphicsView",
+   407046
+  ],
+  [
+   "QWidget",
+   407046
+  ]
+ ],
+ "M_viewport": "QWidget",
+ "M_widget": "QWidget",
+ "M_cam_moved_mid": [
+  [
+   4586.0,
+   16.6,
+   1303.3
+  ],
+  [
+   4294.4,
+   126.0,
+   1303.3
+  ]
+ ],
+ "M_overlay_after_mid": true,
+ "M_cam_moved_right": [
+  [
+   4294.4,
+   126.0,
+   1303.3
+  ],
+  [
+   4294.4,
+   126.0,
+   1303.3
+  ]
+ ],
+ "M_overlay_after_right": true,
+ "M_cam_after_wheel": [
+  [
+   4586.0,
+   16.6,
+   1303.3
+  ],
+  [
+   4294.4,
+   126.0,
+   1303.3
+  ]
+ ],
+ "M_overlay_after_wheel": true,
+ "idlog": "4552.95 toggle toolbar created\n4562.66 refresh doc=GuiElec children=8\n4562.67 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n4562.67 refresh doc=GuiElec children=9\n4562.67 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n4563.02 one-time: collapsed empty right overlay Tasks panel\n4571.33 refresh doc=GuiElec children=9\n4575.39 refresh doc=GuiElec children=8\n4575.39 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n",
+ "C_route_count_after_move": 0,
+ "netlist_same_after_move": true,
+ "D_overlay_present_after_reopen": true,
+ "idlog2": "4552.95 toggle toolbar created\n4562.66 refresh doc=GuiElec children=8\n4562.67 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n4562.67 refresh doc=GuiElec children=9\n4562.67 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n4563.02 one-time: collapsed empty right overlay Tasks panel\n4571.33 refresh doc=GuiElec children=9\n4575.39 refresh doc=GuiElec children=8\n4575.39 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n4596.52 refresh doc=GuiElec children=9\n4596.52 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n4597.04 refresh doc=GuiElec children=9\n4597.04 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n4602.26 refresh doc=GuiElec children=8\n4602.27 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n4602.51 refresh doc=GuiElec children=9\n4602.51 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n",
+ "D_netlist_same_after_reopen": true,
+ "E_idle_rebuilds_5s": 0,
+ "E_undo_restores_position": true,
+ "E_redo_applies": true,
+ "F_overlay_second_doc": true,
+ "G_overlay_first_doc_after_close": true,
+ "G_idle_rebuilds_5s": 0,
+ "K_default": {
+  "visible": false,
+  "floating": false,
+  "area": 0
+ },
+ "K_parent_chain": [
+  "QSplitter:",
+  "QTabWidget:OverlayRight",
+  "QMainWindow:"
+ ],
+ "K_version": [
+  "1",
+  "1",
+  "4",
+  "20260928 (Git shallow)"
+ ],
+ "K_overlay_cmds": [
+  "Sketcher_ArcOverlay",
+  "Std_DockOverlay",
+  "Std_DockOverlayAll",
+  "Std_DockOverlayMouseTransparent",
+  "Std_DockOverlayToggle",
+  "Std_DockOverlayToggleBottom",
+  "Std_DockOverlayToggleLeft",
+  "Std_DockOverlayToggleRight",
+  "Std_DockOverlayToggleTop",
+  "Std_DockOverlayToggleTransparent",
+  "Std_DockOverlayTransparentAll"
+ ],
+ "K_error": "Traceback (most recent call last):\n  File \"C:/seed/gui-layout19.FCMacro\", line 213, in _run\n    _a = [x for x in _mw4.findChildren(_q4.QAction) if x.objectName() == \"Delta_ToggleTasksPanelAction\"]\n                                       ^^^^^^^^^^^\nAttributeError: module 'PySide.QtWidgets' has no attribute 'QAction'\n",
+ "log_errors": 0,
+ "log_refreshes_total": 20,
+ "export_uses_terminal_side": false,
+ "export_return": "{'source_signature': 'c074f2cf3194418d2b79e19ae9a40808d16db5accb7dabc5b4c6558bcc576c02', 'centerline_mm': 0, 'wire_count': 9, 'synchronous_projection': True}",
+ "sizes": [
+  12411,
+  17185
+ ],
+ "done": true
+}
