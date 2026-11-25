@@ -1,0 +1,240 @@
+{
+ "stage": "built",
+ "P_paired_flag": [
+  true,
+  true,
+  false
+ ],
+ "P_contactor_y": {
+  "1": 28.0,
+  "2": 28.0,
+  "3": 14.0,
+  "4": 14.0,
+  "5": 0.0,
+  "6": 0.0,
+  "A1": -14.0,
+  "A2": -28.0
+ },
+ "P_overload_y": {
+  "1": 14.0,
+  "2": 14.0,
+  "3": 0.0,
+  "4": 0.0,
+  "5": -14.0,
+  "6": -14.0
+ },
+ "P_legacy_contactor_y": {
+  "1": 49.0,
+  "2": 35.0,
+  "3": 21.0,
+  "4": 7.0,
+  "5": -7.0,
+  "6": -21.0,
+  "A1": -35.0,
+  "A2": -49.0
+ },
+ "P_reopen_flags": [
+  true,
+  true,
+  null
+ ],
+ "P_reopen_same": true,
+ "route_count": 0,
+ "workbench": "DeltaWorkbench",
+ "workbench_screenshot": 59728,
+ "A_overlay_present_fit": true,
+ "D_docks": [
+  [
+   "Selection view",
+   "Selection View",
+   false,
+   false,
+   [
+    0,
+    0,
+    210,
+    127
+   ]
+  ],
+  [
+   "Model",
+   "Model",
+   true,
+   false,
+   [
+    0,
+    130,
+    260,
+    567
+   ]
+  ],
+  [
+   "Python console",
+   "Python Console",
+   false,
+   false,
+   [
+    0,
+    0,
+    100,
+    92
+   ]
+  ],
+  [
+   "Report view",
+   "Report View",
+   false,
+   false,
+   [
+    0,
+    0,
+    100,
+    92
+   ]
+  ],
+  [
+   "Tasks",
+   "Tasks",
+   true,
+   false,
+   [
+    0,
+    0,
+    380,
+    375
+   ]
+  ]
+ ],
+ "D_floating_visible_toplevels": [],
+ "T_toggle_actions": 1,
+ "T_toolbars_with_toggle": [
+  "المعرّفات"
+ ],
+ "T_action_text": [
+  "المعرّفات"
+ ],
+ "T_cmd_registered": true,
+ "T_overlay_after_off": false,
+ "T_overlay_after_on": true,
+ "T_param_after": true,
+ "M_mdi": true,
+ "M_sub": true,
+ "M_cands": [
+  [
+   "QMainWindow",
+   407046
+  ],
+  [
+   "QStackedWidget",
+   407046
+  ],
+  [
+   "QGraphicsView",
+   407046
+  ],
+  [
+   "QWidget",
+   407046
+  ]
+ ],
+ "M_viewport": "QWidget",
+ "M_widget": "QWidget",
+ "M_cam_moved_mid": [
+  [
+   4586.0,
+   16.6,
+   1303.3
+  ],
+  [
+   4294.4,
+   126.0,
+   1303.3
+  ]
+ ],
+ "M_overlay_after_mid": true,
+ "M_cam_moved_right": [
+  [
+   4294.4,
+   126.0,
+   1303.3
+  ],
+  [
+   4294.4,
+   126.0,
+   1303.3
+  ]
+ ],
+ "M_overlay_after_right": true,
+ "M_cam_after_wheel": [
+  [
+   4586.0,
+   16.6,
+   1303.3
+  ],
+  [
+   4294.4,
+   126.0,
+   1303.3
+  ]
+ ],
+ "M_overlay_after_wheel": true,
+ "idlog": "3770.42 toggle toolbar created\n3780.89 refresh doc=GuiElec children=8\n3780.89 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n3780.90 refresh doc=GuiElec children=9\n3780.90 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n3789.63 refresh doc=GuiElec children=9\n3793.73 refresh doc=GuiElec children=8\n3793.73 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n",
+ "C_route_count_after_move": 0,
+ "netlist_same_after_move": true,
+ "D_overlay_present_after_reopen": true,
+ "idlog2": "3770.42 toggle toolbar created\n3780.89 refresh doc=GuiElec children=8\n3780.89 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n3780.90 refresh doc=GuiElec children=9\n3780.90 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n3789.63 refresh doc=GuiElec children=9\n3793.73 refresh doc=GuiElec children=8\n3793.73 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n3815.03 refresh doc=GuiElec children=9\n3815.04 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n3815.56 refresh doc=GuiElec children=9\n3815.56 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n3820.99 refresh doc=GuiElec children=8\n3821.01 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n3821.20 refresh doc=GuiElec children=9\n3821.21 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n",
+ "D_netlist_same_after_reopen": true,
+ "E_idle_rebuilds_5s": 0,
+ "E_undo_restores_position": true,
+ "E_redo_applies": true,
+ "F_overlay_second_doc": true,
+ "G_overlay_first_doc_after_close": true,
+ "G_idle_rebuilds_5s": 0,
+ "K_default": {
+  "visible": true,
+  "floating": false,
+  "area": 0
+ },
+ "K_parent_chain": [
+  "QSplitter:",
+  "QTabWidget:OverlayRight",
+  "QMainWindow:"
+ ],
+ "K_version": [
+  "1",
+  "1",
+  "4",
+  "20260928 (Git shallow)"
+ ],
+ "K_overlay_cmds": [
+  "Sketcher_ArcOverlay",
+  "Std_DockOverlay",
+  "Std_DockOverlayAll",
+  "Std_DockOverlayMouseTransparent",
+  "Std_DockOverlayToggle",
+  "Std_DockOverlayToggleBottom",
+  "Std_DockOverlayToggleLeft",
+  "Std_DockOverlayToggleRight",
+  "Std_DockOverlayToggleTop",
+  "Std_DockOverlayToggleTransparent",
+  "Std_DockOverlayTransparentAll"
+ ],
+ "K_after_Std_DockOverlayToggleRight": {
+  "visible": false,
+  "floating": false,
+  "area": 0
+ },
+ "K_after_Std_DockOverlayToggleRight_parent": "QSplitter",
+ "K_cmd_err_Std_DockOverlayAutoMode": "No such command 'Std_DockOverlayAutoMode'",
+ "K_active_dialog_after_3s": {
+  "visible": true,
+  "floating": false,
+  "area": 0,
+  "active": true
+ },
+ "K_after_dialog_closed": {
+  "visible": true,
+  "floating": false,
+  "area": 0
+ }
+}
