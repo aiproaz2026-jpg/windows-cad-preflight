@@ -1,0 +1,72 @@
+name: Standard user install v7 (targeted)
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  std:
+    runs-on: windows-2022
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download asset and verify SHA256
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          New-Item -ItemType Directory C:/out,C:/evidence -Force | Out-Null
+          gh release download standalone-v7 -p DeltaEngineering-Setup-v7.exe -D C:/out
+          $got = (Get-FileHash C:/out/DeltaEngineering-Setup-v7.exe -Algorithm SHA256).Hash.ToLower()
+          $want = ((Get-Content dist/v7/DeltaEngineering-Setup-v7.exe.sha256 -Raw) -split '\s+')[0].ToLower()
+          if ($got -ne $want) { throw 'SHA256 mismatch' }
+          "SHA256 MATCH"
+      - name: Standard user install via scheduled task (batch logon right granted)
+        shell: pwsh
+        continue-on-error: true
+        timeout-minutes: 20
+        run: |
+          Start-Transcript -Path C:/evidence/std-step.txt -Force | Out-Null
+          $pw = 'Zx9!' + [guid]::NewGuid().ToString('N').Substring(0,12)
+          net user cadstd $pw /add 2>&1 | Out-String | Write-Host
+          net localgroup Administrators cadstd /delete 2>&1 | Out-String | Write-Host
+          $sid = (New-Object Security.Principal.NTAccount("$env:COMPUTERNAME\cadstd")).Translate([Security.Principal.SecurityIdentifier]).Value
+          "sid $sid"
+          secedit /export /cfg C:/sec.inf /areas USER_RIGHTS | Out-Null
+          $c = Get-Content C:/sec.inf
+          $c = $c | ForEach-Object { if ($_ -match '^SeBatchLogonRight') { "$_,*$sid" } elseif ($_ -match '^SeInteractiveLogonRight') { "$_,*$sid" } else { $_ } }
+          if (-not ($c -match '^SeBatchLogonRight')) { $c = $c -replace '\[Privilege Rights\]', "[Privilege Rights]`nSeBatchLogonRight = *$sid" }
+          Set-Content C:/sec2.inf $c -Encoding Unicode
+          secedit /configure /db C:/sec.sdb /cfg C:/sec2.inf /areas USER_RIGHTS 2>&1 | Out-String | Write-Host
+          New-Item -ItemType Directory C:/outB -Force | Out-Null
+          icacls C:/outB /grant 'cadstd:(OI)(CI)F' | Out-Null
+          icacls C:/out /grant 'cadstd:(OI)(CI)RX' /T | Out-Null
+          @'
+          Start-Transcript -Path C:\outB\user.txt -Force | Out-Null
+          $a=[Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()
+          "whoami: $([Security.Principal.WindowsIdentity]::GetCurrent().Name) admin=$($a.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))"
+          $p = Start-Process C:\out\DeltaEngineering-Setup-v7.exe -ArgumentList '/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART' -Wait -PassThru
+          "setup exit $($p.ExitCode)"
+          $t = "$env:LOCALAPPDATA\Programs\DeltaEngineering"
+          "target $t exists: $(Test-Path $t)"
+          "addon present: $(Test-Path "$t\Mod\DeltaEngineering\InitGui.py")"
+          "freecad exe present: $(@(Get-ChildItem $t -Recurse -Filter FreeCAD.exe -ErrorAction SilentlyContinue).Count)"
+          Stop-Transcript | Out-Null
+          '@ | Set-Content C:/outB/run.ps1 -Encoding utf8
+          schtasks /Create /TN cadstdrun /TR "powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\outB\run.ps1" /SC ONCE /ST 23:59 /RU "$env:COMPUTERNAME\cadstd" /RP $pw /RL LIMITED /F 2>&1 | Out-String | Write-Host
+          schtasks /Run /TN cadstdrun 2>&1 | Out-String | Write-Host
+          $t = 0
+          while ($t -lt 600) { Start-Sleep 5; $t += 5; if ((Test-Path C:/outB/user.txt) -and (Select-String C:/outB/user.txt -Pattern 'addon present' -Quiet)) { break } }
+          "waited $t s"
+          schtasks /Query /TN cadstdrun /V /FO LIST 2>&1 | Select-String 'Last Result|Status' | Out-String | Write-Host
+          Stop-Transcript | Out-Null
+          if (Test-Path C:/outB/user.txt) { Copy-Item C:/outB/user.txt C:/evidence/standard-user.txt }
+      - name: Commit evidence
+        if: always()
+        shell: pwsh
+        run: |
+          git config user.name ci; git config user.email ci@users.noreply.github.com
+          git pull --rebase 2>&1 | Out-Null
+          New-Item -ItemType Directory -Force dist/std-user-v7 | Out-Null
+          Copy-Item C:/evidence/*.txt dist/std-user-v7/ -ErrorAction SilentlyContinue
+          git add dist; git commit -m "Add standard-user evidence" 2>&1 | Out-Null; git push 2>&1 | Out-Null
+          if (-not (Test-Path C:/evidence/standard-user.txt) -or -not (Select-String C:/evidence/standard-user.txt -Pattern 'admin=False' -Quiet)) { throw 'no standard-user proof' }
