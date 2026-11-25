@@ -27,7 +27,8 @@ jobs:
         run: |
           Start-Transcript -Path C:/evidence/std-step.txt -Force | Out-Null
           $pw = 'Zx9!' + [guid]::NewGuid().ToString('N').Substring(0,12)
-          net user cadstd $pw /add 2>&1 | Out-String | Write-Host
+          New-LocalUser -Name cadstd -Password (ConvertTo-SecureString $pw -AsPlainText -Force) -PasswordNeverExpires | Out-String | Write-Host
+          Add-LocalGroupMember -Group Users -Member cadstd -ErrorAction SilentlyContinue
           net localgroup Administrators cadstd /delete 2>&1 | Out-String | Write-Host
           $sid = (New-Object Security.Principal.NTAccount("$env:COMPUTERNAME\cadstd")).Translate([Security.Principal.SecurityIdentifier]).Value
           "sid $sid"
