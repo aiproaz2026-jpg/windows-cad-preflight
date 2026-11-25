@@ -1,0 +1,29 @@
+{
+ "stage": "export done",
+ "route_count": 0,
+ "workbench": "DeltaWorkbench",
+ "workbench_screenshot": 59867,
+ "A_overlay_present_fit": true,
+ "T_error": "Traceback (most recent call last):\n  File \"C:/seed/gui-layout11.FCMacro\", line 56, in _run\n    acts = [a for a in mw.findChildren(_qw.QAction) if a.objectName() == \"Delta_ToggleIdentifiers\"]\n                                       ^^^^^^^^^^^\nAttributeError: module 'PySide.QtWidgets' has no attribute 'QAction'\n",
+ "idlog": "9314.23 toggle command added to toolbar\n9314.23 refresh doc=GuiElec children=8\n9314.25 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n9314.25 refresh doc=GuiElec children=9\n9314.26 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n",
+ "C_route_count_after_move": 0,
+ "netlist_same_after_move": true,
+ "D_overlay_present_after_reopen": true,
+ "idlog2": "9314.23 toggle command added to toolbar\n9314.23 refresh doc=GuiElec children=8\n9314.25 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n9314.25 refresh doc=GuiElec children=9\n9314.26 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n9326.86 refresh doc=GuiElec children=9\n9326.86 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n9327.49 refresh doc=GuiElec children=9\n9327.50 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n9333.10 refresh doc=GuiElec children=8\n9333.12 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n9333.26 refresh doc=GuiElec children=9\n9333.28 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n",
+ "D_netlist_same_after_reopen": true,
+ "E_idle_rebuilds_5s": 0,
+ "E_undo_restores_position": true,
+ "E_redo_applies": true,
+ "F_overlay_second_doc": true,
+ "G_overlay_first_doc_after_close": true,
+ "G_idle_rebuilds_5s": 0,
+ "log_errors": 0,
+ "log_refreshes_total": 18,
+ "export_uses_terminal_side": false,
+ "export_return": "{'source_signature': '0b5307ee42fb89b7cac5f97253b091e08c5f72841181cfd6da156c6316c7bd8e', 'centerline_mm': 0, 'wire_count': 9, 'synchronous_projection': True}",
+ "sizes": [
+  12411,
+  17060
+ ],
+ "done": true
+}
