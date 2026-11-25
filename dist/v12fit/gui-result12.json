@@ -2,7 +2,7 @@
  "steps": {
   "fittings_tab_present_and_layout": {
    "ok": true,
-   "secs": 1.2,
+   "secs": 1.21,
    "detail": {
     "tasks_dock_before_panel": {
      "exists": true,
@@ -85,7 +85,7 @@
   },
   "station_built_through_panel_buttons": {
    "ok": true,
-   "secs": 5.49,
+   "secs": 5.18,
    "detail": {
     "report_text": "وصلات متطابقة: 7\nمنافذ مفتوحة: 2\n  GenericFitting005.1\n  GenericFitting007.1\nلا أخطاء هندسية في الاستمرارية أو التداخل.\nهندسة عامة توضيحية، ليست كتالوج مصنّع ولا معيار شفات. تطابق المقاس لا يعني توافق الضغط أو المعيار.",
     "connected": 7,
@@ -105,7 +105,7 @@
   },
   "mismatch_refused_through_ui": {
    "ok": true,
-   "secs": 1.85,
+   "secs": 1.77,
    "detail": {
     "placement_unchanged": true,
     "status": "لم يتم التعديل: تعذر إكمال العملية. راجع التحديد والقيم وحالة المصدر ثم أعد المحاولة. احتفظ بالتفصيل التقني عند طلب المساعدة:\nPort diameter mismatch: 114.300 mm vs 60.300 mm. Geometric continuity only, no compatibility implied.",
@@ -179,7 +179,7 @@
   },
   "save_reopen_arabic_path": {
    "ok": true,
-   "secs": 0.88,
+   "secs": 0.89,
    "detail": {
     "objects": 8,
     "max_volume_diff": 3.725290298461914e-09,
@@ -188,7 +188,7 @@
   },
   "station_with_pipes_elbow_through_panel": {
    "ok": true,
-   "secs": 9.25,
+   "secs": 9.24,
    "detail": {
     "elbow_volume": 98414.06548998691,
     "elbow_expected_pappus": 98414.0654899867,
@@ -287,7 +287,7 @@
   },
   "station_scaled_pdf": {
    "ok": true,
-   "secs": 2.13,
+   "secs": 2.05,
    "detail": {
     "Top_denominator_10_rejected": "View exceeds A3 drawing area at this scale; choose a larger denominator",
     "Top": {
@@ -346,7 +346,7 @@
   },
   "motor_starter_circuit_symbols_and_pdf": {
    "ok": true,
-   "secs": 0.91,
+   "secs": 0.89,
    "detail": {
     "template_combo_items": 10,
     "template_keys": [
@@ -667,7 +667,7 @@
   },
   "strip_probe": {
    "ok": true,
-   "secs": 0.02,
+   "secs": 0.0,
    "detail": {
     "widgets_near_strip": [
      {
@@ -817,7 +817,7 @@
   },
   "tasks_dock_hidden_again_after_task_closes": {
    "ok": true,
-   "secs": 4.25,
+   "secs": 4.21,
    "detail": {
     "visible_while_task_open": true,
     "visible_after_close_and_4s": false,
