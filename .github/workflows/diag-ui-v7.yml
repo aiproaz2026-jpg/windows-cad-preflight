@@ -1,0 +1,59 @@
+name: Diag UI config v7 (first-run, language params)
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  inst:
+    runs-on: windows-2022
+    timeout-minutes: 70
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download the v7 release asset, verify SHA256, fetch Mesa (CI only)
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          New-Item -ItemType Directory C:/out,C:/evidence -Force | Out-Null
+          gh release download standalone-v7 -p DeltaEngineering-Setup-v7.exe -D C:/out
+          $got = (Get-FileHash C:/out/DeltaEngineering-Setup-v7.exe -Algorithm SHA256).Hash.ToLower()
+          $want = ((Get-Content dist/v7/DeltaEngineering-Setup-v7.exe.sha256 -Raw) -split '\s+')[0].ToLower()
+          "got $got want $want"
+          if ($got -ne $want) { throw 'SHA256 mismatch' }
+          "SHA256 MATCH" | Tee-Object C:/evidence/sha.txt
+          $rel = Invoke-RestMethod https://api.github.com/repos/pal1000/mesa-dist-win/releases/latest
+          $a = $rel.assets | Where-Object { $_.name -match 'release-msvc\.7z$' } | Select-Object -First 1
+          Invoke-WebRequest $a.browser_download_url -OutFile C:/mesa.7z
+          7z x C:/mesa.7z -oC:/mesa -y | Out-Null
+      - name: Install ASCII and inspect
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force C:/diag | Out-Null
+          $p = Start-Process C:/out/DeltaEngineering-Setup-v7.exe -ArgumentList '/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART','/DIR="C:\DeltaAscii"' -Wait -PassThru
+          "setup exit $($p.ExitCode)"
+          $bin = 'C:\DeltaAscii\bin'
+          Copy-Item C:/mesa/x64/opengl32.dll $bin -Force
+          foreach ($n in 'libgallium_wgl.dll','libglapi.dll') { if (Test-Path "C:/mesa/x64/$n") { Copy-Item "C:/mesa/x64/$n" $bin -Force } }
+          Get-Content C:\DeltaAscii\LaunchDelta.FCMacro -Encoding utf8 | Out-File C:/diag/LaunchDelta.FCMacro.txt -Encoding utf8
+          Get-ChildItem C:\DeltaAscii -Depth 1 | Select-Object Name | Out-File C:/diag/root-listing.txt
+          Get-ChildItem C:\DeltaAscii -Recurse -Include *.cfg,*.FCParam -ErrorAction SilentlyContinue | Select-Object FullName | Out-File C:/diag/cfg-in-install.txt
+          $hits = Get-ChildItem C:\DeltaAscii\bin,C:\DeltaAscii\Mod -Recurse -Include Start*.dll,Start*.pyd,Gui*.dll -ErrorAction SilentlyContinue
+          foreach ($h in $hits) { $b = [IO.File]::ReadAllBytes($h.FullName); $t = [Text.Encoding]::ASCII.GetString($b); foreach ($m in [regex]::Matches($t, '(FirstStart|FirstTime|ShowOnStartup|AutoloadModule|StartWorkbench|ShowTipOfTheDay|TipOfTheDay|ShowSplash|FirstRun)[A-Za-z]*')) { "$($h.Name): $($m.Value)" } } | Sort-Object -Unique | Out-File C:/diag/param-strings.txt
+          $env:GALLIUM_DRIVER = 'llvmpipe'; $env:MESA_GL_VERSION_OVERRIDE = '4.5'
+          $pr = Start-Process C:\DeltaAscii\bin\FreeCAD.exe -ArgumentList '"C:\DeltaAscii\LaunchDelta.FCMacro"' -WorkingDirectory C:\DeltaAscii -PassThru
+          Start-Sleep 50
+          $pr.CloseMainWindow() | Out-Null
+          Start-Sleep 12
+          if (-not $pr.HasExited) { "did not close gracefully"; Stop-Process -Id $pr.Id -Force }
+          Get-ChildItem "$env:APPDATA\FreeCAD" -Recurse -ErrorAction SilentlyContinue | Select-Object FullName,Length | Out-File C:/diag/appdata-listing.txt
+          Get-ChildItem "$env:APPDATA\FreeCAD" -Recurse -Include user.cfg,system.cfg -ErrorAction SilentlyContinue | ForEach-Object { Copy-Item $_.FullName "C:/diag/$($_.Name)" }
+      - name: Commit evidence
+        if: always()
+        shell: pwsh
+        run: |
+          git config user.name ci; git config user.email ci@users.noreply.github.com
+          git pull --rebase 2>&1 | Out-Null
+          New-Item -ItemType Directory -Force dist/diag-ui-v7 | Out-Null
+          Get-ChildItem C:/diag/*.txt,C:/diag/*.cfg -ErrorAction SilentlyContinue | ForEach-Object { Copy-Item $_.FullName dist/diag-ui-v7/ }
+          git add dist; git commit -m "Add UI diag evidence" 2>&1 | Out-Null; git push 2>&1 | Out-Null
+          Get-ChildItem C:/diag
