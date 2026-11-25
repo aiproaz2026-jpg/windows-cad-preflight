@@ -1,0 +1,77 @@
+name: Launcher test v8 (installer-seeded Arabic config, real .lnk)
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  inst:
+    runs-on: windows-2022
+    timeout-minutes: 70
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download the v8 release asset, verify SHA256, fetch Mesa (CI only)
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          New-Item -ItemType Directory C:/out,C:/evidence -Force | Out-Null
+          gh release download standalone-v8 -p DeltaEngineering-Setup-v8.exe -D C:/out
+          $got = (Get-FileHash C:/out/DeltaEngineering-Setup-v8.exe -Algorithm SHA256).Hash.ToLower()
+          $want = ((Get-Content dist/v8/DeltaEngineering-Setup-v8.exe.sha256 -Raw) -split '\s+')[0].ToLower()
+          "got $got want $want"
+          if ($got -ne $want) { throw 'SHA256 mismatch' }
+          "SHA256 MATCH" | Tee-Object C:/evidence/sha.txt
+          $rel = Invoke-RestMethod https://api.github.com/repos/pal1000/mesa-dist-win/releases/latest
+          $a = $rel.assets | Where-Object { $_.name -match 'release-msvc\.7z$' } | Select-Object -First 1
+          Invoke-WebRequest $a.browser_download_url -OutFile C:/mesa.7z
+          7z x C:/mesa.7z -oC:/mesa -y | Out-Null
+      - name: Install, seed Arabic config, launch through the real .lnk, screenshot
+        shell: pwsh
+        run: |
+          Add-Type -AssemblyName System.Windows.Forms,System.Drawing
+          Add-Type @"
+          using System; using System.Runtime.InteropServices;
+          public class W { [DllImport("user32.dll")] public static extern bool ShowWindow(IntPtr h,int c); [DllImport("user32.dll")] public static extern bool SetForegroundWindow(IntPtr h); }
+          "@
+          New-Item -ItemType Directory -Force C:/seed | Out-Null
+          $p = Start-Process C:/out/DeltaEngineering-Setup-v8.exe -ArgumentList '/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART' -Wait -PassThru
+          "setup exit $($p.ExitCode)" | Tee-Object -Append C:/seed/log.txt
+          $app = "$env:LOCALAPPDATA\Programs\DeltaEngineering"
+          $bin = "$app\bin"
+          Copy-Item C:/mesa/x64/opengl32.dll $bin -Force
+          foreach ($n in 'libgallium_wgl.dll','libglapi.dll') { if (Test-Path "C:/mesa/x64/$n") { Copy-Item "C:/mesa/x64/$n" $bin -Force } }
+          $qm = @(Get-ChildItem $app -Recurse -Filter 'FreeCAD_ar*.qm' -ErrorAction SilentlyContinue)
+          "arabic qm files: $($qm.Count) $($qm | ForEach-Object { $_.FullName })" | Tee-Object -Append C:/seed/log.txt
+          $cfgdir = "$env:APPDATA\FreeCAD\v1-1"
+          "seeded cfg present after install: $(Test-Path "$cfgdir\user.cfg")" | Tee-Object -Append C:/seed/log.txt
+          if (Test-Path "$cfgdir\user.cfg") { (Select-String "$cfgdir\user.cfg" -Pattern 'Language' | ForEach-Object { $_.Line.Trim() }) | Tee-Object -Append C:/seed/log.txt }
+          $lnk = "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Delta Engineering.lnk"
+          "lnk exists: $(Test-Path $lnk)" | Tee-Object -Append C:/seed/log.txt
+          $sh = New-Object -ComObject WScript.Shell
+          $sc = $sh.CreateShortcut($lnk)
+          "lnk target=$($sc.TargetPath) args=$($sc.Arguments) workdir=$($sc.WorkingDirectory)" | Tee-Object -Append C:/seed/log.txt
+          $env:GALLIUM_DRIVER = 'llvmpipe'; $env:MESA_GL_VERSION_OVERRIDE = '4.5'
+          $pr = Start-Process $sc.TargetPath -ArgumentList $sc.Arguments -WorkingDirectory $sc.WorkingDirectory -PassThru
+          Start-Sleep 60
+          $pr.Refresh()
+          "alive=$(-not $pr.HasExited) title=[$($pr.MainWindowTitle)]" | Tee-Object -Append C:/seed/log.txt
+          if ($pr.MainWindowHandle -ne 0) { [W]::ShowWindow($pr.MainWindowHandle, 3) | Out-Null; [W]::SetForegroundWindow($pr.MainWindowHandle) | Out-Null; Start-Sleep 4 }
+          $b=[System.Windows.Forms.SystemInformation]::VirtualScreen; $bmp=New-Object System.Drawing.Bitmap $b.Width,$b.Height; $g=[System.Drawing.Graphics]::FromImage($bmp); $g.CopyFromScreen($b.Location,[System.Drawing.Point]::Empty,$b.Size); $bmp.Save("C:/seed/arabic-seed.png")
+          $pr.CloseMainWindow() | Out-Null
+          Start-Sleep 10
+          if (-not $pr.HasExited) { Stop-Process -Id $pr.Id -Force }
+          Copy-Item "$cfgdir\user.cfg" C:/seed/user-after.cfg -ErrorAction SilentlyContinue
+          Add-Content "$cfgdir\user.cfg" '<!-- user-marker-keep -->'
+          $p2 = Start-Process C:/out/DeltaEngineering-Setup-v8.exe -ArgumentList '/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART' -Wait -PassThru
+          "reinstall exit $($p2.ExitCode); existing user.cfg preserved (marker kept): $(Select-String "$cfgdir\user.cfg" -Pattern 'user-marker-keep' -Quiet)" | Tee-Object -Append C:/seed/log.txt
+      - name: Commit evidence
+        if: always()
+        shell: pwsh
+        run: |
+          git config user.name ci; git config user.email ci@users.noreply.github.com
+          git pull --rebase 2>&1 | Out-Null
+          New-Item -ItemType Directory -Force dist/launcher-v8 | Out-Null
+          Copy-Item C:/seed/*.txt,C:/seed/*.cfg dist/launcher-v8/ -ErrorAction SilentlyContinue
+          Get-ChildItem C:/seed/*.png -ErrorAction SilentlyContinue | ForEach-Object { [IO.File]::WriteAllText("$PWD/dist/launcher-v8/$($_.Name).b64", [Convert]::ToBase64String([IO.File]::ReadAllBytes($_.FullName))) }
+          git add dist; git commit -m "Add arabic seed evidence" 2>&1 | Out-Null; git push 2>&1 | Out-Null
+          Get-Content C:/seed/log.txt
