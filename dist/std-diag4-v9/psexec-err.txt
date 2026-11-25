@@ -1,0 +1,4 @@
+Connecting to local system...Couldn't install PSEXESVC service:
+The handle is invalid.
+Connecting to local system...Starting PSEXESVC service on local system...Copying authentication key to runnervmmklod...Connecting with PsExec service on runnervmmklod...Starting C:\outB\launch.cmd on runnervmmklod...
+C:\outB\launch.cmd started on runnervmmklod with process ID 652.
