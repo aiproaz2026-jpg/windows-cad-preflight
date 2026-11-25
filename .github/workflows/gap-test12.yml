@@ -451,6 +451,7 @@ jobs:
           Start-Sleep 4; Get-Process FreeCAD -ErrorAction SilentlyContinue | Stop-Process -Force
           exit 0
       - name: Commit evidence
+        if: always()
         shell: bash
         run: |
           git config user.name ci; git config user.email ci@users.noreply.github.com
@@ -460,3 +461,15 @@ jobs:
           git add dist
           git commit -m "Add fittings panel GUI evidence" || true
           git push
+      - name: Gate verdict (fails on timeout, absent result, macro error or any failed step)
+        if: always()
+        shell: pwsh
+        run: |
+          $f = 'C:/fit12/gui-result12.json'
+          if (-not (Test-Path $f)) { throw 'GATE FAIL: no result file written (macro hung or FreeCAD failed to start)' }
+          $r = Get-Content $f -Raw -Encoding utf8 | ConvertFrom-Json
+          if (-not $r.done) { throw 'GATE FAIL: macro did not finish' }
+          if ($r.error) { throw 'GATE FAIL: macro error recorded' }
+          $bad = @($r.steps.PSObject.Properties | Where-Object { $_.Value.PSObject.Properties.Name -contains 'ok' -and -not $_.Value.ok } | ForEach-Object { $_.Name })
+          if ($bad.Count -gt 0) { throw ('GATE FAIL: failed steps: ' + ($bad -join ', ')) }
+          "GATE PASS: macro finished, no error, all recorded steps ok"
