@@ -1,0 +1,327 @@
+name: Product gap test 8 on installed v5 (GUI, save/open, undo, parts, viewport, limits)
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  gap:
+    runs-on: windows-2022
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download private v5 installer and install silently
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download standalone-v5 -p DeltaEngineering-Setup-v5.exe -D C:/out
+          (Get-FileHash C:/out/DeltaEngineering-Setup-v5.exe -Algorithm SHA256).Hash
+          $p = Start-Process C:/out/DeltaEngineering-Setup-v5.exe -ArgumentList '/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART','/DIR=C:\DeltaTest' -Wait -PassThru
+          "setup exit $($p.ExitCode)"
+      - name: Add Mesa llvmpipe software OpenGL (CI only)
+        shell: pwsh
+        run: |
+          $rel = Invoke-RestMethod https://api.github.com/repos/pal1000/mesa-dist-win/releases/latest
+          $a = $rel.assets | Where-Object { $_.name -match 'release-msvc\.7z$' } | Select-Object -First 1
+          Invoke-WebRequest $a.browser_download_url -OutFile C:/mesa.7z
+          7z x C:/mesa.7z -oC:/mesa -y | Out-Null
+          $exe = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
+          $bin = $exe.Directory.FullName
+          Copy-Item C:/mesa/x64/opengl32.dll $bin -Force
+          foreach ($n in 'libgallium_wgl.dll','libglapi.dll') { if (Test-Path "C:/mesa/x64/$n") { Copy-Item "C:/mesa/x64/$n" $bin -Force } }
+      - name: Try larger display resolution
+        shell: pwsh
+        run: |
+          Add-Type @"
+          using System; using System.Runtime.InteropServices;
+          public class Disp {
+            [StructLayout(LayoutKind.Sequential, CharSet=CharSet.Ansi)] public struct DEVMODE {
+              [MarshalAs(UnmanagedType.ByValTStr, SizeConst=32)] public string dmDeviceName;
+              public short dmSpecVersion, dmDriverVersion, dmSize, dmDriverExtra; public int dmFields;
+              public int dmPositionX, dmPositionY, dmDisplayOrientation, dmDisplayFixedOutput;
+              public short dmColor, dmDuplex, dmYResolution, dmTTOption, dmCollate;
+              [MarshalAs(UnmanagedType.ByValTStr, SizeConst=32)] public string dmFormName;
+              public short dmLogPixels; public int dmBitsPerPel, dmPelsWidth, dmPelsHeight, dmDisplayFlags, dmDisplayFrequency;
+              public int dmICMMethod, dmICMIntent, dmMediaType, dmDitherType, dmReserved1, dmReserved2, dmPanningWidth, dmPanningHeight; }
+            [DllImport("user32.dll", CharSet=CharSet.Ansi)] public static extern bool EnumDisplaySettings(string d, int i, ref DEVMODE m);
+            [DllImport("user32.dll", CharSet=CharSet.Ansi)] public static extern int ChangeDisplaySettings(ref DEVMODE m, int f);
+          }
+          "@
+          $m = New-Object Disp+DEVMODE; $m.dmSize = [Runtime.InteropServices.Marshal]::SizeOf($m)
+          $modes = @(); $i = 0
+          while ([Disp]::EnumDisplaySettings($null, $i, [ref]$m)) { $modes += "$($m.dmPelsWidth)x$($m.dmPelsHeight)"; $i++ }
+          "modes: " + (($modes | Sort-Object -Unique) -join ' ')
+          foreach ($want in @(@(1920,1080), @(1366,768))) {
+            [void][Disp]::EnumDisplaySettings($null, -1, [ref]$m)
+            $m.dmPelsWidth = $want[0]; $m.dmPelsHeight = $want[1]; $m.dmFields = 0x180000
+            $r = [Disp]::ChangeDisplaySettings([ref]$m, 0)
+            "try $($want[0])x$($want[1]) result $r"
+            if ($r -eq 0) { break }
+          }
+          Add-Type -AssemblyName System.Windows.Forms
+          $s = [Windows.Forms.Screen]::PrimaryScreen.Bounds; "screen now $($s.Width)x$($s.Height)"
+          exit 0
+      - name: Drive gap tests
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force C:/shots8 | Out-Null
+          $macro = @'
+          import os, json, time, traceback, ctypes
+          from ctypes import wintypes
+          OUT = 'C:/shots8'
+          os.makedirs(OUT, exist_ok=True)
+          res = {'steps': {}, 'dialogs': [], 'done': False}
+          def save():
+              open(OUT + '/gui-result8.json', 'w', encoding='utf-8').write(json.dumps(res, ensure_ascii=False, indent=1, default=str))
+          def rss_mb():
+              ctypes.windll.kernel32.GetCurrentProcess.restype = wintypes.HANDLE
+              ctypes.windll.psapi.GetProcessMemoryInfo.argtypes = [wintypes.HANDLE, ctypes.c_void_p, wintypes.DWORD]
+              class PMC(ctypes.Structure):
+                  _fields_ = [('cb', wintypes.DWORD), ('PageFaultCount', wintypes.DWORD), ('PeakWorkingSetSize', ctypes.c_size_t), ('WorkingSetSize', ctypes.c_size_t), ('QuotaPeakPagedPoolUsage', ctypes.c_size_t), ('QuotaPagedPoolUsage', ctypes.c_size_t), ('QuotaPeakNonPagedPoolUsage', ctypes.c_size_t), ('QuotaNonPagedPoolUsage', ctypes.c_size_t), ('PagefileUsage', ctypes.c_size_t), ('PeakPagefileUsage', ctypes.c_size_t)]
+              c = PMC(); c.cb = ctypes.sizeof(c)
+              ctypes.windll.psapi.GetProcessMemoryInfo(ctypes.windll.kernel32.GetCurrentProcess(), ctypes.byref(c), c.cb)
+              return round(c.WorkingSetSize / 1048576), round(c.PeakWorkingSetSize / 1048576)
+          try:
+              import FreeCAD as App, FreeCADGui as Gui
+              from PySide import QtCore, QtWidgets
+              from PySide6 import QtTest
+              import DeltaEngineering.core, DeltaEngineering.domain
+              from DeltaEngineering.gui import register
+              if 'DeltaWorkbench' not in Gui.listWorkbenches(): register()
+              Gui.activateWorkbench('DeltaWorkbench')
+              mw = Gui.getMainWindow()
+              counter = [0]
+              def handle():
+                  w = QtWidgets.QApplication.activeModalWidget()
+                  if not w: return
+                  counter[0] += 1
+                  info = {'n': counter[0], 'cls': type(w).__name__, 'title': w.windowTitle()}
+                  try:
+                      w.grab().save(OUT + '/dlg8-%02d.png' % counter[0])
+                      if isinstance(w, QtWidgets.QInputDialog):
+                          info['label'] = w.labelText(); w.setTextValue('2 mm'); w.accept()
+                      elif isinstance(w, QtWidgets.QMessageBox):
+                          info['text'] = w.text()
+                          yes = [b for b in w.findChildren(QtWidgets.QPushButton) if b.text() in ('نعم', 'Yes', '&Yes')]
+                          if yes: yes[0].click()
+                          else: w.accept()
+                      elif isinstance(w, QtWidgets.QFileDialog):
+                          info['filedialog'] = True; w.reject()
+                      else:
+                          w.accept()
+                  except Exception:
+                      info['err'] = traceback.format_exc()
+                  res['dialogs'].append(info); save()
+              t = QtCore.QTimer(); t.setInterval(400); t.timeout.connect(handle); t.start()
+              def shot(name):
+                  try: mw.grab().save(OUT + '/' + name + '.png')
+                  except Exception: res['steps'][name + '_shot_err'] = traceback.format_exc()
+              def run(name, fn):
+                  t0 = time.time()
+                  try:
+                      out = fn(); res['steps'][name] = {'ok': True, 'secs': round(time.time() - t0, 2), 'detail': out}
+                  except Exception:
+                      res['steps'][name] = {'ok': False, 'secs': round(time.time() - t0, 2), 'detail': traceback.format_exc()}
+                  save()
+              def pump(n=5):
+                  for _ in range(n): QtWidgets.QApplication.processEvents()
+              def step():
+                  from DeltaEngineering.drafting_panel import show_panel
+                  S = {}
+                  W = QtWidgets
+                  def sel(*objs):
+                      Gui.Selection.clearSelection()
+                      for o in objs: Gui.Selection.addSelection(o)
+                  def click(panel, text):
+                      b = [x for x in panel.findChildren(W.QPushButton) if x.text() == text]
+                      assert b, 'button not found: ' + text
+                      b[0].click(); pump()
+                  def viewport():
+                      mdi = mw.findChild(W.QMdiArea); sub = mdi.activeSubWindow()
+                      cand = [w for w in sub.findChildren(W.QWidget) if 'GLWidget' in w.metaObject().className() and w.isVisible()]
+                      return cand[-1]
+                  def layout_state(tag):
+                      vw = viewport()
+                      docks = [{'name': d.objectName(), 'w': d.width(), 'h': d.height(), 'floating': d.isFloating()} for d in mw.findChildren(W.QDockWidget) if d.isVisible()]
+                      scr = mw.screen().geometry()
+                      return {'screen': [scr.width(), scr.height()], 'window': [mw.width(), mw.height()], 'viewport_px': [vw.width(), vw.height()], 'docks': docks}
+                  def metrics(root):
+                      bad = []; n = 0; overlaps = []
+                      for w in root.findChildren(W.QWidget):
+                          if not w.isVisible() or not isinstance(w, (W.QPushButton, W.QLabel, W.QLineEdit, W.QComboBox, W.QCheckBox, W.QSpinBox, W.QDoubleSpinBox)): continue
+                          n += 1
+                          h = w.height(); wd = w.width(); txt = getattr(w, 'text', lambda: '')() if hasattr(w, 'text') else ''
+                          if isinstance(w, W.QLabel) and w.wordWrap():
+                              need = w.heightForWidth(wd) if w.hasHeightForWidth() else w.sizeHint().height()
+                          else:
+                              need = w.sizeHint().height()
+                          tw = w.fontMetrics().horizontalAdvance(txt) if (txt and not (isinstance(w, W.QLabel) and w.wordWrap())) else 0
+                          short = h < need - 1
+                          narrow = isinstance(w, W.QPushButton) and tw + 12 > wd
+                          if short or narrow: bad.append({'cls': type(w).__name__, 'text': txt[:40], 'h': h, 'need_h': need, 'w': wd, 'text_w': tw, 'short': short, 'narrow': narrow})
+                      for par in root.findChildren(W.QWidget):
+                          kids = [k for k in par.children() if isinstance(k, W.QPushButton) and k.isVisible()]
+                          for i in range(len(kids)):
+                              for j in range(i + 1, len(kids)):
+                                  if kids[i].geometry().intersects(kids[j].geometry()):
+                                      overlaps.append([kids[i].text()[:25], kids[j].text()[:25]])
+                      return {'checked_widgets': n, 'clipped_count': len(bad), 'clipped_first': bad[:14], 'overlapping_buttons': overlaps[:10], 'overlap_count': len(overlaps)}
+                  def s_layout():
+                      Gui.runCommand('Delta_NewProject'); pump(10)
+                      out = {'A_start': layout_state('A')}; shot('func8-A-start')
+                      p = show_panel(); S['p'] = p; pump(20)
+                      out['B_drafting_panel'] = layout_state('B'); shot('func8-B-drafting')
+                      pp = p.profiles
+                      for ti in range(p.tabs.count()):
+                          p.tabs.setCurrentIndex(ti); pump(10)
+                          out['tab%d_%s' % (ti, p.tabs.tabText(ti))] = metrics(p)
+                      p.tabs.setCurrentIndex(2); pump(10)
+                      for ci in range(4):
+                          pp.category.setCurrentIndex(ci); pump(10)
+                          out['profile_cat%d' % ci] = metrics(p)
+                          pp.grab().save(OUT + '/func8-profile-content-cat%d.png' % ci)
+                          out['profile_cat%d' % ci]['content_size'] = [pp.width(), pp.height()]
+                          out['profile_cat%d' % ci]['content_min_hint'] = [pp.minimumSizeHint().width(), pp.minimumSizeHint().height()]
+                          shot('func8-C-parts-cat%d' % ci)
+                      from DeltaEngineering.panel import show_panel as show_el
+                      e = show_el(); pump(20); out['D_electrical_panel_also_open'] = layout_state('D'); shot('func8-D-both-panels')
+                      out['electrical_metrics'] = metrics(e)
+                      return out
+                  run('layout_and_clipping_metrics', s_layout)
+                  def s_step():
+                      import DeltaEngineering.profile_panel as PPmod
+                      from DeltaEngineering.interchange import export_step, import_step
+                      d = App.ActiveDocument; p = S['p']; pp = p.profiles; out = {}
+                      pp.fields['radius'].setText('50 mm'); click(pp, 'إنشاء دائرة دقيقة')
+                      pp.fields['height'].setText('100 mm'); click(pp, 'بروز من المقطع المحدد')
+                      E = Gui.Selection.getSelection()[0]; v0 = E.Shape.Volume
+                      os.makedirs('C:/Users/Public/اختبار', exist_ok=True)
+                      direct = 'C:/Users/Public/اختبار/مباشر.step'
+                      export_step(d, [E], direct); out['direct_export_bytes'] = os.path.getsize(direct)
+                      imp = import_step(d, direct); out['direct_import_volume'] = round(imp.Shape.Volume, 3); out['source_volume'] = round(v0, 3)
+                      path = 'C:/Users/Public/اختبار/قطعة.step'
+                      class FD:
+                          @staticmethod
+                          def getSaveFileName(*a, **k): return (path, 'STEP (*.step)')
+                          @staticmethod
+                          def getOpenFileName(*a, **k): return (path, 'STEP (*.step *.stp)')
+                      class Shim:
+                          def __getattr__(self, n): return getattr(W, n)
+                          QFileDialog = FD
+                      orig = PPmod.QtWidgets; PPmod.QtWidgets = Shim()
+                      try:
+                          sel(E); click(pp, 'تصدير المحدد STEP'); out['panel_status_after_export'] = p.status.text()
+                          out['panel_export_exists'] = os.path.exists(path)
+                          if out['panel_export_exists']:
+                              out['panel_export_bytes'] = os.path.getsize(path)
+                              n0 = len(d.Objects); click(pp, 'استيراد STEP'); out['objects_added_by_panel_import'] = len(d.Objects) - n0
+                              sl = Gui.Selection.getSelection(); out['panel_imported_volume'] = round(sl[0].Shape.Volume, 3) if sl else None
+                              out['panel_status_after_import'] = p.status.text()
+                      finally:
+                          PPmod.QtWidgets = orig
+                      assert out['panel_export_exists'], out
+                      return out
+                  run('step_roundtrip_direct_and_via_panel', s_step)
+                  def s_view():
+                      d = App.ActiveDocument; v = Gui.ActiveDocument.ActiveView; v.viewAxonometric(); v.fitAll(); pump(20)
+                      vw = viewport(); out = {'viewport': [vw.width(), vw.height()]}
+                      E = [o for o in d.Objects if hasattr(o, 'Shape') and not o.Shape.isNull() and o.Shape.Volume > 1e5][0]
+                      c = E.Shape.BoundBox.Center
+                      def proj(): 
+                          x, y = v.getPointOnViewport(c); return (round(x, 1), round(y, 1))
+                      def ev(t, pos, btn, btns):
+                          from PySide6 import QtGui
+                          e = QtGui.QMouseEvent(t, QtCore.QPointF(pos), QtCore.QPointF(vw.mapToGlobal(pos)), btn, btns, QtCore.Qt.NoModifier)
+                          QtWidgets.QApplication.sendEvent(vw, e); pump(2)
+                      def drag(btn, btns_during, dx, dy, steps=12):
+                          ctr = vw.rect().center(); T = QtCore.QEvent
+                          ev(T.MouseButtonPress, ctr, btn, btn)
+                          if btns_during != btn:
+                              ev(T.MouseButtonPress, ctr, QtCore.Qt.RightButton, btns_during)
+                          for i in range(1, steps + 1):
+                              ev(T.MouseMove, ctr + QtCore.QPoint(dx * i // steps, dy * i // steps), QtCore.Qt.NoButton, btns_during)
+                          end = ctr + QtCore.QPoint(dx, dy)
+                          if btns_during != btn: ev(T.MouseButtonRelease, end, QtCore.Qt.RightButton, btn)
+                          ev(T.MouseButtonRelease, end, btn, QtCore.Qt.NoButton); pump(10)
+                      def cam(): 
+                          return [round(x, 4) for x in v.getCameraOrientation().Q]
+                      out['navigation_style_initial'] = v.getNavigationType() if hasattr(v, 'getNavigationType') else None
+                      p0 = proj(); c0 = cam()
+                      drag(QtCore.Qt.MiddleButton, QtCore.Qt.MiddleButton, 80, 40); p1 = proj()
+                      out['cad_pan_middle_drag'] = {'proj_before': p0, 'proj_after': p1, 'moved': p0 != p1}
+                      c1 = cam(); drag(QtCore.Qt.MiddleButton, QtCore.Qt.MiddleButton | QtCore.Qt.RightButton, 100, 50)
+                      c2 = cam(); out['cad_rotate_mmb_plus_rmb'] = {'before': c1, 'after': c2, 'changed': c1 != c2}
+                      from PySide6 import QtGui
+                      s0 = v.getCameraNode().getField('height').getValue() if hasattr(v.getCameraNode(), 'getField') else None
+                      z0 = proj()
+                      for _ in range(5):
+                          we = QtGui.QWheelEvent(QtCore.QPointF(vw.rect().center()), QtCore.QPointF(vw.mapToGlobal(vw.rect().center())), QtCore.QPoint(0, 0), QtCore.QPoint(0, 120), QtCore.Qt.NoButton, QtCore.Qt.NoModifier, QtCore.Qt.NoScrollPhase, False)
+                          QtWidgets.QApplication.sendEvent(vw, we); pump(3)
+                      pump(10); z1 = proj()
+                      out['wheel_zoom'] = {'proj_before': z0, 'proj_after': z1, 'changed': z0 != z1}
+                      shot('func8-view-after-cad-nav')
+                      try:
+                          v.setNavigationType('Gui::OpenInventorNavigationStyle'); pump(5)
+                          v.viewAxonometric(); v.fitAll(); pump(10); c3 = cam()
+                          drag(QtCore.Qt.LeftButton, QtCore.Qt.LeftButton, 100, 40); c4 = cam()
+                          out['openinventor_rotate_left_drag'] = {'before': c3, 'after': c4, 'changed': c3 != c4}
+                          shot('func8-view-after-oi-rotate')
+                      except Exception:
+                          out['openinventor_err'] = traceback.format_exc()[-300:]
+                      return out
+                  run('viewport_navigation_real_events', s_view)
+                  def s_plant():
+                      Gui.runCommand('Delta_NewProject'); d = App.ActiveDocument
+                      from DeltaEngineering.core import PipeRoute, Device
+                      out = {}
+                      for i in range(150):
+                          o = d.addObject('PartDesign::FeaturePython', 'PipeRoute'); o.Label = 'P%03d' % i
+                          PipeRoute(o, [App.Vector(0, i * 150, 0), App.Vector(2000, i * 150, 0), App.Vector(2000, i * 150, 800)], 100, 5)
+                      for i in range(100):
+                          o = d.addObject('PartDesign::FeaturePython', 'ElectricalDevice'); o.Label = 'D%03d' % i
+                          Device(o, 'D%03d' % i, App.Vector(i * 300, -500, 0))
+                      d.recompute(); v = Gui.ActiveDocument.ActiveView
+                      pipes = [o for o in d.Objects if o.Label.startswith('P0') or o.Label.startswith('P1')]
+                      vo = pipes[0].ViewObject
+                      out['pipe_default_color'] = [round(x, 2) for x in vo.ShapeColor[:3]]; out['pipe_display_mode'] = vo.DisplayMode
+                      out['pipe_bbox'] = [round(x) for x in (pipes[0].Shape.BoundBox.XLength, pipes[0].Shape.BoundBox.YLength, pipes[0].Shape.BoundBox.ZLength)]
+                      bb = App.BoundBox()
+                      for o in d.Objects:
+                          if hasattr(o, 'Shape') and not o.Shape.isNull(): bb.add(o.Shape.BoundBox)
+                      out['model_bbox_mm'] = [round(bb.XLength), round(bb.YLength), round(bb.ZLength)]
+                      for o in d.Objects:
+                          if hasattr(o, 'Position') and hasattr(o, 'Tag'): pass
+                      v.viewAxonometric(); v.fitAll(); pump(30); shot('func8-plant-fitAll')
+                      sel(*pipes); Gui.SendMsgToActiveView('ViewSelection'); pump(30); Gui.Selection.clearSelection(); pump(10); shot('func8-plant-fit-pipes')
+                      out['viewport_px'] = [viewport().width(), viewport().height()]
+                      for o in pipes: o.ViewObject.ShapeColor = (0.05, 0.68, 0.64)
+                      pump(20); shot('func8-plant-fit-pipes-colored')
+                      return out
+                  run('plant_rendering_diagnosis', s_plant)
+                  res['done'] = True; save()
+              QtCore.QTimer.singleShot(6000, step)
+          except Exception:
+              res['error'] = traceback.format_exc(); res['done'] = True; save()
+          '@
+          $exe = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
+          $root = $exe.Directory.Parent.FullName
+          Set-Content "$root\DeltaGuiTest8.FCMacro" $macro -Encoding utf8
+          $env:GALLIUM_DRIVER = 'llvmpipe'
+          $env:MESA_GL_VERSION_OVERRIDE = '4.5'
+          Start-Process $exe.FullName -ArgumentList "`"$root\DeltaGuiTest8.FCMacro`""
+          $t = 0
+          while ($t -lt 1500) { Start-Sleep 5; $t += 5; if ((Test-Path C:/shots8/gui-result8.json) -and (Select-String -Path C:/shots8/gui-result8.json -Pattern '"done": true' -Quiet)) { break } }
+          Start-Sleep 3
+          if (Test-Path C:/shots8/gui-result8.json) { Get-Content C:/shots8/gui-result8.json } else { 'no result json' }
+          exit 0
+      - name: Commit evidence
+        shell: bash
+        run: |
+          git config user.name ci; git config user.email ci@users.noreply.github.com
+          git pull --rebase || true
+          mkdir -p dist/v8gap
+          cp /c/shots8/*.png /c/shots8/gui-result8.json dist/v8gap/ || true
+          for f in dist/v8gap/func8-A-start.png dist/v8gap/func8-B-drafting.png dist/v8gap/func8-C-parts-cat1.png dist/v8gap/func8-D-both-panels.png dist/v8gap/func8-plant-fit-pipes-colored.png dist/v8gap/func8-view-after-oi-rotate.png dist/v8gap/func8-profile-content-cat1.png; do [ -f $f ] && base64 -w0 $f > $f.b64; done
+          git add dist
+          git commit -m "Add gap test evidence" || true
+          git push
