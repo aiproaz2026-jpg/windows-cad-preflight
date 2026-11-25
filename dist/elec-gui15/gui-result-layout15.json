@@ -1,0 +1,202 @@
+{
+ "stage": "export done",
+ "P_paired_flag": [
+  true,
+  true,
+  false
+ ],
+ "P_contactor_y": {
+  "1": 28.0,
+  "2": 28.0,
+  "3": 14.0,
+  "4": 14.0,
+  "5": 0.0,
+  "6": 0.0,
+  "A1": -14.0,
+  "A2": -28.0
+ },
+ "P_overload_y": {
+  "1": 14.0,
+  "2": 14.0,
+  "3": 0.0,
+  "4": 0.0,
+  "5": -14.0,
+  "6": -14.0
+ },
+ "P_legacy_contactor_y": {
+  "1": 49.0,
+  "2": 35.0,
+  "3": 21.0,
+  "4": 7.0,
+  "5": -7.0,
+  "6": -21.0,
+  "A1": -35.0,
+  "A2": -49.0
+ },
+ "P_reopen_flags": [
+  true,
+  true,
+  null
+ ],
+ "P_reopen_same": true,
+ "route_count": 0,
+ "workbench": "DeltaWorkbench",
+ "workbench_screenshot": 58568,
+ "A_overlay_present_fit": true,
+ "D_docks": [
+  [
+   "Selection view",
+   "Selection View",
+   false,
+   false,
+   [
+    0,
+    0,
+    210,
+    127
+   ]
+  ],
+  [
+   "Model",
+   "Model",
+   true,
+   false,
+   [
+    0,
+    130,
+    260,
+    567
+   ]
+  ],
+  [
+   "Python console",
+   "Python Console",
+   false,
+   false,
+   [
+    0,
+    0,
+    100,
+    92
+   ]
+  ],
+  [
+   "Report view",
+   "Report View",
+   false,
+   false,
+   [
+    0,
+    0,
+    100,
+    92
+   ]
+  ],
+  [
+   "Tasks",
+   "Tasks",
+   false,
+   false,
+   [
+    0,
+    187,
+    380,
+    82
+   ]
+  ]
+ ],
+ "D_floating_visible_toplevels": [],
+ "T_toggle_actions": 1,
+ "T_toolbars_with_toggle": [
+  "المعرّفات"
+ ],
+ "T_action_text": [
+  "المعرّفات"
+ ],
+ "T_cmd_registered": true,
+ "T_overlay_after_off": false,
+ "T_overlay_after_on": true,
+ "T_param_after": true,
+ "M_mdi": true,
+ "M_sub": true,
+ "M_cands": [
+  [
+   "QMainWindow",
+   407046
+  ],
+  [
+   "QStackedWidget",
+   407046
+  ],
+  [
+   "QGraphicsView",
+   407046
+  ],
+  [
+   "QWidget",
+   407046
+  ]
+ ],
+ "M_viewport": "QWidget",
+ "M_widget": "QWidget",
+ "M_cam_moved_mid": [
+  [
+   4595.0,
+   20.2,
+   1287.5
+  ],
+  [
+   4306.9,
+   128.2,
+   1287.5
+  ]
+ ],
+ "M_overlay_after_mid": true,
+ "M_cam_moved_right": [
+  [
+   4306.9,
+   128.2,
+   1287.5
+  ],
+  [
+   4306.9,
+   128.2,
+   1287.5
+  ]
+ ],
+ "M_overlay_after_right": true,
+ "M_cam_after_wheel": [
+  [
+   4595.0,
+   20.2,
+   1287.5
+  ],
+  [
+   4306.9,
+   128.2,
+   1287.5
+  ]
+ ],
+ "M_overlay_after_wheel": true,
+ "idlog": "1906.53 toggle toolbar created\n1916.28 refresh doc=GuiElec children=8\n1916.29 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n1916.29 refresh doc=GuiElec children=9\n1916.30 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n1916.66 hid stray Tasks dock outside layout\n1925.15 refresh doc=GuiElec children=9\n1929.22 refresh doc=GuiElec children=8\n1929.24 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n",
+ "C_route_count_after_move": 0,
+ "netlist_same_after_move": true,
+ "D_overlay_present_after_reopen": true,
+ "idlog2": "1906.53 toggle toolbar created\n1916.28 refresh doc=GuiElec children=8\n1916.29 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n1916.29 refresh doc=GuiElec children=9\n1916.30 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n1916.66 hid stray Tasks dock outside layout\n1925.15 refresh doc=GuiElec children=9\n1929.22 refresh doc=GuiElec children=8\n1929.24 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n1950.51 refresh doc=GuiElec children=9\n1950.52 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n1950.62 refresh doc=GuiElec children=9\n1950.63 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n1956.64 hid stray Tasks dock outside layout\n1956.64 refresh doc=GuiElec children=8\n1956.65 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n1956.65 refresh doc=GuiElec children=9\n1956.65 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n",
+ "D_netlist_same_after_reopen": true,
+ "E_idle_rebuilds_5s": 0,
+ "E_undo_restores_position": true,
+ "E_redo_applies": true,
+ "F_overlay_second_doc": true,
+ "G_overlay_first_doc_after_close": true,
+ "G_idle_rebuilds_5s": 0,
+ "log_errors": 0,
+ "log_refreshes_total": 20,
+ "export_uses_terminal_side": false,
+ "export_return": "{'source_signature': 'a13e30e02c1ff38764da3e4d67638627d35c01ce7d406e9b955249a426b4edc3', 'centerline_mm': 0, 'wire_count': 9, 'synchronous_projection': True}",
+ "sizes": [
+  12411,
+  17171
+ ],
+ "done": true
+}
