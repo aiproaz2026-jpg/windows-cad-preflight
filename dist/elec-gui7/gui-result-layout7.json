@@ -1,0 +1,18 @@
+{
+ "stage": "export done",
+ "route_count": 0,
+ "workbench": "DeltaWorkbench",
+ "workbench_screenshot": 59336,
+ "A_overlay_present_fit": true,
+ "C_route_count_after_move": 0,
+ "netlist_same_after_move": true,
+ "D_overlay_present_after_reopen": true,
+ "D_netlist_same_after_reopen": true,
+ "export_uses_terminal_side": false,
+ "export_return": "{'source_signature': '0b5307ee42fb89b7cac5f97253b091e08c5f72841181cfd6da156c6316c7bd8e', 'centerline_mm': 0, 'wire_count': 9, 'synchronous_projection': True}",
+ "sizes": [
+  12411,
+  17060
+ ],
+ "done": true
+}
