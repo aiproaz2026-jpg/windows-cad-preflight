@@ -38,7 +38,9 @@ jobs:
           Get-ChildItem C:\DeltaAscii -Depth 1 | Select-Object Name | Out-File C:/diag/root-listing.txt
           Get-ChildItem C:\DeltaAscii -Recurse -Include *.cfg,*.FCParam -ErrorAction SilentlyContinue | Select-Object FullName | Out-File C:/diag/cfg-in-install.txt
           $hits = Get-ChildItem C:\DeltaAscii\bin,C:\DeltaAscii\Mod -Recurse -Include Start*.dll,Start*.pyd,Gui*.dll -ErrorAction SilentlyContinue
-          foreach ($h in $hits) { $b = [IO.File]::ReadAllBytes($h.FullName); $t = [Text.Encoding]::ASCII.GetString($b); foreach ($m in [regex]::Matches($t, '(FirstStart|FirstTime|ShowOnStartup|AutoloadModule|StartWorkbench|ShowTipOfTheDay|TipOfTheDay|ShowSplash|FirstRun)[A-Za-z]*')) { "$($h.Name): $($m.Value)" } } | Sort-Object -Unique | Out-File C:/diag/param-strings.txt
+          $outl = @()
+          foreach ($h in $hits) { $b = [IO.File]::ReadAllBytes($h.FullName); $t = [Text.Encoding]::ASCII.GetString($b); foreach ($m in [regex]::Matches($t, '(FirstStart|FirstTime|ShowOnStartup|AutoloadModule|StartWorkbench|ShowTipOfTheDay|TipOfTheDay|ShowSplash|FirstRun)[A-Za-z]*')) { $outl += "$($h.Name): $($m.Value)" } }
+          $outl | Sort-Object -Unique | Out-File C:/diag/param-strings.txt
           $env:GALLIUM_DRIVER = 'llvmpipe'; $env:MESA_GL_VERSION_OVERRIDE = '4.5'
           $pr = Start-Process C:\DeltaAscii\bin\FreeCAD.exe -ArgumentList '"C:\DeltaAscii\LaunchDelta.FCMacro"' -WorkingDirectory C:\DeltaAscii -PassThru
           Start-Sleep 50
