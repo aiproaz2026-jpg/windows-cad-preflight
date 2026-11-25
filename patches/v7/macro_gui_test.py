@@ -17,6 +17,9 @@ try:
     import FreeCAD as App, FreeCADGui as Gui
     from PySide import QtCore, QtWidgets
     from PySide6 import QtTest
+    import importlib.util
+    _spec = importlib.util.find_spec('DeltaEngineering'); _pkg = list(_spec.submodule_search_locations)[0]
+    _ns = {}; exec(open(_pkg + '/core_patches.py', encoding='utf-8-sig').read(), _ns); res['core_patches'] = _ns['apply'](_pkg)
     import DeltaEngineering.core, DeltaEngineering.domain
     from DeltaEngineering.gui import register
     if 'DeltaWorkbench' not in Gui.listWorkbenches(): register()
@@ -276,8 +279,28 @@ try:
             out['bboxes'] = {o.Label: [round(v, 1) for v in (o.Shape.BoundBox.XMin, o.Shape.BoundBox.YMin, o.Shape.BoundBox.XMax, o.Shape.BoundBox.YMax)] for o in (Q, K, O, M)}
             out['wire_shape_lengths'] = [round(w.Shape.Length, 1) for w in wires]
             out['vis'] = {o.Label: bool(o.ViewObject.Visibility) for o in (Q, K, O, M)}
-            pump(40); Gui.updateGui()
-            Gui.activeDocument().activeView().saveImage(OUT + '/fit12-G-view-save.png', 1100, 700, 'White')
+            diag = {}
+            vo = Q.ViewObject
+            diag['display_modes'] = list(vo.listDisplayModes()); diag['display_mode'] = vo.DisplayMode; diag['shape_type'] = Q.Shape.ShapeType; diag['edges'] = len(Q.Shape.Edges)
+            diag['type_id'] = Q.TypeId; diag['vo_type'] = type(vo).__name__; diag['vo_visible'] = bool(vo.Visibility)
+            diag['camera'] = Gui.activeDocument().activeView().getCameraType()
+            import Part
+            ctl = d.addObject('Part::Feature', 'CtlLine'); ctl.Shape = Part.makeLine(App.Vector(X0, 100, 0), App.Vector(X0 + 400, 100, 0)); d.recompute()
+            diag['ctl_edges'] = len(ctl.Shape.Edges)
+            Gui.Selection.clearSelection()
+            for o in (Q, K, O, M, ctl): Gui.Selection.addSelection(o)
+            Gui.SendMsgToActiveView('ViewSelection'); pump(30); Gui.Selection.clearSelection(); pump(10); shot('fit12-G1-with-control-line')
+            for mode in ('Wireframe', 'Flat Lines'):
+                try:
+                    for o in (Q, K, O, M): o.ViewObject.DisplayMode = mode
+                    pump(20); shot('fit12-G2-' + mode.replace(' ', ''))
+                except Exception as ex: diag['mode_err_' + mode] = str(ex)
+            Gui.activeDocument().activeView().viewIsometric(); Gui.SendMsgToActiveView('ViewFit'); pump(30); shot('fit12-G3-iso-fit-all')
+            out['diag'] = diag
+            out['overlay_titles_visible_after_view_steps'] = [w.isVisible() for w in mw.findChildren(W.QWidget, 'OverlayTitle') if w.parentWidget() is not None and w.parentWidget().objectName() == 'OverlayRight']
+            _td = mw.findChild(W.QDockWidget, 'Tasks'); out['tasks_dock_visible_after_view_steps'] = bool(_td and _td.isVisible())
+            d.removeObject(ctl.Name)
+
             for o in doc_visible_others: o.ViewObject.Visibility = True
             return_note = 'electrical view fitted on the 4 starter devices'
             return out
