@@ -119,7 +119,8 @@ jobs:
           Start-Transcript -Path C:/evidence/std-step.txt -Force | Out-Null
           try {
             $pw = 'Zx9!' + [guid]::NewGuid().ToString('N').Substring(0,12)
-            net user cadstd $pw /add
+            net user cadstd $pw /add /y 2>&1 | Out-String | Write-Host
+            net user cadstd | Out-String | Write-Host
             net localgroup Administrators cadstd /delete
             New-Item -ItemType Directory C:/outB -Force | Out-Null
             icacls C:/outB /grant 'cadstd:(OI)(CI)F' | Out-Null
@@ -135,9 +136,13 @@ jobs:
           "addon present: $(Test-Path "$t\Mod\DeltaEngineering\InitGui.py")"
           Stop-Transcript | Out-Null
           '@ | Set-Content C:/outB/run.ps1 -Encoding utf8
-            $cred = New-Object Management.Automation.PSCredential('.\cadstd', (ConvertTo-SecureString $pw -AsPlainText -Force))
-            $p = Start-Process powershell.exe -Credential $cred -LoadUserProfile -WorkingDirectory C:/outB -ArgumentList '-NoProfile','-ExecutionPolicy','Bypass','-File','C:\outB\run.ps1' -Wait -PassThru
-            "launcher exit $($p.ExitCode)"
+            $host_ = $env:COMPUTERNAME
+            schtasks /Create /TN cadstdrun /TR "powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\outB\run.ps1" /SC ONCE /ST 23:59 /RU "$host_\cadstd" /RP $pw /RL LIMITED /F 2>&1 | Out-String | Write-Host
+            schtasks /Run /TN cadstdrun 2>&1 | Out-String | Write-Host
+            $t = 0
+            while ($t -lt 420) { Start-Sleep 5; $t += 5; if ((Test-Path C:/outB/user.txt) -and (Select-String C:/outB/user.txt -Pattern 'addon present' -Quiet)) { break } }
+            "waited $t s"
+            schtasks /Query /TN cadstdrun /V /FO LIST 2>&1 | Select-String 'Last Result|Status' | Out-String | Write-Host
           } catch { "EXCEPTION: $_" }
           if (Test-Path C:/outB/user.txt) { Get-Content C:/outB/user.txt }
           Copy-Item C:/outB/user.txt C:/evidence/standard-user.txt -ErrorAction SilentlyContinue
