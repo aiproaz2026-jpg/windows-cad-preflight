@@ -1,0 +1,115 @@
+{
+ "steps": {
+  "layout_and_clipping_metrics": {
+   "ok": false,
+   "secs": 1.63,
+   "detail": "Traceback (most recent call last):\n  File \"C:/DeltaTest/DeltaGuiTest8.FCMacro\", line 54, in run\n    out = fn(); res['steps'][name] = {'ok': True, 'secs': round(time.time() - t0, 2), 'detail': out}\n          ^^^^\n  File \"C:/DeltaTest/DeltaGuiTest8.FCMacro\", line 115, in s_layout\n    out['profile_cat%d' % ci]['content_size'] = [pp.width(), pp.height()]\n                                                             ^^^^^^^^^^^\n  File \"C:\\DeltaTest\\Mod\\DeltaEngineering\\DeltaEngineering\\profile_panel.py\", line 66, in height\n    obj=self.selected();doc=self.panel.doc();height=length(self.fields['height'].text())\n        ^^^^^^^^^^^^^^^\n  File \"C:\\DeltaTest\\Mod\\DeltaEngineering\\DeltaEngineering\\profile_panel.py\", line 61, in selected\n    if len(selected)!=1:raise ValueError('Select exactly one profile or extrusion')\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: Select exactly one profile or extrusion\n"
+  },
+  "step_roundtrip_direct_and_via_panel": {
+   "ok": true,
+   "secs": 4.68,
+   "detail": {
+    "direct_export_bytes": 3509,
+    "direct_import_volume": 785398.163,
+    "source_volume": 785398.163,
+    "panel_status_after_export": "تم تصدير STEP والتحقق بإعادة قراءته، هندسة فقط بدون تاريخ التعديلات",
+    "panel_export_exists": true,
+    "panel_export_bytes": 3509,
+    "objects_added_by_panel_import": 1,
+    "panel_imported_volume": 785398.163,
+    "panel_status_after_import": "تم إنشاء / تحديث: قطعة.step"
+   }
+  },
+  "viewport_navigation_real_events": {
+   "ok": true,
+   "secs": 2.43,
+   "detail": {
+    "viewport": [
+     1128,
+     809
+    ],
+    "navigation_style_initial": "Gui::CADNavigationStyle",
+    "cad_pan_middle_drag": {
+     "proj_before": [
+      564,
+      405
+     ],
+     "proj_after": [
+      644,
+      364
+     ],
+     "moved": true
+    },
+    "cad_rotate_mmb_plus_rmb": {
+     "before": [
+      0.4247,
+      0.1759,
+      0.3399,
+      0.8205
+     ],
+     "after": [
+      0.3763,
+      -0.0065,
+      0.2814,
+      0.8827
+     ],
+     "changed": true
+    },
+    "wheel_zoom": {
+     "proj_before": [
+      638,
+      369
+     ],
+     "proj_after": [
+      638,
+      369
+     ],
+     "changed": false
+    },
+    "openinventor_rotate_left_drag": {
+     "before": [
+      0.4245,
+      0.1749,
+      0.3396,
+      0.8209
+     ],
+     "after": [
+      0.4247,
+      0.1759,
+      0.3399,
+      0.8205
+     ],
+     "changed": true
+    }
+   }
+  },
+  "plant_rendering_diagnosis": {
+   "ok": true,
+   "secs": 6.42,
+   "detail": {
+    "pipe_default_color": [
+     0.68,
+     0.71,
+     0.74
+    ],
+    "pipe_display_mode": "Flat Lines",
+    "pipe_bbox": [
+     2050,
+     99,
+     850
+    ],
+    "model_bbox_mm": [
+     29820,
+     22940,
+     850
+    ],
+    "viewport_px": [
+     1128,
+     809
+    ]
+   }
+  }
+ },
+ "dialogs": [],
+ "done": true
+}
