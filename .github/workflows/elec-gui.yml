@@ -1,0 +1,80 @@
+name: v12 electrical GUI PDF export on the published installer
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  gui:
+    runs-on: windows-2022
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download installer, verify SHA256, install, add Mesa (CI only)
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          New-Item -ItemType Directory C:/out,C:/seed -Force | Out-Null
+          foreach ($t in "standalone-v12-r1","standalone-v12-r2","standalone-v12-r3") { gh release download $t -p "DeltaEngineering-Setup-v12*.exe" -D C:/out; if ($LASTEXITCODE -eq 0) { break } }
+          $want = ((Get-Content dist/v12/DeltaEngineering-Setup-v12.exe.sha256 -Raw) -split '\s+')[0].ToLower()
+          $ok = $null
+          foreach ($f in Get-ChildItem C:/out -Filter "DeltaEngineering-Setup-v12*.exe") { if ((Get-FileHash $f.FullName -Algorithm SHA256).Hash.ToLower() -eq $want) { $ok = $f.FullName } }
+          if (-not $ok) { throw 'no downloaded asset matches the dist/v12 SHA256' }
+          "SHA256 MATCH $ok" | Tee-Object C:/seed/log.txt
+          $p = Start-Process $ok -ArgumentList '/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART' -Wait -PassThru
+          "setup exit $($p.ExitCode)" | Tee-Object -Append C:/seed/log.txt
+          $app = "$env:LOCALAPPDATA\Programs\DeltaEngineering"; $bin = "$app\bin"
+          Get-ChildItem $app -Directory | Select-Object -ExpandProperty Name | Tee-Object -Append C:/seed/log.txt
+          $rel = Invoke-RestMethod https://api.github.com/repos/pal1000/mesa-dist-win/releases/latest
+          $a = $rel.assets | Where-Object { $_.name -match 'release-msvc\.7z$' } | Select-Object -First 1
+          Invoke-WebRequest $a.browser_download_url -OutFile C:/mesa.7z
+          7z x C:/mesa.7z -oC:/mesa -y | Out-Null
+          Copy-Item C:/mesa/x64/opengl32.dll $bin -Force
+          foreach ($n in 'libgallium_wgl.dll','libglapi.dll') { if (Test-Path "C:/mesa/x64/$n") { Copy-Item "C:/mesa/x64/$n" $bin -Force } }
+      - name: GUI export, original export module then patched module
+        shell: pwsh
+        run: |
+          Add-Type -AssemblyName System.Windows.Forms,System.Drawing
+          $app = "$env:LOCALAPPDATA\Programs\DeltaEngineering"; $bin = "$app\bin"
+          $mt = [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String('aW1wb3J0IHN5cywgb3MsIGpzb24sIHRyYWNlYmFjawppbXBvcnQgRnJlZUNBRCBhcyBBcHAsIEZyZWVDQURHdWkKZnJvbSBQeVNpZGUgaW1wb3J0IFF0Q29yZQpPVVQgPSByIkBAT1VUQEAiOyBvcy5tYWtlZGlycyhPVVQsIGV4aXN0X29rPVRydWUpCnJlcyA9IHsic3RhZ2UiOiAic3RhcnQifQpkZWYgX3coKToKICAgIG9wZW4oT1VUICsgIi9ndWktcmVzdWx0Lmpzb24iLCAidyIsIGVuY29kaW5nPSJ1dGYtOCIpLndyaXRlKGpzb24uZHVtcHMocmVzLCBlbnN1cmVfYXNjaWk9RmFsc2UsIGluZGVudD0xKSkKZGVmIF9ydW4oKToKICAgIHRyeToKICAgICAgICBzeXMucGF0aC5pbnNlcnQoMCwgciJAQEFQUEBAIik7IHN5cy5wYXRoLmluc2VydCgwLCByIkBAQVBQQEAvRGVsdGFFbmdpbmVlcmluZyIpCiAgICAgICAgZnJvbSBEZWx0YUVuZ2luZWVyaW5nLnN5bWJvbHMgaW1wb3J0IGNyZWF0ZQogICAgICAgIGZyb20gRGVsdGFFbmdpbmVlcmluZy5kb21haW4gaW1wb3J0IGFkZF90ZXJtaW5hbF93aXJlCiAgICAgICAgZnJvbSBEZWx0YUVuZ2luZWVyaW5nLmVsZWN0cmljYWwgaW1wb3J0IHRlcm1pbmFsX2xheW91dCwgc2V0X3Rlcm1pbmFsX3NpZGVzCiAgICAgICAgZnJvbSBEZWx0YUVuZ2luZWVyaW5nIGltcG9ydCByb3V0ZWNoZWNrCiAgICAgICAgcmVzWyJzdGFnZSJdID0gImltcG9ydHMgb2siOyBfdygpCiAgICAgICAgUEFJUlMgPSAoKCdRJywgJ0snLCBbKCcyJywgJzEnKSwgKCc0JywgJzMnKSwgKCc2JywgJzUnKV0pLCAoJ0snLCAnRicsIFsoJzInLCAnMScpLCAoJzQnLCAnMycpLCAoJzYnLCAnNScpXSksICgnRicsICdNJywgWygnMicsICdVJyksICgnNCcsICdWJyksICgnNicsICdXJyldKSkKICAgICAgICBkZWYgYnVpbGQobmFtZSwgbmV3KToKICAgICAgICAgICAgZCA9IEFwcC5uZXdEb2N1bWVudChuYW1lKQogICAgICAgICAgICBYID0gKDQwMDAsIDQ0MDAsIDQ4MDAsIDUyMDApCiAgICAgICAgICAgIGRldiA9IHt9CiAgICAgICAgICAgIGZvciBrLCAodCwgdGFnLCB4KSBpbiB6aXAoJ1FLRk0nLCAoKCdCcmVha2VyIGNvbmNlcHQnLCAnUTEnLCBYWzBdKSwgKCdDb250YWN0b3IgY29uY2VwdCcsICdLTTEnLCBYWzFdKSwgKCdPdmVybG9hZCBjb25jZXB0JywgJ0YxJywgWFsyXSksICgnTW90b3IgY29uY2VwdCcsICdNMScsIFhbM10pKSk6CiAgICAgICAgICAgICAgICBkZXZba10gPSBjcmVhdGUoZCwgdCwgdGFnLCBBcHAuVmVjdG9yKHgsIDAsIDApKQogICAgICAgICAgICBmb3IgeCBpbiAoZGV2WydLJ10sIGRldlsnRiddLCBkZXZbJ00nXSk6IHRlcm1pbmFsX2xheW91dChkLCB4LCBsaXN0KHguVGVybWluYWxzKSwgJ0xlZnQnKQogICAgICAgICAgICBpZiBuZXc6CiAgICAgICAgICAgICAgICBzZXRfdGVybWluYWxfc2lkZXMoZCwgZGV2WydLJ10sIHsnMSc6ICdMZWZ0JywgJzMnOiAnTGVmdCcsICc1JzogJ0xlZnQnLCAnQTEnOiAnTGVmdCcsICdBMic6ICdMZWZ0JywgJzInOiAnUmlnaHQnLCAnNCc6ICdSaWdodCcsICc2JzogJ1JpZ2h0J30pCiAgICAgICAgICAgICAgICBzZXRfdGVybWluYWxfc2lkZXMoZCwgZGV2WydGJ10sIHsnMSc6ICdMZWZ0JywgJzMnOiAnTGVmdCcsICc1JzogJ0xlZnQnLCAnMic6ICdSaWdodCcsICc0JzogJ1JpZ2h0JywgJzYnOiAnUmlnaHQnfSkKICAgICAgICAgICAgbiA9IDA7IHdpcmVzID0gW10KICAgICAgICAgICAgZm9yIGEsIGIsIHBhaXJzIGluIFBBSVJTOgogICAgICAgICAgICAgICAgZm9yIHNhLCBzYiBpbiBwYWlyczoKICAgICAgICAgICAgICAgICAgICBuICs9IDE7IHdpcmVzLmFwcGVuZChhZGRfdGVybWluYWxfd2lyZShkLCBkZXZbYV0sIHNhLCBkZXZbYl0sIHNiLCAnVyVkJyAlIG4pKQogICAgICAgICAgICBkLnJlY29tcHV0ZSgpOyByZXR1cm4gZCwgZGV2CgogICAgICAgIGQsIGRldiA9IGJ1aWxkKCJHdWlFbGVjIiwgVHJ1ZSkKICAgICAgICByZXNbInJvdXRlX2NvdW50Il0gPSByb3V0ZWNoZWNrLmNoZWNrKGQpWyJjb3VudCJdOyByZXNbInN0YWdlIl0gPSAiYnVpbHQiOyBfdygpCiAgICAgICAgaW1wb3J0IERlbHRhRW5naW5lZXJpbmcuZXhwb3J0IGFzIGV4CiAgICAgICAgc3JjID0gb3BlbihleC5fX2ZpbGVfXy5yZXBsYWNlKCIucHljIiwgIi5weSIpLCBlbmNvZGluZz0idXRmLTgiKS5yZWFkKCkgaWYgZXguX19maWxlX18gZWxzZSAiIgogICAgICAgIHJlc1siZXhwb3J0X3VzZXNfdGVybWluYWxfc2lkZSJdID0gInRlcm1pbmFsX3NpZGUoZGV2aWNlLHRlcm1pbmFsKSIgaW4gc3JjCiAgICAgICAgcG0gPSBPVVQgKyAiL21lY2gucGRmIjsgcGUgPSBPVVQgKyAiL2VsZWMucGRmIgogICAgICAgIHJlc1sic3RhZ2UiXSA9ICJleHBvcnRpbmciOyBfdygpCiAgICAgICAgciA9IGV4LmV4cG9ydF9jdXJyZW50KGQsIHBtLCBwZSkKICAgICAgICByZXNbImV4cG9ydF9yZXR1cm4iXSA9IHN0cihyKVs6MzAwXQogICAgICAgIHJlc1sic2l6ZXMiXSA9IFtvcy5wYXRoLmdldHNpemUocG0pLCBvcy5wYXRoLmdldHNpemUocGUpXQogICAgICAgIHJlc1sic3RhZ2UiXSA9ICJleHBvcnQgZG9uZSIKICAgIGV4Y2VwdCBFeGNlcHRpb246CiAgICAgICAgcmVzWyJlcnJvciJdID0gdHJhY2ViYWNrLmZvcm1hdF9leGMoKVstMTUwMDpdCiAgICByZXNbImRvbmUiXSA9IFRydWU7IF93KCkKUXRDb3JlLlFUaW1lci5zaW5nbGVTaG90KDkwMDAsIF9ydW4pCg=='))
+          $modroot = (Get-ChildItem $app -Recurse -Filter export.py | Select-Object -First 1)
+          "export.py at $($modroot.FullName)" | Tee-Object -Append C:/seed/log.txt
+          $appmod = $modroot.Directory.Parent.Parent.FullName -replace '\\','/'
+          "appmod root $appmod" | Tee-Object -Append C:/seed/log.txt
+          foreach ($mode in @('orig','patched')) {
+            if ($mode -eq 'patched') {
+              $s = [IO.File]::ReadAllText($modroot.FullName)
+              $o = "side='left' if device.TerminalSide=='Right' else 'right'"; $n = "side='left' if terminal_side(device,terminal)=='Right' else 'right'"
+              if (-not $s.Contains($o)) { throw 'export.py line to patch not found' }
+              $s = $s.Replace($o, $n).Replace("from .core import terminal_position`n", "from .core import terminal_position, terminal_side`n").Replace("from .core import terminal_position`r`n", "from .core import terminal_position, terminal_side`r`n")
+              if (-not $s.Contains('import terminal_position, terminal_side')) { throw 'import patch failed' }
+              [IO.File]::WriteAllText($modroot.FullName, $s, (New-Object Text.UTF8Encoding $false))
+              Get-ChildItem $app -Recurse -Filter '__pycache__' -Directory | Where-Object { $_.FullName -like '*DeltaEngineering*' } | ForEach-Object { Get-ChildItem $_.FullName -Filter 'export*.pyc' | Remove-Item -Force }
+            }
+            $out = "C:/seed/g-$mode"; New-Item -ItemType Directory $out -Force | Out-Null
+            $mm = $mt.Replace('@@OUT@@', $out).Replace('@@APP@@', $appmod)
+            [IO.File]::WriteAllText("C:/seed/gui-$mode.FCMacro", $mm, (New-Object Text.UTF8Encoding $false))
+            $env:GALLIUM_DRIVER = 'llvmpipe'; $env:MESA_GL_VERSION_OVERRIDE = '4.5'
+            $pr = Start-Process "$bin\FreeCAD.exe" -ArgumentList "C:\seed\gui-$mode.FCMacro" -WorkingDirectory $app -PassThru -RedirectStandardError "C:/seed/err-$mode.txt" -RedirectStandardOutput "C:/seed/stdout-$mode.txt"
+            $t = 0; while ($t -lt 150) { Start-Sleep 3; $t += 3; if ((Test-Path "$out/gui-result.json") -and (Select-String -Path "$out/gui-result.json" -Pattern '"done": true' -Quiet)) { break }; if ($pr.HasExited) { break } }
+            "mode $mode exited=$($pr.HasExited) exitcode=$(if ($pr.HasExited) { $pr.ExitCode }) waited=$t" | Tee-Object -Append C:/seed/log.txt
+            Start-Sleep 3
+            $b=[System.Windows.Forms.SystemInformation]::VirtualScreen; $bmp=New-Object System.Drawing.Bitmap $b.Width,$b.Height; $g=[System.Drawing.Graphics]::FromImage($bmp); $g.CopyFromScreen($b.Location,[System.Drawing.Point]::Empty,$b.Size); $bmp.Save("C:/seed/g-$mode.png")
+            Stop-Process -Id $pr.Id -Force -ErrorAction SilentlyContinue
+            Get-Process FreeCAD -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
+            Start-Sleep 3
+          }
+      - name: Commit evidence
+        if: always()
+        shell: pwsh
+        run: |
+          git config user.name ci; git config user.email ci@users.noreply.github.com
+          New-Item -ItemType Directory -Force dist/elec-gui | Out-Null
+          Copy-Item C:/seed/log.txt,C:/seed/err-*.txt,C:/seed/stdout-*.txt dist/elec-gui/ -ErrorAction SilentlyContinue
+          foreach ($m in 'orig','patched') {
+            if (Test-Path C:/seed/g-$m/gui-result.json) { Copy-Item C:/seed/g-$m/gui-result.json dist/elec-gui/gui-result-$m.json }
+            foreach ($f in Get-ChildItem C:/seed/g-$m -Filter *.pdf -ErrorAction SilentlyContinue) { [IO.File]::WriteAllText("$PWD/dist/elec-gui/$m-$($f.Name).b64", [Convert]::ToBase64String([IO.File]::ReadAllBytes($f.FullName))) }
+            if (Test-Path C:/seed/g-$m.png) { [IO.File]::WriteAllText("$PWD/dist/elec-gui/g-$m.png.b64", [Convert]::ToBase64String([IO.File]::ReadAllBytes("C:/seed/g-$m.png"))) }
+          }
+          git add dist; git commit -m "Add elec-gui evidence" 2>&1 | Out-Null
+          foreach ($i in 1..4) { git pull --rebase 2>&1 | Out-Null; git push 2>&1 | Out-String | Write-Host; if ($LASTEXITCODE -eq 0) { break }; Start-Sleep 5 }
