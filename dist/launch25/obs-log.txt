@@ -1,0 +1,14 @@
+shortcut exists: True
+shortcut target: C:\Users\runneradmin\AppData\Local\Programs\DeltaEngineering\bin\freecad.exe | args: "C:\Users\runneradmin\AppData\Local\Programs\DeltaEngineering\LaunchDelta.FCMacro" | wd: C:\Users\runneradmin\AppData\Local\Programs\DeltaEngineering
+installed original launcher has _tidy: True ; new launcher has _tidy: False
+user.cfg exists after install: True
+baseline-2-prep_visible kind=prep exited=True waited=26 done=False
+after prep_visible cfg differs from pristine: True
+baseline-3-saved_visible kind=observe exited=False waited=26 done=True
+baseline-4-prep_hidden kind=prep exited=True waited=20 done=False
+baseline-5-saved_hidden_untouched kind=observe exited=False waited=26 done=True
+patched-2-prep_visible kind=prep exited=True waited=20 done=False
+after prep_visible cfg differs from pristine: True
+patched-3-saved_visible kind=observe exited=False waited=42 done=True
+patched-4-prep_hidden kind=prep exited=True waited=20 done=False
+patched-5-saved_hidden_untouched kind=observe exited=False waited=26 done=True
