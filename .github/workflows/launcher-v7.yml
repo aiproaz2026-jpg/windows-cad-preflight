@@ -1,0 +1,83 @@
+name: Launcher test v7 (real shortcut target, ASCII and Arabic path)
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  inst:
+    runs-on: windows-2022
+    timeout-minutes: 70
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download the v7 release asset, verify SHA256, fetch Mesa (CI only)
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          New-Item -ItemType Directory C:/out,C:/evidence -Force | Out-Null
+          gh release download standalone-v7 -p DeltaEngineering-Setup-v7.exe -D C:/out
+          $got = (Get-FileHash C:/out/DeltaEngineering-Setup-v7.exe -Algorithm SHA256).Hash.ToLower()
+          $want = ((Get-Content dist/v7/DeltaEngineering-Setup-v7.exe.sha256 -Raw) -split '\s+')[0].ToLower()
+          "got $got want $want"
+          if ($got -ne $want) { throw 'SHA256 mismatch' }
+          "SHA256 MATCH" | Tee-Object C:/evidence/sha.txt
+          $rel = Invoke-RestMethod https://api.github.com/repos/pal1000/mesa-dist-win/releases/latest
+          $a = $rel.assets | Where-Object { $_.name -match 'release-msvc\.7z$' } | Select-Object -First 1
+          Invoke-WebRequest $a.browser_download_url -OutFile C:/mesa.7z
+          7z x C:/mesa.7z -oC:/mesa -y | Out-Null
+      - name: Install per-user into an ASCII path and into an Arabic path
+        shell: pwsh
+        run: |
+          [Console]::OutputEncoding = [Text.Encoding]::UTF8
+          $dirs = @{ A = 'C:\DeltaAscii'; B = 'C:\برنامج_دلتا\نسخة7' }
+          foreach ($k in $dirs.Keys) {
+            $dir = $dirs[$k]
+            $p = Start-Process C:/out/DeltaEngineering-Setup-v7.exe -ArgumentList '/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART',"/DIR=`"$dir`"" -Wait -PassThru
+            "[$k] setup exit $($p.ExitCode) dir exists $(Test-Path -LiteralPath $dir)"
+            $exe = Get-ChildItem -LiteralPath $dir -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
+            $bin = $exe.Directory.FullName
+            Copy-Item C:/mesa/x64/opengl32.dll $bin -Force
+            foreach ($n in 'libgallium_wgl.dll','libglapi.dll') { if (Test-Path "C:/mesa/x64/$n") { Copy-Item "C:/mesa/x64/$n" $bin -Force } }
+            Set-Content "C:/evidence/instdir-$k.txt" $dir -Encoding utf8
+          }
+      - name: Probe FreeCADCmd import check (ASCII vs Arabic path, with and without PYTHONUTF8)
+      - name: Launch exactly as the shortcut does (FreeCAD.exe + LaunchDelta.FCMacro), screenshot
+        shell: pwsh
+        continue-on-error: true
+        run: |
+          [Console]::OutputEncoding = [Text.Encoding]::UTF8
+          Add-Type -AssemblyName System.Windows.Forms,System.Drawing
+          Add-Type @"
+          using System; using System.Runtime.InteropServices;
+          public class W { [DllImport("user32.dll")] public static extern bool ShowWindow(IntPtr h,int c); [DllImport("user32.dll")] public static extern bool SetForegroundWindow(IntPtr h); }
+          "@
+          New-Item -ItemType Directory -Force C:/launch | Out-Null
+          foreach ($k in 'A','B') {
+            $dir = (Get-Content "C:/evidence/instdir-$k.txt" -Encoding utf8 -TotalCount 1).Trim()
+            $exe = Get-ChildItem -LiteralPath $dir -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
+            $root = $exe.Directory.Parent.FullName
+            $mac = Join-Path $root 'LaunchDelta.FCMacro'
+            "[$k] exe=$($exe.FullName) macro=$mac macro_exists=$(Test-Path -LiteralPath $mac)" | Tee-Object -Append C:/launch/log.txt
+            Get-Content -LiteralPath $mac -Encoding utf8 -TotalCount 40 | Out-File C:/launch/launchmacro-$k.txt -Encoding utf8
+            $env:GALLIUM_DRIVER = 'llvmpipe'; $env:MESA_GL_VERSION_OVERRIDE = '4.5'
+            $p = Start-Process $exe.FullName -ArgumentList "`"$mac`"" -WorkingDirectory $root -PassThru -RedirectStandardOutput C:/launch/out-$k.txt -RedirectStandardError C:/launch/err-$k.txt
+            Start-Sleep 60
+            $p.Refresh()
+            "[$k] alive=$(-not $p.HasExited) title=[$($p.MainWindowTitle)] handle=$($p.MainWindowHandle)" | Tee-Object -Append C:/launch/log.txt
+            if ($p.MainWindowHandle -ne 0) { [W]::ShowWindow($p.MainWindowHandle, 3) | Out-Null; [W]::SetForegroundWindow($p.MainWindowHandle) | Out-Null; Start-Sleep 4 }
+            $b=[System.Windows.Forms.SystemInformation]::VirtualScreen; $bmp=New-Object System.Drawing.Bitmap $b.Width,$b.Height; $g=[System.Drawing.Graphics]::FromImage($bmp); $g.CopyFromScreen($b.Location,[System.Drawing.Point]::Empty,$b.Size); $bmp.Save("C:/launch/launcher-$k.png")
+            Get-Process | Where-Object { $_.MainWindowTitle } | ForEach-Object { "[$k] win: $($_.ProcessName) | $($_.MainWindowTitle)" } | Tee-Object -Append C:/launch/log.txt
+            if (-not $p.HasExited) { Stop-Process -Id $p.Id -Force }
+            Start-Sleep 3
+          }
+      - name: Commit evidence
+        if: always()
+        shell: pwsh
+        run: |
+          git config user.name ci; git config user.email ci@users.noreply.github.com
+          git pull --rebase 2>&1 | Out-Null
+          New-Item -ItemType Directory -Force dist/launcher-v7 | Out-Null
+          Copy-Item C:/launch/*.txt dist/launcher-v7/ -ErrorAction SilentlyContinue
+          Get-ChildItem C:/launch/*.png -ErrorAction SilentlyContinue | ForEach-Object { [IO.File]::WriteAllText("$PWD/dist/launcher-v7/$($_.Name).b64", [Convert]::ToBase64String([IO.File]::ReadAllBytes($_.FullName))) }
+          git add dist; git commit -m "Add v7 launcher test evidence" 2>&1 | Out-Null; git push 2>&1 | Out-Null
+          Get-Content C:/launch/log.txt
