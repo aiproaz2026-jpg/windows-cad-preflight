@@ -1,0 +1,11 @@
+OK core
+OK domain
+OK symbols
+OK export
+OK fittings
+OK documents
+OK scaled_output
+OK tube_library
+OK drafting
+OK electrical
+OK connectivity
