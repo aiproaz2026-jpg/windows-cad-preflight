@@ -2,7 +2,7 @@
  "steps": {
   "fittings_tab_present_and_layout": {
    "ok": true,
-   "secs": 1.21,
+   "secs": 1.18,
    "detail": {
     "tasks_dock_before_panel": {
      "exists": true,
@@ -85,7 +85,7 @@
   },
   "station_built_through_panel_buttons": {
    "ok": true,
-   "secs": 5.18,
+   "secs": 5.15,
    "detail": {
     "report_text": "وصلات متطابقة: 7\nمنافذ مفتوحة: 2\n  GenericFitting005.1\n  GenericFitting007.1\nلا أخطاء هندسية في الاستمرارية أو التداخل.\nهندسة عامة توضيحية، ليست كتالوج مصنّع ولا معيار شفات. تطابق المقاس لا يعني توافق الضغط أو المعيار.",
     "connected": 7,
@@ -179,7 +179,7 @@
   },
   "save_reopen_arabic_path": {
    "ok": true,
-   "secs": 0.89,
+   "secs": 0.82,
    "detail": {
     "objects": 8,
     "max_volume_diff": 3.725290298461914e-09,
@@ -188,7 +188,7 @@
   },
   "station_with_pipes_elbow_through_panel": {
    "ok": true,
-   "secs": 9.24,
+   "secs": 8.65,
    "detail": {
     "elbow_volume": 98414.06548998691,
     "elbow_expected_pappus": 98414.0654899867,
@@ -287,7 +287,7 @@
   },
   "station_scaled_pdf": {
    "ok": true,
-   "secs": 2.05,
+   "secs": 2.2,
    "detail": {
     "Top_denominator_10_rejected": "View exceeds A3 drawing area at this scale; choose a larger denominator",
     "Top": {
@@ -346,7 +346,7 @@
   },
   "motor_starter_circuit_symbols_and_pdf": {
    "ok": true,
-   "secs": 0.89,
+   "secs": 1.77,
    "detail": {
     "template_combo_items": 10,
     "template_keys": [
@@ -662,6 +662,22 @@
      "KM1": true,
      "F1": true,
      "M1": true
+    },
+    "diag": {
+     "display_modes": [
+      "Flat Lines",
+      "Shaded",
+      "Wireframe",
+      "Points"
+     ],
+     "display_mode": "Flat Lines",
+     "shape_type": "Compound",
+     "edges": 18,
+     "type_id": "PartDesign::FeaturePython",
+     "vo_type": "ViewProvider",
+     "vo_visible": true,
+     "camera": "Orthographic",
+     "ctl_edges": 1
     }
    }
   },
@@ -817,7 +833,7 @@
   },
   "tasks_dock_hidden_again_after_task_closes": {
    "ok": true,
-   "secs": 4.21,
+   "secs": 4.24,
    "detail": {
     "visible_while_task_open": true,
     "visible_after_close_and_4s": false,
