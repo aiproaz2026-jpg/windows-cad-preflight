@@ -1,0 +1,1 @@
+SHA256 MATCH C:\out\DeltaEngineering-Setup-v12.exe
