@@ -254,7 +254,7 @@ jobs:
           git add dist
           git commit -m "Add v12 installer build evidence" || true
           git push
-          [ -f /c/out/DeltaEngineering-Setup-v12.exe ] && gh release create standalone-v12 /c/out/DeltaEngineering-Setup-v12.exe --title "Delta Engineering v12 offline installer (unsigned, experimental, unverified)" --notes "Private. Built from the repo revision in dist/v12/source-revision.txt. Not certified; item acceptance still open." || echo "release failed"
+          for i in 1 2 3; do [ -f /c/out/DeltaEngineering-Setup-v12.exe ] && gh release create standalone-v12-r$i /c/out/DeltaEngineering-Setup-v12.exe --title "Delta Engineering v12 offline installer retry $i (unsigned, experimental, unverified)" --notes "Private. Built from the repo revision in dist/v12/source-revision.txt. Not certified; item acceptance still open." && break || echo "release attempt $i failed"; sleep 10; done
       - name: Gate verdict (fails on timeout, absent result, error or failed step)
         if: always()
         shell: pwsh
