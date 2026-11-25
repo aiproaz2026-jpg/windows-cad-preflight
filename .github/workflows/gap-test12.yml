@@ -883,7 +883,7 @@ jobs:
                       shape_ok = all(not o.Shape.isNull() and o.Shape.isValid() for o in (Q, K, O, M)); out['symbol_shapes_valid'] = shape_ok; assert shape_ok
                       base = 'C:/Users/Public/اختبار'
                       r = export_current(d, base + '/ميكانيكا.pdf', base + '/كهرباء.pdf'); out['export'] = r
-                      import shutil; shutil.copy(base + '/ميكانيكا.pdf', OUT + '/starter-mech.pdf'); shutil.copy(base + '/كهرباء.pdf', OUT + '/starter-elec.pdf')
+                      import shutil; shutil.copy(base + '/ميكانيكا.pdf', OUT + '/station-starter-mech.pdf'); shutil.copy(base + '/كهرباء.pdf', OUT + '/station-starter-elec.pdf')
                       Gui.Selection.clearSelection()
                       for o in (Q, K, O, M): Gui.Selection.addSelection(o)
                       Gui.activeDocument().activeView().viewTop(); Gui.SendMsgToActiveView('ViewSelection'); pump(30); Gui.Selection.clearSelection(); pump(10)
