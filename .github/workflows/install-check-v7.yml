@@ -48,7 +48,7 @@ jobs:
           @'
           import sys, os, importlib
           d = os.environ['IMP_DIR']
-          sys.path.insert(0, d + '\\Mod\\DeltaEngineering')
+          sys.path.insert(0, d + '\\Mod'); sys.path.insert(0, d + '\\Mod\\DeltaEngineering')
           out = open(os.environ['IMP_OUT'], 'w', encoding='utf-8')
           for m in ['core','domain','symbols','export','fittings','documents','scaled_output','tube_library','drafting','electrical','connectivity']:
               try:
@@ -64,7 +64,7 @@ jobs:
               if ($mode -eq 'utf8') { $env:PYTHONUTF8 = '1' } else { Remove-Item Env:PYTHONUTF8 -ErrorAction SilentlyContinue }
               $env:IMP_DIR = $dir; $env:IMP_OUT = "C:/evidence/import-$k-$mode.txt"
               "=== [$k/$mode] exe=$($cmd.FullName) script=C:/imp.py PYTHONUTF8=$env:PYTHONUTF8 IMP_DIR=$dir"
-              & $cmd.FullName C:/imp.py 2>&1 | Select-Object -First 12 | Tee-Object "C:/evidence/probe-$k-$mode.txt"
+              & $cmd.FullName -c "exec(open('C:/imp.py',encoding='utf-8').read())" 2>&1 | Select-Object -First 12 | Tee-Object "C:/evidence/probe-$k-$mode.txt"
               if (Test-Path $env:IMP_OUT) { Get-Content $env:IMP_OUT } else { "no import file written" }
             }
           }
@@ -116,6 +116,7 @@ jobs:
         continue-on-error: true
         run: |
           $ErrorActionPreference = 'Continue'
+          Start-Transcript -Path C:/evidence/std-step.txt -Force | Out-Null
           try {
             $pw = 'Zx9!' + [guid]::NewGuid().ToString('N').Substring(0,12)
             net user cadstd $pw /add
@@ -140,6 +141,7 @@ jobs:
           } catch { "EXCEPTION: $_" }
           if (Test-Path C:/outB/user.txt) { Get-Content C:/outB/user.txt }
           Copy-Item C:/outB/user.txt C:/evidence/standard-user.txt -ErrorAction SilentlyContinue
+          Stop-Transcript | Out-Null
       - name: Commit evidence and gate verdict
         if: always()
         shell: pwsh
