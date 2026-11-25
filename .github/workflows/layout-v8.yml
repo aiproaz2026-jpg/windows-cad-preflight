@@ -1,0 +1,101 @@
+name: v8 layout diagnostics (dock dump, two resolutions)
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  layout:
+    runs-on: windows-2022
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download the v8 release asset, verify SHA256, fetch Mesa (CI only)
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          New-Item -ItemType Directory C:/out,C:/evidence -Force | Out-Null
+          gh release download standalone-v8 -p DeltaEngineering-Setup-v8.exe -D C:/out
+          $got = (Get-FileHash C:/out/DeltaEngineering-Setup-v8.exe -Algorithm SHA256).Hash.ToLower()
+          $want = ((Get-Content dist/v8/DeltaEngineering-Setup-v8.exe.sha256 -Raw) -split '\s+')[0].ToLower()
+          "got $got want $want"
+          if ($got -ne $want) { throw 'SHA256 mismatch' }
+          "SHA256 MATCH" | Tee-Object C:/evidence/sha.txt
+          $rel = Invoke-RestMethod https://api.github.com/repos/pal1000/mesa-dist-win/releases/latest
+          $a = $rel.assets | Where-Object { $_.name -match 'release-msvc\.7z$' } | Select-Object -First 1
+          Invoke-WebRequest $a.browser_download_url -OutFile C:/mesa.7z
+          7z x C:/mesa.7z -oC:/mesa -y | Out-Null
+      - name: Dump dock layout and screenshots at several resolutions
+        shell: pwsh
+        run: |
+          Add-Type -AssemblyName System.Windows.Forms,System.Drawing
+          Add-Type @"
+          using System; using System.Runtime.InteropServices;
+          [StructLayout(LayoutKind.Sequential, CharSet=CharSet.Ansi)]
+          public struct DEVMODE { [MarshalAs(UnmanagedType.ByValTStr, SizeConst=32)] public string dmDeviceName; public short dmSpecVersion; public short dmDriverVersion; public short dmSize; public short dmDriverExtra; public int dmFields; public int dmPositionX; public int dmPositionY; public int dmDisplayOrientation; public int dmDisplayFixedOutput; public short dmColor; public short dmDuplex; public short dmYResolution; public short dmTTOption; public short dmCollate; [MarshalAs(UnmanagedType.ByValTStr, SizeConst=32)] public string dmFormName; public short dmLogPixels; public int dmBitsPerPel; public int dmPelsWidth; public int dmPelsHeight; public int dmDisplayFlags; public int dmDisplayFrequency; public int dmICMMethod; public int dmICMIntent; public int dmMediaType; public int dmDitherType; public int dmReserved1; public int dmReserved2; public int dmPanningWidth; public int dmPanningHeight; }
+          public class D {
+            [DllImport("user32.dll", CharSet=CharSet.Ansi)] public static extern int EnumDisplaySettings(string dev, int mode, ref DEVMODE dm);
+            [DllImport("user32.dll", CharSet=CharSet.Ansi)] public static extern int ChangeDisplaySettings(ref DEVMODE dm, int flags);
+            public static string Modes() { var l = new System.Collections.Generic.HashSet<string>(); var dm = new DEVMODE(); dm.dmSize=(short)Marshal.SizeOf(typeof(DEVMODE)); int i=0; while (EnumDisplaySettings(null,i,ref dm)!=0) { l.Add(dm.dmPelsWidth+"x"+dm.dmPelsHeight); i++; } return string.Join(",", l); }
+            public static int Set(int w, int h) { var dm = new DEVMODE(); dm.dmSize=(short)Marshal.SizeOf(typeof(DEVMODE)); EnumDisplaySettings(null,-1,ref dm); dm.dmPelsWidth=w; dm.dmPelsHeight=h; dm.dmFields=0x80000|0x100000; return ChangeDisplaySettings(ref dm, 0); }
+          }
+          "@
+          New-Item -ItemType Directory -Force C:/seed | Out-Null
+          $p = Start-Process C:/out/DeltaEngineering-Setup-v8.exe -ArgumentList '/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART' -Wait -PassThru
+          "setup exit $($p.ExitCode)" | Tee-Object -Append C:/seed/log.txt
+          $app = "$env:LOCALAPPDATA\Programs\DeltaEngineering"
+          $bin = "$app\bin"
+          Copy-Item C:/mesa/x64/opengl32.dll $bin -Force
+          foreach ($n in 'libgallium_wgl.dll','libglapi.dll') { if (Test-Path "C:/mesa/x64/$n") { Copy-Item "C:/mesa/x64/$n" $bin -Force } }
+          "modes: $([D]::Modes())" | Tee-Object -Append C:/seed/log.txt
+          @'
+          import FreeCAD, FreeCADGui, json
+          from PySide import QtCore, QtWidgets
+          doc = FreeCAD.newDocument("UnsavedTest")
+          doc.addObject("Part::Box", "KeepMe")
+          doc.recompute()
+          exec(open(r"APPDIR\LaunchDelta.FCMacro", encoding="utf-8").read())
+          def _report():
+              mw = FreeCADGui.getMainWindow()
+              docks = []
+              for d in mw.findChildren(QtWidgets.QDockWidget):
+                  g = d.geometry()
+                  docks.append({"name": d.objectName(), "title": d.windowTitle(), "floating": d.isFloating(), "visible": d.isVisible(), "area": int(mw.dockWidgetArea(d).value) if hasattr(mw.dockWidgetArea(d), "value") else int(mw.dockWidgetArea(d)), "geom": [g.x(), g.y(), g.width(), g.height()]})
+              mdi = mw.findChild(QtWidgets.QMdiArea)
+              subs = [(s.windowTitle(), s.widget().metaObject().className() if s.widget() else "", s.isVisible()) for s in mdi.subWindowList()]
+              try:
+                  FreeCADGui.SendMsgToActiveView("ViewFit")
+              except Exception as e:
+                  pass
+              out = {"main": [mw.width(), mw.height()], "mdi": [mdi.width(), mdi.height()], "docks": docks, "subwindows": subs}
+              open(r"C:\seed\layout-@@RES@@.json", "w").write(json.dumps(out))
+          QtCore.QTimer.singleShot(25000, _report)
+          '@ | Set-Content C:/seed/layout.tmpl -Encoding utf8
+          foreach ($res in @(@(1024,768), @(1600,900))) {
+            $w=$res[0]; $h=$res[1]; $tag="${w}x${h}"
+            $rc = [D]::Set($w,$h)
+            "set $tag rc=$rc" | Tee-Object -Append C:/seed/log.txt
+            Start-Sleep 3
+            (Get-Content C:/seed/layout.tmpl -Raw) -creplace 'APPDIR', $app -creplace '@@RES@@', $tag | Set-Content C:/seed/layout-$tag.FCMacro -Encoding utf8
+            $env:GALLIUM_DRIVER = 'llvmpipe'; $env:MESA_GL_VERSION_OVERRIDE = '4.5'
+            $pr = Start-Process "$bin\FreeCAD.exe" -ArgumentList "C:\seed\layout-$tag.FCMacro" -WorkingDirectory $app -PassThru
+            $t=0; while ($t -lt 100 -and -not (Test-Path C:/seed/layout-$tag.json)) { Start-Sleep 3; $t+=3 }
+            Start-Sleep 6
+            $b=[System.Windows.Forms.SystemInformation]::VirtualScreen
+            "screen $($b.Width)x$($b.Height) json=$(Test-Path C:/seed/layout-$tag.json)" | Tee-Object -Append C:/seed/log.txt
+            $bmp=New-Object System.Drawing.Bitmap $b.Width,$b.Height; $g=[System.Drawing.Graphics]::FromImage($bmp); $g.CopyFromScreen($b.Location,[System.Drawing.Point]::Empty,$b.Size); $bmp.Save("C:/seed/layout-$tag.png")
+            Stop-Process -Id $pr.Id -Force -ErrorAction SilentlyContinue
+            Get-Process FreeCAD -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
+            Start-Sleep 3
+          }
+      - name: Commit evidence
+        if: always()
+        shell: pwsh
+        run: |
+          git config user.name ci; git config user.email ci@users.noreply.github.com
+          New-Item -ItemType Directory -Force dist/layout-v8 | Out-Null
+          Copy-Item C:/seed/*.txt,C:/seed/*.json dist/layout-v8/ -ErrorAction SilentlyContinue
+          Get-ChildItem C:/seed/*.png -ErrorAction SilentlyContinue | ForEach-Object { [IO.File]::WriteAllText("$PWD/dist/layout-v8/$($_.Name).b64", [Convert]::ToBase64String([IO.File]::ReadAllBytes($_.FullName))) }
+          git add dist; git commit -m "Add docsafe evidence" 2>&1 | Out-Null
+          foreach ($i in 1..4) { git pull --rebase 2>&1 | Out-Null; git push 2>&1 | Out-String | Write-Host; if ($LASTEXITCODE -eq 0) { break }; Start-Sleep 5 }
+          Get-Content C:/seed/log.txt
