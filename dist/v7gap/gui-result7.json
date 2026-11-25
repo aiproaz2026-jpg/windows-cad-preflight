@@ -2,7 +2,7 @@
  "steps": {
   "visual_empty_project_with_parts_tab": {
    "ok": true,
-   "secs": 1.17,
+   "secs": 1.22,
    "detail": {
     "tabs": [
      "الجدول والأبعاد",
@@ -25,7 +25,7 @@
   },
   "parts_circle_rect_extrude_edit_height": {
    "ok": true,
-   "secs": 3.66,
+   "secs": 3.97,
    "detail": {
     "circle": "دائرة قابلة للتعديل",
     "E1_100": 785398.16,
@@ -35,7 +35,7 @@
   },
   "boolean_cut_and_common_consistent": {
    "ok": true,
-   "secs": 0.89,
+   "secs": 0.94,
    "detail": {
     "cut": 944885.85,
     "common": 233211.4,
@@ -44,18 +44,23 @@
    }
   },
   "fillet_one_edge": {
-   "ok": false,
-   "secs": 0.56,
-   "detail": "Traceback (most recent call last):\n  File \"C:/DeltaTest/DeltaGuiTest7.FCMacro\", line 50, in run\n    out = fn(); res['steps'][name] = {'ok': True, 'secs': round(time.time() - t0, 2), 'detail': out}\n          ^^^^\n  File \"C:/DeltaTest/DeltaGuiTest7.FCMacro\", line 108, in s_fillet\n    assert F is not None and F.TypeId == 'Part::Fillet', (F, st)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: (<PartDesign::FeaturePython>, 'لم يتم التعديل: تعذر تدوير الحواف. قلّل نصف القطر أو اختر حواف أخرى')\n"
+   "ok": true,
+   "secs": 0.71,
+   "detail": {
+    "fillet_type": "Part::Fillet",
+    "fillet_volume": 319828.32,
+    "source_volume": 320000.0,
+    "status": "تم إنشاء / تحديث: تدوير حواف بنصف قطر ثابت"
+   }
   },
   "undo_redo_after_panel_action": {
    "ok": true,
-   "secs": 0.41,
+   "secs": 0.4,
    "detail": {
-    "before": 10,
-    "after_create": 11,
-    "after_undo": 10,
-    "after_redo": 11,
+    "before": 11,
+    "after_create": 12,
+    "after_undo": 11,
+    "after_redo": 12,
     "undo_names": [
      "Change extrusion height",
      "Extrude selected profile",
@@ -65,33 +70,78 @@
   },
   "save_reopen_arabic_path_data_integrity": {
    "ok": true,
-   "secs": 0.67,
+   "secs": 0.93,
    "detail": {
-    "objects": 11,
-    "file_bytes": 20085,
+    "objects": 12,
+    "file_bytes": 22139,
     "differences_after_reopen_recompute": {}
    }
   },
   "step_export_import_roundtrip": {
    "ok": false,
-   "secs": 0.0,
-   "detail": "Traceback (most recent call last):\n  File \"C:/DeltaTest/DeltaGuiTest7.FCMacro\", line 50, in run\n    out = fn(); res['steps'][name] = {'ok': True, 'secs': round(time.time() - t0, 2), 'detail': out}\n          ^^^^\n  File \"C:/DeltaTest/DeltaGuiTest7.FCMacro\", line 131, in s_step\n    E1 = [o for o in d.Objects if o.Label and o.TypeId.startswith('Part::') and hasattr(o, 'Shape') and o.Shape.Volume > 1e6][0]\n         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^\nIndexError: list index out of range\n"
+   "secs": 0.54,
+   "detail": "Traceback (most recent call last):\n  File \"C:/DeltaTest/DeltaGuiTest7.FCMacro\", line 50, in run\n    out = fn(); res['steps'][name] = {'ok': True, 'secs': round(time.time() - t0, 2), 'detail': out}\n          ^^^^\n  File \"C:/DeltaTest/DeltaGuiTest7.FCMacro\", line 136, in s_step\n    sel(E1); click(pp2, 'تصدير المحدد STEP'); sz = os.path.getsize(step_path)\n                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen genericpath>\", line 50, in getsize\nFileNotFoundError: [WinError 2] The system cannot find the file specified: 'C:/Users/Public/اختبار/قطعة.step'\n"
   },
   "manual_viewport_mouse_pick_and_orbit": {
-   "ok": false,
-   "secs": 0.68,
-   "detail": "Traceback (most recent call last):\n  File \"C:/DeltaTest/DeltaGuiTest7.FCMacro\", line 50, in run\n    out = fn(); res['steps'][name] = {'ok': True, 'secs': round(time.time() - t0, 2), 'detail': out}\n          ^^^^\n  File \"C:/DeltaTest/DeltaGuiTest7.FCMacro\", line 142, in s_viewport\n    E = [o for o in d.Objects if hasattr(o, 'Shape') and o.TypeId.startswith('Part::') and not o.Shape.isNull() and o.Shape.Volume > 1e6][0]\n        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^\nIndexError: list index out of range\n"
+   "ok": true,
+   "secs": 1.1,
+   "detail": {
+    "widgets": [
+     "QOpenGLWidget"
+    ],
+    "projected": [
+     200,
+     277
+    ],
+    "widget_size": [
+     400,
+     554
+    ],
+    "picked_by_mouse_click": [
+     "BooleanFeature"
+    ],
+    "orbit_MouseButton.MiddleButton": {
+     "before": [
+      0.4247081321999479,
+      0.1759200437218226,
+      0.339851090706265,
+      0.8204732639190053
+     ],
+     "after": [
+      0.4247081321999479,
+      0.1759200437218226,
+      0.339851090706265,
+      0.8204732639190053
+     ],
+     "changed": false
+    },
+    "orbit_MouseButton.RightButton": {
+     "before": [
+      0.4247081321999479,
+      0.1759200437218226,
+      0.339851090706265,
+      0.8204732639190053
+     ],
+     "after": [
+      0.4247081321999479,
+      0.1759200437218226,
+      0.339851090706265,
+      0.8204732639190053
+     ],
+     "changed": false
+    }
+   }
   },
   "large_project_150_pipes_100_devices_99_wires": {
    "ok": true,
-   "secs": 9.3,
+   "secs": 9.38,
    "detail": {
     "objects": 353,
-    "create_s": 1.07,
-    "recompute_s": 2.46,
-    "save_s": 0.64,
+    "create_s": 0.78,
+    "recompute_s": 2.69,
+    "save_s": 0.63,
     "file_MB": 0.56,
-    "open_s": 2.49,
+    "open_s": 2.75,
     "recompute_after_open_s": 0.0,
     "project_check_s": 0.62,
     "check_keys": [
@@ -103,6 +153,15 @@
      "logical_nets"
     ],
     "check_issue_count": 1,
+    "check_issues": [
+     {
+      "level": "NOTE",
+      "object": "",
+      "label": "",
+      "message": "2 terminals have no explicit wire, not necessarily a design fault"
+     }
+    ],
+    "check_errors": 0,
     "netlist_len": 99,
     "mem_working_set_MB_before_after_peak": [
      [
@@ -128,7 +187,7 @@
    "n": 2,
    "cls": "QMessageBox",
    "title": "تعذر الرسم",
-   "text": "تعذر تدوير الحواف. قلّل نصف القطر أو اختر حواف أخرى"
+   "text": "تغيّر مصدر تدوير الحواف. أعد تحديد حواف المصدر وأنشئ التدوير من جديد، ولا تعتمد على أرقام الحواف القديمة"
   }
  ],
  "done": true
