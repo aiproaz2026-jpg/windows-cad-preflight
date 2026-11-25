@@ -218,12 +218,14 @@ jobs:
                       class TaskStub:
                           def __init__(self):
                               self.form = W.QLabel('Test task panel')
-                          def getStandardButtons(self): return int(W.QDialogButtonBox.Close)
+                          def getStandardButtons(self): return getattr(W.QDialogButtonBox.Close, 'value', W.QDialogButtonBox.Close)
                           def reject(self): Gui.Control.closeDialog()
                       Gui.Control.showDialog(TaskStub()); pump(30)
                       td = mw.findChild(W.QDockWidget, 'Tasks')
+                      out['task_dialog_active_when_open'] = bool(Gui.Control.activeDialog())
                       out['tasks_dock_visible_when_task_dialog_opens'] = bool(td and td.isVisible()); shot('fit12-A2-task-dialog')
                       Gui.Control.closeDialog(); pump(20)
+                      out['task_dialog_active_after_close'] = bool(Gui.Control.activeDialog())
                       return out
                   run('fittings_tab_present_and_layout', s_panel_tab)
                   import DeltaEngineering.fittings as F
@@ -419,14 +421,15 @@ jobs:
                   def s_tasks_after_dialog():
                       class TaskStub:
                           def __init__(self): self.form = W.QLabel('Test task panel')
-                          def getStandardButtons(self): return int(W.QDialogButtonBox.Close)
+                          def getStandardButtons(self): return getattr(W.QDialogButtonBox.Close, 'value', W.QDialogButtonBox.Close)
                           def reject(self): Gui.Control.closeDialog()
                       Gui.Control.showDialog(TaskStub()); pump(20); td = mw.findChild(W.QDockWidget, 'Tasks'); vis_open = bool(td and td.isVisible())
-                      Gui.Control.closeDialog(); t0 = time.time()
+                      active_open = bool(Gui.Control.activeDialog())
+                      Gui.Control.closeDialog(); active_closed = bool(Gui.Control.activeDialog()); t0 = time.time()
                       while time.time() - t0 < 4: pump(5); time.sleep(0.1)
                       vis_after = bool(td and td.isVisible()); strips = [w for w in mw.findChildren(W.QWidget, 'OverlayTitle')]; shot('fit12-E-after-task-closed')
                       Gui.Control.showDialog(TaskStub()); pump(20); strips_open = [w.isVisible() for w in strips]; Gui.Control.closeDialog()
-                      return {'visible_while_task_open': vis_open, 'visible_after_close_and_4s': vis_after, 'overlay_title_visible_after_close': [w.isVisible() for w in strips], 'overlay_title_visible_while_task_open_2nd': strips_open}
+                      return {'dialog_active_when_open': active_open, 'dialog_active_after_close': active_closed, 'visible_while_task_open': vis_open, 'visible_after_close_and_4s': vis_after, 'overlay_title_visible_after_close': [w.isVisible() for w in strips], 'overlay_title_visible_while_task_open_2nd': strips_open}
                   run('tasks_dock_hidden_again_after_task_closes', s_tasks_after_dialog)
                   res['done'] = True; save()
                   QtCore.QTimer.singleShot(1500, lambda: os._exit(0))
@@ -476,5 +479,7 @@ jobs:
           if (-not $r.done) { throw 'GATE FAIL: macro did not finish' }
           if ($r.error) { throw 'GATE FAIL: macro error recorded' }
           $bad = @($r.steps.PSObject.Properties | Where-Object { $_.Value.PSObject.Properties.Name -contains 'ok' -and -not $_.Value.ok } | ForEach-Object { $_.Name })
+          $t = $r.steps.tasks_dock_hidden_again_after_task_closes.detail
+          if (-not ($t.dialog_active_when_open -eq $true -and $t.dialog_active_after_close -eq $false)) { throw 'GATE FAIL: fake task dialog did not open and close' }
           if ($bad.Count -gt 0) { throw ('GATE FAIL: failed steps: ' + ($bad -join ', ')) }
           "GATE PASS: macro finished, no error, all recorded steps ok"
