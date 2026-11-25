@@ -1,0 +1,277 @@
+{
+ "stage": "export done",
+ "P_paired_flag": [
+  true,
+  true,
+  false
+ ],
+ "P_contactor_y": {
+  "1": 28.0,
+  "2": 28.0,
+  "3": 14.0,
+  "4": 14.0,
+  "5": 0.0,
+  "6": 0.0,
+  "A1": -14.0,
+  "A2": -28.0
+ },
+ "P_overload_y": {
+  "1": 14.0,
+  "2": 14.0,
+  "3": 0.0,
+  "4": 0.0,
+  "5": -14.0,
+  "6": -14.0
+ },
+ "P_legacy_contactor_y": {
+  "1": 49.0,
+  "2": 35.0,
+  "3": 21.0,
+  "4": 7.0,
+  "5": -7.0,
+  "6": -21.0,
+  "A1": -35.0,
+  "A2": -49.0
+ },
+ "P_reopen_flags": [
+  true,
+  true,
+  null
+ ],
+ "P_reopen_same": true,
+ "route_count": 0,
+ "workbench": "DeltaWorkbench",
+ "workbench_screenshot": 59897,
+ "A_overlay_present_fit": true,
+ "D_docks": [
+  [
+   "Selection view",
+   "Selection View",
+   false,
+   false,
+   [
+    0,
+    0,
+    210,
+    127
+   ]
+  ],
+  [
+   "Model",
+   "Model",
+   true,
+   false,
+   [
+    0,
+    130,
+    260,
+    567
+   ]
+  ],
+  [
+   "Python console",
+   "Python Console",
+   false,
+   false,
+   [
+    0,
+    0,
+    100,
+    92
+   ]
+  ],
+  [
+   "Report view",
+   "Report View",
+   false,
+   false,
+   [
+    0,
+    0,
+    100,
+    92
+   ]
+  ],
+  [
+   "Tasks",
+   "Tasks",
+   true,
+   false,
+   [
+    0,
+    0,
+    380,
+    375
+   ]
+  ]
+ ],
+ "D_floating_visible_toplevels": [],
+ "T_toggle_actions": 1,
+ "T_toolbars_with_toggle": [
+  "المعرّفات"
+ ],
+ "T_action_text": [
+  "المعرّفات"
+ ],
+ "T_cmd_registered": true,
+ "T_overlay_after_off": false,
+ "T_overlay_after_on": true,
+ "T_param_after": true,
+ "M_mdi": true,
+ "M_sub": true,
+ "M_cands": [
+  [
+   "QMainWindow",
+   407046
+  ],
+  [
+   "QStackedWidget",
+   407046
+  ],
+  [
+   "QGraphicsView",
+   407046
+  ],
+  [
+   "QWidget",
+   407046
+  ]
+ ],
+ "M_viewport": "QWidget",
+ "M_widget": "QWidget",
+ "M_cam_moved_mid": [
+  [
+   4586.0,
+   16.6,
+   1303.3
+  ],
+  [
+   4294.4,
+   126.0,
+   1303.3
+  ]
+ ],
+ "M_overlay_after_mid": true,
+ "M_cam_moved_right": [
+  [
+   4294.4,
+   126.0,
+   1303.3
+  ],
+  [
+   4294.4,
+   126.0,
+   1303.3
+  ]
+ ],
+ "M_overlay_after_right": true,
+ "M_cam_after_wheel": [
+  [
+   4586.0,
+   16.6,
+   1303.3
+  ],
+  [
+   4294.4,
+   126.0,
+   1303.3
+  ]
+ ],
+ "M_overlay_after_wheel": true,
+ "idlog": "7143.24 toggle toolbar created\n7153.01 refresh doc=GuiElec children=8\n7153.02 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n7153.02 refresh doc=GuiElec children=9\n7153.03 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n7161.67 refresh doc=GuiElec children=9\n7165.73 refresh doc=GuiElec children=8\n7165.74 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n",
+ "C_route_count_after_move": 0,
+ "netlist_same_after_move": true,
+ "D_overlay_present_after_reopen": true,
+ "idlog2": "7143.24 toggle toolbar created\n7153.01 refresh doc=GuiElec children=8\n7153.02 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n7153.02 refresh doc=GuiElec children=9\n7153.03 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n7161.67 refresh doc=GuiElec children=9\n7165.73 refresh doc=GuiElec children=8\n7165.74 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n7186.88 refresh doc=GuiElec children=9\n7186.88 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n7187.35 refresh doc=GuiElec children=9\n7187.35 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n7192.69 refresh doc=GuiElec children=8\n7192.70 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n7192.90 refresh doc=GuiElec children=9\n7192.91 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n",
+ "D_netlist_same_after_reopen": true,
+ "E_idle_rebuilds_5s": 0,
+ "E_undo_restores_position": true,
+ "E_redo_applies": true,
+ "F_overlay_second_doc": true,
+ "G_overlay_first_doc_after_close": true,
+ "G_idle_rebuilds_5s": 0,
+ "K_default": {
+  "visible": true,
+  "floating": false,
+  "area": 0
+ },
+ "K_parent_chain": [
+  "QSplitter:",
+  "QTabWidget:OverlayRight",
+  "QMainWindow:"
+ ],
+ "K_version": [
+  "1",
+  "1",
+  "4",
+  "20260928 (Git shallow)"
+ ],
+ "K_overlay_cmds": [
+  "Sketcher_ArcOverlay",
+  "Std_DockOverlay",
+  "Std_DockOverlayAll",
+  "Std_DockOverlayMouseTransparent",
+  "Std_DockOverlayToggle",
+  "Std_DockOverlayToggleBottom",
+  "Std_DockOverlayToggleLeft",
+  "Std_DockOverlayToggleRight",
+  "Std_DockOverlayToggleTop",
+  "Std_DockOverlayToggleTransparent",
+  "Std_DockOverlayTransparentAll"
+ ],
+ "K_button_present": 1,
+ "K_marker_unused": false,
+ "K_after_button_1": {
+  "visible": false,
+  "floating": false,
+  "area": 0
+ },
+ "K_after_button_2": {
+  "visible": true,
+  "floating": false,
+  "area": 0
+ },
+ "K_shown_stays_4s": {
+  "visible": true,
+  "floating": false,
+  "area": 0
+ },
+ "K_hidden_by_user": {
+  "visible": false,
+  "floating": false,
+  "area": 0
+ },
+ "K_dialog_with_hidden_panel": {
+  "visible": true,
+  "floating": false,
+  "area": 0,
+  "active": true
+ },
+ "K_hide_attempt_during_dialog": {
+  "visible": true,
+  "floating": false,
+  "area": 0,
+  "active": true
+ },
+ "K_after_dialog_closed": {
+  "visible": true,
+  "floating": false,
+  "area": 0
+ },
+ "log_errors": 0,
+ "log_refreshes_total": 20,
+ "I_installed_markers": {
+  "button": true,
+  "no_auto_marker": true,
+  "tidy_noop": false,
+  "PairedRows_symbols": true,
+  "PairedRows_core": true
+ },
+ "export_uses_terminal_side": false,
+ "export_return": "{'source_signature': 'c074f2cf3194418d2b79e19ae9a40808d16db5accb7dabc5b4c6558bcc576c02', 'centerline_mm': 0, 'wire_count': 9, 'synchronous_projection': True}",
+ "sizes": [
+  12411,
+  17185
+ ],
+ "done": true
+}
