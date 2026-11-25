@@ -1,0 +1,5 @@
+setup exit 0
+arabic qm files: 0 
+lnk exists: True
+lnk target=C:\Users\runneradmin\AppData\Local\Programs\DeltaEngineering\bin\freecad.exe args="C:\Users\runneradmin\AppData\Local\Programs\DeltaEngineering\LaunchDelta.FCMacro" workdir=C:\Users\runneradmin\AppData\Local\Programs\DeltaEngineering
+alive=True title=[FreeCAD 1.1.4]
