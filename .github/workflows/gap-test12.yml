@@ -535,6 +535,26 @@ jobs:
                       if w.parentWidget() is not None and w.parentWidget().objectName() == 'OverlayRight']
 
 
+          class _ShowFilter(QtCore.QObject):
+              """Re-check right away when the Tasks dock or its overlay title is shown, instead of waiting for the timer."""
+              def eventFilter(self, obj, event):
+                  if event.type() == QtCore.QEvent.Show:
+                      QtCore.QTimer.singleShot(0, hide_empty_tasks)
+                  return False
+
+
+          _FILTER = {}
+
+
+          def _install_filters(mw, dock, strips):
+              f = _FILTER.get('f')
+              if f is None:
+                  f = _FILTER['f'] = _ShowFilter(mw)
+              for w in ([dock] if dock is not None else []) + list(strips):
+                  if not w.property('_delta_filtered'):
+                      w.installEventFilter(f); w.setProperty('_delta_filtered', True)
+
+
           def hide_empty_tasks():
               """Hide the empty Tasks dock and FreeCAD's leftover overlay title strip only while no task dialog is active.
               Both are shown again while a task dialog is open. Returns True if anything was hidden."""
@@ -546,6 +566,7 @@ jobs:
               changed = False
               dock = mw.findChild(QtWidgets.QDockWidget, 'Tasks')
               strips = _overlay_titles(mw)
+              _install_filters(mw, dock, strips)
               if active:
                   for w in strips:
                       if getattr(w, '_delta_hidden', False):
@@ -559,6 +580,47 @@ jobs:
               return changed
           '@
           Set-Content "$pkg\fittings_panel.py" $fp -Encoding utf8
+          $cp = @'
+          # v7 source patches to shipped modules (idempotent). Applied with apply(pkgdir) before the package is imported.
+          import os
+
+
+          def _sub(path, old, new, marker):
+              s = open(path, encoding='utf-8', newline='').read()
+              if marker in s:
+                  return 'already'
+              assert old in s, 'anchor not found in ' + path + ': ' + old[:50]
+              open(path, 'w', encoding='utf-8', newline='').write(s.replace(old, new, 1))
+              return 'patched'
+
+
+          def apply(pkg):
+              out = {}
+              core = os.path.join(pkg, 'core.py')
+              # 1) terminal pitch: at least 14 mm between terminals on devices with more than 4 terminals (legibility)
+              out['pitch'] = _sub(core,
+                  "    y=30-60*(index+1)/(len(terminals)+1)\n",
+                  "    span=60 if len(terminals)<=4 else 14*(len(terminals)+1)  # v7 pitch\n    y=span/2-span*(index+1)/(len(terminals)+1)\n",
+                  '# v7 pitch')
+              # 2) routed wires: each terminal gets its own vertical channel so parallel conductors do not overlap
+              out['channels'] = _sub(core,
+                  "            start=a+App.Vector(source_sign*20,0,0);end=b+App.Vector(target_sign*20,0,0)\n",
+                  "            _si=list(obj.SourceDevice.Terminals).index(obj.SourceTerminal) if hasattr(obj,'SourceTerminal') else 0  # v7 channel\n"
+                  "            _ti=list(obj.TargetDevice.Terminals).index(obj.TargetTerminal) if hasattr(obj,'TargetTerminal') else 0\n"
+                  "            start=a+App.Vector(source_sign*(20+9*_si),0,0);end=b+App.Vector(target_sign*(20+9*_ti),0,0)\n",
+                  '# v7 channel')
+              # 3) wire ID labels on the electrical page
+              exp = os.path.join(pkg, 'export.py')
+              out['wire_labels'] = _sub(exp,
+                  "        _page(temporary[1],'الكهرباء | توصيلات منطقية تجريبية',[views[2]],rows,labels)",
+                  "        for _w in [o for o in d.Objects if hasattr(o,'SourceTerminal') and not o.Shape.isNull()]:  # v7 wire labels\n"
+                  "            _e=max(_w.Shape.Edges,key=lambda e:e.Length);_m=_e.CenterOfMass\n"
+                  "            labels.append((_w.WireId,_m.x,_m.y,'right'))\n"
+                  "        _page(temporary[1],'الكهرباء | توصيلات منطقية تجريبية',[views[2]],rows,labels)",
+                  '# v7 wire labels')
+              return out
+          '@
+          Set-Content "$pkg\core_patches.py" $cp -Encoding utf8
           $sym = Get-Content "$pkg\symbols.py" -Raw -Encoding utf8
           $symadd = @'
 
@@ -582,16 +644,18 @@ jobs:
 
               def line(a, b):
                   return Part.makeLine(v(*a), v(*b))
+              n = len(getattr(device, 'Terminals', []))
+              H = max(30, 7 * (n + 1)) if n > 4 else 30
 
               def poly(points):
                   return Part.makePolygon([v(x, y) for x, y in points])
               if kind == 'Breaker concept':
-                  return [poly([(-45, -30), (-45, 30), (45, 30), (45, -30), (-45, -30)]), line((-25, -15), (15, 15)), line((-25, 0), (-5, 0))]
+                  return [poly([(-45, -H), (-45, H), (45, H), (45, -H), (-45, -H)]), line((-25, -15), (15, 15)), line((-25, 0), (-5, 0))]
               if kind == 'Contactor concept':
-                  return [poly([(-45, -30), (-45, 30), (45, 30), (45, -30), (-45, -30)]), line((-30, -20), (-30, 20)), line((0, -20), (0, 20)), line((30, -20), (30, 20)),
+                  return [poly([(-45, -H), (-45, H), (45, H), (45, -H), (-45, -H)]), line((-30, -20), (-30, 20)), line((0, -20), (0, 20)), line((30, -20), (30, 20)),
                           line((-30, 0), (-20, 8)), line((0, 0), (10, 8)), line((30, 0), (40, 8))]
               if kind == 'Overload concept':
-                  return [poly([(-45, -30), (-45, 30), (45, 30), (45, -30), (-45, -30)]), poly([(-30, -15), (-20, 15), (-10, -15), (0, 15), (10, -15), (20, 15), (30, -15)])]
+                  return [poly([(-45, -H), (-45, H), (45, H), (45, -H), (-45, -H)]), poly([(-30, -15), (-20, 15), (-10, -15), (0, 15), (10, -15), (20, 15), (30, -15)])]
               if kind == 'Fuse concept':
                   return [poly([(-35, -12), (-35, 12), (35, 12), (35, -12), (-35, -12)]), line((-50, 0), (50, 0))]
               if kind == 'Pushbutton concept':
@@ -632,6 +696,9 @@ jobs:
               import FreeCAD as App, FreeCADGui as Gui
               from PySide import QtCore, QtWidgets
               from PySide6 import QtTest
+              import importlib.util
+              _spec = importlib.util.find_spec('DeltaEngineering'); _pkg = list(_spec.submodule_search_locations)[0]
+              _ns = {}; exec(open(_pkg + '/core_patches.py', encoding='utf-8-sig').read(), _ns); res['core_patches'] = _ns['apply'](_pkg)
               import DeltaEngineering.core, DeltaEngineering.domain
               from DeltaEngineering.gui import register
               if 'DeltaWorkbench' not in Gui.listWorkbenches(): register()
@@ -909,6 +976,8 @@ jobs:
                           except Exception as ex: diag['mode_err_' + mode] = str(ex)
                       Gui.activeDocument().activeView().viewIsometric(); Gui.SendMsgToActiveView('ViewFit'); pump(30); shot('fit12-G3-iso-fit-all')
                       out['diag'] = diag
+                      out['overlay_titles_visible_after_view_steps'] = [w.isVisible() for w in mw.findChildren(W.QWidget, 'OverlayTitle') if w.parentWidget() is not None and w.parentWidget().objectName() == 'OverlayRight']
+                      _td = mw.findChild(W.QDockWidget, 'Tasks'); out['tasks_dock_visible_after_view_steps'] = bool(_td and _td.isVisible())
                       d.removeObject(ctl.Name)
 
                       for o in doc_visible_others: o.ViewObject.Visibility = True
