@@ -1,0 +1,1 @@
+Exception while processing file: C:/DeltaTest/DeltaGuiTest12.FCMacro [("expected 'except' or 'finally' block", ('C:/DeltaTest/DeltaGuiTest12.FCMacro', 22, 1, 'import os as _os\n', 22, 7))]

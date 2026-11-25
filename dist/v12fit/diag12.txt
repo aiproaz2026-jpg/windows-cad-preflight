@@ -1,0 +1,7 @@
+freecad | FreeCAD 1.1.4 | cpu=6.421875
+hosted-compute-agent | C:\ProgramData\GitHub\HostedComputeAgent\hosted-compute-agent | cpu=5.421875
+TextInputHost | Windows Input Experience | cpu=0.21875
+diag.txt 197
+fc-err.txt 0
+fc-out.txt 0
+fit12-hang.png 95504
