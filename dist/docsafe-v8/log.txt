@@ -1,0 +1,3 @@
+setup exit 0
+alive=True waited=39 result file: True
+{"docs": ["UnsavedTest"], "objects": ["KeepMe"], "modified_flag_docs": 1, "subwindows": [["UnsavedTest : 1[*]", "Gui::View3DInventor"]]}
