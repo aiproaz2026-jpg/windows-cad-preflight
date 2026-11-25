@@ -1,0 +1,158 @@
+{
+ "steps": {
+  "formula_volumes_and_validity": {
+   "ok": true,
+   "secs": 0.36,
+   "detail": {
+    "reducer_volume": 300134.8412560397,
+    "reducer_expected": 300134.8412560396,
+    "flange_volume": 282782.7481676997,
+    "flange_expected": 282782.7481676996,
+    "gate_valve_volume": 250610.1,
+    "ball_valve_volume": 317884.3,
+    "check_valve_volume": 269274.3,
+    "pump_ports": [
+     [
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      266.7,
+      0.0,
+      166.98
+     ]
+    ]
+   }
+  },
+  "station_snap_rotated_continuity": {
+   "ok": true,
+   "secs": 0.56,
+   "detail": {
+    "joints": 7,
+    "open_ports": [
+     "GenericFitting005.1",
+     "GenericFitting007.1"
+    ],
+    "worst_center_gap_mm": 0.0,
+    "worst_direction_error": 0.0,
+    "errors": []
+   }
+  },
+  "mismatch_refused_and_displacement_detected": {
+   "ok": true,
+   "secs": 0.22,
+   "detail": {
+    "mismatch_message": "Port diameter mismatch: 114.300 mm vs 60.300 mm. Geometric continuity only, no compatibility implied.",
+    "placement_unchanged": true,
+    "open_ports_when_displaced_5mm": 6
+   }
+  },
+  "overlap_detected_then_cleared": {
+   "ok": true,
+   "secs": 0.27,
+   "detail": {
+    "overlap_reports": 1
+   }
+  },
+  "snap_undo_redo": {
+   "ok": true,
+   "secs": 0.03,
+   "detail": {
+    "moved": true,
+    "undo_restored": true,
+    "redo_reapplied": true
+   }
+  },
+  "quantity_takeoff_matches_independent_list": {
+   "ok": true,
+   "secs": 0.02,
+   "detail": {
+    "rows": [
+     {
+      "item": "محبس كروي عام",
+      "kind": "ball_valve",
+      "size": "NPS 4",
+      "qty": 1,
+      "unit": "pcs"
+     },
+     {
+      "item": "صمام عدم رجوع عام",
+      "kind": "check_valve",
+      "size": "NPS 3",
+      "qty": 1,
+      "unit": "pcs"
+     },
+     {
+      "item": "شفة عامة",
+      "kind": "flange",
+      "size": "NPS 2",
+      "qty": 2,
+      "unit": "pcs"
+     },
+     {
+      "item": "شفة عامة",
+      "kind": "flange",
+      "size": "NPS 3",
+      "qty": 1,
+      "unit": "pcs"
+     },
+     {
+      "item": "شفة عامة",
+      "kind": "flange",
+      "size": "NPS 4",
+      "qty": 1,
+      "unit": "pcs"
+     },
+     {
+      "item": "محبس بوابة عام",
+      "kind": "gate_valve",
+      "size": "NPS 2",
+      "qty": 1,
+      "unit": "pcs"
+     },
+     {
+      "item": "مضخة طرد مركزي عامة (غلاف تقريبي)",
+      "kind": "pump",
+      "size": "NPS 3 x NPS 2",
+      "qty": 1,
+      "unit": "pcs"
+     },
+     {
+      "item": "مخفّض متحد المحور",
+      "kind": "reducer",
+      "size": "NPS 2 x NPS 4",
+      "qty": 1,
+      "unit": "pcs"
+     }
+    ],
+    "csv_has_scope_notice": true
+   }
+  },
+  "arabic_path_save_reopen_and_step": {
+   "ok": true,
+   "secs": 0.25,
+   "detail": {
+    "objects": 9,
+    "max_volume_diff_after_reopen": 3.725290298461914e-09,
+    "connections_after_reopen": 8,
+    "ok_after_reopen": true,
+    "step_volume": 20811464.337264456,
+    "sum_volume": 20811440.61063718,
+    "step_bytes": 118348
+   }
+  },
+  "chain_of_60_fittings": {
+   "ok": true,
+   "secs": 5.55,
+   "detail": {
+    "fittings": 60,
+    "build_snap_secs": 5.43,
+    "continuity_secs": 0.11,
+    "scope": "one CI run, 60 generic fittings in a chain, not a requirement or memory claim"
+   }
+  }
+ },
+ "done": true,
+ "_doc2": "محطة"
+}

@@ -1,0 +1,11 @@
+﻿# هندسة عامة توضيحية، ليست كتالوج مصنّع ولا معيار شفات. تطابق المقاس لا يعني توافق الضغط أو المعيار.
+"# Generic illustrative geometry. Not a manufacturer catalog or flange standard. Matching port diameter is geometric continuity only, not pressure or standards compatibility."
+item,kind,size,qty,unit
+محبس كروي عام,ball_valve,NPS 4,1,pcs
+صمام عدم رجوع عام,check_valve,NPS 3,1,pcs
+شفة عامة,flange,NPS 2,2,pcs
+شفة عامة,flange,NPS 3,1,pcs
+شفة عامة,flange,NPS 4,1,pcs
+محبس بوابة عام,gate_valve,NPS 2,1,pcs
+مضخة طرد مركزي عامة (غلاف تقريبي),pump,NPS 3 x NPS 2,1,pcs
+مخفّض متحد المحور,reducer,NPS 2 x NPS 4,1,pcs
