@@ -1,13 +1,332 @@
 {
  "steps": {
   "layout_and_clipping_metrics": {
-   "ok": false,
-   "secs": 1.63,
-   "detail": "Traceback (most recent call last):\n  File \"C:/DeltaTest/DeltaGuiTest8.FCMacro\", line 54, in run\n    out = fn(); res['steps'][name] = {'ok': True, 'secs': round(time.time() - t0, 2), 'detail': out}\n          ^^^^\n  File \"C:/DeltaTest/DeltaGuiTest8.FCMacro\", line 115, in s_layout\n    out['profile_cat%d' % ci]['content_size'] = [pp.width(), pp.height()]\n                                                             ^^^^^^^^^^^\n  File \"C:\\DeltaTest\\Mod\\DeltaEngineering\\DeltaEngineering\\profile_panel.py\", line 66, in height\n    obj=self.selected();doc=self.panel.doc();height=length(self.fields['height'].text())\n        ^^^^^^^^^^^^^^^\n  File \"C:\\DeltaTest\\Mod\\DeltaEngineering\\DeltaEngineering\\profile_panel.py\", line 61, in selected\n    if len(selected)!=1:raise ValueError('Select exactly one profile or extrusion')\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: Select exactly one profile or extrusion\n"
+   "ok": true,
+   "secs": 4.09,
+   "detail": {
+    "A_start": {
+     "screen": [
+      1920,
+      1080
+     ],
+     "window": [
+      1800,
+      1000
+     ],
+     "viewport_px": [
+      1534,
+      809
+     ],
+     "docks": [
+      {
+       "name": "Model",
+       "w": 260,
+       "h": 839,
+       "floating": false
+      },
+      {
+       "name": "Tasks",
+       "w": 380,
+       "h": 647,
+       "floating": false
+      }
+     ]
+    },
+    "B_drafting_panel": {
+     "screen": [
+      1920,
+      1080
+     ],
+     "window": [
+      1800,
+      1000
+     ],
+     "viewport_px": [
+      1128,
+      809
+     ],
+     "docks": [
+      {
+       "name": "Model",
+       "w": 260,
+       "h": 839,
+       "floating": false
+      },
+      {
+       "name": "Tasks",
+       "w": 380,
+       "h": 647,
+       "floating": false
+      },
+      {
+       "name": "DeltaDraftingPanel",
+       "w": 400,
+       "h": 839,
+       "floating": false
+      }
+     ]
+    },
+    "tab0_الجدول والأبعاد": {
+     "checked_widgets": 25,
+     "clipped_count": 0,
+     "clipped_first": [],
+     "overlapping_buttons": [],
+     "overlap_count": 0
+    },
+    "tab1_يدوي ودقيق": {
+     "checked_widgets": 26,
+     "clipped_count": 0,
+     "clipped_first": [],
+     "overlapping_buttons": [],
+     "overlap_count": 0
+    },
+    "tab2_مقاطع وأجزاء": {
+     "checked_widgets": 23,
+     "clipped_count": 0,
+     "clipped_first": [],
+     "overlapping_buttons": [],
+     "overlap_count": 0
+    },
+    "tab3_مقاسات مواسير": {
+     "checked_widgets": 26,
+     "clipped_count": 0,
+     "clipped_first": [],
+     "overlapping_buttons": [],
+     "overlap_count": 0
+    },
+    "profile_cat0": {
+     "checked_widgets": 23,
+     "clipped_count": 0,
+     "clipped_first": [],
+     "overlapping_buttons": [],
+     "overlap_count": 0,
+     "content_size": [
+      398,
+      712
+     ],
+     "content_min_hint": [
+      254,
+      626
+     ]
+    },
+    "profile_cat1": {
+     "checked_widgets": 22,
+     "clipped_count": 0,
+     "clipped_first": [],
+     "overlapping_buttons": [],
+     "overlap_count": 0,
+     "content_size": [
+      398,
+      712
+     ],
+     "content_min_hint": [
+      243,
+      476
+     ]
+    },
+    "profile_cat2": {
+     "checked_widgets": 22,
+     "clipped_count": 0,
+     "clipped_first": [],
+     "overlapping_buttons": [],
+     "overlap_count": 0,
+     "content_size": [
+      398,
+      712
+     ],
+     "content_min_hint": [
+      254,
+      566
+     ]
+    },
+    "profile_cat3": {
+     "checked_widgets": 16,
+     "clipped_count": 0,
+     "clipped_first": [],
+     "overlapping_buttons": [],
+     "overlap_count": 0,
+     "content_size": [
+      398,
+      712
+     ],
+     "content_min_hint": [
+      291,
+      506
+     ]
+    },
+    "D_electrical_panel_also_open": {
+     "screen": [
+      1920,
+      1080
+     ],
+     "window": [
+      1800,
+      1365
+     ],
+     "viewport_px": [
+      1128,
+      1174
+     ],
+     "docks": [
+      {
+       "name": "Model",
+       "w": 260,
+       "h": 1204,
+       "floating": false
+      },
+      {
+       "name": "Tasks",
+       "w": 380,
+       "h": 1012,
+       "floating": false
+      },
+      {
+       "name": "DeltaDraftingPanel",
+       "w": 400,
+       "h": 598,
+       "floating": false
+      },
+      {
+       "name": "DeltaElectricalPanel",
+       "w": 400,
+       "h": 600,
+       "floating": false
+      }
+     ]
+    },
+    "electrical_metrics": {
+     "checked_widgets": 20,
+     "clipped_count": 12,
+     "clipped_first": [
+      {
+       "cls": "QPushButton",
+       "text": "رمز جديد",
+       "h": 22,
+       "need_h": 24,
+       "w": 188,
+       "text_w": 42,
+       "short": true,
+       "narrow": false
+      },
+      {
+       "cls": "QPushButton",
+       "text": "تغيير معرّف الرمز",
+       "h": 22,
+       "need_h": 24,
+       "w": 188,
+       "text_w": 83,
+       "short": true,
+       "narrow": false
+      },
+      {
+       "cls": "QPushButton",
+       "text": "حذف الرمز",
+       "h": 21,
+       "need_h": 24,
+       "w": 188,
+       "text_w": 51,
+       "short": true,
+       "narrow": false
+      },
+      {
+       "cls": "QPushButton",
+       "text": "طرف جديد",
+       "h": 21,
+       "need_h": 24,
+       "w": 188,
+       "text_w": 52,
+       "short": true,
+       "narrow": false
+      },
+      {
+       "cls": "QPushButton",
+       "text": "تسمية الطرف",
+       "h": 21,
+       "need_h": 24,
+       "w": 188,
+       "text_w": 67,
+       "short": true,
+       "narrow": false
+      },
+      {
+       "cls": "QPushButton",
+       "text": "حذف الطرف",
+       "h": 21,
+       "need_h": 24,
+       "w": 188,
+       "text_w": 61,
+       "short": true,
+       "narrow": false
+      },
+      {
+       "cls": "QPushButton",
+       "text": "توصيل طرفين",
+       "h": 22,
+       "need_h": 24,
+       "w": 188,
+       "text_w": 69,
+       "short": true,
+       "narrow": false
+      },
+      {
+       "cls": "QPushButton",
+       "text": "تحديث",
+       "h": 22,
+       "need_h": 24,
+       "w": 188,
+       "text_w": 32,
+       "short": true,
+       "narrow": false
+      },
+      {
+       "cls": "QPushButton",
+       "text": "موضع الرمز بدقة",
+       "h": 21,
+       "need_h": 24,
+       "w": 188,
+       "text_w": 83,
+       "short": true,
+       "narrow": false
+      },
+      {
+       "cls": "QPushButton",
+       "text": "إزاحة مسار السلك",
+       "h": 21,
+       "need_h": 24,
+       "w": 188,
+       "text_w": 85,
+       "short": true,
+       "narrow": false
+      },
+      {
+       "cls": "QPushButton",
+       "text": "فحص مجموعات الأطراف",
+       "h": 21,
+       "need_h": 24,
+       "w": 188,
+       "text_w": 122,
+       "short": true,
+       "narrow": false
+      },
+      {
+       "cls": "QPushButton",
+       "text": "ترتيب الأطراف واتجاهها",
+       "h": 21,
+       "need_h": 24,
+       "w": 188,
+       "text_w": 112,
+       "short": true,
+       "narrow": false
+      }
+     ],
+     "overlapping_buttons": [],
+     "overlap_count": 0
+    }
+   }
   },
   "step_roundtrip_direct_and_via_panel": {
    "ok": true,
-   "secs": 4.68,
+   "secs": 6.86,
    "detail": {
     "direct_export_bytes": 3509,
     "direct_import_volume": 785398.163,
@@ -22,21 +341,21 @@
   },
   "viewport_navigation_real_events": {
    "ok": true,
-   "secs": 2.43,
+   "secs": 3.05,
    "detail": {
     "viewport": [
      1128,
-     809
+     1174
     ],
     "navigation_style_initial": "Gui::CADNavigationStyle",
     "cad_pan_middle_drag": {
      "proj_before": [
       564,
-      405
+      587
      ],
      "proj_after": [
-      644,
-      364
+      647,
+      545
      ],
      "moved": true
     },
@@ -48,30 +367,43 @@
       0.8205
      ],
      "after": [
-      0.3763,
-      -0.0065,
-      0.2814,
-      0.8827
+      0.4082,
+      0.0076,
+      0.2768,
+      0.8699
      ],
      "changed": true
     },
     "wheel_zoom": {
-     "proj_before": [
-      638,
-      369
+     "center_before_after": [
+      [
+       642,
+       548
+      ],
+      [
+       642,
+       548
+      ]
      ],
-     "proj_after": [
-      638,
-      369
+     "offset_point_before_after": [
+      [
+       2296,
+       -381
+      ],
+      [
+       2296,
+       -381
+      ]
      ],
      "changed": false
     },
+    "style_after_set": "Gui::CADNavigationStyle",
     "openinventor_rotate_left_drag": {
      "before": [
-      0.4245,
-      0.1749,
-      0.3396,
-      0.8209
+      0.4247,
+      0.1759,
+      0.3399,
+      0.8205
      ],
      "after": [
       0.4247,
@@ -79,13 +411,13 @@
       0.3399,
       0.8205
      ],
-     "changed": true
+     "changed": false
     }
    }
   },
   "plant_rendering_diagnosis": {
    "ok": true,
-   "secs": 6.42,
+   "secs": 8.38,
    "detail": {
     "pipe_default_color": [
      0.68,
@@ -105,7 +437,7 @@
     ],
     "viewport_px": [
      1128,
-     809
+     1174
     ]
    }
   }
