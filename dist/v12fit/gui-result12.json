@@ -2,7 +2,7 @@
  "steps": {
   "fittings_tab_present_and_layout": {
    "ok": true,
-   "secs": 1.07,
+   "secs": 1.78,
    "detail": {
     "tasks_dock_before_panel": {
      "exists": true,
@@ -85,7 +85,7 @@
   },
   "station_built_through_panel_buttons": {
    "ok": true,
-   "secs": 5.04,
+   "secs": 5.85,
    "detail": {
     "report_text": "وصلات متطابقة: 7\nمنافذ مفتوحة: 2\n  GenericFitting005.1\n  GenericFitting007.1\nلا أخطاء هندسية في الاستمرارية أو التداخل.\nهندسة عامة توضيحية، ليست كتالوج مصنّع ولا معيار شفات. تطابق المقاس لا يعني توافق الضغط أو المعيار.",
     "connected": 7,
@@ -105,7 +105,7 @@
   },
   "mismatch_refused_through_ui": {
    "ok": true,
-   "secs": 1.69,
+   "secs": 1.78,
    "detail": {
     "placement_unchanged": true,
     "status": "لم يتم التعديل: تعذر إكمال العملية. راجع التحديد والقيم وحالة المصدر ثم أعد المحاولة. احتفظ بالتفصيل التقني عند طلب المساعدة:\nPort diameter mismatch: 114.300 mm vs 60.300 mm. Geometric continuity only, no compatibility implied.",
@@ -121,7 +121,7 @@
   },
   "quantity_csv_through_panel": {
    "ok": true,
-   "secs": 0.11,
+   "secs": 0.16,
    "detail": {
     "rows": [
      {
@@ -179,7 +179,7 @@
   },
   "save_reopen_arabic_path": {
    "ok": true,
-   "secs": 0.73,
+   "secs": 1.11,
    "detail": {
     "objects": 8,
     "max_volume_diff": 3.725290298461914e-09,
@@ -188,7 +188,7 @@
   },
   "station_with_pipes_elbow_through_panel": {
    "ok": true,
-   "secs": 8.47,
+   "secs": 10.48,
    "detail": {
     "elbow_volume": 98414.06548998691,
     "elbow_expected_pappus": 98414.0654899867,
@@ -287,7 +287,7 @@
   },
   "station_scaled_pdf": {
    "ok": true,
-   "secs": 1.74,
+   "secs": 2.66,
    "detail": {
     "Top_denominator_10_rejected": "View exceeds A3 drawing area at this scale; choose a larger denominator",
     "Top": {
@@ -344,9 +344,435 @@
     }
    }
   },
+  "motor_starter_circuit_symbols_and_pdf": {
+   "ok": true,
+   "secs": 0.8,
+   "detail": {
+    "template_combo_items": 10,
+    "template_keys": [
+     "Generic block",
+     "Motor concept",
+     "Switch concept",
+     "Coil concept",
+     "Earth concept",
+     "Breaker concept",
+     "Contactor concept",
+     "Overload concept",
+     "Fuse concept",
+     "Pushbutton concept"
+    ],
+    "wires": 9,
+    "connectivity": {
+     "nets": [
+      {
+       "id": "NET001",
+       "members": [
+        {
+         "device": "F1",
+         "terminal": "1"
+        },
+        {
+         "device": "KM1",
+         "terminal": "2"
+        }
+       ],
+       "wires": [
+        "W4"
+       ],
+       "isolated": false
+      },
+      {
+       "id": "NET002",
+       "members": [
+        {
+         "device": "F1",
+         "terminal": "2"
+        },
+        {
+         "device": "M1",
+         "terminal": "U"
+        }
+       ],
+       "wires": [
+        "W7"
+       ],
+       "isolated": false
+      },
+      {
+       "id": "NET003",
+       "members": [
+        {
+         "device": "F1",
+         "terminal": "3"
+        },
+        {
+         "device": "KM1",
+         "terminal": "4"
+        }
+       ],
+       "wires": [
+        "W5"
+       ],
+       "isolated": false
+      },
+      {
+       "id": "NET004",
+       "members": [
+        {
+         "device": "F1",
+         "terminal": "4"
+        },
+        {
+         "device": "M1",
+         "terminal": "V"
+        }
+       ],
+       "wires": [
+        "W8"
+       ],
+       "isolated": false
+      },
+      {
+       "id": "NET005",
+       "members": [
+        {
+         "device": "F1",
+         "terminal": "5"
+        },
+        {
+         "device": "KM1",
+         "terminal": "6"
+        }
+       ],
+       "wires": [
+        "W6"
+       ],
+       "isolated": false
+      },
+      {
+       "id": "NET006",
+       "members": [
+        {
+         "device": "F1",
+         "terminal": "6"
+        },
+        {
+         "device": "M1",
+         "terminal": "W"
+        }
+       ],
+       "wires": [
+        "W9"
+       ],
+       "isolated": false
+      },
+      {
+       "id": "NET007",
+       "members": [
+        {
+         "device": "KM1",
+         "terminal": "1"
+        },
+        {
+         "device": "Q1",
+         "terminal": "2"
+        }
+       ],
+       "wires": [
+        "W1"
+       ],
+       "isolated": false
+      },
+      {
+       "id": "NET008",
+       "members": [
+        {
+         "device": "KM1",
+         "terminal": "3"
+        },
+        {
+         "device": "Q1",
+         "terminal": "4"
+        }
+       ],
+       "wires": [
+        "W2"
+       ],
+       "isolated": false
+      },
+      {
+       "id": "NET009",
+       "members": [
+        {
+         "device": "KM1",
+         "terminal": "5"
+        },
+        {
+         "device": "Q1",
+         "terminal": "6"
+        }
+       ],
+       "wires": [
+        "W3"
+       ],
+       "isolated": false
+      },
+      {
+       "id": "NET010",
+       "members": [
+        {
+         "device": "KM1",
+         "terminal": "A1"
+        }
+       ],
+       "wires": [],
+       "isolated": true
+      },
+      {
+       "id": "NET011",
+       "members": [
+        {
+         "device": "KM1",
+         "terminal": "A2"
+        }
+       ],
+       "wires": [],
+       "isolated": true
+      },
+      {
+       "id": "NET012",
+       "members": [
+        {
+         "device": "M1",
+         "terminal": "PE"
+        }
+       ],
+       "wires": [],
+       "isolated": true
+      },
+      {
+       "id": "NET013",
+       "members": [
+        {
+         "device": "Q1",
+         "terminal": "1"
+        }
+       ],
+       "wires": [],
+       "isolated": true
+      },
+      {
+       "id": "NET014",
+       "members": [
+        {
+         "device": "Q1",
+         "terminal": "3"
+        }
+       ],
+       "wires": [],
+       "isolated": true
+      },
+      {
+       "id": "NET015",
+       "members": [
+        {
+         "device": "Q1",
+         "terminal": "5"
+        }
+       ],
+       "wires": [],
+       "isolated": true
+      }
+     ],
+     "unwired": [
+      {
+       "device": "KM1",
+       "terminal": "A1"
+      },
+      {
+       "device": "KM1",
+       "terminal": "A2"
+      },
+      {
+       "device": "M1",
+       "terminal": "PE"
+      },
+      {
+       "device": "Q1",
+       "terminal": "1"
+      },
+      {
+       "device": "Q1",
+       "terminal": "3"
+      },
+      {
+       "device": "Q1",
+       "terminal": "5"
+      }
+     ],
+     "duplicate_pair_wires": [],
+     "scope": "Explicit terminal graph only. No inferred device-internal connections, crossing junctions, circuits, voltage/current/rating or safety checks."
+    },
+    "symbol_shapes_valid": true,
+    "export": {
+     "source_signature": "0a5a9397d8dc088e5e8e178784bfda672c7a5e1d8947028f0bb6b0547145be5a",
+     "centerline_mm": 0,
+     "wire_count": 9,
+     "synchronous_projection": true
+    }
+   }
+  },
+  "strip_probe": {
+   "ok": true,
+   "secs": 0.01,
+   "detail": {
+    "widgets_near_strip": [
+     {
+      "rect": [
+       588,
+       265,
+       103,
+       24
+      ],
+      "cls": "QLabel",
+      "name": "",
+      "title": "",
+      "chain": [
+       "QLabel:",
+       "QWidget:GeneralSettingsWidget",
+       "QGroupBox:FirstStartWidget",
+       "QWidget:",
+       "QWidget:qt_scrollarea_viewport",
+       "QScrollArea:"
+      ]
+     },
+     {
+      "rect": [
+       697,
+       265,
+       281,
+       24
+      ],
+      "cls": "QComboBox",
+      "name": "",
+      "title": "",
+      "chain": [
+       "QComboBox:",
+       "QWidget:GeneralSettingsWidget",
+       "QGroupBox:FirstStartWidget",
+       "QWidget:",
+       "QWidget:qt_scrollarea_viewport",
+       "QScrollArea:"
+      ]
+     },
+     {
+      "rect": [
+       580,
+       272,
+       380,
+       20
+      ],
+      "cls": "QWidget",
+      "name": "OverlayTitle",
+      "title": "",
+      "chain": [
+       "QWidget:OverlayTitle",
+       "QTabWidget:OverlayRight",
+       "QMainWindow:"
+      ]
+     }
+    ],
+    "docks": [
+     {
+      "name": "DeltaElectricalPanel",
+      "title": "محرر الكهرباء التجريبي",
+      "visible": true,
+      "floating": false,
+      "geom": [
+       -850,
+       -586,
+       350,
+       86
+      ]
+     },
+     {
+      "name": "Selection view",
+      "title": "Selection View",
+      "visible": false,
+      "floating": false,
+      "geom": [
+       0,
+       0,
+       210,
+       127
+      ]
+     },
+     {
+      "name": "Model",
+      "title": "Model",
+      "visible": true,
+      "floating": false,
+      "geom": [
+       0,
+       130,
+       260,
+       567
+      ]
+     },
+     {
+      "name": "Python console",
+      "title": "Python Console",
+      "visible": false,
+      "floating": false,
+      "geom": [
+       0,
+       0,
+       100,
+       92
+      ]
+     },
+     {
+      "name": "Report view",
+      "title": "Report View",
+      "visible": false,
+      "floating": false,
+      "geom": [
+       0,
+       0,
+       100,
+       92
+      ]
+     },
+     {
+      "name": "DeltaDraftingPanel",
+      "title": "الرسم والأبعاد | مليمتر",
+      "visible": true,
+      "floating": false,
+      "geom": [
+       966,
+       130,
+       400,
+       541
+      ]
+     },
+     {
+      "name": "Tasks",
+      "title": "Tasks",
+      "visible": false,
+      "floating": false,
+      "geom": [
+       0,
+       187,
+       380,
+       82
+      ]
+     }
+    ]
+   }
+  },
   "tasks_dock_hidden_again_after_task_closes": {
    "ok": true,
-   "secs": 4.24,
+   "secs": 4.25,
    "detail": {
     "visible_while_task_open": true,
     "visible_after_close_and_4s": false
