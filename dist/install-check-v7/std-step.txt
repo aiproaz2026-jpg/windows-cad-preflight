@@ -1,12 +1,12 @@
 **********************
 PowerShell transcript start
-Start time: 20261125124111
+Start time: 20261125125141
 Username: runnervmhh3zg\runneradmin
 RunAs User: runnervmhh3zg\runneradmin
 Configuration Name: 
 Machine: runnervmhh3zg (Microsoft Windows NT 10.0.20348.0)
-Host Application: C:\Program Files\PowerShell\7\pwsh.dll -command . 'D:\a\_temp\cf282247-98dc-4380-90df-c36fe11dc7f3.ps1'
-Process ID: 1384
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll -command . 'D:\a\_temp\866dc14f-c824-4a98-b25b-f97a57684105.ps1'
+Process ID: 1788
 PSVersion: 7.6.10
 PSEdition: Core
 GitCommitId: 7.6.10
@@ -17,11 +17,40 @@ PSRemotingProtocolVersion: 2.4
 SerializationVersion: 1.1.0.1
 WSManStackVersion: 3.0
 **********************
+The command completed successfully.
+User name                    cadstd
+Full Name                    
+Comment                      
+User's comment               
+Country/region code          000 (System Default)
+Account active               Yes
+Account expires              Never
 
+Password last set            11/25/2026 12:51:41 PM
+Password expires             1/6/2027 12:51:41 PM
+Password changeable          11/25/2026 12:51:41 PM
+Password required            Yes
+User may change password     Yes
 
-PS>TerminatingError(Start-Process): "This command cannot be run due to the error: The user name or password is incorrect."
-EXCEPTION: This command cannot be run due to the error: The user name or password is incorrect.
+Workstations allowed         All
+Logon script                 
+User profile                 
+Home directory               
+Last logon                   Never
+
+Logon hours allowed          All
+
+Local Group Memberships      *Users                
+Global Group memberships     *None                 
+The command completed successfully.
+
+WARNING: The task is registered, but may fail to start. Batch logon privilege needs to be enabled for the task principal.
+SUCCESS: Attempted to run the scheduled task "cadstdrun".
+waited 420 s
+
+Status:                               Ready
+Last Result:                          267011
 **********************
 PowerShell transcript end
-End time: 20261125124112
+End time: 20261125125843
 **********************
