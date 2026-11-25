@@ -1,4 +1,4 @@
-name: v12 electrical GUI: layout + labels + contactor symbol + on-screen ids (installed-copy test)
+name: v12 electrical GUI - layout, labels + contactor symbol + on-screen ids (installed-copy test)
 on:
   workflow_dispatch:
 permissions:
