@@ -1,0 +1,160 @@
+{
+ "stage": "export done",
+ "symbols_patched": true,
+ "route_count": 0,
+ "workbench": "DeltaWorkbench",
+ "workbench_screenshot": 60223,
+ "A_overlay_present_fit": true,
+ "D_docks": [
+  [
+   "Selection view",
+   "Selection View",
+   false,
+   false,
+   [
+    0,
+    0,
+    210,
+    127
+   ]
+  ],
+  [
+   "Model",
+   "Model",
+   true,
+   false,
+   [
+    0,
+    130,
+    260,
+    567
+   ]
+  ],
+  [
+   "Python console",
+   "Python Console",
+   false,
+   false,
+   [
+    0,
+    0,
+    100,
+    92
+   ]
+  ],
+  [
+   "Report view",
+   "Report View",
+   false,
+   false,
+   [
+    0,
+    0,
+    100,
+    92
+   ]
+  ],
+  [
+   "Tasks",
+   "Tasks",
+   true,
+   false,
+   [
+    0,
+    0,
+    380,
+    375
+   ]
+  ]
+ ],
+ "D_floating_visible_toplevels": [],
+ "T_toggle_actions": 1,
+ "T_toolbars_with_toggle": [
+  "Delta Identifiers"
+ ],
+ "T_cmd_registered": true,
+ "T_overlay_after_off": false,
+ "T_overlay_after_on": true,
+ "T_param_after": true,
+ "M_mdi": true,
+ "M_sub": true,
+ "M_cands": [
+  [
+   "QMainWindow",
+   407046
+  ],
+  [
+   "QStackedWidget",
+   407046
+  ],
+  [
+   "QGraphicsView",
+   407046
+  ],
+  [
+   "QWidget",
+   407046
+  ]
+ ],
+ "M_widget": "QMainWindow",
+ "M_cam_moved_mid": [
+  [
+   4595.0,
+   13.2,
+   1289.1
+  ],
+  [
+   4595.0,
+   13.2,
+   1289.1
+  ]
+ ],
+ "M_overlay_after_mid": true,
+ "M_cam_moved_right": [
+  [
+   4595.0,
+   13.2,
+   1289.1
+  ],
+  [
+   4595.0,
+   13.2,
+   1289.1
+  ]
+ ],
+ "M_overlay_after_right": true,
+ "M_cam_after_wheel": [
+  [
+   4595.0,
+   13.2,
+   1289.1
+  ],
+  [
+   4595.0,
+   13.2,
+   1289.1
+  ]
+ ],
+ "M_overlay_after_wheel": true,
+ "idlog": "939.31 toggle toolbar created\n948.23 refresh doc=GuiElec children=8\n948.24 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n948.25 refresh doc=GuiElec children=9\n948.26 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n957.07 refresh doc=GuiElec children=9\n961.15 refresh doc=GuiElec children=8\n961.16 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n",
+ "C_route_count_after_move": 0,
+ "netlist_same_after_move": true,
+ "D_overlay_present_after_reopen": true,
+ "idlog2": "939.31 toggle toolbar created\n948.23 refresh doc=GuiElec children=8\n948.24 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n948.25 refresh doc=GuiElec children=9\n948.26 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n957.07 refresh doc=GuiElec children=9\n961.15 refresh doc=GuiElec children=8\n961.16 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n982.26 refresh doc=GuiElec children=9\n982.26 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n982.38 refresh doc=GuiElec children=9\n982.39 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n988.47 refresh doc=GuiElec children=8\n988.48 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n988.63 refresh doc=GuiElec children=9\n988.64 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n",
+ "D_netlist_same_after_reopen": true,
+ "E_idle_rebuilds_5s": 0,
+ "E_undo_restores_position": true,
+ "E_redo_applies": true,
+ "F_overlay_second_doc": true,
+ "G_overlay_first_doc_after_close": true,
+ "G_idle_rebuilds_5s": 0,
+ "log_errors": 0,
+ "log_refreshes_total": 20,
+ "export_uses_terminal_side": false,
+ "export_return": "{'source_signature': '8090ac9c89a5bed8ec755287bcd751d110c3fb4582d69c0aebbca017c2689531', 'centerline_mm': 0, 'wire_count': 9, 'synchronous_projection': True}",
+ "sizes": [
+  12411,
+  17186
+ ],
+ "done": true
+}
