@@ -237,6 +237,14 @@ jobs:
           $o = & $cmd.FullName -c "exec(open('C:/elec_test.py',encoding='utf-8').read())" 2>&1 | Out-String
           $o | Set-Content C:/seed/elec/out.txt -Encoding utf8
           $o
+      - name: Retain installer as private workflow artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: DeltaEngineering-Setup-v12
+          path: C:/out/DeltaEngineering-Setup-v12.exe
+          retention-days: 30
+          compression-level: 0
       - name: Publish installer as private release asset and commit evidence
         if: always()
         shell: bash
@@ -254,7 +262,8 @@ jobs:
           git add dist
           git commit -m "Add v12 installer build evidence" || true
           git push
-          for i in 1 2 3; do [ -f /c/out/DeltaEngineering-Setup-v12.exe ] && gh release create standalone-v12-r$i /c/out/DeltaEngineering-Setup-v12.exe --title "Delta Engineering v12 offline installer retry $i (unsigned, experimental, unverified)" --notes "Private. Built from the repo revision in dist/v12/source-revision.txt. Not certified; item acceptance still open." && break || echo "release attempt $i failed"; sleep 10; done
+          [ -f /c/out/DeltaEngineering-Setup-v12.exe ] && { gh release view standalone-v12-r1 >/dev/null 2>&1 || gh release create standalone-v12-r1 --title "Delta Engineering v12 offline installer (unsigned, experimental, unverified)" --notes "Private. Built from the repo revision in dist/v12/source-revision.txt. Not certified; item acceptance still open." || echo "create failed"; }
+          for i in 1 2 3 4; do [ -f /c/out/DeltaEngineering-Setup-v12.exe ] && gh release upload standalone-v12-r1 /c/out/DeltaEngineering-Setup-v12.exe --clobber && echo "UPLOAD OK try $i" && break || { echo "upload try $i failed"; sleep 20; }; done
       - name: Gate verdict (fails on timeout, absent result, error or failed step)
         if: always()
         shell: pwsh
