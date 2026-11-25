@@ -1,0 +1,20 @@
+{
+ "stage": "export done",
+ "route_count": 0,
+ "workbench": "DeltaWorkbench",
+ "workbench_screenshot": 59336,
+ "A_overlay_present_fit": true,
+ "idlog": "5971.36 refresh doc=GuiElec children=8\n5971.37 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5971.45 refresh doc=GuiElec children=9\n5971.46 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5972.41 refresh doc=GuiElec children=9\n5972.41 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5973.38 refresh doc=GuiElec children=9\n5973.38 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5974.41 refresh doc=GuiElec children=9\n5974.41 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5975.41 refresh doc=GuiElec children=9\n5975.41 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5976.41 refresh doc=GuiElec children=9\n5976.41 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5977.43 refresh doc=GuiElec children=9\n5977.43 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5979.42 refresh doc=GuiElec children=9\n5979.42 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n",
+ "C_route_count_after_move": 0,
+ "netlist_same_after_move": true,
+ "D_overlay_present_after_reopen": true,
+ "idlog2": "5971.36 refresh doc=GuiElec children=8\n5971.37 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5971.45 refresh doc=GuiElec children=9\n5971.46 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5972.41 refresh doc=GuiElec children=9\n5972.41 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5973.38 refresh doc=GuiElec children=9\n5973.38 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5974.41 refresh doc=GuiElec children=9\n5974.41 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5975.41 refresh doc=GuiElec children=9\n5975.41 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5976.41 refresh doc=GuiElec children=9\n5976.41 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5977.43 refresh doc=GuiElec children=9\n5977.43 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5979.42 refresh doc=GuiElec children=9\n5979.42 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5980.42 refresh doc=GuiElec children=9\n5980.43 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5981.41 refresh doc=GuiElec children=9\n5981.42 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5982.42 refresh doc=GuiElec children=9\n5982.43 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5984.02 refresh doc=GuiElec children=9\n5984.02 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5984.45 refresh doc=GuiElec children=9\n5984.45 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5990.14 refresh doc=GuiElec children=8\n5990.15 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5990.43 refresh doc=GuiElec children=9\n5990.43 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5991.45 refresh doc=GuiElec children=9\n5991.46 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5992.43 refresh doc=GuiElec children=9\n5992.43 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5993.46 refresh doc=GuiElec children=9\n5993.47 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5995.46 refresh doc=GuiElec children=9\n5995.47 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5999.43 refresh doc=GuiElec children=9\n5999.43 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n6000.46 refresh doc=GuiElec children=9\n6000.46 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n6001.44 refresh doc=GuiElec children=9\n6001.44 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n",
+ "D_netlist_same_after_reopen": true,
+ "export_uses_terminal_side": false,
+ "export_return": "{'source_signature': '0b5307ee42fb89b7cac5f97253b091e08c5f72841181cfd6da156c6316c7bd8e', 'centerline_mm': 0, 'wire_count': 9, 'synchronous_projection': True}",
+ "sizes": [
+  12411,
+  17060
+ ],
+ "done": true
+}
