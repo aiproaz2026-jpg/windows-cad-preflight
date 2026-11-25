@@ -1,0 +1,28 @@
+{
+ "stage": "export done",
+ "route_count": 0,
+ "workbench": "DeltaWorkbench",
+ "workbench_screenshot": 59867,
+ "A_overlay_present_fit": true,
+ "idlog": "8487.44 refresh doc=GuiElec children=8\n8487.47 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n8487.48 refresh doc=GuiElec children=9\n8487.51 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n",
+ "C_route_count_after_move": 0,
+ "netlist_same_after_move": true,
+ "D_overlay_present_after_reopen": true,
+ "idlog2": "8487.44 refresh doc=GuiElec children=8\n8487.47 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n8487.48 refresh doc=GuiElec children=9\n8487.51 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n8500.70 refresh doc=GuiElec children=9\n8500.71 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n8500.71 refresh doc=GuiElec children=9\n8500.71 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n8506.92 refresh doc=GuiElec children=8\n8506.94 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n8507.08 refresh doc=GuiElec children=9\n8507.09 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n",
+ "D_netlist_same_after_reopen": true,
+ "E_idle_rebuilds_5s": 0,
+ "E_undo_restores_position": true,
+ "E_redo_applies": true,
+ "F_overlay_second_doc": true,
+ "G_overlay_first_doc_after_close": true,
+ "G_idle_rebuilds_5s": 0,
+ "log_errors": 0,
+ "log_refreshes_total": 18,
+ "export_uses_terminal_side": false,
+ "export_return": "{'source_signature': '0b5307ee42fb89b7cac5f97253b091e08c5f72841181cfd6da156c6316c7bd8e', 'centerline_mm': 0, 'wire_count': 9, 'synchronous_projection': True}",
+ "sizes": [
+  12411,
+  17060
+ ],
+ "done": true
+}
