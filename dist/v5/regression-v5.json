@@ -1,0 +1,156 @@
+{
+  "scope": "Local developer regression only, not Windows release, UI or engineering certification",
+  "all_passed": true,
+  "results": [
+    {
+      "suite": "acceptance.py",
+      "passed": true,
+      "seconds": 0.246,
+      "reason": null
+    },
+    {
+      "suite": "domain_acceptance.py",
+      "passed": true,
+      "seconds": 0.645,
+      "reason": null
+    },
+    {
+      "suite": "drafting_acceptance.py",
+      "passed": true,
+      "seconds": 0.88,
+      "reason": null
+    },
+    {
+      "suite": "electrical_acceptance.py",
+      "passed": true,
+      "seconds": 0.629,
+      "reason": null
+    },
+    {
+      "suite": "mechanical_acceptance.py",
+      "passed": true,
+      "seconds": 0.365,
+      "reason": null
+    },
+    {
+      "suite": "precision_acceptance.py",
+      "passed": true,
+      "seconds": 0.053,
+      "reason": null
+    },
+    {
+      "suite": "project_acceptance.py",
+      "passed": true,
+      "seconds": 1.683,
+      "reason": null
+    },
+    {
+      "suite": "routing_acceptance.py",
+      "passed": true,
+      "seconds": 2.102,
+      "reason": null
+    },
+    {
+      "suite": "port_connections.py",
+      "passed": true,
+      "seconds": 0.483,
+      "reason": null
+    },
+    {
+      "suite": "symbols_acceptance.py",
+      "passed": true,
+      "seconds": 0.189,
+      "reason": null
+    },
+    {
+      "suite": "connectivity_acceptance.py",
+      "passed": true,
+      "seconds": 0.186,
+      "reason": null
+    },
+    {
+      "suite": "world_shape.py",
+      "passed": true,
+      "seconds": 0.171,
+      "reason": null
+    },
+    {
+      "suite": "world_step.py",
+      "passed": true,
+      "seconds": 0.339,
+      "reason": null
+    },
+    {
+      "suite": "frame_guards.py",
+      "passed": true,
+      "seconds": 0.314,
+      "reason": null
+    },
+    {
+      "suite": "project_check.py",
+      "passed": true,
+      "seconds": 0.343,
+      "reason": null
+    },
+    {
+      "suite": "coordinate_text.py",
+      "passed": true,
+      "seconds": 0.167,
+      "reason": null
+    },
+    {
+      "suite": "arabic_numeric.py",
+      "passed": true,
+      "seconds": 0.16,
+      "reason": null
+    },
+    {
+      "suite": "ring_edit.py",
+      "passed": true,
+      "seconds": 0.198,
+      "reason": null
+    },
+    {
+      "suite": "projection_stroke.py",
+      "passed": true,
+      "seconds": 0.284,
+      "reason": null
+    },
+    {
+      "suite": "patterns.py",
+      "passed": true,
+      "seconds": 0.216,
+      "reason": null
+    },
+    {
+      "suite": "revolutions.py",
+      "passed": true,
+      "seconds": 0.372,
+      "reason": null
+    },
+    {
+      "suite": "measurement.py",
+      "passed": true,
+      "seconds": 0.193,
+      "reason": null
+    },
+    {
+      "suite": "terminal_layout.py",
+      "passed": true,
+      "seconds": 0.188,
+      "reason": null
+    },
+    {
+      "suite": "fillets.py",
+      "passed": true,
+      "seconds": 0.23,
+      "reason": null
+    },
+    {
+      "suite": "arabic_presentation.py",
+      "passed": true,
+      "seconds": 0.101,
+      "reason": null
+    }
+  ]
+}
