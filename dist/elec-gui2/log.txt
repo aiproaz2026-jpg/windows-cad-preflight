@@ -10,3 +10,5 @@ Mod
 export.py at C:\Users\runneradmin\AppData\Local\Programs\DeltaEngineering\Mod\DeltaEngineering\DeltaEngineering\export.py
 appmod root C:/Users/runneradmin/AppData/Local/Programs/DeltaEngineering/Mod
 mode orig exited=False exitcode= waited=30
+export.py page layout patched
+mode layout2 exited=False exitcode= waited=21
