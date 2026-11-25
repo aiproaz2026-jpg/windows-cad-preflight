@@ -1,0 +1,173 @@
+{
+ "steps": {
+  "fittings_tab_present_and_layout": {
+   "ok": true,
+   "secs": 1.25,
+   "detail": {
+    "tab_index": 4,
+    "metrics": {
+     "checked_widgets": 22,
+     "clipped_count": 0,
+     "clipped_first": [],
+     "overlapping_buttons": [],
+     "overlap_count": 0
+    },
+    "layout": {
+     "screen": [
+      1366,
+      768
+     ],
+     "window": [
+      1366,
+      728
+     ],
+     "window_min_hint": [
+      708,
+      346
+     ],
+     "window_fits_screen": true,
+     "window_top_left": [
+      0,
+      0
+     ],
+     "viewport_px": [
+      694,
+      537
+     ],
+     "docks": [
+      {
+       "name": "Model",
+       "w": 260,
+       "h": 567,
+       "floating": false
+      },
+      {
+       "name": "Tasks",
+       "w": 380,
+       "h": 375,
+       "floating": false
+      },
+      {
+       "name": "DeltaDraftingPanel",
+       "w": 400,
+       "h": 567,
+       "floating": false
+      }
+     ]
+    }
+   }
+  },
+  "station_built_through_panel_buttons": {
+   "ok": true,
+   "secs": 5.99,
+   "detail": {
+    "report_text": "وصلات متطابقة: 7\nمنافذ مفتوحة: 2\n  GenericFitting005.1\n  GenericFitting007.1\nلا أخطاء هندسية في الاستمرارية أو التداخل.\nهندسة عامة توضيحية، ليست كتالوج مصنّع ولا معيار شفات. تطابق المقاس لا يعني توافق الضغط أو المعيار.",
+    "connected": 7,
+    "open_ports": [
+     "GenericFitting005.1",
+     "GenericFitting007.1"
+    ],
+    "errors": [],
+    "metrics_after": {
+     "checked_widgets": 22,
+     "clipped_count": 0,
+     "clipped_first": [],
+     "overlapping_buttons": [],
+     "overlap_count": 0
+    }
+   }
+  },
+  "mismatch_refused_through_ui": {
+   "ok": true,
+   "secs": 1.75,
+   "detail": {
+    "placement_unchanged": true,
+    "status": "لم يتم التعديل: تعذر إكمال العملية. راجع التحديد والقيم وحالة المصدر ثم أعد المحاولة. احتفظ بالتفصيل التقني عند طلب المساعدة:\nPort diameter mismatch: 114.300 mm vs 60.300 mm. Geometric continuity only, no compatibility implied.",
+    "new_dialogs": [
+     {
+      "n": 1,
+      "cls": "QMessageBox",
+      "title": "تعذر الرسم",
+      "text": "تعذر إكمال العملية. راجع التحديد والقيم وحالة المصدر ثم أعد المحاولة. احتفظ بالتفصيل التقني عند طلب المساعدة:\nPort diameter mismatch: 114.300 mm vs 60.300 mm. Geometric continuity only, no compatibility implied."
+     }
+    ]
+   }
+  },
+  "quantity_csv_through_panel": {
+   "ok": true,
+   "secs": 0.15,
+   "detail": {
+    "rows": [
+     {
+      "item": "محبس كروي عام",
+      "kind": "ball_valve",
+      "size": "NPS 4",
+      "qty": 1,
+      "unit": "pcs"
+     },
+     {
+      "item": "صمام عدم رجوع عام",
+      "kind": "check_valve",
+      "size": "NPS 3",
+      "qty": 1,
+      "unit": "pcs"
+     },
+     {
+      "item": "شفة عامة",
+      "kind": "flange",
+      "size": "NPS 2",
+      "qty": 2,
+      "unit": "pcs"
+     },
+     {
+      "item": "شفة عامة",
+      "kind": "flange",
+      "size": "NPS 3",
+      "qty": 1,
+      "unit": "pcs"
+     },
+     {
+      "item": "محبس بوابة عام",
+      "kind": "gate_valve",
+      "size": "NPS 2",
+      "qty": 1,
+      "unit": "pcs"
+     },
+     {
+      "item": "مضخة طرد مركزي عامة (غلاف تقريبي)",
+      "kind": "pump",
+      "size": "NPS 3 x NPS 2",
+      "qty": 1,
+      "unit": "pcs"
+     },
+     {
+      "item": "مخفّض متحد المحور",
+      "kind": "reducer",
+      "size": "NPS 2 x NPS 4",
+      "qty": 1,
+      "unit": "pcs"
+     }
+    ],
+    "csv_bytes": 764
+   }
+  },
+  "save_reopen_arabic_path": {
+   "ok": true,
+   "secs": 1.18,
+   "detail": {
+    "objects": 8,
+    "max_volume_diff": 3.725290298461914e-09,
+    "connections": 7
+   }
+  }
+ },
+ "dialogs": [
+  {
+   "n": 1,
+   "cls": "QMessageBox",
+   "title": "تعذر الرسم",
+   "text": "تعذر إكمال العملية. راجع التحديد والقيم وحالة المصدر ثم أعد المحاولة. احتفظ بالتفصيل التقني عند طلب المساعدة:\nPort diameter mismatch: 114.300 mm vs 60.300 mm. Geometric continuity only, no compatibility implied."
+  }
+ ],
+ "done": true
+}
