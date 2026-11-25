@@ -1,0 +1,8 @@
+# Used only by the future bundled launcher, after its module path is registered.
+import FreeCAD as App
+import FreeCADGui as Gui
+import DeltaEngineering.core
+import DeltaEngineering.domain
+from DeltaEngineering.gui import register
+if 'DeltaWorkbench' not in Gui.listWorkbenches(): register()
+Gui.activateWorkbench('DeltaWorkbench')

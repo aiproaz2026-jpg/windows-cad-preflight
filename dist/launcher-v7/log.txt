@@ -1,0 +1,10 @@
+[A] exe=C:\DeltaAscii\bin\freecad.exe macro=C:\DeltaAscii\LaunchDelta.FCMacro macro_exists=True
+[A] alive=True title=[FreeCAD 1.1.4] handle=328292
+[A] win: freecad | FreeCAD 1.1.4
+[A] win: hosted-compute-agent | C:\ProgramData\GitHub\HostedComputeAgent\hosted-compute-agent
+[A] win: TextInputHost | Windows Input Experience
+[B] exe=C:\برنامج_دلتا\نسخة7\bin\freecad.exe macro=C:\برنامج_دلتا\نسخة7\LaunchDelta.FCMacro macro_exists=True
+[B] alive=True title=[FreeCAD 1.1.4] handle=393818
+[B] win: freecad | FreeCAD 1.1.4
+[B] win: hosted-compute-agent | C:\ProgramData\GitHub\HostedComputeAgent\hosted-compute-agent
+[B] win: TextInputHost | Windows Input Experience
