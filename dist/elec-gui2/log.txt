@@ -1,0 +1,12 @@
+SHA256 MATCH C:\out\DeltaEngineering-Setup-v12.exe
+setup exit 0
+bin
+data
+DeltaDefaults
+doc
+Ext
+lib
+Mod
+export.py at C:\Users\runneradmin\AppData\Local\Programs\DeltaEngineering\Mod\DeltaEngineering\DeltaEngineering\export.py
+appmod root C:/Users/runneradmin/AppData/Local/Programs/DeltaEngineering/Mod
+mode orig exited=False exitcode= waited=30
