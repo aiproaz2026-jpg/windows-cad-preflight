@@ -1,0 +1,574 @@
+{
+ "steps": {
+  "layout_and_clipping_metrics": {
+   "ok": true,
+   "secs": 2.18,
+   "detail": {
+    "A_start": {
+     "screen": [
+      1366,
+      768
+     ],
+     "window": [
+      1366,
+      728
+     ],
+     "window_min_hint": [
+      554,
+      346
+     ],
+     "window_fits_screen": true,
+     "window_top_left": [
+      0,
+      0
+     ],
+     "viewport_px": [
+      1100,
+      537
+     ],
+     "docks": [
+      {
+       "name": "Model",
+       "w": 260,
+       "h": 567,
+       "floating": false
+      },
+      {
+       "name": "Tasks",
+       "w": 380,
+       "h": 375,
+       "floating": false
+      }
+     ]
+    },
+    "B_drafting_panel": {
+     "screen": [
+      1366,
+      768
+     ],
+     "window": [
+      1366,
+      759
+     ],
+     "window_min_hint": [
+      710,
+      759
+     ],
+     "window_fits_screen": true,
+     "window_top_left": [
+      0,
+      0
+     ],
+     "viewport_px": [
+      694,
+      568
+     ],
+     "docks": [
+      {
+       "name": "Model",
+       "w": 260,
+       "h": 598,
+       "floating": false
+      },
+      {
+       "name": "Tasks",
+       "w": 380,
+       "h": 375,
+       "floating": false
+      },
+      {
+       "name": "DeltaDraftingPanel",
+       "w": 400,
+       "h": 598,
+       "floating": false
+      }
+     ]
+    },
+    "tab0_الجدول والأبعاد": {
+     "checked_widgets": 25,
+     "clipped_count": 0,
+     "clipped_first": [],
+     "overlapping_buttons": [],
+     "overlap_count": 0
+    },
+    "tab1_يدوي ودقيق": {
+     "checked_widgets": 26,
+     "clipped_count": 0,
+     "clipped_first": [],
+     "overlapping_buttons": [],
+     "overlap_count": 0
+    },
+    "tab2_مقاطع وأجزاء": {
+     "checked_widgets": 23,
+     "clipped_count": 0,
+     "clipped_first": [],
+     "overlapping_buttons": [],
+     "overlap_count": 0
+    },
+    "tab3_مقاسات مواسير": {
+     "checked_widgets": 26,
+     "clipped_count": 1,
+     "clipped_first": [
+      {
+       "cls": "QLabel",
+       "text": "مقاسات اسمية فقط، ليست مكتبة منتجات معتم",
+       "h": 24,
+       "need_h": 48,
+       "w": 380,
+       "text_w": 0,
+       "short": true,
+       "narrow": false
+      }
+     ],
+     "overlapping_buttons": [],
+     "overlap_count": 0
+    },
+    "profile_cat0": {
+     "checked_widgets": 23,
+     "clipped_count": 0,
+     "clipped_first": [],
+     "overlapping_buttons": [],
+     "overlap_count": 0,
+     "content_size": [
+      384,
+      674
+     ],
+     "content_min_hint": [
+      254,
+      626
+     ]
+    },
+    "profile_cat1": {
+     "checked_widgets": 22,
+     "clipped_count": 12,
+     "clipped_first": [
+      {
+       "cls": "QPushButton",
+       "text": "قص المصمتين المحددين: الأول أساس",
+       "h": 22,
+       "need_h": 24,
+       "w": 366,
+       "text_w": 185,
+       "short": true,
+       "narrow": false
+      },
+      {
+       "cls": "QPushButton",
+       "text": "دمج المصمتين المحددين",
+       "h": 21,
+       "need_h": 24,
+       "w": 366,
+       "text_w": 120,
+       "short": true,
+       "narrow": false
+      },
+      {
+       "cls": "QPushButton",
+       "text": "تقاطع المصمتين المحددين",
+       "h": 21,
+       "need_h": 24,
+       "w": 366,
+       "text_w": 130,
+       "short": true,
+       "narrow": false
+      },
+      {
+       "cls": "QPushButton",
+       "text": "فتح أدوات Part الأصلية",
+       "h": 22,
+       "need_h": 24,
+       "w": 366,
+       "text_w": 112,
+       "short": true,
+       "narrow": false
+      },
+      {
+       "cls": "QPushButton",
+       "text": "تدوير حواف المصمت المحددة",
+       "h": 21,
+       "need_h": 24,
+       "w": 366,
+       "text_w": 146,
+       "short": true,
+       "narrow": false
+      },
+      {
+       "cls": "QPushButton",
+       "text": "تعديل نصف قطر تدوير الحواف",
+       "h": 21,
+       "need_h": 24,
+       "w": 366,
+       "text_w": 151,
+       "short": true,
+       "narrow": false
+      },
+      {
+       "cls": "QPushButton",
+       "text": "إنشاء تكرار خطي لمصمت",
+       "h": 22,
+       "need_h": 24,
+       "w": 366,
+       "text_w": 124,
+       "short": true,
+       "narrow": false
+      },
+      {
+       "cls": "QPushButton",
+       "text": "تعديل التكرار الخطي المحدد",
+       "h": 21,
+       "need_h": 24,
+       "w": 366,
+       "text_w": 134,
+       "short": true,
+       "narrow": false
+      },
+      {
+       "cls": "QPushButton",
+       "text": "إنشاء دوران مصمت حول محور",
+       "h": 21,
+       "need_h": 24,
+       "w": 366,
+       "text_w": 147,
+       "short": true,
+       "narrow": false
+      },
+      {
+       "cls": "QPushButton",
+       "text": "تعديل دوران المصمت المحدد",
+       "h": 22,
+       "need_h": 24,
+       "w": 366,
+       "text_w": 142,
+       "short": true,
+       "narrow": false
+      },
+      {
+       "cls": "QPushButton",
+       "text": "بروز من المقطع المحدد",
+       "h": 21,
+       "need_h": 24,
+       "w": 366,
+       "text_w": 113,
+       "short": true,
+       "narrow": false
+      },
+      {
+       "cls": "QPushButton",
+       "text": "تحديث ارتفاع البروز المحدد",
+       "h": 21,
+       "need_h": 24,
+       "w": 366,
+       "text_w": 126,
+       "short": true,
+       "narrow": false
+      }
+     ],
+     "overlapping_buttons": [],
+     "overlap_count": 0,
+     "content_size": [
+      384,
+      524
+     ],
+     "content_min_hint": [
+      243,
+      476
+     ]
+    },
+    "profile_cat2": {
+     "checked_widgets": 22,
+     "clipped_count": 0,
+     "clipped_first": [],
+     "overlapping_buttons": [],
+     "overlap_count": 0,
+     "content_size": [
+      384,
+      614
+     ],
+     "content_min_hint": [
+      254,
+      566
+     ]
+    },
+    "profile_cat3": {
+     "checked_widgets": 16,
+     "clipped_count": 0,
+     "clipped_first": [],
+     "overlapping_buttons": [],
+     "overlap_count": 0,
+     "content_size": [
+      384,
+      554
+     ],
+     "content_min_hint": [
+      291,
+      506
+     ]
+    },
+    "D_electrical_panel_also_open": {
+     "screen": [
+      1366,
+      768
+     ],
+     "window": [
+      1366,
+      1365
+     ],
+     "window_min_hint": [
+      710,
+      1365
+     ],
+     "window_fits_screen": false,
+     "window_top_left": [
+      0,
+      0
+     ],
+     "viewport_px": [
+      694,
+      1174
+     ],
+     "docks": [
+      {
+       "name": "Model",
+       "w": 260,
+       "h": 1204,
+       "floating": false
+      },
+      {
+       "name": "Tasks",
+       "w": 380,
+       "h": 406,
+       "floating": false
+      },
+      {
+       "name": "DeltaDraftingPanel",
+       "w": 400,
+       "h": 598,
+       "floating": false
+      },
+      {
+       "name": "DeltaElectricalPanel",
+       "w": 400,
+       "h": 600,
+       "floating": false
+      }
+     ]
+    },
+    "electrical_metrics": {
+     "checked_widgets": 20,
+     "clipped_count": 12,
+     "clipped_first": [
+      {
+       "cls": "QPushButton",
+       "text": "رمز جديد",
+       "h": 22,
+       "need_h": 24,
+       "w": 188,
+       "text_w": 42,
+       "short": true,
+       "narrow": false
+      },
+      {
+       "cls": "QPushButton",
+       "text": "تغيير معرّف الرمز",
+       "h": 22,
+       "need_h": 24,
+       "w": 188,
+       "text_w": 83,
+       "short": true,
+       "narrow": false
+      },
+      {
+       "cls": "QPushButton",
+       "text": "حذف الرمز",
+       "h": 21,
+       "need_h": 24,
+       "w": 188,
+       "text_w": 51,
+       "short": true,
+       "narrow": false
+      },
+      {
+       "cls": "QPushButton",
+       "text": "طرف جديد",
+       "h": 21,
+       "need_h": 24,
+       "w": 188,
+       "text_w": 52,
+       "short": true,
+       "narrow": false
+      },
+      {
+       "cls": "QPushButton",
+       "text": "تسمية الطرف",
+       "h": 21,
+       "need_h": 24,
+       "w": 188,
+       "text_w": 67,
+       "short": true,
+       "narrow": false
+      },
+      {
+       "cls": "QPushButton",
+       "text": "حذف الطرف",
+       "h": 21,
+       "need_h": 24,
+       "w": 188,
+       "text_w": 61,
+       "short": true,
+       "narrow": false
+      },
+      {
+       "cls": "QPushButton",
+       "text": "توصيل طرفين",
+       "h": 22,
+       "need_h": 24,
+       "w": 188,
+       "text_w": 69,
+       "short": true,
+       "narrow": false
+      },
+      {
+       "cls": "QPushButton",
+       "text": "تحديث",
+       "h": 22,
+       "need_h": 24,
+       "w": 188,
+       "text_w": 32,
+       "short": true,
+       "narrow": false
+      },
+      {
+       "cls": "QPushButton",
+       "text": "موضع الرمز بدقة",
+       "h": 21,
+       "need_h": 24,
+       "w": 188,
+       "text_w": 83,
+       "short": true,
+       "narrow": false
+      },
+      {
+       "cls": "QPushButton",
+       "text": "إزاحة مسار السلك",
+       "h": 21,
+       "need_h": 24,
+       "w": 188,
+       "text_w": 85,
+       "short": true,
+       "narrow": false
+      },
+      {
+       "cls": "QPushButton",
+       "text": "فحص مجموعات الأطراف",
+       "h": 21,
+       "need_h": 24,
+       "w": 188,
+       "text_w": 122,
+       "short": true,
+       "narrow": false
+      },
+      {
+       "cls": "QPushButton",
+       "text": "ترتيب الأطراف واتجاهها",
+       "h": 21,
+       "need_h": 24,
+       "w": 188,
+       "text_w": 112,
+       "short": true,
+       "narrow": false
+      }
+     ],
+     "overlapping_buttons": [],
+     "overlap_count": 0
+    }
+   }
+  },
+  "step_roundtrip_direct_and_via_panel": {
+   "ok": true,
+   "secs": 4.29,
+   "detail": {
+    "direct_export_bytes": 3509,
+    "direct_import_volume": 785398.163,
+    "source_volume": 785398.163,
+    "panel_status_after_export": "تم تصدير STEP والتحقق بإعادة قراءته، هندسة فقط بدون تاريخ التعديلات",
+    "panel_export_exists": true,
+    "panel_export_bytes": 3509,
+    "objects_added_by_panel_import": 1,
+    "panel_imported_volume": 785398.163,
+    "panel_status_after_import": "تم إنشاء / تحديث: قطعة.step"
+   }
+  },
+  "viewport_navigation_real_events": {
+   "ok": true,
+   "secs": 1.56,
+   "detail": {
+    "viewport": [
+     694,
+     1174
+    ],
+    "navigation_style_initial": "Gui::CADNavigationStyle",
+    "cad_pan_middle_drag": {
+     "proj_before": [
+      347,
+      587
+     ],
+     "proj_after": [
+      483,
+      519
+     ],
+     "moved": true
+    },
+    "cad_rotate_mmb_plus_rmb": {
+     "before": [
+      0.4247,
+      0.1759,
+      0.3399,
+      0.8205
+     ],
+     "after": [
+      0.4334,
+      -0.0936,
+      0.2188,
+      0.8692
+     ],
+     "changed": true
+    },
+    "wheel_zoom": {
+     "px_distance_before_after": [
+      1201.8,
+      1201.8
+     ],
+     "changed": false
+    }
+   }
+  },
+  "plant_rendering_diagnosis": {
+   "ok": true,
+   "secs": 6.39,
+   "detail": {
+    "pipe_default_color": [
+     0.68,
+     0.71,
+     0.74
+    ],
+    "pipe_display_mode": "Flat Lines",
+    "pipe_bbox": [
+     2050,
+     99,
+     850
+    ],
+    "model_bbox_mm": [
+     29820,
+     22940,
+     850
+    ],
+    "viewport_px": [
+     694,
+     1174
+    ]
+   }
+  }
+ },
+ "dialogs": [],
+ "done": true
+}
