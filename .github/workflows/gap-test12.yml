@@ -411,6 +411,8 @@ jobs:
                   self.panel = panel
                   form = QtWidgets.QFormLayout(self)
                   form.setAlignment(QtCore.Qt.AlignTop)
+                  form.setRowWrapPolicy(QtWidgets.QFormLayout.WrapAllRows)
+                  form.setFieldGrowthPolicy(QtWidgets.QFormLayout.AllNonFixedFieldsGrow)
                   note = QtWidgets.QLabel(F.SCOPE_AR)
                   note.setWordWrap(True)
                   form.addRow(note)
@@ -425,6 +427,9 @@ jobs:
                   self.length = QtWidgets.QLineEdit('')
                   self.length.setPlaceholderText('اتركه فارغاً للطول الافتراضي')
                   self.length.setLayoutDirection(QtCore.Qt.LeftToRight)
+                  for c in (self.kind, self.size1, self.size2, self.port_move if hasattr(self, 'port_move') else self.kind):
+                      c.setSizeAdjustPolicy(QtWidgets.QComboBox.AdjustToMinimumContentsLengthWithIcon)
+                      c.setMinimumContentsLength(8)
                   form.addRow('نوع القطعة', self.kind)
                   form.addRow('المقاس الاسمي (المنفذ 1)', self.size1)
                   form.addRow('المقاس الثاني (للمخفّض والمضخة)', self.size2)
@@ -493,13 +498,33 @@ jobs:
                   self.report.setPlainText('\n'.join('%s | %s | %s %s' % (r['item'], r['size'], r['qty'], r['unit']) for r in rows) + '\n' + F.SCOPE_AR)
                   self.panel.status.setText('تم حفظ جدول الكميات: ' + path)
                   return rows
+
+
+          def hide_empty_tasks():
+              """Hide the empty Tasks dock only while no task dialog is active; FreeCAD shows it again when a task starts."""
+              mw = Gui.getMainWindow()
+              dock = mw.findChild(QtWidgets.QDockWidget, 'Tasks')
+              if dock is None or not dock.isVisible():
+                  return False
+              try:
+                  active = Gui.Control.activeDialog()
+              except Exception:
+                  return False
+              if active:
+                  return False
+              dock.hide()
+              return True
           '@
           Set-Content "$pkg\fittings_panel.py" $fp -Encoding utf8
           $dp = Get-Content "$pkg\drafting_panel.py" -Raw -Encoding utf8
           $old = "self.tubes=TubeLibraryPanel(self);tabs.addTab(self.tubes,'مقاسات مواسير')"
           if (-not $dp.Contains($old)) { throw "anchor not found" }
           $new = $old + ";from .fittings_panel import FittingsPanel;self.fittings=FittingsPanel(self);_fs=QtWidgets.QScrollArea();_fs.setWidgetResizable(True);_fs.setFrameShape(QtWidgets.QFrame.NoFrame);_fs.setWidget(self.fittings);tabs.addTab(_fs,'وصلات ومحطة')"
-          Set-Content "$pkg\drafting_panel.py" $dp.Replace($old,$new) -Encoding utf8 -NoNewline
+          $dp = $dp.Replace($old,$new)
+          $old2 = "panel.raise_();Gui.getMainWindow().resizeDocks"
+          if (-not $dp.Contains($old2)) { throw "anchor2 not found" }
+          $dp = $dp.Replace($old2, "panel.raise_();from .fittings_panel import hide_empty_tasks;hide_empty_tasks();Gui.getMainWindow().resizeDocks")
+          Set-Content "$pkg\drafting_panel.py" $dp -Encoding utf8 -NoNewline
           "patched"
       - name: Write macro
         shell: pwsh
@@ -607,12 +632,30 @@ jobs:
                       return {'checked_widgets': n, 'clipped_count': len(bad), 'clipped_first': bad[:14], 'overlapping_buttons': overlaps[:10], 'overlap_count': len(overlaps)}
                   def s_panel_tab():
                       Gui.runCommand('Delta_NewProject'); pump(10)
-                      p = show_panel(); S['p'] = p; pump(20)
+                      td = mw.findChild(W.QDockWidget, 'Tasks')
+                      out = {'tasks_dock_before_panel': {'exists': td is not None, 'visible': bool(td and td.isVisible()), 'size': [td.width(), td.height()] if td else None,
+                             'child_widgets': sorted(set(type(c).__name__ for c in td.findChildren(W.QWidget)))[:12] if td else None, 'active_dialog': bool(Gui.Control.activeDialog())},
+                             'viewport_before': [viewport().width(), viewport().height()]}
+                      p = show_panel(); S['p'] = p; pump(25)
+                      td = mw.findChild(W.QDockWidget, 'Tasks')
+                      out['tasks_dock_after_panel_visible'] = bool(td and td.isVisible()); out['viewport_after'] = [viewport().width(), viewport().height()]
                       idx = [i for i in range(p.tabs.count()) if p.tabs.tabText(i) == 'وصلات ومحطة']
                       assert idx, 'fittings tab missing: ' + str([p.tabs.tabText(i) for i in range(p.tabs.count())])
                       p.tabs.setCurrentIndex(idx[0]); pump(15)
-                      out = {'tab_index': idx[0], 'metrics': metrics(p), 'layout': layout_state('fit')}
-                      shot('fit12-A-tab'); return out
+                      sa = p.tabs.currentWidget(); hb = sa.horizontalScrollBar(); vb = sa.verticalScrollBar()
+                      out.update({'tab_index': idx[0], 'metrics': metrics(p), 'layout': layout_state('fit'),
+                                  'horizontal_scroll_needed': hb.maximum() > 0, 'hbar_max': hb.maximum(), 'content_w': sa.widget().width(), 'viewport_w': sa.viewport().width(), 'vbar_max': vb.maximum()})
+                      shot('fit12-A-tab')
+                      class TaskStub:
+                          def __init__(self):
+                              self.form = W.QLabel('Test task panel')
+                          def getStandardButtons(self): return int(W.QDialogButtonBox.Close)
+                          def reject(self): Gui.Control.closeDialog()
+                      Gui.Control.showDialog(TaskStub()); pump(30)
+                      td = mw.findChild(W.QDockWidget, 'Tasks')
+                      out['tasks_dock_visible_when_task_dialog_opens'] = bool(td and td.isVisible()); shot('fit12-A2-task-dialog')
+                      Gui.Control.closeDialog(); pump(20)
+                      return out
                   run('fittings_tab_present_and_layout', s_panel_tab)
                   import DeltaEngineering.fittings as F
                   def s_station_ui():
