@@ -445,9 +445,14 @@ jobs:
           $root = $exe.Directory.Parent.FullName
           "installed panel.py has scroll wrapper: " + [bool](Select-String -Path (Get-ChildItem C:/DeltaTest -Recurse -Filter panel.py | Where-Object { $_.FullName -match 'DeltaEngineering' } | Select-Object -First 1).FullName -Pattern 'QScrollArea' -Quiet)
           $env:DELTA_OUT = 'C:/fit12'; $env:GALLIUM_DRIVER = 'llvmpipe'; $env:MESA_GL_VERSION_OVERRIDE = '4.5'
-          Start-Process $exe.FullName -ArgumentList "`"$root\DeltaGuiTest12.FCMacro`""
+          Start-Process $exe.FullName -ArgumentList "`"$root\DeltaGuiTest12.FCMacro`"" -RedirectStandardOutput C:/fit12/fc-out.txt -RedirectStandardError C:/fit12/fc-err.txt
           $t = 0
           while ($t -lt 600) { Start-Sleep 5; $t += 5; if ((Test-Path C:/fit12/gui-result12.json) -and (Select-String -Path C:/fit12/gui-result12.json -Pattern '"done": true' -Quiet)) { break } }
+          if (-not (Test-Path C:/fit12/gui-result12.json) -or -not (Select-String -Path C:/fit12/gui-result12.json -Pattern '"done": true' -Quiet)) {
+            try { Add-Type -AssemblyName System.Windows.Forms,System.Drawing; $b=[System.Windows.Forms.SystemInformation]::VirtualScreen; $bmp=New-Object System.Drawing.Bitmap $b.Width,$b.Height; $g=[System.Drawing.Graphics]::FromImage($bmp); $g.CopyFromScreen($b.Location,[System.Drawing.Point]::Empty,$b.Size); $bmp.Save('C:/fit12/fit12-hang.png') } catch { "screenshot failed: $_" | Out-File C:/fit12/diag.txt -Append }
+            Get-Process | Where-Object { $_.MainWindowTitle } | ForEach-Object { "$($_.ProcessName) | $($_.MainWindowTitle) | cpu=$($_.CPU)" } | Out-File C:/fit12/diag.txt -Append
+            Get-ChildItem C:/fit12 | ForEach-Object { "$($_.Name) $($_.Length)" } | Out-File C:/fit12/diag.txt -Append
+          }
           Start-Sleep 4; Get-Process FreeCAD -ErrorAction SilentlyContinue | Stop-Process -Force
           exit 0
       - name: Commit evidence
@@ -456,7 +461,7 @@ jobs:
         run: |
           git config user.name ci; git config user.email ci@users.noreply.github.com
           git pull --rebase || true
-          mkdir -p dist/v12fit; cp /c/fit12/*.png /c/fit12/*.pdf /c/fit12/gui-result12.json dist/v12fit/ || true; for f in dist/v12fit/station-*.pdf; do [ -f $f ] && base64 -w0 $f > $f.b64; done
+          mkdir -p dist/v12fit; cp /c/fit12/*.png /c/fit12/*.pdf /c/fit12/gui-result12.json dist/v12fit/ || true; cp /c/fit12/diag.txt dist/v12fit/diag12.txt 2>/dev/null || true; cp /c/fit12/fc-out.txt dist/v12fit/fc-out12.txt 2>/dev/null || true; cp /c/fit12/fc-err.txt dist/v12fit/fc-err12.txt 2>/dev/null || true; for f in dist/v12fit/fit12-hang.png; do [ -f $f ] && true; done; for f in dist/v12fit/station-*.pdf; do [ -f $f ] && base64 -w0 $f > $f.b64; done
           for f in dist/v12fit/fit12-*.png; do [ -f $f ] && base64 -w0 $f > $f.b64; done
           git add dist
           git commit -m "Add fittings panel GUI evidence" || true
