@@ -621,6 +621,12 @@ jobs:
               return out
           '@
           Set-Content "$pkg\core_patches.py" $cp -Encoding utf8
+          $py = Get-ChildItem C:/DeltaTest -Recurse -Filter python.exe | Select-Object -First 1
+          if (-not $py) { throw "python.exe not found in installed copy" }
+          "python: $($py.FullName)"
+          $pc = "import sys; ns={}; exec(open(r'$pkg\core_patches.py',encoding='utf-8-sig').read(),ns); print(ns['apply'](r'$pkg'))"
+          & $py.FullName -c $pc
+          if ($LASTEXITCODE -ne 0) { throw "core patch failed" }
           $sym = Get-Content "$pkg\symbols.py" -Raw -Encoding utf8
           $symadd = @'
 
