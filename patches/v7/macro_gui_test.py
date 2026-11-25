@@ -249,20 +249,37 @@ try:
             from DeltaEngineering.panel import show_panel as show_el
             d = App.ActiveDocument; out = {}
             e = show_el(); pump(20); out['template_combo_items'] = e.template.count(); out['template_keys'] = list(TEMPLATES)
-            Q = create(d, 'Breaker concept', 'Q1', App.Vector(0, 0, 0)); K = create(d, 'Contactor concept', 'KM1', App.Vector(300, 0, 0))
-            O = create(d, 'Overload concept', 'F1', App.Vector(600, 0, 0)); M = create(d, 'Motor concept', 'M1', App.Vector(900, 0, 0))
-            n = 0
+            from DeltaEngineering.electrical import terminal_layout, wire_offset
+            bb = d.getObject('ElectricalSystem'); X0 = 4000
+            doc_visible_others = [o for o in d.Objects if hasattr(o, 'ViewObject') and o.ViewObject is not None and hasattr(o, 'Shape') and not hasattr(o, 'DeviceType') and not hasattr(o, 'SourceTerminal') and o.ViewObject.Visibility]
+            for o in doc_visible_others: o.ViewObject.Visibility = False
+            Q = create(d, 'Breaker concept', 'Q1', App.Vector(X0, 0, 0)); K = create(d, 'Contactor concept', 'KM1', App.Vector(X0 + 400, 0, 0))
+            O = create(d, 'Overload concept', 'F1', App.Vector(X0 + 400, -300, 0)); M = create(d, 'Motor concept', 'M1', App.Vector(X0 + 400, -600, 0))
+            for dev in (K, O, M): terminal_layout(d, dev, list(dev.Terminals), 'Left')
+            n = 0; wires = []
             for a, b, pairs in ((Q, K, [('2', '1'), ('4', '3'), ('6', '5')]), (K, O, [('2', '1'), ('4', '3'), ('6', '5')]), (O, M, [('2', 'U'), ('4', 'V'), ('6', 'W')])):
                 for sa, sb in pairs:
-                    n += 1; add_terminal_wire(d, a, sa, b, sb, 'W%d' % n)
+                    n += 1; wires.append(add_terminal_wire(d, a, sa, b, sb, 'W%d' % n))
+            for i, w in enumerate(wires[3:6]): wire_offset(d, w, -(15 + 12 * i))
+            for i, w in enumerate(wires[6:9]): wire_offset(d, w, -(15 + 12 * i))
             d.recompute(); rows = netlist(d); out['wires'] = len(rows)
             assert len(rows) == 9
             rep = connectivity.inspect(d); out['connectivity'] = json.loads(json.dumps(rep, default=str))
             shape_ok = all(not o.Shape.isNull() and o.Shape.isValid() for o in (Q, K, O, M)); out['symbol_shapes_valid'] = shape_ok; assert shape_ok
             base = 'C:/Users/Public/اختبار'
             r = export_current(d, base + '/ميكانيكا.pdf', base + '/كهرباء.pdf'); out['export'] = r
-            import shutil; shutil.copy(base + '/ميكانيكا.pdf', OUT + '/starter-mech.pdf'); shutil.copy(base + '/كهرباء.pdf', OUT + '/starter-elec.pdf')
-            sel(); Gui.Selection.clearSelection(); pump(10); shot('fit12-F-electrical-tab')
+            import shutil; shutil.copy(base + '/ميكانيكا.pdf', OUT + '/station-starter-mech.pdf'); shutil.copy(base + '/كهرباء.pdf', OUT + '/station-starter-elec.pdf')
+            Gui.Selection.clearSelection()
+            for o in (Q, K, O, M): Gui.Selection.addSelection(o)
+            Gui.activeDocument().activeView().viewTop(); Gui.SendMsgToActiveView('ViewSelection'); pump(30); Gui.Selection.clearSelection(); pump(10)
+            shot('fit12-F-electrical-view')
+            out['bboxes'] = {o.Label: [round(v, 1) for v in (o.Shape.BoundBox.XMin, o.Shape.BoundBox.YMin, o.Shape.BoundBox.XMax, o.Shape.BoundBox.YMax)] for o in (Q, K, O, M)}
+            out['wire_shape_lengths'] = [round(w.Shape.Length, 1) for w in wires]
+            out['vis'] = {o.Label: bool(o.ViewObject.Visibility) for o in (Q, K, O, M)}
+            pump(40); Gui.updateGui()
+            Gui.activeDocument().activeView().saveImage(OUT + '/fit12-G-view-save.png', 1100, 700, 'White')
+            for o in doc_visible_others: o.ViewObject.Visibility = True
+            return_note = 'electrical view fitted on the 4 starter devices'
             return out
         run('motor_starter_circuit_symbols_and_pdf', s_starter)
         def s_strip_probe():
@@ -286,8 +303,9 @@ try:
             Gui.Control.showDialog(TaskStub()); pump(20); td = mw.findChild(W.QDockWidget, 'Tasks'); vis_open = bool(td and td.isVisible())
             Gui.Control.closeDialog(); t0 = time.time()
             while time.time() - t0 < 4: pump(5); time.sleep(0.1)
-            vis_after = bool(td and td.isVisible()); shot('fit12-E-after-task-closed')
-            return {'visible_while_task_open': vis_open, 'visible_after_close_and_4s': vis_after}
+            vis_after = bool(td and td.isVisible()); strips = [w for w in mw.findChildren(W.QWidget, 'OverlayTitle')]; shot('fit12-E-after-task-closed')
+            Gui.Control.showDialog(TaskStub()); pump(20); strips_open = [w.isVisible() for w in strips]; Gui.Control.closeDialog()
+            return {'visible_while_task_open': vis_open, 'visible_after_close_and_4s': vis_after, 'overlay_title_visible_after_close': [w.isVisible() for w in strips], 'overlay_title_visible_while_task_open_2nd': strips_open}
         run('tasks_dock_hidden_again_after_task_closes', s_tasks_after_dialog)
         res['done'] = True; save()
         QtCore.QTimer.singleShot(1500, lambda: os._exit(0))
