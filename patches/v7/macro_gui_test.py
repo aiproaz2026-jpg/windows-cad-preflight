@@ -19,7 +19,11 @@ try:
     from PySide6 import QtTest
     import importlib.util
     _spec = importlib.util.find_spec('DeltaEngineering'); _pkg = list(_spec.submodule_search_locations)[0]
-    _ns = {}; exec(open(_pkg + '/core_patches.py', encoding='utf-8-sig').read(), _ns); res['core_patches'] = _ns['apply'](_pkg)
+    import os as _os
+    if _os.path.exists(_pkg + '/core_patches.py'):
+        _ns = {}; exec(open(_pkg + '/core_patches.py', encoding='utf-8-sig').read(), _ns); res['core_patches'] = _ns['apply'](_pkg)
+    else:
+        res['core_patches'] = 'absent (integration run: patches came from apply_v7 on the source tree)'
     import DeltaEngineering.core, DeltaEngineering.domain
     from DeltaEngineering.gui import register
     if 'DeltaWorkbench' not in Gui.listWorkbenches(): register()
@@ -120,12 +124,14 @@ try:
             class TaskStub:
                 def __init__(self):
                     self.form = W.QLabel('Test task panel')
-                def getStandardButtons(self): return int(W.QDialogButtonBox.Close)
+                def getStandardButtons(self): return getattr(W.QDialogButtonBox.Close, 'value', W.QDialogButtonBox.Close)
                 def reject(self): Gui.Control.closeDialog()
             Gui.Control.showDialog(TaskStub()); pump(30)
             td = mw.findChild(W.QDockWidget, 'Tasks')
+            out['task_dialog_active_when_open'] = bool(Gui.Control.activeDialog())
             out['tasks_dock_visible_when_task_dialog_opens'] = bool(td and td.isVisible()); shot('fit12-A2-task-dialog')
             Gui.Control.closeDialog(); pump(20)
+            out['task_dialog_active_after_close'] = bool(Gui.Control.activeDialog())
             return out
         run('fittings_tab_present_and_layout', s_panel_tab)
         import DeltaEngineering.fittings as F
@@ -321,18 +327,18 @@ try:
         def s_tasks_after_dialog():
             class TaskStub:
                 def __init__(self): self.form = W.QLabel('Test task panel')
-                def getStandardButtons(self): return int(W.QDialogButtonBox.Close)
+                def getStandardButtons(self): return getattr(W.QDialogButtonBox.Close, 'value', W.QDialogButtonBox.Close)
                 def reject(self): Gui.Control.closeDialog()
             Gui.Control.showDialog(TaskStub()); pump(20); td = mw.findChild(W.QDockWidget, 'Tasks'); vis_open = bool(td and td.isVisible())
-            Gui.Control.closeDialog(); t0 = time.time()
+            active_open = bool(Gui.Control.activeDialog())
+            Gui.Control.closeDialog(); active_closed = bool(Gui.Control.activeDialog()); t0 = time.time()
             while time.time() - t0 < 4: pump(5); time.sleep(0.1)
             vis_after = bool(td and td.isVisible()); strips = [w for w in mw.findChildren(W.QWidget, 'OverlayTitle')]; shot('fit12-E-after-task-closed')
             Gui.Control.showDialog(TaskStub()); pump(20); strips_open = [w.isVisible() for w in strips]; Gui.Control.closeDialog()
-            return {'visible_while_task_open': vis_open, 'visible_after_close_and_4s': vis_after, 'overlay_title_visible_after_close': [w.isVisible() for w in strips], 'overlay_title_visible_while_task_open_2nd': strips_open}
+            return {'dialog_active_when_open': active_open, 'dialog_active_after_close': active_closed, 'visible_while_task_open': vis_open, 'visible_after_close_and_4s': vis_after, 'overlay_title_visible_after_close': [w.isVisible() for w in strips], 'overlay_title_visible_while_task_open_2nd': strips_open}
         run('tasks_dock_hidden_again_after_task_closes', s_tasks_after_dialog)
         res['done'] = True; save()
         QtCore.QTimer.singleShot(1500, lambda: os._exit(0))
     QtCore.QTimer.singleShot(6000, step)
 except Exception:
     res['error'] = traceback.format_exc(); res['done'] = True; save()
-
