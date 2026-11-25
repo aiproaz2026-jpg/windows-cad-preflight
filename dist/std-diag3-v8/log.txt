@@ -1,0 +1,49 @@
+lnk exists: True
+lnk target=C:\Users\runneradmin\AppData\Local\Programs\DeltaEngineering\bin\freecad.exe args="C:\Users\cadstd\AppData\Local\Programs\DeltaEngineering\LaunchDelta.FCMacro"
+user cfg exists: True
+runner session id 2
+psexec present: True
+@echo off
+set GALLIUM_DRIVER=llvmpipe
+set MESA_GL_VERSION_OVERRIDE=4.5
+whoami > C:\outB\who.txt
+"C:\Users\cadstd\AppData\Local\Programs\DeltaEngineering\bin\FreeCAD.exe" "C:\Users\cadstd\AppData\Local\Programs\DeltaEngineering\LaunchDelta.FCMacro"
+
+psexec exit 2784
+FreeCAD owner runnervmhh3zg\cadstd session=2 title=[FreeCAD 1.1.4]
+runnervmhh3zg\cadstd
+Connecting to local system...
+
+
+Couldn't install PSEXESVC service:
+The handle is invalid.
+Connecting to local system...
+
+
+Starting PSEXESVC service on local system...
+
+
+Copying authentication key to runnervmhh3zg...
+
+
+Connecting with PsExec service on runnervmhh3zg...
+
+
+Starting C:\outB\launch.cmd on runnervmhh3zg...
+
+
+
+C:\outB\launch.cmd started on runnervmhh3zg with process ID 2784.
+
+    Directory: C:\outB
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---          11/25/2026  2:50 PM            764 cmd-out.txt
+-a---          11/25/2026  2:50 PM            249 cmd.ps1
+-a---          11/25/2026  2:49 PM            255 launch.cmd
+-a---          11/25/2026  2:47 PM            758 run.ps1
+-a---          11/25/2026  2:49 PM            917 user.txt
+-a---          11/25/2026  2:49 PM             22 who.txt
+
+
