@@ -1,0 +1,61 @@
+# Delta Engineering launcher: activates the Delta workbench and closes FreeCAD's stock Start tab.
+import FreeCAD as App
+import FreeCADGui as Gui
+import DeltaEngineering.core
+import DeltaEngineering.domain
+from DeltaEngineering.gui import register
+if 'DeltaWorkbench' not in Gui.listWorkbenches(): register()
+Gui.activateWorkbench('DeltaWorkbench')
+try:
+    try:
+        from PySide6 import QtWidgets, QtCore
+    except Exception:
+        from PySide import QtWidgets, QtCore
+    def _close_start():
+        for sw in Gui.getMainWindow().findChildren(QtWidgets.QMdiSubWindow):
+            w = sw.widget()
+            cn = w.metaObject().className() if w is not None else ''
+            if 'StartView' in cn or (sw.windowTitle().strip() == 'Start' and not App.listDocuments()):
+                sw.close()
+    _tries = [0]
+    _st = {'docked': False, 'was_active': False}
+    def _tidy(hide_empty):
+        try:
+            mw = Gui.getMainWindow()
+            active = bool(Gui.Control.activeDialog())
+            for dk in mw.findChildren(QtWidgets.QDockWidget):
+                if dk.objectName() != 'Tasks':
+                    continue
+                if active:
+                    _st['was_active'] = True
+                elif _st['was_active'] and _st['docked'] and not dk.isFloating():
+                    _st['was_active'] = False
+                    _st['docked'] = False
+                    dk.hide()
+                    continue
+                if not active:
+                    if hide_empty and not dk.isFloating():
+                        dk.hide()
+                    continue
+                # task dialog active: if the dock is not part of the main window dock layout, dock it on the right
+                area = mw.dockWidgetArea(dk)
+                if int(getattr(area, 'value', area)) == 0 and not dk.isFloating() and _tries[0] < 4:
+                    try:
+                        right = QtCore.Qt.DockWidgetArea.RightDockWidgetArea
+                    except Exception:
+                        right = QtCore.Qt.RightDockWidgetArea
+                    _tries[0] += 1
+                    _st['docked'] = True
+                    mw.addDockWidget(right, dk)
+                    dk.show()
+        except Exception as e2:
+            App.Console.PrintWarning('Delta layout: ' + str(e2) + '\n')
+    for ms in (1500, 4000, 8000):
+        QtCore.QTimer.singleShot(ms, _close_start)
+        QtCore.QTimer.singleShot(ms + 300, lambda: _tidy(True))
+    _dock_timer = QtCore.QTimer(Gui.getMainWindow())
+    _dock_timer.setInterval(700)
+    _dock_timer.timeout.connect(lambda: _tidy(False))
+    _dock_timer.start()
+except Exception as e:
+    App.Console.PrintWarning('Delta launcher: ' + str(e) + '\n')
