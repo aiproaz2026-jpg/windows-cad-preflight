@@ -1,4 +1,4 @@
 lnk exists: True
 lnk target=C:\Users\runneradmin\AppData\Local\Programs\DeltaEngineering\bin\freecad.exe args="C:\Users\cadstd\AppData\Local\Programs\DeltaEngineering\LaunchDelta.FCMacro"
 user cfg exists: True
-FreeCAD process not found
+FreeCAD pid 2296 owner runnervmhh3zg\cadstd title=[Initialization of FreeCAD failed]
