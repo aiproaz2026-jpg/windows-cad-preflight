@@ -75,11 +75,16 @@ jobs:
           "installed package dir: $pkg"
           $src = 'C:/delta/DeltaEngineering/package/Mod/DeltaEngineering/DeltaEngineering'
           if (-not (Test-Path $src)) { throw "patched source package not found" }
-          foreach ($f in 'fittings.py','fittings_panel.py','symbols.py','core.py','export.py','drafting_panel.py','panel.py','drafting.py') {
-            $s = Join-Path $src $f
-            if (-not (Test-Path $s)) { throw "missing patched file $f" }
-            Copy-Item $s (Join-Path $pkg $f) -Force
-            "overlaid $f"
+          $names = Get-ChildItem $src -Filter *.py | ForEach-Object { $_.Name }
+          "patched source has $($names.Count) .py files; installed has $((Get-ChildItem $pkg -Filter *.py).Count)"
+          foreach ($f in $names) { Copy-Item (Join-Path $src $f) (Join-Path $pkg $f) -Force }
+          $fcc = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCADCmd.exe | Select-Object -First 1
+          if ($fcc) {
+            $modroot = Split-Path (Split-Path $pkg)
+            "import check with $($fcc.FullName), Mod root $modroot"
+            $chk = "import sys; sys.path.insert(0, r'$modroot'); import importlib, traceback`nfor m in ('core','domain','symbols','export','fittings','documents','scaled_output','tube_library','drafting','electrical','connectivity'):`n    try:`n        importlib.import_module('DeltaEngineering.'+m); print('OK', m)`n    except Exception:`n        print('FAIL', m); traceback.print_exc()"
+            Set-Content C:/importcheck.py $chk -Encoding utf8
+            & $fcc.FullName C:/importcheck.py 2>&1 | Select-Object -First 60
           }
           Select-String -Path "$pkg/core.py" -Pattern 'v7 pitch','v7 channel' | ForEach-Object { $_.Line.Trim() }
           Select-String -Path "$pkg/export.py" -Pattern 'v7 wire labels' | ForEach-Object { $_.Line.Trim() }
