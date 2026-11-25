@@ -546,6 +546,46 @@ jobs:
               return True
           '@
           Set-Content "$pkg\fittings_panel.py" $fp -Encoding utf8
+          $sym = Get-Content "$pkg\symbols.py" -Raw -Encoding utf8
+          $symadd = @'
+
+
+          # ---- v7 additions: original illustrative power-circuit symbols (not IEC/ANSI, terminal labels are generic) ----
+          TEMPLATES.update({
+           'Breaker concept':('قاطع ثلاثي الأقطاب توضيحي، غير قياسي',('1','2','3','4','5','6')),
+           'Contactor concept':('كونتاكتور توضيحي، غير قياسي',('1','2','3','4','5','6','A1','A2')),
+           'Overload concept':('حمل زائد حراري توضيحي، غير قياسي',('1','2','3','4','5','6')),
+           'Fuse concept':('فيوز توضيحي، غير قياسي',('1','2')),
+           'Pushbutton concept':('ضاغط توضيحي، غير قياسي',('1','2'))})
+          _outline_v6 = outline
+
+
+          def outline(device):
+              kind = device.SymbolTemplate
+              p = device.Position
+
+              def v(x, y):
+                  return p + App.Vector(x, y, 0)
+
+              def line(a, b):
+                  return Part.makeLine(v(*a), v(*b))
+
+              def poly(points):
+                  return Part.makePolygon([v(x, y) for x, y in points])
+              if kind == 'Breaker concept':
+                  return [poly([(-45, -30), (-45, 30), (45, 30), (45, -30), (-45, -30)]), line((-25, -15), (15, 15)), line((-25, 0), (-5, 0))]
+              if kind == 'Contactor concept':
+                  return [poly([(-45, -30), (-45, 30), (45, 30), (45, -30), (-45, -30)]), line((-30, -20), (-30, 20)), line((0, -20), (0, 20)), line((30, -20), (30, 20)),
+                          line((-30, 0), (-20, 8)), line((0, 0), (10, 8)), line((30, 0), (40, 8))]
+              if kind == 'Overload concept':
+                  return [poly([(-45, -30), (-45, 30), (45, 30), (45, -30), (-45, -30)]), poly([(-30, -15), (-20, 15), (-10, -15), (0, 15), (10, -15), (20, 15), (30, -15)])]
+              if kind == 'Fuse concept':
+                  return [poly([(-35, -12), (-35, 12), (35, 12), (35, -12), (-35, -12)]), line((-50, 0), (50, 0))]
+              if kind == 'Pushbutton concept':
+                  return [line((-35, 0), (-15, 0)), line((-15, 0), (20, 18)), line((25, 0), (35, 0)), line((5, 9), (5, 35)), line((-8, 35), (18, 35))]
+              return _outline_v6(device)
+          '@
+          Set-Content "$pkg\symbols.py" ($sym.TrimEnd() + "`n" + $symadd) -Encoding utf8 -NoNewline
           $dp = Get-Content "$pkg\drafting_panel.py" -Raw -Encoding utf8
           $old = "self.tubes=TubeLibraryPanel(self);tabs.addTab(self.tubes,'مقاسات مواسير')"
           if (-not $dp.Contains($old)) { throw "anchor not found" }
@@ -803,6 +843,43 @@ jobs:
                           import shutil; shutil.copy(path, OUT + '/station-' + view + '.pdf')
                       return out
                   run('station_scaled_pdf', s_pdf)
+                  def s_starter():
+                      from DeltaEngineering.symbols import create, TEMPLATES
+                      from DeltaEngineering.domain import add_terminal_wire, netlist
+                      from DeltaEngineering import connectivity
+                      from DeltaEngineering.export import export_current
+                      from DeltaEngineering.panel import show_panel as show_el
+                      d = App.ActiveDocument; out = {}
+                      e = show_el(); pump(20); out['template_combo_items'] = e.template.count(); out['template_keys'] = list(TEMPLATES)
+                      Q = create(d, 'Breaker concept', 'Q1', App.Vector(0, 0, 0)); K = create(d, 'Contactor concept', 'KM1', App.Vector(300, 0, 0))
+                      O = create(d, 'Overload concept', 'F1', App.Vector(600, 0, 0)); M = create(d, 'Motor concept', 'M1', App.Vector(900, 0, 0))
+                      n = 0
+                      for a, b, pairs in ((Q, K, [('2', '1'), ('4', '3'), ('6', '5')]), (K, O, [('2', '1'), ('4', '3'), ('6', '5')]), (O, M, [('2', 'U'), ('4', 'V'), ('6', 'W')])):
+                          for sa, sb in pairs:
+                              n += 1; add_terminal_wire(d, a, sa, b, sb, 'W%d' % n)
+                      d.recompute(); rows = netlist(d); out['wires'] = len(rows)
+                      assert len(rows) == 9
+                      rep = connectivity.inspect(d); out['connectivity'] = json.loads(json.dumps(rep, default=str))
+                      shape_ok = all(not o.Shape.isNull() and o.Shape.isValid() for o in (Q, K, O, M)); out['symbol_shapes_valid'] = shape_ok; assert shape_ok
+                      base = 'C:/Users/Public/اختبار'
+                      r = export_current(d, base + '/ميكانيكا.pdf', base + '/كهرباء.pdf'); out['export'] = r
+                      import shutil; shutil.copy(base + '/ميكانيكا.pdf', OUT + '/starter-mech.pdf'); shutil.copy(base + '/كهرباء.pdf', OUT + '/starter-elec.pdf')
+                      sel(); Gui.Selection.clearSelection(); pump(10); shot('fit12-F-electrical-tab')
+                      return out
+                  run('motor_starter_circuit_symbols_and_pdf', s_starter)
+                  def s_strip_probe():
+                      W_ = W; out = []
+                      for w in mw.findChildren(W_.QWidget):
+                          if not w.isVisible(): continue
+                          g = w.mapTo(mw, W_.QWidget().rect().topLeft()) if False else w.mapTo(mw, w.rect().topLeft())
+                          r = [g.x(), g.y(), w.width(), w.height()]
+                          if r[1] < 330 and r[1] + r[3] > 250 and r[0] > 500 and r[0] < 980 and r[2] > 20 and r[3] < 60:
+                              chain = []; q = w
+                              while q is not None and len(chain) < 6: chain.append(type(q).__name__ + ':' + q.objectName()); q = q.parentWidget()
+                              out.append({'rect': r, 'cls': type(w).__name__, 'name': w.objectName(), 'title': getattr(w, 'windowTitle', lambda: '')(), 'chain': chain})
+                      docks = [{'name': dk.objectName(), 'title': dk.windowTitle(), 'visible': dk.isVisible(), 'floating': dk.isFloating(), 'geom': [dk.x(), dk.y(), dk.width(), dk.height()]} for dk in mw.findChildren(W_.QDockWidget)]
+                      return {'widgets_near_strip': out[:15], 'docks': docks}
+                  run('strip_probe', s_strip_probe)
                   def s_tasks_after_dialog():
                       class TaskStub:
                           def __init__(self): self.form = W.QLabel('Test task panel')
