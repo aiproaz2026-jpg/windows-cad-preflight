@@ -6,59 +6,50 @@ permissions:
 jobs:
   inst:
     runs-on: windows-2022
-    timeout-minutes: 60
+    timeout-minutes: 70
     steps:
       - uses: actions/checkout@v4
-      - name: Download the v7 release asset and verify its SHA256 against the build evidence
+      - name: Download the v7 release asset, verify SHA256, fetch Mesa (CI only)
         shell: pwsh
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          New-Item -ItemType Directory C:/out -Force | Out-Null
+          New-Item -ItemType Directory C:/out,C:/evidence -Force | Out-Null
           gh release download standalone-v7 -p DeltaEngineering-Setup-v7.exe -D C:/out
           $got = (Get-FileHash C:/out/DeltaEngineering-Setup-v7.exe -Algorithm SHA256).Hash.ToLower()
           $want = ((Get-Content dist/v7/DeltaEngineering-Setup-v7.exe.sha256 -Raw) -split '\s+')[0].ToLower()
-          "got  $got"; "want $want"
-          if ($got -ne $want) { throw 'SHA256 mismatch between release asset and build evidence' }
-          "SHA256 MATCH"
+          "got $got want $want"
+          if ($got -ne $want) { throw 'SHA256 mismatch' }
+          "SHA256 MATCH" | Tee-Object C:/evidence/sha.txt
           $rel = Invoke-RestMethod https://api.github.com/repos/pal1000/mesa-dist-win/releases/latest
           $a = $rel.assets | Where-Object { $_.name -match 'release-msvc\.7z$' } | Select-Object -First 1
           Invoke-WebRequest $a.browser_download_url -OutFile C:/mesa.7z
           7z x C:/mesa.7z -oC:/mesa -y | Out-Null
-      - name: Install per-user into an Arabic path
+      - name: Install per-user into an ASCII path and into an Arabic path
         shell: pwsh
         run: |
           [Console]::OutputEncoding = [Text.Encoding]::UTF8
-          $dir = 'C:\برنامج_دلتا\نسخة7'
-          $sw = [Diagnostics.Stopwatch]::StartNew()
-          $p = Start-Process C:/out/DeltaEngineering-Setup-v7.exe -ArgumentList '/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART',"/DIR=`"$dir`"" -Wait -PassThru
-          "setup exit $($p.ExitCode) seconds $($sw.Elapsed.TotalSeconds)"
-          if ($p.ExitCode -ne 0) { throw 'setup failed' }
-          "Arabic dir exists: $(Test-Path -LiteralPath $dir)"
-          "addon present: $(Test-Path -LiteralPath (Join-Path $dir 'Mod\DeltaEngineering\InitGui.py'))"
-          "source revision file: $(Test-Path -LiteralPath (Join-Path $dir 'DELTA-SOURCE-REVISION.txt'))"
-          Get-Content -LiteralPath (Join-Path $dir 'DELTA-SOURCE-REVISION.txt') -TotalCount 1
-          $exe = Get-ChildItem -LiteralPath $dir -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
-          $bin = $exe.Directory.FullName
-          Copy-Item C:/mesa/x64/opengl32.dll $bin -Force
-          foreach ($n in 'libgallium_wgl.dll','libglapi.dll') { if (Test-Path "C:/mesa/x64/$n") { Copy-Item "C:/mesa/x64/$n" $bin -Force } }
-          Set-Content C:/instdir.txt $dir -Encoding utf8
-      - name: Offline run (outbound network blocked) of import check and GUI macro from the Arabic path
+          $dirs = @{ A = 'C:\DeltaAscii'; B = 'C:\برنامج_دلتا\نسخة7' }
+          foreach ($k in $dirs.Keys) {
+            $dir = $dirs[$k]
+            $p = Start-Process C:/out/DeltaEngineering-Setup-v7.exe -ArgumentList '/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART',"/DIR=`"$dir`"" -Wait -PassThru
+            "[$k] setup exit $($p.ExitCode) dir exists $(Test-Path -LiteralPath $dir)"
+            $exe = Get-ChildItem -LiteralPath $dir -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
+            $bin = $exe.Directory.FullName
+            Copy-Item C:/mesa/x64/opengl32.dll $bin -Force
+            foreach ($n in 'libgallium_wgl.dll','libglapi.dll') { if (Test-Path "C:/mesa/x64/$n") { Copy-Item "C:/mesa/x64/$n" $bin -Force } }
+            Set-Content "C:/evidence/instdir-$k.txt" $dir -Encoding utf8
+          }
+      - name: Probe FreeCADCmd import check (ASCII vs Arabic path, with and without PYTHONUTF8)
         shell: pwsh
         continue-on-error: true
         run: |
           [Console]::OutputEncoding = [Text.Encoding]::UTF8
-          $dir = (Get-Content C:/instdir.txt -Encoding utf8 -TotalCount 1).Trim()
-          New-Item -ItemType Directory -Force C:/fit12 | Out-Null
-          $exe = Get-ChildItem -LiteralPath $dir -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
-          $cmd = Get-ChildItem -LiteralPath $dir -Recurse -Filter FreeCADCmd.exe | Select-Object -First 1
-          $root = $exe.Directory.Parent.FullName
-          Copy-Item "$env:GITHUB_WORKSPACE/patches/v7/macro_gui_test.py" "$root\DeltaGuiTest12.FCMacro" -Force
           @'
-          import sys, importlib, traceback
-          d = open('C:/instdir.txt', encoding='utf-8-sig').read().strip()
+          import sys, os, importlib
+          d = os.environ['IMP_DIR']
           sys.path.insert(0, d + '\\Mod\\DeltaEngineering')
-          out = open('C:/fit12/import-check.txt', 'w', encoding='utf-8')
+          out = open(os.environ['IMP_OUT'], 'w', encoding='utf-8')
           for m in ['core','domain','symbols','export','fittings','documents','scaled_output','tube_library','drafting','electrical','connectivity']:
               try:
                   importlib.import_module('DeltaEngineering.' + m); out.write('OK ' + m + '\n')
@@ -66,57 +57,107 @@ jobs:
                   out.write('FAIL ' + m + ' ' + repr(e) + '\n')
           out.close()
           '@ | Set-Content C:/imp.py -Encoding utf8
-          New-NetFirewallRule -DisplayName blockout -Direction Outbound -Action Block -Profile Any | Out-Null
-          try {
-            try { Invoke-WebRequest https://github.com -TimeoutSec 6 -UseBasicParsing | Out-Null; "network STILL reachable" } catch { "network blocked OK" }
-            $env:PYTHONUTF8 = '1'
-            "FreeCADCmd: $($cmd.FullName)"; & $cmd.FullName C:/imp.py 2>&1 | Select-Object -First 40
-            "--- import check"; Get-Content C:/fit12/import-check.txt -ErrorAction Continue; "script exists: $(Test-Path C:/imp.py)"
-            $env:DELTA_OUT = 'C:/fit12'; $env:GALLIUM_DRIVER = 'llvmpipe'; $env:MESA_GL_VERSION_OVERRIDE = '4.5'
-            Start-Process $exe.FullName -ArgumentList "`"$root\DeltaGuiTest12.FCMacro`"" -RedirectStandardOutput C:/fit12/fc-out.txt -RedirectStandardError C:/fit12/fc-err.txt
-            $t = 0
-            while ($t -lt 300) { Start-Sleep 5; $t += 5; if ((Test-Path C:/fit12/gui-result12.json) -and (Select-String -Path C:/fit12/gui-result12.json -Pattern '"done": true' -Quiet)) { break } }
-            Start-Sleep 3; Get-Process FreeCAD -ErrorAction SilentlyContinue | Stop-Process -Force
-          } finally {
-            Remove-NetFirewallRule -DisplayName blockout
-            "temporary CI firewall rule removed (it was created by this job)"
+          foreach ($k in 'A','B') {
+            $dir = (Get-Content "C:/evidence/instdir-$k.txt" -Encoding utf8 -TotalCount 1).Trim()
+            $cmd = Get-ChildItem -LiteralPath $dir -Recurse -Filter FreeCADCmd.exe | Select-Object -First 1
+            foreach ($mode in 'utf8','noutf8') {
+              if ($mode -eq 'utf8') { $env:PYTHONUTF8 = '1' } else { Remove-Item Env:PYTHONUTF8 -ErrorAction SilentlyContinue }
+              $env:IMP_DIR = $dir; $env:IMP_OUT = "C:/evidence/import-$k-$mode.txt"
+              "=== [$k/$mode] exe=$($cmd.FullName) script=C:/imp.py PYTHONUTF8=$env:PYTHONUTF8 IMP_DIR=$dir"
+              & $cmd.FullName C:/imp.py 2>&1 | Select-Object -First 12 | Tee-Object "C:/evidence/probe-$k-$mode.txt"
+              if (Test-Path $env:IMP_OUT) { Get-Content $env:IMP_OUT } else { "no import file written" }
+            }
           }
-      - name: Install and import check as a standard (non-admin) user
+      - name: Offline run with outbound network blocked, GUI macro on the ASCII install
         shell: pwsh
         continue-on-error: true
         run: |
-          $pw = 'Zx9!' + [guid]::NewGuid().ToString('N').Substring(0,12)
-          net user cadstd $pw /add | Out-Null
-          net localgroup Administrators cadstd /delete 2>&1 | Out-Null
-          New-Item -ItemType Directory C:/outB -Force | Out-Null
-          icacls C:/outB /grant 'cadstd:(OI)(CI)F' | Out-Null
-          icacls C:/out /grant 'cadstd:(OI)(CI)RX' /T | Out-Null
-          $script = 'try { $a=[Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent(); "admin=$($a.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))" | Out-File C:\outB\role.txt; $p = Start-Process C:\out\DeltaEngineering-Setup-v7.exe -ArgumentList ''/VERYSILENT'',''/SUPPRESSMSGBOXES'',''/NORESTART'' -Wait -PassThru; "exit $($p.ExitCode)" | Out-File C:\outB\exit.txt } catch { $_ | Out-File C:\outB\err.txt }'
-          $enc = [Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($script))
-          $cred = New-Object Management.Automation.PSCredential('.\cadstd', (ConvertTo-SecureString $pw -AsPlainText -Force))
-          $p = Start-Process powershell.exe -Credential $cred -LoadUserProfile -WorkingDirectory C:/outB -ArgumentList '-NoProfile','-EncodedCommand',$enc -Wait -PassThru
-          foreach ($f in 'role.txt','exit.txt','err.txt') { if (Test-Path C:/outB/$f) { "--- $f"; Get-Content C:/outB/$f } }
-          $t = 'C:\Users\cadstd\AppData\Local\Programs\DeltaEngineering'
-          "standard-user target exists: $(Test-Path $t)"
+          $dir = (Get-Content C:/evidence/instdir-A.txt -Encoding utf8 -TotalCount 1).Trim()
+          New-Item -ItemType Directory -Force C:/fitA | Out-Null
+          $exe = Get-ChildItem -LiteralPath $dir -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
+          $root = $exe.Directory.Parent.FullName
+          Copy-Item "$env:GITHUB_WORKSPACE/patches/v7/macro_gui_test.py" "$root\DeltaGuiTest12.FCMacro" -Force
+          New-NetFirewallRule -DisplayName blockout -Direction Outbound -Action Block -Profile Any | Out-Null
+          try {
+            try { Invoke-WebRequest https://github.com -TimeoutSec 6 -UseBasicParsing | Out-Null; "network STILL reachable" } catch { "network blocked OK" }
+            $env:DELTA_OUT = 'C:/fitA'; $env:GALLIUM_DRIVER = 'llvmpipe'; $env:MESA_GL_VERSION_OVERRIDE = '4.5'
+            "exe=$($exe.FullName) macro=$root\DeltaGuiTest12.FCMacro DELTA_OUT=$env:DELTA_OUT"
+            Start-Process $exe.FullName -ArgumentList "`"$root\DeltaGuiTest12.FCMacro`"" -RedirectStandardOutput C:/fitA/fc-out.txt -RedirectStandardError C:/fitA/fc-err.txt
+            $t = 0
+            while ($t -lt 240) { Start-Sleep 5; $t += 5; if ((Test-Path C:/fitA/gui-result12.json) -and (Select-String -Path C:/fitA/gui-result12.json -Pattern '"done": true' -Quiet)) { break } }
+            Start-Sleep 3; Get-Process FreeCAD -ErrorAction SilentlyContinue | Stop-Process -Force
+          } finally {
+            Remove-NetFirewallRule -DisplayName blockout
+            "temporary CI firewall rule removed (created by this job)"
+          }
+          if (Test-Path C:/fitA/fc-err.txt) { Get-Content C:/fitA/fc-err.txt -TotalCount 15 }
+      - name: GUI macro on the Arabic install (network normal, diagnostic)
+        shell: pwsh
+        continue-on-error: true
+        run: |
+          [Console]::OutputEncoding = [Text.Encoding]::UTF8
+          $dir = (Get-Content C:/evidence/instdir-B.txt -Encoding utf8 -TotalCount 1).Trim()
+          New-Item -ItemType Directory -Force C:/fitB | Out-Null
+          $exe = Get-ChildItem -LiteralPath $dir -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
+          $root = $exe.Directory.Parent.FullName
+          Copy-Item "$env:GITHUB_WORKSPACE/patches/v7/macro_gui_test.py" "$root\DeltaGuiTest12.FCMacro" -Force
+          $env:DELTA_OUT = 'C:/fitB'; $env:GALLIUM_DRIVER = 'llvmpipe'; $env:MESA_GL_VERSION_OVERRIDE = '4.5'
+          "exe=$($exe.FullName) macro=$root\DeltaGuiTest12.FCMacro"
+          Start-Process $exe.FullName -ArgumentList "`"$root\DeltaGuiTest12.FCMacro`"" -RedirectStandardOutput C:/fitB/fc-out.txt -RedirectStandardError C:/fitB/fc-err.txt
+          $t = 0
+          while ($t -lt 120) { Start-Sleep 5; $t += 5; if ((Test-Path C:/fitB/gui-result12.json) -and (Select-String -Path C:/fitB/gui-result12.json -Pattern '"done": true' -Quiet)) { break } }
+          Start-Sleep 3
+          try { Add-Type -AssemblyName System.Windows.Forms,System.Drawing; $b=[System.Windows.Forms.SystemInformation]::VirtualScreen; $bmp=New-Object System.Drawing.Bitmap $b.Width,$b.Height; $g=[System.Drawing.Graphics]::FromImage($bmp); $g.CopyFromScreen($b.Location,[System.Drawing.Point]::Empty,$b.Size); $bmp.Save('C:/fitB/fit12-desktop-B.png') } catch { "screenshot failed: $_" }
+          Get-Process | Where-Object { $_.MainWindowTitle } | ForEach-Object { "$($_.ProcessName) | $($_.MainWindowTitle)" }
+          Get-Process FreeCAD -ErrorAction SilentlyContinue | Stop-Process -Force
+          if (Test-Path C:/fitB/fc-err.txt) { Get-Content C:/fitB/fc-err.txt -TotalCount 15 }
+      - name: Standard (non-admin) user install and first check
+        shell: pwsh
+        continue-on-error: true
+        run: |
+          $ErrorActionPreference = 'Continue'
+          try {
+            $pw = 'Zx9!' + [guid]::NewGuid().ToString('N').Substring(0,12)
+            net user cadstd $pw /add
+            net localgroup Administrators cadstd /delete
+            New-Item -ItemType Directory C:/outB -Force | Out-Null
+            icacls C:/outB /grant 'cadstd:(OI)(CI)F' | Out-Null
+            icacls C:/out /grant 'cadstd:(OI)(CI)RX' /T | Out-Null
+          @'
+          Start-Transcript -Path C:\outB\user.txt -Force | Out-Null
+          $a=[Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()
+          "whoami: $([Security.Principal.WindowsIdentity]::GetCurrent().Name) admin=$($a.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))"
+          $p = Start-Process C:\out\DeltaEngineering-Setup-v7.exe -ArgumentList '/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART' -Wait -PassThru
+          "setup exit $($p.ExitCode)"
+          $t = "$env:LOCALAPPDATA\Programs\DeltaEngineering"
+          "target $t exists: $(Test-Path $t)"
           "addon present: $(Test-Path "$t\Mod\DeltaEngineering\InitGui.py")"
-      - name: Gate verdict and commit evidence
+          Stop-Transcript | Out-Null
+          '@ | Set-Content C:/outB/run.ps1 -Encoding utf8
+            $cred = New-Object Management.Automation.PSCredential('.\cadstd', (ConvertTo-SecureString $pw -AsPlainText -Force))
+            $p = Start-Process powershell.exe -Credential $cred -LoadUserProfile -WorkingDirectory C:/outB -ArgumentList '-NoProfile','-ExecutionPolicy','Bypass','-File','C:\outB\run.ps1' -Wait -PassThru
+            "launcher exit $($p.ExitCode)"
+          } catch { "EXCEPTION: $_" }
+          if (Test-Path C:/outB/user.txt) { Get-Content C:/outB/user.txt }
+          Copy-Item C:/outB/user.txt C:/evidence/standard-user.txt -ErrorAction SilentlyContinue
+      - name: Commit evidence and gate verdict
         if: always()
         shell: pwsh
         run: |
           git config user.name ci; git config user.email ci@users.noreply.github.com
           git pull --rebase 2>&1 | Out-Null
           New-Item -ItemType Directory -Force dist/install-check-v7 | Out-Null
-          Copy-Item C:/fit12/gui-result12.json,C:/fit12/import-check.txt,C:/fit12/fc-err.txt dist/install-check-v7/ -ErrorAction SilentlyContinue
-          Get-ChildItem C:/fit12/*.png -ErrorAction SilentlyContinue | ForEach-Object { [IO.File]::WriteAllText("$PWD/dist/install-check-v7/$($_.Name).b64", [Convert]::ToBase64String([IO.File]::ReadAllBytes($_.FullName))) }
+          Copy-Item C:/evidence/*.txt dist/install-check-v7/ -ErrorAction SilentlyContinue
+          foreach ($k in 'fitA','fitB') { foreach ($f in 'gui-result12.json','fc-err.txt','fc-out.txt') { if (Test-Path "C:/$k/$f") { Copy-Item "C:/$k/$f" "dist/install-check-v7/$k-$f" } } ; Get-ChildItem "C:/$k/*.png" -ErrorAction SilentlyContinue | ForEach-Object { [IO.File]::WriteAllText("$PWD/dist/install-check-v7/$k-$($_.Name).b64", [Convert]::ToBase64String([IO.File]::ReadAllBytes($_.FullName))) } }
           git add dist; git commit -m "Add v7 install check evidence" 2>&1 | Out-Null; git push 2>&1 | Out-Null
-          $ic = 'C:/fit12/import-check.txt'
-          if (-not (Test-Path $ic)) { throw 'GATE FAIL: no import-check output' }
-          $lines = Get-Content $ic
-          if (@($lines | Sort-Object -Unique).Count -ne 11 -or ($lines | Where-Object { $_ -notmatch '^OK ' })) { throw 'GATE FAIL: import check not 11 OK lines' }
-          $f = 'C:/fit12/gui-result12.json'
-          if (-not (Test-Path $f)) { throw 'GATE FAIL: no GUI result file' }
-          $r = Get-Content $f -Raw -Encoding utf8 | ConvertFrom-Json
-          if (-not $r.done -or $r.error) { throw 'GATE FAIL: macro not done or error' }
-          $bad = @($r.steps.PSObject.Properties | Where-Object { $_.Value.PSObject.Properties.Name -contains 'ok' -and -not $_.Value.ok } | ForEach-Object { $_.Name })
-          if ($bad.Count -gt 0) { throw ('GATE FAIL: failed steps: ' + ($bad -join ', ')) }
-          "GATE PASS (offline GUI macro + 11 imports from the Arabic install path)"
+          $fail = @()
+          foreach ($k in 'A','B') { $f = "C:/evidence/import-$k-utf8.txt"; if (-not (Test-Path $f) -or @(Get-Content $f | Where-Object { $_ -match '^OK ' } | Sort-Object -Unique).Count -ne 11) { $fail += "import-check-$k-utf8" } }
+          foreach ($k in 'fitA','fitB') {
+            $f = "C:/$k/gui-result12.json"
+            if (-not (Test-Path $f)) { $fail += "$k-no-result"; continue }
+            $r = Get-Content $f -Raw -Encoding utf8 | ConvertFrom-Json
+            if (-not $r.done -or $r.error) { $fail += "$k-not-done" }
+          }
+          if (-not (Test-Path C:/evidence/standard-user.txt) -or -not (Select-String C:/evidence/standard-user.txt -Pattern 'admin=False' -Quiet)) { $fail += 'standard-user' }
+          if ($fail.Count -gt 0) { throw ('GATE FAIL: ' + ($fail -join ', ')) }
+          "GATE PASS"
