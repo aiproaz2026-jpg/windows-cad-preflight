@@ -106,17 +106,30 @@ class FittingsPanel(QtWidgets.QWidget):
         return rows
 
 
+def _overlay_titles(mw):
+    return [w for w in mw.findChildren(QtWidgets.QWidget, 'OverlayTitle')
+            if w.parentWidget() is not None and w.parentWidget().objectName() == 'OverlayRight']
+
+
 def hide_empty_tasks():
-    """Hide the empty Tasks dock only while no task dialog is active; FreeCAD shows it again when a task starts."""
+    """Hide the empty Tasks dock and FreeCAD's leftover overlay title strip only while no task dialog is active.
+    Both are shown again while a task dialog is open. Returns True if anything was hidden."""
     mw = Gui.getMainWindow()
-    dock = mw.findChild(QtWidgets.QDockWidget, 'Tasks')
-    if dock is None or not dock.isVisible():
-        return False
     try:
         active = Gui.Control.activeDialog()
     except Exception:
         return False
+    changed = False
+    dock = mw.findChild(QtWidgets.QDockWidget, 'Tasks')
+    strips = _overlay_titles(mw)
     if active:
+        for w in strips:
+            if getattr(w, '_delta_hidden', False):
+                w.show(); w._delta_hidden = False
         return False
-    dock.hide()
-    return True
+    if dock is not None and dock.isVisible():
+        dock.hide(); changed = True
+    for w in strips:
+        if w.isVisible():
+            w.hide(); w._delta_hidden = True; changed = True
+    return changed
