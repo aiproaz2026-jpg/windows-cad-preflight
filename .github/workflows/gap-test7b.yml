@@ -1,0 +1,259 @@
+name: Product gap test on installed v5 (GUI, save/open, undo, parts, viewport, limits)
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  gap:
+    runs-on: windows-2022
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download private v5 installer and install silently
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download standalone-v5 -p DeltaEngineering-Setup-v5.exe -D C:/out
+          (Get-FileHash C:/out/DeltaEngineering-Setup-v5.exe -Algorithm SHA256).Hash
+          $p = Start-Process C:/out/DeltaEngineering-Setup-v5.exe -ArgumentList '/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART','/DIR=C:\DeltaTest' -Wait -PassThru
+          "setup exit $($p.ExitCode)"
+      - name: Add Mesa llvmpipe software OpenGL (CI only)
+        shell: pwsh
+        run: |
+          $rel = Invoke-RestMethod https://api.github.com/repos/pal1000/mesa-dist-win/releases/latest
+          $a = $rel.assets | Where-Object { $_.name -match 'release-msvc\.7z$' } | Select-Object -First 1
+          Invoke-WebRequest $a.browser_download_url -OutFile C:/mesa.7z
+          7z x C:/mesa.7z -oC:/mesa -y | Out-Null
+          $exe = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
+          $bin = $exe.Directory.FullName
+          Copy-Item C:/mesa/x64/opengl32.dll $bin -Force
+          foreach ($n in 'libgallium_wgl.dll','libglapi.dll') { if (Test-Path "C:/mesa/x64/$n") { Copy-Item "C:/mesa/x64/$n" $bin -Force } }
+      - name: Drive gap tests
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force C:/shots7 | Out-Null
+          $macro = @'
+          import os, json, time, traceback, ctypes
+          from ctypes import wintypes
+          OUT = 'C:/shots7'
+          os.makedirs(OUT, exist_ok=True)
+          res = {'steps': {}, 'dialogs': [], 'done': False}
+          def save():
+              open(OUT + '/gui-result7.json', 'w', encoding='utf-8').write(json.dumps(res, ensure_ascii=False, indent=1, default=str))
+          def rss_mb():
+              class PMC(ctypes.Structure):
+                  _fields_ = [('cb', wintypes.DWORD), ('PageFaultCount', wintypes.DWORD), ('PeakWorkingSetSize', ctypes.c_size_t), ('WorkingSetSize', ctypes.c_size_t), ('QuotaPeakPagedPoolUsage', ctypes.c_size_t), ('QuotaPagedPoolUsage', ctypes.c_size_t), ('QuotaPeakNonPagedPoolUsage', ctypes.c_size_t), ('QuotaNonPagedPoolUsage', ctypes.c_size_t), ('PagefileUsage', ctypes.c_size_t), ('PeakPagefileUsage', ctypes.c_size_t)]
+              c = PMC(); c.cb = ctypes.sizeof(c)
+              ctypes.windll.psapi.GetProcessMemoryInfo(ctypes.windll.kernel32.GetCurrentProcess(), ctypes.byref(c), c.cb)
+              return round(c.WorkingSetSize / 1048576), round(c.PeakWorkingSetSize / 1048576)
+          try:
+              import FreeCAD as App, FreeCADGui as Gui
+              from PySide import QtCore, QtWidgets
+              from PySide6 import QtTest
+              import DeltaEngineering.core, DeltaEngineering.domain
+              from DeltaEngineering.gui import register
+              if 'DeltaWorkbench' not in Gui.listWorkbenches(): register()
+              Gui.activateWorkbench('DeltaWorkbench')
+              mw = Gui.getMainWindow()
+              counter = [0]
+              def handle():
+                  w = QtWidgets.QApplication.activeModalWidget()
+                  if not w: return
+                  counter[0] += 1
+                  info = {'n': counter[0], 'cls': type(w).__name__, 'title': w.windowTitle()}
+                  try:
+                      w.grab().save(OUT + '/dlg7-%02d.png' % counter[0])
+                      if isinstance(w, QtWidgets.QInputDialog):
+                          info['label'] = w.labelText(); w.setTextValue('2 mm'); w.accept()
+                      elif isinstance(w, QtWidgets.QMessageBox):
+                          info['text'] = w.text()
+                          yes = [b for b in w.findChildren(QtWidgets.QPushButton) if b.text() in ('نعم', 'Yes', '&Yes')]
+                          if yes: yes[0].click()
+                          else: w.accept()
+                      else:
+                          w.accept()
+                  except Exception:
+                      info['err'] = traceback.format_exc()
+                  res['dialogs'].append(info); save()
+              t = QtCore.QTimer(); t.setInterval(400); t.timeout.connect(handle); t.start()
+              def shot(name):
+                  try: mw.grab().save(OUT + '/' + name + '.png')
+                  except Exception: res['steps'][name + '_shot_err'] = traceback.format_exc()
+              def run(name, fn):
+                  t0 = time.time()
+                  try:
+                      out = fn(); res['steps'][name] = {'ok': True, 'secs': round(time.time() - t0, 2), 'detail': out}
+                  except Exception:
+                      res['steps'][name] = {'ok': False, 'secs': round(time.time() - t0, 2), 'detail': traceback.format_exc()}
+                  save()
+              def pump(n=5):
+                  for _ in range(n): QtWidgets.QApplication.processEvents()
+              def step():
+                  from DeltaEngineering.drafting_panel import show_panel
+                  S = {}
+                  def click(panel, text):
+                      b = [x for x in panel.findChildren(QtWidgets.QPushButton) if x.text() == text]
+                      assert b, 'button not found: ' + text
+                      b[0].click(); pump()
+                  def vol(o): return o.Shape.Volume
+                  def sel(*objs):
+                      Gui.Selection.clearSelection()
+                      for o in objs: Gui.Selection.addSelection(o)
+                  def s_visual():
+                      Gui.runCommand('Delta_NewProject')
+                      p = show_panel(); S['p'] = p
+                      p.tabs.setCurrentIndex(2); pump()
+                      mw.showNormal(); mw.resize(1920, 1080); pump(); shot('func7-main-empty')
+                      return {'tabs': [p.tabs.tabText(i) for i in range(p.tabs.count())], 'menu_titles': [a.text() for a in mw.menuBar().actions()]}
+                  run('visual_empty_project_with_parts_tab', s_visual)
+                  pp = S['p'].profiles
+                  def s_parts():
+                      d = App.ActiveDocument; out = {}
+                      pp.fields['x'].setText('0'); pp.fields['y'].setText('0'); pp.fields['z'].setText('0'); pp.fields['radius'].setText('50 mm')
+                      click(pp, 'إنشاء دائرة دقيقة')
+                      circ = Gui.Selection.getSelection()[0]; out['circle'] = circ.Label
+                      pp.fields['height'].setText('100 mm'); click(pp, 'بروز من المقطع المحدد')
+                      E1 = Gui.Selection.getSelection()[0]; S['E1'] = E1; out['E1_100'] = round(vol(E1), 2)
+                      assert abs(vol(E1) - 3.141592653589793 * 2500 * 100) < 1, vol(E1)
+                      pp.fields['height'].setText('150 mm'); sel(E1); click(pp, 'تحديث ارتفاع البروز المحدد'); d.recompute()
+                      out['E1_150'] = round(vol(E1), 2)
+                      assert abs(vol(E1) - 3.141592653589793 * 2500 * 150) < 1, vol(E1)
+                      pp.fields['width'].setText('40 mm'); pp.fields['depth'].setText('40 mm')
+                      click(pp, 'إنشاء مستطيل دقيق'); R = Gui.Selection.getSelection()[0]
+                      pp.fields['height'].setText('200 mm'); click(pp, 'بروز من المقطع المحدد')
+                      E2 = Gui.Selection.getSelection()[0]; S['E2'] = E2; out['E2'] = round(vol(E2), 2)
+                      assert abs(vol(E2) - 40 * 40 * 200) < 1, vol(E2)
+                      pp.category.setCurrentIndex(1); pump(); S['p'].tabs.setCurrentIndex(2); pump(); shot('func7-parts')
+                      return out
+                  run('parts_circle_rect_extrude_edit_height', s_parts)
+                  def s_bool():
+                      d = App.ActiveDocument; E1, E2 = S['E1'], S['E2']; out = {}
+                      sel(E1, E2); click(pp, 'قص المصمتين المحددين: الأول أساس'); C = Gui.Selection.getSelection()[0]; vc = vol(C)
+                      sel(E1, E2); click(pp, 'تقاطع المصمتين المحددين'); I = Gui.Selection.getSelection()[0]; vi = vol(I)
+                      out.update(cut=round(vc, 2), common=round(vi, 2), base=round(vol(E1), 2), cut_plus_common_minus_base=round(vc + vi - vol(E1), 4))
+                      assert abs(vc + vi - vol(E1)) < 1, out
+                      return out
+                  run('boolean_cut_and_common_consistent', s_bool)
+                  def s_fillet():
+                      E1 = S['E1']; before = len(App.ActiveDocument.Objects)
+                      Gui.Selection.clearSelection(); Gui.Selection.addSelection(E1, 'Edge1'); pump()
+                      click(pp, 'تدوير حواف المصمت المحددة'); pump(10)
+                      F = Gui.Selection.getSelection()[0] if Gui.Selection.getSelection() else None
+                      st = S['p'].status.text()
+                      assert F is not None and F.TypeId == 'Part::Fillet', (F, st)
+                      return {'fillet_volume': round(F.Shape.Volume, 2), 'source_volume': round(vol(E1), 2), 'status': st}
+                  run('fillet_one_edge', s_fillet)
+                  def s_undo():
+                      d = App.ActiveDocument; n0 = len(d.Objects)
+                      pp.fields['radius'].setText('20 mm'); click(pp, 'إنشاء دائرة دقيقة'); n1 = len(d.Objects)
+                      d.undo(); n2 = len(d.Objects); d.redo(); n3 = len(d.Objects)
+                      return {'before': n0, 'after_create': n1, 'after_undo': n2, 'after_redo': n3, 'undo_names': d.UndoNames[-3:] if hasattr(d, 'UndoNames') else None}
+                  run('undo_redo_after_panel_action', s_undo)
+                  def s_saveopen():
+                      d = App.ActiveDocument
+                      os.makedirs('C:/Users/Public/اختبار', exist_ok=True)
+                      path = 'C:/Users/Public/اختبار/مشروع دلتا.FCStd'
+                      before = {o.Name: (o.Label, round(o.Shape.Volume, 3) if hasattr(o, 'Shape') and not o.Shape.isNull() and o.Shape.Volume else None) for o in d.Objects}
+                      d.saveAs(path); name = d.Name; App.closeDocument(name)
+                      d2 = App.openDocument(path); d2.recompute()
+                      after = {o.Name: (o.Label, round(o.Shape.Volume, 3) if hasattr(o, 'Shape') and not o.Shape.isNull() and o.Shape.Volume else None) for o in d2.Objects}
+                      diff = {k: (before.get(k), after.get(k)) for k in set(before) | set(after) if before.get(k) != after.get(k)}
+                      S['path'] = path
+                      return {'objects': len(before), 'file_bytes': os.path.getsize(path), 'differences_after_reopen_recompute': diff}
+                  run('save_reopen_arabic_path_data_integrity', s_saveopen)
+                  def s_step():
+                      d = App.ActiveDocument; Gui.setActiveDocument(d.Name)
+                      E1 = [o for o in d.Objects if o.Label and o.TypeId.startswith('Part::') and hasattr(o, 'Shape') and o.Shape.Volume > 1e6][0]
+                      v0 = E1.Shape.Volume; step_path = 'C:/Users/Public/اختبار/قطعة.step'
+                      QtWidgets.QFileDialog.getSaveFileName = staticmethod(lambda *a, **k: (step_path, 'STEP (*.step)'))
+                      QtWidgets.QFileDialog.getOpenFileName = staticmethod(lambda *a, **k: (step_path, 'STEP (*.step)'))
+                      pp2 = show_panel().profiles
+                      sel(E1); click(pp2, 'تصدير المحدد STEP'); sz = os.path.getsize(step_path)
+                      click(pp2, 'استيراد STEP'); imp = Gui.Selection.getSelection()[0]
+                      return {'step_bytes': sz, 'source_volume': round(v0, 3), 'imported_volume': round(imp.Shape.Volume, 3), 'imported': imp.Label}
+                  run('step_export_import_roundtrip', s_step)
+                  def s_viewport():
+                      d = App.ActiveDocument; v = Gui.ActiveDocument.ActiveView; v.viewAxonometric(); v.fitAll(); pump(20)
+                      E = [o for o in d.Objects if hasattr(o, 'Shape') and o.TypeId.startswith('Part::') and not o.Shape.isNull() and o.Shape.Volume > 1e6][0]
+                      c = E.Shape.BoundBox.Center
+                      mdi = mw.findChild(QtWidgets.QMdiArea); sub = mdi.activeSubWindow()
+                      cand = [w for w in sub.findChildren(QtWidgets.QWidget) if 'Quarter' in w.metaObject().className() or 'GLWidget' in w.metaObject().className() or 'Viewport' in w.metaObject().className()]
+                      out = {'widgets': [w.metaObject().className() for w in cand][:6]}
+                      vw = [w for w in cand if w.isVisible()][-1]
+                      x, y = v.getPointOnViewport(c)
+                      out['projected'] = [x, y]; out['widget_size'] = [vw.width(), vw.height()]
+                      Gui.Selection.clearSelection(); pump()
+                      pos = QtCore.QPoint(int(x), int(vw.height() - y)) if False else QtCore.QPoint(int(x), int(y))
+                      QtTest.QTest.mouseClick(vw, QtCore.Qt.LeftButton, QtCore.Qt.NoModifier, pos); pump(20)
+                      picked = [o.Label for o in Gui.Selection.getSelection()]
+                      if not picked:
+                          pos = QtCore.QPoint(int(x), int(vw.height() - y))
+                          QtTest.QTest.mouseClick(vw, QtCore.Qt.LeftButton, QtCore.Qt.NoModifier, pos); pump(20)
+                          picked = [o.Label for o in Gui.Selection.getSelection()]; out['flipped_y'] = True
+                      out['picked_by_mouse_click'] = picked
+                      shot('func7-pick')
+                      o0 = v.getCameraOrientation().Q if hasattr(v, 'getCameraOrientation') else None
+                      ctr = vw.rect().center()
+                      for btn in (QtCore.Qt.MiddleButton, QtCore.Qt.RightButton):
+                          QtTest.QTest.mousePress(vw, btn, QtCore.Qt.NoModifier, ctr); pump(3)
+                          for i in range(1, 11):
+                              QtTest.QTest.mouseMove(vw, ctr + QtCore.QPoint(i * 15, i * 8)); pump(2)
+                          QtTest.QTest.mouseRelease(vw, btn, QtCore.Qt.NoModifier, ctr + QtCore.QPoint(150, 80)); pump(10)
+                          o1 = v.getCameraOrientation().Q if hasattr(v, 'getCameraOrientation') else None
+                          out['orbit_' + str(btn)] = {'before': o0, 'after': o1, 'changed': o0 != o1}
+                          o0 = o1
+                      shot('func7-orbit')
+                      assert picked, out
+                      return out
+                  run('manual_viewport_mouse_pick_and_orbit', s_viewport)
+                  def s_large():
+                      Gui.runCommand('Delta_NewProject'); d = App.ActiveDocument
+                      from DeltaEngineering.core import PipeRoute, Device
+                      from DeltaEngineering.domain import add_terminal, add_terminal_wire, netlist
+                      m0 = rss_mb(); t0 = time.time()
+                      for i in range(150):
+                          o = d.addObject('PartDesign::FeaturePython', 'PipeRoute'); o.Label = 'P%03d' % i
+                          PipeRoute(o, [App.Vector(0, i * 150, 0), App.Vector(2000, i * 150, 0), App.Vector(2000, i * 150, 800)], 100, 5)
+                      devs = []
+                      for i in range(100):
+                          o = d.addObject('PartDesign::FeaturePython', 'ElectricalDevice'); o.Label = 'D%03d' % i
+                          Device(o, 'D%03d' % i, App.Vector(i * 300, -500, 0)); add_terminal(o, 'A'); add_terminal(o, 'B'); devs.append(o)
+                      for i in range(99): add_terminal_wire(d, devs[i], 'B', devs[i + 1], 'A', 'W%03d' % i)
+                      tc = time.time() - t0; t1 = time.time(); d.recompute(); trc = time.time() - t1
+                      v = Gui.ActiveDocument.ActiveView; v.viewAxonometric(); v.fitAll(); pump(30); shot('func7-large')
+                      path = 'C:/Users/Public/اختبار/كبير.FCStd'; t2 = time.time(); d.saveAs(path); ts = time.time() - t2
+                      n = len(d.Objects); sz = os.path.getsize(path); App.closeDocument(d.Name)
+                      t3 = time.time(); d2 = App.openDocument(path); to = time.time() - t3
+                      t4 = time.time(); d2.recompute(); trc2 = time.time() - t4
+                      nl = netlist(d2); t5 = time.time()
+                      from DeltaEngineering.project_check import inspect
+                      rep = inspect(d2); tchk = time.time() - t5
+                      return {'objects': n, 'create_s': round(tc, 2), 'recompute_s': round(trc, 2), 'save_s': round(ts, 2), 'file_MB': round(sz / 1048576, 2), 'open_s': round(to, 2), 'recompute_after_open_s': round(trc2, 2), 'project_check_s': round(tchk, 2), 'check_keys': list(rep.keys()), 'check_issue_count': len(rep.get('issues',[])), 'netlist_len': len(nl) if hasattr(nl, '__len__') else None, 'mem_working_set_MB_before_after_peak': [m0, rss_mb()]}
+                  run('large_project_150_pipes_100_devices_99_wires', s_large)
+                  res['done'] = True; save()
+              QtCore.QTimer.singleShot(6000, step)
+          except Exception:
+              res['error'] = traceback.format_exc(); res['done'] = True; save()
+          '@
+          $exe = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
+          $root = $exe.Directory.Parent.FullName
+          Set-Content "$root\DeltaGuiTest7.FCMacro" $macro -Encoding utf8
+          $env:GALLIUM_DRIVER = 'llvmpipe'
+          $env:MESA_GL_VERSION_OVERRIDE = '4.5'
+          Start-Process $exe.FullName -ArgumentList "`"$root\DeltaGuiTest7.FCMacro`""
+          $t = 0
+          while ($t -lt 1500) { Start-Sleep 5; $t += 5; if ((Test-Path C:/shots7/gui-result7.json) -and (Select-String -Path C:/shots7/gui-result7.json -Pattern '"done": true' -Quiet)) { break } }
+          Start-Sleep 3
+          if (Test-Path C:/shots7/gui-result7.json) { Get-Content C:/shots7/gui-result7.json } else { 'no result json' }
+          exit 0
+      - name: Commit evidence
+        shell: bash
+        run: |
+          git config user.name ci; git config user.email ci@users.noreply.github.com
+          git pull --rebase || true
+          mkdir -p dist/v7gap
+          cp /c/shots7/*.png /c/shots7/gui-result7.json dist/v7gap/ || true
+          git add dist
+          git commit -m "Add gap test evidence" || true
+          git push
