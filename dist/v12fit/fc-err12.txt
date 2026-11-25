@@ -1,16 +1,1 @@
-Traceback (most recent call last):
-  File "C:/DeltaTest/DeltaGuiTest12.FCMacro", line 127, in getStandardButtons
-    def getStandardButtons(self): return int(W.QDialogButtonBox.Close)
-                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<class 'TypeError'>: int() argument must be a string, a bytes-like object or a real number, not 'StandardButton'
-Traceback (most recent call last):
-  File "C:/DeltaTest/DeltaGuiTest12.FCMacro", line 328, in getStandardButtons
-    def getStandardButtons(self): return int(W.QDialogButtonBox.Close)
-                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<class 'TypeError'>: int() argument must be a string, a bytes-like object or a real number, not 'StandardButton'
-Traceback (most recent call last):
-  File "C:/DeltaTest/DeltaGuiTest12.FCMacro", line 328, in getStandardButtons
-    def getStandardButtons(self): return int(W.QDialogButtonBox.Close)
-                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<class 'TypeError'>: int() argument must be a string, a bytes-like object or a real number, not 'StandardButton'
 Abnormal program termination...
