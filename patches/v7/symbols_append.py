@@ -19,16 +19,18 @@ def outline(device):
 
     def line(a, b):
         return Part.makeLine(v(*a), v(*b))
+    n = len(getattr(device, 'Terminals', []))
+    H = max(30, 7 * (n + 1)) if n > 4 else 30
 
     def poly(points):
         return Part.makePolygon([v(x, y) for x, y in points])
     if kind == 'Breaker concept':
-        return [poly([(-45, -30), (-45, 30), (45, 30), (45, -30), (-45, -30)]), line((-25, -15), (15, 15)), line((-25, 0), (-5, 0))]
+        return [poly([(-45, -H), (-45, H), (45, H), (45, -H), (-45, -H)]), line((-25, -15), (15, 15)), line((-25, 0), (-5, 0))]
     if kind == 'Contactor concept':
-        return [poly([(-45, -30), (-45, 30), (45, 30), (45, -30), (-45, -30)]), line((-30, -20), (-30, 20)), line((0, -20), (0, 20)), line((30, -20), (30, 20)),
+        return [poly([(-45, -H), (-45, H), (45, H), (45, -H), (-45, -H)]), line((-30, -20), (-30, 20)), line((0, -20), (0, 20)), line((30, -20), (30, 20)),
                 line((-30, 0), (-20, 8)), line((0, 0), (10, 8)), line((30, 0), (40, 8))]
     if kind == 'Overload concept':
-        return [poly([(-45, -30), (-45, 30), (45, 30), (45, -30), (-45, -30)]), poly([(-30, -15), (-20, 15), (-10, -15), (0, 15), (10, -15), (20, 15), (30, -15)])]
+        return [poly([(-45, -H), (-45, H), (45, H), (45, -H), (-45, -H)]), poly([(-30, -15), (-20, 15), (-10, -15), (0, 15), (10, -15), (20, 15), (30, -15)])]
     if kind == 'Fuse concept':
         return [poly([(-35, -12), (-35, 12), (35, 12), (35, -12), (-35, -12)]), line((-50, 0), (50, 0))]
     if kind == 'Pushbutton concept':
