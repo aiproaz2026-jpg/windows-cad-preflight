@@ -1,0 +1,5 @@
+QUEUED SOURCE CORRECTIONS for the next build (not applied, no build run, nothing replaced). Not a workflow.
+1. Inno Setup [Setup] in build-v16.yml: AppVersion=8 should be AppVersion=16 (registered Version shows 8 on v16; observed in a standard-user install check). Optionally AppVerName=Delta Engineering v16.
+2. No Delta icon asset exists in the source; shortcuts use FreeCAD.exe's own icon. Adding a custom icon is a new asset and was not requested.
+3. Test-copy patches for drafting.py, export.py, gui.py and the run-35 macro are preserved on branch delta-v16-testcopy-patches (src-testcopy/). Known open: diagonal/Z/rot45 dimension labels still sit on lines.
+Release standalone-v16-r1 and chunks on branch v16-chunks are untouched.
