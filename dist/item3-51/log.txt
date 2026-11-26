@@ -1,0 +1,11 @@
+SHA256 MATCH C:\out\DeltaEngineering-Setup-v16.exe
+setup exit 0
+bin
+data
+DeltaDefaults
+doc
+Ext
+lib
+Mod
+drafting.py at C:\Users\runneradmin\AppData\Local\Programs\DeltaEngineering\Mod\DeltaEngineering\DeltaEngineering\drafting.py
+gui48 exited=False exitcode= waited=30
