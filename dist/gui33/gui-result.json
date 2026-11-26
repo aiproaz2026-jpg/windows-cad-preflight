@@ -1,0 +1,197 @@
+{
+ "stage": "solver",
+ "layouts": {
+  "L": {
+   "legacy": {
+    "crossings": 2,
+    "values": [
+     800.0,
+     500.0
+    ]
+   },
+   "centroid": {
+    "crossings": 0,
+    "values": [
+     800.0,
+     500.0
+    ]
+   },
+   "pdf_mm": 12900,
+   "pdf_in": 14184
+  },
+  "L_rev": {
+   "legacy": {
+    "crossings": 0,
+    "values": [
+     500.0,
+     800.0
+    ]
+   },
+   "centroid": {
+    "crossings": 0,
+    "values": [
+     500.0,
+     800.0
+    ]
+   },
+   "pdf_mm": 12902
+  },
+  "L_rot45": {
+   "legacy": {
+    "crossings": 2,
+    "values": [
+     800.0,
+     500.0
+    ]
+   },
+   "centroid": {
+    "crossings": 0,
+    "values": [
+     800.0,
+     500.0
+    ]
+   },
+   "pdf_mm": 13022
+  },
+  "L_rot137": {
+   "legacy": {
+    "crossings": 2,
+    "values": [
+     800.0,
+     500.0
+    ]
+   },
+   "centroid": {
+    "crossings": 0,
+    "values": [
+     800.0,
+     500.0
+    ]
+   }
+  },
+  "U": {
+   "legacy": {
+    "crossings": 0,
+    "values": [
+     400.0,
+     300.0,
+     400.0
+    ]
+   },
+   "centroid": {
+    "crossings": 0,
+    "values": [
+     400.0,
+     300.0,
+     400.0
+    ]
+   }
+  },
+  "Z": {
+   "legacy": {
+    "crossings": 4,
+    "values": [
+     600.0,
+     670.8204,
+     600.0
+    ]
+   },
+   "centroid": {
+    "crossings": 1,
+    "values": [
+     600.0,
+     670.8204,
+     600.0
+    ]
+   },
+   "pdf_mm": 13246
+  },
+  "stair": {
+   "legacy": {
+    "crossings": 6,
+    "values": [
+     400.0,
+     200.0,
+     200.0,
+     200.0,
+     200.0
+    ]
+   },
+   "centroid": {
+    "crossings": 0,
+    "values": [
+     400.0,
+     200.0,
+     200.0,
+     200.0,
+     200.0
+    ]
+   },
+   "pdf_mm": 12895
+  }
+ },
+ "stored_dimension_preserved": {
+  "dimline_before": [
+   700.0,
+   250.0,
+   0.0
+  ],
+  "dimline_after_reopen": [
+   700.0,
+   250.0,
+   0.0
+  ],
+  "same": true
+ },
+ "solver": {
+  "solve_grounded_only": 0,
+  "joint_types": [
+   "Fixed",
+   "Revolute",
+   "Cylindrical",
+   "Slider",
+   "Ball",
+   "Distance",
+   "Parallel",
+   "Perpendicular"
+  ],
+  "solve_after_fixed": 0,
+  "shaft_base_before": [
+   150.0,
+   100.0,
+   20.0
+  ],
+  "shaft_base_after": [
+   275.0,
+   200.0,
+   -130.0
+  ],
+  "shaft_rotation_axis_angle": [
+   [
+    0.0,
+    0.0,
+    1.0
+   ],
+   0.0
+  ],
+  "vertex_gap_mm": 0.0,
+  "base_vertex7": [
+   300.0,
+   200.0,
+   20.0
+  ],
+  "shaft_vertex2": [
+   300.0,
+   200.0,
+   20.0
+  ],
+  "solve_after_move": 0,
+  "shaft_base_after_move_of_base_only": [
+   1275.0,
+   200.0,
+   -130.0
+  ],
+  "vertex_gap_after_move_mm": 0.0
+ },
+ "done": true
+}
