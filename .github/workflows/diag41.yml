@@ -1,0 +1,63 @@
+name: Item1 uninstall check run 41
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  uninst:
+    runs-on: windows-2022
+    timeout-minutes: 30
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: install then uninstall check
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory C:/out -Force | Out-Null
+          gh release download standalone-v16-r1 -p "DeltaEngineering-Setup-v16*.exe" -D C:/out
+          $want = ((Get-Content dist/v16/DeltaEngineering-Setup-v16.exe.sha256 -Raw) -split '\s+')[0].ToLower()
+          $got = (Get-FileHash C:/out/DeltaEngineering-Setup-v16.exe -Algorithm SHA256).Hash.ToLower()
+          "sha match: $($got -eq $want)" | Out-File C:/out/info41.txt -Encoding utf8
+          if ($got -ne $want) { throw 'sha mismatch' }
+          $res = [ordered]@{}
+          try {
+            $dir = 'C:\DeltaUninstTest'
+            $res.whoami = (whoami)
+            $res.is_admin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
+            $p = Start-Process 'C:\out\DeltaEngineering-Setup-v16.exe' -ArgumentList '/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART','/LOG=C:\out\setup41.log',"/DIR=$dir" -Wait -PassThru
+            $res.setup_exit = $p.ExitCode
+            Start-Sleep 5
+            $res.pre_dir_exists = (Test-Path $dir)
+            $res.pre_files = (Get-ChildItem $dir -Recurse -File -ErrorAction SilentlyContinue | Measure-Object).Count
+            $res.pre_unins_exe = (Test-Path "$dir\unins000.exe")
+            function Find-DeltaKeys {
+              $ps = 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*','HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*','HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*'
+              foreach ($pp in $ps) { Get-ItemProperty $pp -ErrorAction SilentlyContinue | Where-Object { $_.DisplayName -match 'Delta' } | ForEach-Object { "$($_.PSChildName) | $($_.DisplayName) | $($_.DisplayVersion) | $($_.InstallLocation)" } }
+            }
+            $res.pre_reg = @(Find-DeltaKeys)
+            $lnkPaths = @("C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Delta Engineering.lnk","C:\Users\Public\Desktop\Delta Engineering.lnk","$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Delta Engineering.lnk",("$([Environment]::GetFolderPath('Desktop'))\Delta Engineering.lnk"))
+            $res.pre_lnks = @($lnkPaths | Where-Object { Test-Path $_ })
+            $res.appdata_cfg_pre = (Test-Path "$env:APPDATA\FreeCAD\v1-1\user.cfg")
+            $up = Start-Process "$dir\unins000.exe" -ArgumentList '/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART','/LOG=C:\out\unins41.log' -Wait -PassThru
+            $res.unins_exit = $up.ExitCode
+            $waited = 0
+            while ((Test-Path "$dir\unins000.exe") -and $waited -lt 180) { Start-Sleep 5; $waited += 5 }
+            $res.unins_extra_wait_s = $waited
+            $res.post_dir_exists = (Test-Path $dir)
+            $res.post_files_count = (Get-ChildItem $dir -Recurse -File -ErrorAction SilentlyContinue | Measure-Object).Count
+            $res.post_files_sample = @(Get-ChildItem $dir -Recurse -ErrorAction SilentlyContinue | Select-Object -First 50 | ForEach-Object { $_.FullName })
+            $res.post_reg = @(Find-DeltaKeys)
+            $res.post_lnks = @($lnkPaths | Where-Object { Test-Path $_ })
+            $res.appdata_cfg_post = (Test-Path "$env:APPDATA\FreeCAD\v1-1\user.cfg")
+          } catch { $res.error = $_.Exception.Message }
+          $res | ConvertTo-Json -Depth 4 | Out-File C:/out/unins-result.json -Encoding utf8
+          Get-Content C:/out/unins-result.json -Raw | Write-Host
+          git config user.name ci; git config user.email ci@users.noreply.github.com
+          New-Item -ItemType Directory -Force dist/item1-41 | Out-Null
+          Copy-Item C:/out/info41.txt dist/item1-41/ -ErrorAction SilentlyContinue
+          Copy-Item C:/out/unins-result.json dist/item1-41/ -ErrorAction SilentlyContinue
+          if (Test-Path C:/out/setup41.log) { Get-Content C:/out/setup41.log -Tail 20 | Out-File dist/item1-41/setup-log-tail.txt -Encoding utf8 }
+          if (Test-Path C:/out/unins41.log) { Get-Content C:/out/unins41.log -Tail 60 | Out-File dist/item1-41/unins-log-tail.txt -Encoding utf8 }
+          git add dist; git commit -m "Add uninstall check evidence" 2>&1 | Out-Null
+          foreach ($i in 1..4) { git pull --rebase 2>&1 | Out-Null; git push 2>&1 | Out-String | Write-Host; if ($LASTEXITCODE -eq 0) { break }; Start-Sleep 5 }
