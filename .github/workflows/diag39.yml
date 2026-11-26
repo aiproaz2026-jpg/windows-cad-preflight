@@ -1,0 +1,62 @@
+name: Item1 standard-user fresh install check run 39
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  std:
+    runs-on: windows-2022
+    timeout-minutes: 25
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: std user install
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory C:/out -Force | Out-Null
+          gh release download standalone-v16-r1 -p "DeltaEngineering-Setup-v16*.exe" -D C:/out
+          $want = ((Get-Content dist/v16/DeltaEngineering-Setup-v16.exe.sha256 -Raw) -split '\s+')[0].ToLower()
+          $got = (Get-FileHash C:/out/DeltaEngineering-Setup-v16.exe -Algorithm SHA256).Hash.ToLower()
+          "sha match: $($got -eq $want)" | Out-File C:/out/info39.txt -Encoding utf8
+          if ($got -ne $want) { throw 'sha mismatch' }
+          Copy-Item C:/out/DeltaEngineering-Setup-v16.exe C:/Users/Public/setup-v16.exe
+          @'
+          $res = [ordered]@{}
+          try {
+          $res.whoami = (whoami)
+          $res.groups = ((whoami /groups) -join "`n")
+          $res.is_admin_role = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
+          $res.localappdata = $env:LOCALAPPDATA
+          $p = Start-Process 'C:\Users\Public\setup-v16.exe' -ArgumentList '/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART' -Wait -PassThru
+          $res.setup_exit = $p.ExitCode
+          $app = "$env:LOCALAPPDATA\Programs\DeltaEngineering"
+          $res.app_exists = (Test-Path $app)
+          $res.app_files = (Get-ChildItem $app -Recurse -File -ErrorAction SilentlyContinue | Measure-Object).Count
+          $res.freecad_exe = (Test-Path "$app\bin\FreeCAD.exe")
+          $res.unins = (Test-Path "$app\unins000.exe")
+          $res.startmenu_lnk = (Test-Path "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Delta Engineering.lnk")
+          $res.desktop_lnk = (Test-Path ([Environment]::GetFolderPath('Desktop') + '\Delta Engineering.lnk'))
+          $res.hkcu_uninstall = @(Get-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*' -ErrorAction SilentlyContinue | Where-Object { $_.DisplayName -match 'Delta' } | ForEach-Object { "$($_.DisplayName) | $($_.DisplayVersion) | $($_.InstallLocation)" })
+          $res.user_cfg = (Test-Path "$env:APPDATA\FreeCAD\v1-1\user.cfg")
+          $cmd = "$app\bin\FreeCADCmd.exe"
+          $o = & $cmd --version 2>&1 | Out-String
+          $res.cmd_version = $o.Trim()
+          $res.cmd_exit = $LASTEXITCODE
+          } catch { $res.error = $_.Exception.Message }
+          $res | ConvertTo-Json -Depth 4 | Out-File C:\Users\Public\std-result.json -Encoding utf8
+          '@ | Out-File C:/Users/Public/std.ps1 -Encoding utf8
+          $pwd1 = ConvertTo-SecureString ([guid]::NewGuid().ToString('N') + 'aA1!') -AsPlainText -Force
+          New-LocalUser -Name 'cistduser' -Password $pwd1 -AccountNeverExpires | Out-Null
+          Add-LocalGroupMember -Group 'Users' -Member 'cistduser'
+          $cred = New-Object System.Management.Automation.PSCredential('.\cistduser', $pwd1)
+          $sp = $null
+          try { $sp = Start-Process powershell -Credential $cred -LoadUserProfile -WorkingDirectory C:\Users\Public -ArgumentList '-NoProfile','-ExecutionPolicy','Bypass','-File','C:\Users\Public\std.ps1' -Wait -PassThru } catch { "start-process error: $($_.Exception.Message)" | Out-File C:/out/info39.txt -Append -Encoding utf8 }
+          if ($sp) { "std process exit $($sp.ExitCode)" | Out-File C:/out/info39.txt -Append -Encoding utf8 }
+          git config user.name ci; git config user.email ci@users.noreply.github.com
+          New-Item -ItemType Directory -Force dist/item1-39 | Out-Null
+          Copy-Item C:/out/info39.txt dist/item1-39/ -ErrorAction SilentlyContinue
+          Copy-Item C:/Users/Public/std-result.json dist/item1-39/ -ErrorAction SilentlyContinue
+          git add dist; git commit -m "Add standard-user install check evidence" 2>&1 | Out-Null
+          foreach ($i in 1..4) { git pull --rebase 2>&1 | Out-Null; git push 2>&1 | Out-String | Write-Host; if ($LASTEXITCODE -eq 0) { break }; Start-Sleep 5 }
+          
