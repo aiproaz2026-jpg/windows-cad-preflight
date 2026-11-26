@@ -1,0 +1,19 @@
+﻿{
+    "whoami":  "runnervmhh3zg\\cistduser",
+    "groups":  "\nGROUP INFORMATION\n-----------------\n\nGroup Name                             Type             SID          Attributes                                        \n====================================== ================ ============ ==================================================\nEveryone                               Well-known group S-1-1-0      Mandatory group, Enabled by default, Enabled group\nBUILTIN\\Users                          Alias            S-1-5-32-545 Mandatory group, Enabled by default, Enabled group\nNT AUTHORITY\\INTERACTIVE               Well-known group S-1-5-4      Mandatory group, Enabled by default, Enabled group\nCONSOLE LOGON                          Well-known group S-1-2-1      Mandatory group, Enabled by default, Enabled group\nNT AUTHORITY\\Authenticated Users       Well-known group S-1-5-11     Mandatory group, Enabled by default, Enabled group\nNT AUTHORITY\\This Organization         Well-known group S-1-5-15     Mandatory group, Enabled by default, Enabled group\nNT AUTHORITY\\Local account             Well-known group S-1-5-113    Mandatory group, Enabled by default, Enabled group\nLOCAL                                  Well-known group S-1-2-0      Mandatory group, Enabled by default, Enabled group\nNT AUTHORITY\\NTLM Authentication       Well-known group S-1-5-64-10  Mandatory group, Enabled by default, Enabled group\nMandatory Label\\Medium Mandatory Level Label            S-1-16-8192                                                    ",
+    "is_admin_role":  false,
+    "localappdata":  "C:\\Users\\cistduser\\AppData\\Local",
+    "setup_exit":  0,
+    "app_exists":  true,
+    "app_files":  30473,
+    "freecad_exe":  true,
+    "unins":  true,
+    "startmenu_lnk":  true,
+    "desktop_lnk":  false,
+    "hkcu_uninstall":  [
+                           "Delta Engineering | 8 | C:\\Users\\cistduser\\AppData\\Local\\Programs\\DeltaEngineering\\"
+                       ],
+    "user_cfg":  true,
+    "cmd_version":  "FreeCAD 1.1.4 Revision: 20260928 (Git shallow)",
+    "cmd_exit":  0
+}
