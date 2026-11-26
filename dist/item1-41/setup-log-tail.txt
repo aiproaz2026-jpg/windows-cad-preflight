@@ -1,0 +1,20 @@
+2026-11-26 12:31:13.888   Creating directory: C:\Users\runneradmin\AppData\Roaming\FreeCAD
+2026-11-26 12:31:13.888   Creating directory: C:\Users\runneradmin\AppData\Roaming\FreeCAD\v1-1
+2026-11-26 12:31:13.888   Successfully installed the file.
+2026-11-26 12:31:13.888   -- Icon entry --
+2026-11-26 12:31:13.888   Dest filename: C:\Users\runneradmin\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Delta Engineering.lnk
+2026-11-26 12:31:13.888   Creating the icon.
+2026-11-26 12:31:14.545   Successfully created the icon.
+2026-11-26 12:31:14.545   -- Icon entry --
+2026-11-26 12:31:14.545   Dest filename: C:\Users\runneradmin\Desktop\Delta Engineering.lnk
+2026-11-26 12:31:14.545   Creating the icon.
+2026-11-26 12:31:14.545   Successfully created the icon.
+2026-11-26 12:31:14.560   Saving uninstall information.
+2026-11-26 12:31:14.560   Creating new uninstall key: HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Uninstall\Delta Engineering_is1
+2026-11-26 12:31:14.560   Writing uninstall key values.
+2026-11-26 12:31:14.560   Detected previous administrative 64-bit install? No
+2026-11-26 12:31:14.560   Detected previous administrative 32-bit install? No
+2026-11-26 12:31:14.654   Installation process succeeded.
+2026-11-26 12:31:14.654   Need to restart Windows? No
+2026-11-26 12:31:14.670   Deinitializing Setup.
+2026-11-26 12:31:14.670   Log closed.
