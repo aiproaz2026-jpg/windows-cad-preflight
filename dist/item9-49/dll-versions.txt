@@ -1,0 +1,9 @@
+Qt6Core.dll	6.8.3.0	Qt6	Copyright (C) The Qt Company Ltd. and other contributors.
+FreeCAD.exe			
+python311.dll	3.11.14	Python	Copyright © 2001-2023 Python Software Foundation. Copyright © 2000 BeOpen.com. Copyright © 1995-2001 CNRI. Copyright © 1991-1995 SMC.
+python3.dll	3.11.14	Python	Copyright © 2001-2023 Python Software Foundation. Copyright © 2000 BeOpen.com. Copyright © 1995-2001 CNRI. Copyright © 1991-1995 SMC.
+TKernel.dll	7.8.1	Open CASCADE Technology	© OPEN CASCADE SAS
+Coin.dll	NOT FOUND
+xerces-c_3_2.dll	NOT FOUND
+libfreetype.dll	NOT FOUND
+pyside6.abi3.dll	NOT FOUND
