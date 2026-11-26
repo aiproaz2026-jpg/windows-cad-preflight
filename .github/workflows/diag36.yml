@@ -1,0 +1,46 @@
+name: Split v16 installer into private chunks on a side branch
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  split:
+    runs-on: windows-2022
+    timeout-minutes: 40
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: split
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Continue'
+          New-Item -ItemType Directory C:/seed -Force | Out-Null
+          gh release download standalone-v16-r1 --pattern 'DeltaEngineering-Setup-v16.exe' --dir C:/seed --repo $env:GITHUB_REPOSITORY
+          $f = 'C:/seed/DeltaEngineering-Setup-v16.exe'
+          $h = (Get-FileHash $f -Algorithm SHA256).Hash.ToLower()
+          $sz = (Get-Item $f).Length
+          "sha256=$h size=$sz" | Tee-Object C:/seed/info.txt
+          if ($h -ne '6499573be591f25c02285f3ac9fde5a8c77c664f97d9c557226ab470c7791b46') { throw 'hash mismatch' }
+          git config user.name ci; git config user.email ci@users.noreply.github.com
+          git switch -c v16-chunks
+          New-Item -ItemType Directory chunks -Force | Out-Null
+          $cs = 24MB
+          $fs = [IO.File]::OpenRead($f)
+          $buf = New-Object byte[] $cs
+          $i = 0; $n = 0
+          while (($r = $fs.Read($buf, 0, $cs)) -gt 0) {
+            $part = New-Object byte[] $r
+            [Array]::Copy($buf, $part, $r)
+            $name = 'chunks/part{0:D3}.b64' -f $i
+            [IO.File]::WriteAllText("$PWD/$name", [Convert]::ToBase64String($part))
+            $sh = (Get-FileHash "$PWD/$name" -Algorithm SHA256).Hash.ToLower()
+            ("{0} {1} {2}" -f $name, $r, $sh) | Add-Content chunks/manifest.txt
+            $i++; $n++
+            if ($n -ge 5) { git add chunks; git commit -m "v16 chunks up to $i" 2>&1 | Out-Null; git push origin v16-chunks 2>&1 | Out-String | Write-Host; $n = 0 }
+          }
+          $fs.Close()
+          Copy-Item C:/seed/info.txt chunks/info.txt
+          git add chunks; git commit -m "v16 chunks final $i" 2>&1 | Out-Null; git push origin v16-chunks 2>&1 | Out-String | Write-Host
+          "parts=$i" | Write-Host
+          
