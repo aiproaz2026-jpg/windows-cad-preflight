@@ -1,0 +1,238 @@
+{
+ "stage": "layouts_default",
+ "lib_cmds": [
+  "Delta_Lib_hex_bolt",
+  "Delta_Lib_hex_nut",
+  "Delta_Lib_washer",
+  "Delta_Lib_bearing",
+  "Delta_Lib_ipe",
+  "Delta_Lib_gear"
+ ],
+ "lib_cmd_make": {
+  "hex_bolt": true,
+  "hex_nut": true,
+  "washer": true,
+  "bearing": true,
+  "ipe": true,
+  "gear": true
+ },
+ "toolbars": "['File', 'Edit', 'Clipboard', 'Workbench', 'Macro', 'View', 'Individual Views', 'Structure', 'Help', '\u0627\u0644\u0631\u0633\u0645', '\u0627\u0644\u0645\u0634\u0631\u0648\u0639', '\u0627\u0644\u0645\u0648\u0627\u0633\u064a\u0631', '\u0627\u0644\u0643\u0647\u0631\u0628\u0627\u0621', '\u0627\u0644\u0645\u064a\u0643\u0627\u0646\u064a\u0643\u0627', '\u0645\u0643\u062a\u0628\u0629 \u0627\u0644\u0642\u0637\u0639']",
+ "ui_wb_err": {
+  "StartWorkbench": "\"No such workbench 'StartWorkbench'\""
+ },
+ "ui_wbs": [
+  "DeltaWorkbench",
+  "PartWorkbench",
+  "PartDesignWorkbench",
+  "SketcherWorkbench",
+  "DraftWorkbench",
+  "TechDrawWorkbench",
+  "AssemblyWorkbench"
+ ],
+ "ui_en_count": 1980,
+ "default_placement": "search",
+ "images": [
+  "z_layout_v9.png"
+ ],
+ "layouts_default": {
+  "L": {
+   "crossings_path": 0,
+   "crossings_dim": 0,
+   "values": [
+    800.0,
+    500.0
+   ],
+   "placements": [
+    "default",
+    "default"
+   ],
+   "offsets": [
+    100.0,
+    100.0
+   ],
+   "pdf_mm": 12900
+  },
+  "L_rev": {
+   "crossings_path": 0,
+   "crossings_dim": 0,
+   "values": [
+    500.0,
+    800.0
+   ],
+   "placements": [
+    "default",
+    "default"
+   ],
+   "offsets": [
+    100.0,
+    100.0
+   ]
+  },
+  "L_rot45": {
+   "crossings_path": 0,
+   "crossings_dim": 0,
+   "values": [
+    800.0,
+    500.0
+   ],
+   "placements": [
+    "default",
+    "default"
+   ],
+   "offsets": [
+    100.0,
+    100.0
+   ],
+   "pdf_mm": 13020
+  },
+  "L_rot137": {
+   "crossings_path": 0,
+   "crossings_dim": 0,
+   "values": [
+    800.0,
+    500.0
+   ],
+   "placements": [
+    "default",
+    "default"
+   ],
+   "offsets": [
+    100.0,
+    100.0
+   ]
+  },
+  "U": {
+   "crossings_path": 0,
+   "crossings_dim": 0,
+   "values": [
+    400.0,
+    300.0,
+    400.0
+   ],
+   "placements": [
+    "default",
+    "default",
+    "default"
+   ],
+   "offsets": [
+    100.0,
+    100.0,
+    100.0
+   ]
+  },
+  "Z": {
+   "crossings_path": 0,
+   "crossings_dim": 1,
+   "values": [
+    600.0,
+    670.8204,
+    600.0
+   ],
+   "placements": [
+    "default",
+    "default",
+    "default"
+   ],
+   "offsets": [
+    100.0,
+    300.0,
+    30.0
+   ],
+   "diag": {
+    "lg": [
+     "[(<Part::Feature>, ('Vertex1', 'Vertex2'))]",
+     "[(<Part::Feature>, ('Vertex2', 'Vertex3'))]",
+     "[(<Part::Feature>, ('Vertex3', 'Vertex4'))]"
+    ],
+    "collected": 3,
+    "has_links_to": true,
+    "before": [
+     100.0,
+     300.0,
+     30.0
+    ],
+    "after": [
+     100.0,
+     300.0,
+     30.0
+    ],
+    "after_count": {
+     "path": 0,
+     "dim": 1
+    },
+    "strict_path_hits_incl_overlap": 0,
+    "strict_dim_hits": 1,
+    "sides_offsets": [
+     100.0,
+     300.0,
+     30.0
+    ]
+   },
+   "pdf_mm": 13229
+  },
+  "stair": {
+   "crossings_path": 0,
+   "crossings_dim": 0,
+   "values": [
+    400.0,
+    200.0,
+    200.0,
+    200.0,
+    200.0
+   ],
+   "placements": [
+    "default",
+    "default",
+    "default",
+    "default",
+    "default"
+   ],
+   "offsets": [
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0
+   ],
+   "diag": {
+    "lg": [
+     "[(<Part::Feature>, ('Vertex1', 'Vertex2'))]",
+     "[(<Part::Feature>, ('Vertex2', 'Vertex3'))]",
+     "[(<Part::Feature>, ('Vertex3', 'Vertex4'))]",
+     "[(<Part::Feature>, ('Vertex4', 'Vertex5'))]",
+     "[(<Part::Feature>, ('Vertex5', 'Vertex6'))]"
+    ],
+    "collected": 5,
+    "has_links_to": true,
+    "before": [
+     100.0,
+     100.0,
+     100.0,
+     100.0,
+     100.0
+    ],
+    "after": [
+     100.0,
+     100.0,
+     100.0,
+     100.0,
+     100.0
+    ],
+    "after_count": {
+     "path": 0,
+     "dim": 0
+    },
+    "strict_path_hits_incl_overlap": 2,
+    "strict_dim_hits": 0,
+    "sides_offsets": [
+     100.0,
+     100.0,
+     100.0,
+     100.0,
+     100.0
+    ]
+   }
+  }
+ },
+ "done": true
+}
