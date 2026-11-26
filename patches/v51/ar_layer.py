@@ -7,6 +7,23 @@ from .ar_dict import DICT
 
 _keep = []
 
+LABELS = {'Origin': 'نقطة الأصل', 'X-axis': 'المحور X', 'Y-axis': 'المحور Y', 'Z-axis': 'المحور Z',
+          'XY-plane': 'المستوى XY', 'XZ-plane': 'المستوى XZ', 'YZ-plane': 'المستوى YZ',
+          'BaseBody': 'الجسم الأساسي', 'BaseSketch': 'الرسم الأساسي'}
+
+
+def relabel(doc):
+    """Arabic labels for the generic objects FreeCAD and the example create (numeric suffix like 001 is kept)."""
+    import re
+    n = 0
+    for o in doc.Objects:
+        m = re.match(r'^(.*?)(\d{3})?$', o.Label)
+        base, suf = m.group(1), m.group(2)
+        if base in LABELS:
+            o.Label = LABELS[base] + (' ' + suf if suf else '')
+            n += 1
+    return n
+
 
 def _n(s):
     return (s or '').replace('&', '').strip()
@@ -70,6 +87,18 @@ def _later(*_a):
 def register():
     # QTranslator subclass intentionally not installed (a CI run with it exited at startup); text sweep only.
     _keep.append('sweep-only')
+    try:
+        from . import core as _core, gui as _gui
+        _orig = _core.create_demo
+
+        def _demo(*a, **k):
+            d = _orig(*a, **k)
+            relabel(d)
+            return d
+        _core.create_demo = _demo
+        _gui.create_demo = _demo
+    except Exception:
+        pass
     mw = Gui.getMainWindow()
     if mw is not None:
         try:
