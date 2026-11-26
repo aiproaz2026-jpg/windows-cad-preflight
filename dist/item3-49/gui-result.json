@@ -1,0 +1,107 @@
+{
+ "stage": "layouts_default",
+ "default_placement": "search",
+ "images": [
+  "z_layout_v9.png"
+ ],
+ "layouts_default": {
+  "L": {
+   "crossings_path": 0,
+   "crossings_dim": 0,
+   "values": [
+    800.0,
+    500.0
+   ],
+   "placements": [
+    "default",
+    "default"
+   ],
+   "pdf_err": "_page() got an unexpected keyword argument 'subtitle'"
+  },
+  "L_rev": {
+   "crossings_path": 0,
+   "crossings_dim": 0,
+   "values": [
+    500.0,
+    800.0
+   ],
+   "placements": [
+    "default",
+    "default"
+   ]
+  },
+  "L_rot45": {
+   "crossings_path": 0,
+   "crossings_dim": 0,
+   "values": [
+    800.0,
+    500.0
+   ],
+   "placements": [
+    "default",
+    "default"
+   ],
+   "pdf_err": "_page() got an unexpected keyword argument 'subtitle'"
+  },
+  "L_rot137": {
+   "crossings_path": 0,
+   "crossings_dim": 0,
+   "values": [
+    800.0,
+    500.0
+   ],
+   "placements": [
+    "default",
+    "default"
+   ]
+  },
+  "U": {
+   "crossings_path": 0,
+   "crossings_dim": 0,
+   "values": [
+    400.0,
+    300.0,
+    400.0
+   ],
+   "placements": [
+    "default",
+    "default",
+    "default"
+   ]
+  },
+  "Z": {
+   "crossings_path": 0,
+   "crossings_dim": 3,
+   "values": [
+    600.0,
+    670.8204,
+    600.0
+   ],
+   "placements": [
+    "default",
+    "default",
+    "default"
+   ],
+   "pdf_err": "_page() got an unexpected keyword argument 'subtitle'"
+  },
+  "stair": {
+   "crossings_path": 0,
+   "crossings_dim": 0,
+   "values": [
+    400.0,
+    200.0,
+    200.0,
+    200.0,
+    200.0
+   ],
+   "placements": [
+    "default",
+    "default",
+    "default",
+    "default",
+    "default"
+   ]
+  }
+ },
+ "done": true
+}
