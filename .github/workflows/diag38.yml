@@ -1,0 +1,82 @@
+name: Item1 read-only install checks and network-off launch run 38
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  gui:
+    runs-on: windows-2022
+    timeout-minutes: 25
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: install v16 (CI only)
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory C:/out,C:/seed -Force | Out-Null
+          foreach ($t in "standalone-v16-r1") { gh release download $t -p "DeltaEngineering-Setup-v16*.exe" -D C:/out; if ($LASTEXITCODE -eq 0) { break } }
+          $want = ((Get-Content dist/v16/DeltaEngineering-Setup-v16.exe.sha256 -Raw) -split '\s+')[0].ToLower()
+          $ok = $null
+          foreach ($f in Get-ChildItem C:/out -Filter "DeltaEngineering-Setup-v16*.exe") { if ((Get-FileHash $f.FullName -Algorithm SHA256).Hash.ToLower() -eq $want) { $ok = $f.FullName } }
+          if (-not $ok) { throw 'no downloaded asset matches the dist/v16 SHA256' }
+          "SHA256 MATCH $ok" | Tee-Object C:/seed/log.txt
+          $p = Start-Process $ok -ArgumentList '/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART' -Wait -PassThru
+          "setup exit $($p.ExitCode)" | Tee-Object -Append C:/seed/log.txt
+          $app = "$env:LOCALAPPDATA\Programs\DeltaEngineering"; $bin = "$app\bin"
+          Get-ChildItem $app -Directory | Select-Object -ExpandProperty Name | Tee-Object -Append C:/seed/log.txt
+          $rel = Invoke-RestMethod https://api.github.com/repos/pal1000/mesa-dist-win/releases/latest
+          $a = $rel.assets | Where-Object { $_.name -match 'release-msvc\.7z$' } | Select-Object -First 1
+          Invoke-WebRequest $a.browser_download_url -OutFile C:/mesa.7z
+          7z x C:/mesa.7z -oC:/mesa -y | Out-Null
+          Copy-Item C:/mesa/x64/opengl32.dll $bin -Force
+          foreach ($n in 'libgallium_wgl.dll','libglapi.dll') { if (Test-Path "C:/mesa/x64/$n") { Copy-Item "C:/mesa/x64/$n" $bin -Force } }
+          
+      - name: item1 checks
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Continue'
+          $app = "$env:LOCALAPPDATA\Programs\DeltaEngineering"; $bin = "$app\bin"
+          $LOGF = 'C:/seed/item1.txt'
+          "== shortcuts ==" | Tee-Object $LOGFOGF
+          $wsh = New-Object -ComObject WScript.Shell
+          $dirs = @("$env:APPDATA\Microsoft\Windows\Start Menu\Programs", "$env:ProgramData\Microsoft\Windows\Start Menu\Programs", [Environment]::GetFolderPath('Desktop'), [Environment]::GetFolderPath('CommonDesktopDirectory'))
+          $lnks = @()
+          foreach ($dd in $dirs) { if (Test-Path $dd) { $lnks += Get-ChildItem $dd -Recurse -Filter *.lnk -ErrorAction SilentlyContinue | Where-Object { $_.FullName -match 'Delta|FreeCAD|\u062f\u0644\u062a\u0627' } } }
+          foreach ($lk in $lnks) { $s = $wsh.CreateShortcut($lk.FullName); ("{0} | target={1} | exists={2} | args={3} | wd={4} | icon={5}" -f $lk.FullName, $s.TargetPath, (Test-Path $s.TargetPath), $s.Arguments, $s.WorkingDirectory, $s.IconLocation) | Tee-Object -Append $LOGF }
+          "lnk count: $($lnks.Count)" | Tee-Object -Append $LOGFOGF
+          "== uninstall registration (read only, not executed) ==" | Tee-Object -Append $LOGFOGF
+          $keys = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*','HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*','HKLM:\Software\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*'
+          $found = 0
+          foreach ($p in Get-ItemProperty $keys -ErrorAction SilentlyContinue) { if ($p.DisplayName -match 'Delta') { $found++; $us = $p.UninstallString; $exe = ($us -replace '^"([^"]+)".*$','$1'); ("DisplayName={0} | Version={1} | Publisher={2} | InstallLocation={3} | UninstallString={4} | uninstaller_exists={5} | NoModify={6}" -f $p.DisplayName, $p.DisplayVersion, $p.Publisher, $p.InstallLocation, $us, (Test-Path $exe), $p.NoModify) | Tee-Object -Append $LOGF } }
+          "uninstall entries: $found" | Tee-Object -Append $LOGFOGF
+          "== install dir ==" | Tee-Object -Append $LOGFOGF
+          Get-ChildItem $app -Force | Select-Object Name,Length,Mode | Format-Table -AutoSize | Out-String | Tee-Object -Append $LOGFOGF
+          $sz = (Get-ChildItem $app -Recurse -File -Force -ErrorAction SilentlyContinue | Measure-Object Length -Sum); "files=$($sz.Count) bytes=$($sz.Sum)" | Tee-Object -Append $LOGFOGF
+          "== run as admin? ==" | Tee-Object -Append $LOGFOGF
+          ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator) | Tee-Object -Append $LOGFOGF
+          "== network-off launch via shortcut command line ==" | Tee-Object -Append $LOGFOGF
+          New-NetFirewallRule -DisplayName 'ci-block-freecad-out' -Direction Outbound -Program "$bin\FreeCAD.exe" -Action Block | Out-Null
+          "firewall rule added: $((Get-NetFirewallRule -DisplayName 'ci-block-freecad-out').Enabled)" | Tee-Object -Append $LOGFOGF
+          [IO.File]::WriteAllBytes('C:/seed/item1_obs.py', [Convert]::FromBase64String('aW1wb3J0IHRpbWUsIGpzb24sIG9zLCB1cmxsaWIucmVxdWVzdAppbXBvcnQgRnJlZUNBRCBhcyBBcHAsIEZyZWVDQURHdWkgYXMgR3VpCmZyb20gUHlTaWRlNiBpbXBvcnQgUXRDb3JlLCBRdFdpZGdldHMKb3V0ID0geyd0MCc6IHRpbWUudGltZSgpfQpkZWYgZmluKCk6CiAgICB0cnk6CiAgICAgICAgbXcgPSBHdWkuZ2V0TWFpbldpbmRvdygpCiAgICAgICAgb3V0Wyd3b3JrYmVuY2gnXSA9IEd1aS5hY3RpdmVXb3JrYmVuY2goKS5uYW1lKCkgaWYgR3VpLmFjdGl2ZVdvcmtiZW5jaCgpIGVsc2UgTm9uZQogICAgICAgIG91dFsnbWVudXMnXSA9IFthLnRleHQoKS5lbmNvZGUoJ2FzY2lpJywnYmFja3NsYXNocmVwbGFjZScpLmRlY29kZSgpIGZvciBhIGluIG13Lm1lbnVCYXIoKS5hY3Rpb25zKCldCiAgICAgICAgb3V0Wyd2ZXJzaW9uJ10gPSBBcHAuVmVyc2lvbigpWzozXQogICAgICAgIG91dFsndGFza3NfZG9ja192aXNpYmxlJ10gPSBbZC5pc1Zpc2libGUoKSBmb3IgZCBpbiBtdy5maW5kQ2hpbGRyZW4oUXRXaWRnZXRzLlFEb2NrV2lkZ2V0KSBpZiBkLm9iamVjdE5hbWUoKSA9PSAnVGFza3MnXQogICAgZXhjZXB0IEV4Y2VwdGlvbiBhcyBlOgogICAgICAgIG91dFsnZXJyX3VpJ10gPSBzdHIoZSkKICAgIHRyeToKICAgICAgICB1cmxsaWIucmVxdWVzdC51cmxvcGVuKCdodHRwczovL2dpdGh1Yi5jb20nLCB0aW1lb3V0PTgpOyBvdXRbJ25ldF9wcm9iZSddID0gJ1JFQUNIRUQnCiAgICBleGNlcHQgRXhjZXB0aW9uIGFzIGU6CiAgICAgICAgb3V0WyduZXRfcHJvYmUnXSA9ICdibG9ja2VkOiAnICsgdHlwZShlKS5fX25hbWVfXyArICcgJyArIHN0cihlKVs6MTIwXQogICAgb3V0Wyd0X2RvbmUnXSA9IHRpbWUudGltZSgpCiAgICBvcGVuKCdDOi9zZWVkL2l0ZW0xLW9icy5qc29uJywndycpLndyaXRlKGpzb24uZHVtcHMob3V0LCBpbmRlbnQ9MSkpClF0Q29yZS5RVGltZXIuc2luZ2xlU2hvdCgyNTAwMCwgZmluKQo='))
+          $sl = $lnks | Where-Object { $wsh.CreateShortcut($_.FullName).TargetPath -match 'FreeCAD.exe' } | Select-Object -First 1
+          if ($sl) { $s = $wsh.CreateShortcut($sl.FullName); $tp = $s.TargetPath; $ar = $s.Arguments; $wd = $s.WorkingDirectory } else { $tp = "$bin\FreeCAD.exe"; $ar = ''; $wd = $app }
+          "launch: $tp $ar + observer" | Tee-Object -Append $LOGFOGF
+          $env:GALLIUM_DRIVER = 'llvmpipe'; $env:MESA_GL_VERSION_OVERRIDE = '4.5'
+          $argl = "$ar C:\seed\item1_obs.py"
+          $pr = Start-Process $tp -ArgumentList $argl -WorkingDirectory $wd -PassThru
+          $t = 0; while ($t -lt 120) { Start-Sleep 3; $t += 3; if (Test-Path C:/seed/item1-obs.json) { break }; if ($pr.HasExited) { break } }
+          "launch waited=$t exited=$($pr.HasExited)" | Tee-Object -Append $LOGFOGF
+          Start-Sleep 3
+          Add-Type -AssemblyName System.Windows.Forms,System.Drawing
+          $b=[System.Windows.Forms.SystemInformation]::VirtualScreen; $bmp=New-Object System.Drawing.Bitmap $b.Width,$b.Height; $g=[System.Drawing.Graphics]::FromImage($bmp); $g.CopyFromScreen($b.Location,[System.Drawing.Point]::Empty,$b.Size); $bmp.Save("C:/seed/screen38.png")
+          Stop-Process -Id $pr.Id -Force -ErrorAction SilentlyContinue
+          git config user.name ci; git config user.email ci@users.noreply.github.com
+          New-Item -ItemType Directory -Force dist/item1-38 | Out-Null
+          Copy-Item C:/seed/item1.txt,C:/seed/item1-obs.json,C:/seed/log.txt dist/item1-38/ -ErrorAction SilentlyContinue
+          if (Test-Path C:/seed/screen38.png) { [IO.File]::WriteAllText("$PWD/dist/item1-38/screen38.png.b64", [Convert]::ToBase64String([IO.File]::ReadAllBytes("C:/seed/screen38.png"))) }
+          git add dist; git commit -m "Add item1 install registration evidence" 2>&1 | Out-Null
+          foreach ($i in 1..4) { git pull --rebase 2>&1 | Out-Null; git push 2>&1 | Out-String | Write-Host; if ($LASTEXITCODE -eq 0) { break }; Start-Sleep 5 }
+          
