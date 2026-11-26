@@ -1,0 +1,35 @@
+Traceback (most recent call last):
+  File "C:\Users\runneradmin\AppData\Local\Programs\DeltaEngineering\Mod\DeltaEngineering\DeltaEngineering\parts_library.py", line 298, in execute
+    edges.append(Part.makeLine(path[i], path[i + 1]))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<class 'Part.OCCError'>: Line through identical points
+Traceback (most recent call last):
+  File "C:\Users\runneradmin\AppData\Local\Programs\DeltaEngineering\Mod\DeltaEngineering\DeltaEngineering\parts_library.py", line 298, in execute
+    edges.append(Part.makeLine(path[i], path[i + 1]))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<class 'Part.OCCError'>: Line through identical points
+Traceback (most recent call last):
+  File "C:\Users\runneradmin\AppData\Local\Programs\DeltaEngineering\Mod\DeltaEngineering\DeltaEngineering\parts_library.py", line 298, in execute
+    edges.append(Part.makeLine(path[i], path[i + 1]))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<class 'Part.OCCError'>: Line through identical points
+Traceback (most recent call last):
+  File "C:\Users\runneradmin\AppData\Local\Programs\DeltaEngineering\Mod\DeltaEngineering\DeltaEngineering\parts_library.py", line 298, in execute
+    edges.append(Part.makeLine(path[i], path[i + 1]))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<class 'Part.OCCError'>: Line through identical points
+Traceback (most recent call last):
+  File "C:\Users\runneradmin\AppData\Local\Programs\DeltaEngineering\Mod\DeltaEngineering\DeltaEngineering\parts_library.py", line 298, in execute
+    edges.append(Part.makeLine(path[i], path[i + 1]))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<class 'Part.OCCError'>: Line through identical points
+Traceback (most recent call last):
+  File "C:\Users\runneradmin\AppData\Local\Programs\DeltaEngineering\Mod\DeltaEngineering\DeltaEngineering\parts_library.py", line 298, in execute
+    edges.append(Part.makeLine(path[i], path[i + 1]))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<class 'Part.OCCError'>: Line through identical points
+Traceback (most recent call last):
+  File "C:\Users\runneradmin\AppData\Local\Programs\DeltaEngineering\Mod\DeltaEngineering\DeltaEngineering\parts_library.py", line 298, in execute
+    edges.append(Part.makeLine(path[i], path[i + 1]))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<class 'Part.OCCError'>: Line through identical points
