@@ -1,0 +1,58 @@
+name: headless FreeCADCmd diagnostic run 29 on v16 installer, ASCII vs Arabic install dir
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  diag:
+    runs-on: windows-2022
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install v16 twice and run headless FreeCADCmd
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $ErrorActionPreference = 'Continue'
+          New-Item -ItemType Directory C:/diag,C:/out -Force | Out-Null
+          gh release download standalone-v16-r1 -p "DeltaEngineering-Setup-v16*.exe" -D C:/out
+          $want = ((Get-Content dist/v16/DeltaEngineering-Setup-v16.exe.sha256 -Raw) -split '\s+')[0].ToLower()
+          $ok = $null
+          foreach ($f in Get-ChildItem C:/out -Filter "DeltaEngineering-Setup-v16*.exe") { if ((Get-FileHash $f.FullName -Algorithm SHA256).Hash.ToLower() -eq $want) { $ok = $f.FullName } }
+          if (-not $ok) { throw 'no asset matches SHA256' }
+          "SHA256 MATCH" | Tee-Object C:/diag/log.txt
+          $ar = -join ([char[]](0x0628,0x0631,0x0646,0x0627,0x0645,0x062C))
+          $roots = @{ ascii = 'C:\DiagAscii16'; arabic = ("C:\" + $ar + "_16") }
+          foreach ($k in $roots.Keys) {
+            $p = Start-Process $ok -ArgumentList '/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART',('/DIR=' + $roots[$k]) -Wait -PassThru
+            "setup $k exit $($p.ExitCode) dir exists $(Test-Path -LiteralPath $roots[$k])" | Tee-Object -Append C:/diag/log.txt
+          }
+          [IO.File]::WriteAllText('C:/diag/t1.py', [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String('aW1wb3J0IHN5cyxGcmVlQ0FECnByaW50KCdWRVInLEZyZWVDQUQuVmVyc2lvbigpWzozXSkKcHJpbnQoJ0VOQycsc3lzLmdldGZpbGVzeXN0ZW1lbmNvZGluZygpLHN5cy5zdGRvdXQuZW5jb2RpbmcpCnByaW50KCdBUkdWJyxzeXMuYXJndikK')), (New-Object Text.UTF8Encoding $false))
+          [IO.File]::WriteAllText('C:/diag/t2.py', [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String('aW1wb3J0IHN5cyxvcyx0cmFjZWJhY2ssanNvbgpvdXQ9b3MuZW52aXJvbi5nZXQoJ0RJQUdfT1VUJywnQzovZGlhZycpCnJlcz17J3N0YWdlJzonc3RhcnQnfQpkZWYgdygpOgogICAgb3BlbihvdXQrJy9oZWFkbGVzcy1yZXN1bHQuanNvbicsJ3cnKS53cml0ZShqc29uLmR1bXBzKHJlcyxlbnN1cmVfYXNjaWk9VHJ1ZSkpCncoKQp0cnk6CiAgICBpbXBvcnQgRnJlZUNBRAogICAgcmVzWydzdGFnZSddPSdmcmVlY2FkJzsgdygpCiAgICBpbXBvcnQgRGVsdGFFbmdpbmVlcmluZy5leHBvcnQgYXMgZXgKICAgIHJlc1snZXhwb3J0X2ZpbGUnXT1leC5fX2ZpbGVfXzsgcmVzWydzdGFnZSddPSdpbXBvcnQgZXhwb3J0JzsgdygpCiAgICBpbXBvcnQgRGVsdGFFbmdpbmVlcmluZy5kb21haW4gYXMgZG0KICAgIHJlc1snZG9tYWluX2Z1bmNzJ109W24gZm9yIG4gaW4gZGlyKGRtKSBpZiBub3Qgbi5zdGFydHN3aXRoKCdfJyldWzo0MF07IHcoKQogICAgZG9jPUZyZWVDQUQubmV3RG9jdW1lbnQoJ0gnKQogICAgcmVzWydzdGFnZSddPSdkb2MnOyB3KCkKZXhjZXB0IEV4Y2VwdGlvbjoKICAgIHJlc1snZXJyb3InXT10cmFjZWJhY2suZm9ybWF0X2V4YygpWy0xMjAwOl0KcmVzWydkb25lJ109VHJ1ZTsgdygpCg==')), (New-Object Text.UTF8Encoding $false))
+          function Run-Cmd($name, $exe, $argl, $envs) {
+            $o = "C:/diag/$name"; New-Item -ItemType Directory $o -Force | Out-Null
+            foreach ($e in $envs.Keys) { Set-Item -Path "Env:$e" -Value $envs[$e] }
+            $env:DIAG_OUT = $o
+            $pr = Start-Process $exe -ArgumentList $argl -PassThru -RedirectStandardOutput "$o/out.txt" -RedirectStandardError "$o/err.txt" -WorkingDirectory 'C:/diag' -NoNewWindow
+            $fin = $pr.WaitForExit(90000)
+            if (-not $fin) { Stop-Process -Id $pr.Id -Force; "$name TIMEOUT" | Tee-Object -Append C:/diag/log.txt }
+            else { "$name exit $($pr.ExitCode)" | Tee-Object -Append C:/diag/log.txt }
+            foreach ($e in $envs.Keys) { Remove-Item -Path "Env:$e" -ErrorAction SilentlyContinue }
+          }
+          foreach ($k in $roots.Keys) {
+            $exe = Join-Path (Join-Path $roots[$k] 'bin') 'FreeCADCmd.exe'
+            "$k exe exists $(Test-Path -LiteralPath $exe)" | Tee-Object -Append C:/diag/log.txt
+            Run-Cmd "$k-a-version" $exe @('--version') @{}
+            Run-Cmd "$k-b-script-ascii" $exe @('C:\diag\t1.py') @{}
+            Run-Cmd "$k-c-script-utf8env" $exe @('C:\diag\t1.py') @{PYTHONUTF8='1'; PYTHONIOENCODING='utf-8'}
+            Run-Cmd "$k-d-delta-import" $exe @('C:\diag\t2.py') @{}
+            Run-Cmd "$k-e-delta-import-utf8" $exe @('C:\diag\t2.py') @{PYTHONUTF8='1'; PYTHONIOENCODING='utf-8'}
+          }
+          git config user.name ci; git config user.email ci@users.noreply.github.com
+          New-Item -ItemType Directory -Force dist/diag29 | Out-Null
+          Copy-Item C:/diag/log.txt dist/diag29/
+          foreach ($d in Get-ChildItem C:/diag -Directory) { foreach ($f in Get-ChildItem $d.FullName -File) { Copy-Item $f.FullName ("dist/diag29/" + $d.Name + "-" + $f.Name) } }
+          git add dist; git commit -m "Add headless diagnostic evidence" 2>&1 | Out-Null
+          foreach ($i in 1..4) { git pull --rebase 2>&1 | Out-Null; git push 2>&1 | Out-String | Write-Host; if ($LASTEXITCODE -eq 0) { break }; Start-Sleep 5 }
+          
