@@ -1,0 +1,2 @@
+hosted-compute-agent | C:\ProgramData\GitHub\HostedComputeAgent\hosted-compute-agent
+TextInputHost | Windows Input Experience
