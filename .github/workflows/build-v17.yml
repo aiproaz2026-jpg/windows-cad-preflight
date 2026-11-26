@@ -35,7 +35,7 @@ jobs:
           python patches/v16/patch_export2.py $M/DeltaEngineering/export.py
           python patches/v16/patch_export3.py $M/DeltaEngineering/export.py
           cp patches/v16/identifiers.py $M/DeltaEngineering/identifiers.py
-          cat patches/v50/initgui_append.txt >> C:/delta/DeltaEngineering/package/Mod/DeltaEngineering/InitGui.py
+          printf '\ntry:\n    from DeltaEngineering.identifiers import install as _delta_ids\n    from PySide import QtCore as _delta_qc\n    _delta_qc.QTimer.singleShot(2000, _delta_ids)\nexcept Exception:\n    pass\n' >> $M/InitGui.py
           tail -8 $M/InitGui.py
       - name: Apply v16 patches (paired pole rows, per-terminal leads, three-pole breaker, Tasks panel toolbar button)
         shell: bash
@@ -58,7 +58,7 @@ jobs:
           cp patches/v49/parts_library.py $M/parts_library.py
           cp patches/v48/fittings_library.py $M/fittings_library.py
           cp patches/v50/library_commands.py $M/library_commands.py
-          printf '\ntry:\n    from DeltaEngineering import library_commands as _lc\n    _lc.register()\nexcept Exception as _e:\n    import FreeCAD as _A\n    _A.Console.PrintError("library commands failed: %s\\n" % _e)\n' >> C:/delta/DeltaEngineering/package/Mod/DeltaEngineering/InitGui.py
+          cat patches/v50/initgui_append.txt >> C:/delta/DeltaEngineering/package/Mod/DeltaEngineering/InitGui.py
           tail -8 C:/delta/DeltaEngineering/package/Mod/DeltaEngineering/InitGui.py
           python -m py_compile $M/drafting.py $M/parts_library.py $M/fittings_library.py $M/library_commands.py && echo v17 patches compile ok
           sha256sum $M/drafting.py $M/parts_library.py $M/fittings_library.py | tee -a /c/out/source-revision.txt
