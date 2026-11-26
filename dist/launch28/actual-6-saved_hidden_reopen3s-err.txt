@@ -1,0 +1,2 @@
+Unhandled Base::Exception caught in GUIApplication::notify.
+The error message is: Access violation

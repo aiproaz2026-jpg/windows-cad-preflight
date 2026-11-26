@@ -1,0 +1,23 @@
+# Delta Engineering launcher: activates the Delta workbench and closes FreeCAD's stock Start tab. It never hides or moves any panel.
+import FreeCAD as App
+import FreeCADGui as Gui
+import DeltaEngineering.core
+import DeltaEngineering.domain
+from DeltaEngineering.gui import register
+if 'DeltaWorkbench' not in Gui.listWorkbenches(): register()
+Gui.activateWorkbench('DeltaWorkbench')
+try:
+    try:
+        from PySide6 import QtWidgets, QtCore
+    except Exception:
+        from PySide import QtWidgets, QtCore
+    def _close_start():
+        for sw in Gui.getMainWindow().findChildren(QtWidgets.QMdiSubWindow):
+            w = sw.widget()
+            cn = w.metaObject().className() if w is not None else ''
+            if 'StartView' in cn or (sw.windowTitle().strip() == 'Start' and not App.listDocuments()):
+                sw.close()
+    for ms in (1500, 4000, 8000):
+        QtCore.QTimer.singleShot(ms, _close_start)
+except Exception as e:
+    App.Console.PrintWarning('Delta launcher: ' + str(e) + '\n')

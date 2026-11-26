@@ -1,0 +1,310 @@
+{
+ "stage": "export done",
+ "P_paired_flag": [
+  true,
+  true,
+  false
+ ],
+ "P_contactor_y": {
+  "1": 28.0,
+  "2": 28.0,
+  "3": 14.0,
+  "4": 14.0,
+  "5": 0.0,
+  "6": 0.0,
+  "A1": -14.0,
+  "A2": -28.0
+ },
+ "P_overload_y": {
+  "1": 14.0,
+  "2": 14.0,
+  "3": 0.0,
+  "4": 0.0,
+  "5": -14.0,
+  "6": -14.0
+ },
+ "P_legacy_contactor_y": {
+  "1": 49.0,
+  "2": 35.0,
+  "3": 21.0,
+  "4": 7.0,
+  "5": -7.0,
+  "6": -21.0,
+  "A1": -35.0,
+  "A2": -49.0
+ },
+ "P_reopen_flags": [
+  true,
+  true,
+  null
+ ],
+ "P_reopen_same": true,
+ "route_count": 0,
+ "workbench": "DeltaWorkbench",
+ "workbench_screenshot": 59907,
+ "A_overlay_present_fit": true,
+ "D_docks": [
+  [
+   "Selection view",
+   "Selection View",
+   false,
+   false,
+   [
+    0,
+    0,
+    210,
+    129
+   ]
+  ],
+  [
+   "Model",
+   "Model",
+   true,
+   false,
+   [
+    0,
+    130,
+    260,
+    567
+   ]
+  ],
+  [
+   "Python console",
+   "Python Console",
+   false,
+   false,
+   [
+    0,
+    0,
+    100,
+    92
+   ]
+  ],
+  [
+   "Report view",
+   "Report View",
+   false,
+   false,
+   [
+    0,
+    0,
+    100,
+    92
+   ]
+  ],
+  [
+   "Tasks",
+   "Tasks",
+   true,
+   false,
+   [
+    0,
+    0,
+    380,
+    375
+   ]
+  ]
+ ],
+ "D_floating_visible_toplevels": [],
+ "T_toggle_actions": 1,
+ "T_toolbars_with_toggle": [
+  "المعرّفات"
+ ],
+ "T_action_text": [
+  "المعرّفات"
+ ],
+ "T_cmd_registered": true,
+ "T_overlay_after_off": false,
+ "T_overlay_after_on": true,
+ "T_param_after": true,
+ "M_mdi": true,
+ "M_sub": true,
+ "M_cands": [
+  [
+   "QMainWindow",
+   407046
+  ],
+  [
+   "QStackedWidget",
+   407046
+  ],
+  [
+   "QGraphicsView",
+   407046
+  ],
+  [
+   "QWidget",
+   407046
+  ]
+ ],
+ "M_viewport": "QWidget",
+ "M_widget": "QWidget",
+ "M_cam_moved_mid": [
+  [
+   4586.0,
+   16.6,
+   1303.3
+  ],
+  [
+   4294.4,
+   126.0,
+   1303.3
+  ]
+ ],
+ "M_overlay_after_mid": true,
+ "M_cam_moved_right": [
+  [
+   4294.4,
+   126.0,
+   1303.3
+  ],
+  [
+   4294.4,
+   126.0,
+   1303.3
+  ]
+ ],
+ "M_overlay_after_right": true,
+ "M_cam_after_wheel": [
+  [
+   4586.0,
+   16.6,
+   1303.3
+  ],
+  [
+   4294.4,
+   126.0,
+   1303.3
+  ]
+ ],
+ "M_overlay_after_wheel": true,
+ "idlog": "2.06 task dialog active with panel hidden: panel shown once\n5563.72 tasks panel hide refused: task dialog active\n5570.79 refresh doc=T children=8\n5571.05 refresh doc=T children=8\n5572.04 refresh doc=T children=8\n5573.05 refresh doc=T children=8\n5573.05 tasks panel hide refused: task dialog active\n5574.05 refresh doc=T children=8\n5575.07 refresh doc=T children=8\n5576.05 refresh doc=T children=8\n5577.05 refresh doc=T children=8\n5578.05 refresh doc=T children=8\n5579.05 refresh doc=T children=8\n5586.55 toggle toolbar created\n5598.02 tasks panel toggled by user\n5599.52 tasks panel toggled by user\n5609.35 toggle toolbar created\n5638.55 toggle toolbar created\n5641.44 tasks panel toggled by user\n5661.27 tasks panel hide refused: task dialog active\n5668.35 refresh doc=T children=8\n5668.63 refresh doc=T children=8\n5669.64 refresh doc=T children=8\n5670.61 tasks panel hide refused: task dialog active\n5670.64 refresh doc=T children=8\n5671.64 refresh doc=T children=8\n5672.64 refresh doc=T children=8\n5673.64 refresh doc=T children=8\n5674.64 refresh doc=T children=8\n5675.64 refresh doc=T children=8\n5676.64 refresh doc=T children=8\n5685.89 toggle toolbar created\n5696.83 refresh doc=GuiElec children=8\n5696.84 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5696.85 refresh doc=GuiElec children=9\n5696.86 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5705.65 refresh doc=GuiElec children=9\n5709.74 refresh doc=GuiElec children=8\n5709.76 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n",
+ "C_route_count_after_move": 0,
+ "netlist_same_after_move": true,
+ "D_overlay_present_after_reopen": true,
+ "idlog2": "\n5493.76 tasks panel hide refused: task dialog active\n5500.85 refresh doc=T children=8\n5500.85 refresh doc=T children=8\n5501.59 refresh doc=T children=8\n5502.60 refresh doc=T children=8\n5503.10 tasks panel hide refused: task dialog active\n5503.60 refresh doc=T children=8\n5504.60 refresh doc=T children=8\n5505.59 refresh doc=T children=8\n5506.59 refresh doc=T children=8\n5507.59 refresh doc=T children=8\n5508.59 refresh doc=T children=8\n5509.59 refresh doc=T children=8\n5510.59 refresh doc=T children=8\n5518.24 toggle toolbar created\n5529.72 tasks panel toggled by user\n5541.00 toggle toolbar created\n5562.06 task dialog active with panel hidden: panel shown once\n5563.72 tasks panel hide refused: task dialog active\n5570.79 refresh doc=T children=8\n5571.05 refresh doc=T children=8\n5572.04 refresh doc=T children=8\n5573.05 refresh doc=T children=8\n5573.05 tasks panel hide refused: task dialog active\n5574.05 refresh doc=T children=8\n5575.07 refresh doc=T children=8\n5576.05 refresh doc=T children=8\n5577.05 refresh doc=T children=8\n5578.05 refresh doc=T children=8\n5579.05 refresh doc=T children=8\n5586.55 toggle toolbar created\n5598.02 tasks panel toggled by user\n5599.52 tasks panel toggled by user\n5609.35 toggle toolbar created\n5638.55 toggle toolbar created\n5641.44 tasks panel toggled by user\n5661.27 tasks panel hide refused: task dialog active\n5668.35 refresh doc=T children=8\n5668.63 refresh doc=T children=8\n5669.64 refresh doc=T children=8\n5670.61 tasks panel hide refused: task dialog active\n5670.64 refresh doc=T children=8\n5671.64 refresh doc=T children=8\n5672.64 refresh doc=T children=8\n5673.64 refresh doc=T children=8\n5674.64 refresh doc=T children=8\n5675.64 refresh doc=T children=8\n5676.64 refresh doc=T children=8\n5685.89 toggle toolbar created\n5696.83 refresh doc=GuiElec children=8\n5696.84 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5696.85 refresh doc=GuiElec children=9\n5696.86 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5705.65 refresh doc=GuiElec children=9\n5709.74 refresh doc=GuiElec children=8\n5709.76 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5730.97 refresh doc=GuiElec children=9\n5730.98 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5731.11 refresh doc=GuiElec children=9\n5731.12 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5737.34 refresh doc=GuiElec children=8\n5737.35 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n5737.50 refresh doc=GuiElec children=9\n5737.51 added tags=4 terms=24 wires=9 pitch=12.0 children=9\n",
+ "D_netlist_same_after_reopen": true,
+ "E_idle_rebuilds_5s": 0,
+ "E_undo_restores_position": true,
+ "E_redo_applies": true,
+ "F_overlay_second_doc": true,
+ "G_overlay_first_doc_after_close": true,
+ "G_idle_rebuilds_5s": 0,
+ "K_default": {
+  "visible": true,
+  "floating": false,
+  "area": 0
+ },
+ "K_parent_chain": [
+  "QSplitter:",
+  "QTabWidget:OverlayRight",
+  "QMainWindow:"
+ ],
+ "K_version": [
+  "1",
+  "1",
+  "4",
+  "20260928 (Git shallow)"
+ ],
+ "K_overlay_cmds": [
+  "Sketcher_ArcOverlay",
+  "Std_DockOverlay",
+  "Std_DockOverlayAll",
+  "Std_DockOverlayMouseTransparent",
+  "Std_DockOverlayToggle",
+  "Std_DockOverlayToggleBottom",
+  "Std_DockOverlayToggleLeft",
+  "Std_DockOverlayToggleRight",
+  "Std_DockOverlayToggleTop",
+  "Std_DockOverlayToggleTransparent",
+  "Std_DockOverlayTransparentAll"
+ ],
+ "K_button_present": 1,
+ "K_marker_unused": false,
+ "K_after_button_1": {
+  "visible": false,
+  "floating": false,
+  "area": 0
+ },
+ "K_after_button_2": {
+  "visible": true,
+  "floating": false,
+  "area": 0
+ },
+ "K_shown_stays_4s": {
+  "visible": true,
+  "floating": false,
+  "area": 0
+ },
+ "K_hidden_by_user": {
+  "visible": false,
+  "floating": false,
+  "area": 0
+ },
+ "K_dialog_with_hidden_panel": {
+  "visible": true,
+  "floating": false,
+  "area": 0,
+  "active": true
+ },
+ "K_hide_attempt_during_dialog": {
+  "visible": true,
+  "floating": false,
+  "area": 0,
+  "active": true
+ },
+ "K_after_dialog_closed": {
+  "visible": true,
+  "floating": false,
+  "area": 0
+ },
+ "K2_hidden_again": {
+  "visible": false,
+  "floating": false,
+  "area": 0
+ },
+ "K2_dialog2_with_hidden_panel": {
+  "visible": true,
+  "floating": false,
+  "area": 0,
+  "active": true
+ },
+ "K2_after_dialog2_closed": {
+  "visible": true,
+  "floating": false,
+  "area": 0
+ },
+ "K3_dialog3_panel_shown": {
+  "visible": true,
+  "floating": false,
+  "area": 0,
+  "active": true
+ },
+ "K3_hide_refused": {
+  "visible": true,
+  "floating": false,
+  "area": 0,
+  "active": true
+ },
+ "K3_after_close": {
+  "visible": true,
+  "floating": false,
+  "area": 0
+ },
+ "log_errors": 0,
+ "log_refreshes_total": 52,
+ "I_installed_markers": {
+  "button": true,
+  "no_auto_marker": true,
+  "dialog_guard": true,
+  "PairedRows_symbols": true,
+  "PairedRows_core": true
+ },
+ "export_uses_terminal_side": false,
+ "export_return": "{'source_signature': 'c074f2cf3194418d2b79e19ae9a40808d16db5accb7dabc5b4c6558bcc576c02', 'centerline_mm': 0, 'wire_count': 9, 'synchronous_projection': True}",
+ "sizes": [
+  12411,
+  17185
+ ],
+ "done": true
+}
