@@ -1,4 +1,4 @@
-name: Build v17 standalone offline installer and verify (step 1 drafting v10 and parts and fittings libraries)
+name: Build v17 step 2 (Arabic library commands) standalone offline installer and verify
 on:
   workflow_dispatch:
 permissions:
@@ -57,7 +57,10 @@ jobs:
           cp patches/v49/drafting_v10.py $M/drafting.py
           cp patches/v49/parts_library.py $M/parts_library.py
           cp patches/v48/fittings_library.py $M/fittings_library.py
-          python -m py_compile $M/drafting.py $M/parts_library.py $M/fittings_library.py && echo v17 patches compile ok
+          cp patches/v50/library_commands.py $M/library_commands.py
+          printf '\ntry:\n    from DeltaEngineering import library_commands as _lc\n    _lc.register()\nexcept Exception as _e:\n    import FreeCAD as _A\n    _A.Console.PrintError("library commands failed: %s\\n" % _e)\n' >> C:/delta/DeltaEngineering/package/Mod/DeltaEngineering/InitGui.py
+          tail -8 C:/delta/DeltaEngineering/package/Mod/DeltaEngineering/InitGui.py
+          python -m py_compile $M/drafting.py $M/parts_library.py $M/fittings_library.py $M/library_commands.py && echo v17 patches compile ok
           sha256sum $M/drafting.py $M/parts_library.py $M/fittings_library.py | tee -a /c/out/source-revision.txt
       - name: Import check of patched package with plain python syntax compile
         shell: bash
@@ -247,7 +250,7 @@ jobs:
           $pr = Start-Process "$bin\FreeCADCmd.exe" -ArgumentList "C:\seed\libs48.py" -WorkingDirectory $app -PassThru -RedirectStandardError "C:/seed/libs-err.txt" -RedirectStandardOutput "C:/seed/libs-out.txt"
           $pr.WaitForExit(240000) | Out-Null
           "libs exited=$($pr.HasExited)" | Tee-Object C:/seed/v17-checks.txt
-          $mt = Get-Content "$env:GITHUB_WORKSPACE/patches/v49/g50.py" -Raw -Encoding utf8
+          $mt = Get-Content "$env:GITHUB_WORKSPACE/patches/v50/g51.py" -Raw -Encoding utf8
           [IO.File]::WriteAllText('C:/seed/gui50.FCMacro', $mt.Replace('@@OUT@@', 'C:/seed/g50'), (New-Object Text.UTF8Encoding $false))
           $env:GALLIUM_DRIVER = 'llvmpipe'; $env:MESA_GL_VERSION_OVERRIDE = '4.5'
           $gp = Start-Process "$bin\FreeCAD.exe" -ArgumentList "C:\seed\gui50.FCMacro" -WorkingDirectory $app -PassThru -RedirectStandardError "C:/seed/gui-err.txt" -RedirectStandardOutput "C:/seed/gui-out.txt"
@@ -270,19 +273,19 @@ jobs:
         run: |
           git config user.name ci; git config user.email ci@users.noreply.github.com
           git pull --rebase || true
-          mkdir -p dist/v17
-          sha256sum /c/out/DeltaEngineering-Setup-v17.exe | tee dist/v17/DeltaEngineering-Setup-v17.exe.sha256 || true
-          cp /c/out/source-revision.txt dist/v17/ || true
-          mkdir -p dist/v17/elec; cp /c/seed/elec/* dist/v17/elec/ || true
-          mkdir -p dist/v17/checks; cp /c/seed/libs/* /c/seed/libs-err.txt /c/seed/libs-out.txt /c/seed/v17-checks.txt /c/seed/g50/gui-result.json dist/v17/checks/ || true
-          for f in /c/seed/g50/*.png /c/seed/g50/*.pdf; do [ -f "$f" ] && base64 -w0 "$f" > dist/v17/checks/$(basename $f).b64; done
-          cp /c/fit12/*.png /c/fit12/*.pdf /c/fit12/gui-result12.json /c/fit12/fc-err.txt /c/fit12/diag.txt dist/v17/ || true
-          for f in dist/v17/*.png dist/v17/station-*.pdf; do [ -f "$f" ] && base64 -w0 "$f" > "$f.b64"; done
+          mkdir -p dist/v17s2
+          sha256sum /c/out/DeltaEngineering-Setup-v17.exe | tee dist/v17s2/DeltaEngineering-Setup-v17.exe.sha256 || true
+          cp /c/out/source-revision.txt dist/v17s2/ || true
+          mkdir -p dist/v17s2/elec; cp /c/seed/elec/* dist/v17s2/elec/ || true
+          mkdir -p dist/v17s2/checks; cp /c/seed/libs/* /c/seed/libs-err.txt /c/seed/libs-out.txt /c/seed/v17-checks.txt /c/seed/g50/gui-result.json dist/v17s2/checks/ || true
+          for f in /c/seed/g50/*.png /c/seed/g50/*.pdf; do [ -f "$f" ] && base64 -w0 "$f" > dist/v17s2/checks/$(basename $f).b64; done
+          cp /c/fit12/*.png /c/fit12/*.pdf /c/fit12/gui-result12.json /c/fit12/fc-err.txt /c/fit12/diag.txt dist/v17s2/ || true
+          for f in dist/v17s2/*.png dist/v17s2/station-*.pdf; do [ -f "$f" ] && base64 -w0 "$f" > "$f.b64"; done
           git add dist
           git commit -m "Add v17 installer build evidence (step 1: drafting v10, parts and fittings libraries)" || true
           git push
-          [ -f /c/out/DeltaEngineering-Setup-v17.exe ] && { gh release view standalone-v17-r1 >/dev/null 2>&1 || gh release create standalone-v17-r1 --prerelease --title "Delta Engineering v17 offline installer (unsigned, experimental, unverified, step 1: drafting v10 and parts and fittings libraries; AppVersion 17)" --notes "Private. Built from the repo revision in dist/v17/source-revision.txt. Not certified; item acceptance still open." || echo "create failed"; }
-          for i in 1 2 3 4; do E=/c/out/DeltaEngineering-Setup-v17.exe; N=DeltaEngineering-Setup-v17.exe; [ $i -gt 1 ] && { N=DeltaEngineering-Setup-v17.try$i.exe; cp $E /c/out/$N; E=/c/out/$N; }; [ -f $E ] && gh release upload standalone-v17-r1 $E && echo "UPLOAD OK try $i as $N" && break || { echo "upload try $i failed, no replace/delete; next try uses a new asset name"; sleep 20; }; done
+          [ -f /c/out/DeltaEngineering-Setup-v17.exe ] && { gh release view standalone-v17-r2 >/dev/null 2>&1 || gh release create standalone-v17-r2 --prerelease --title "Delta Engineering v17 offline installer (unsigned, experimental, unverified, step 1: drafting v10 and parts and fittings libraries; AppVersion 17)" --notes "Private. Built from the repo revision in dist/v17s2/source-revision.txt. Not certified; item acceptance still open." || echo "create failed"; }
+          for i in 1 2 3 4; do E=/c/out/DeltaEngineering-Setup-v17.exe; N=DeltaEngineering-Setup-v17.exe; [ $i -gt 1 ] && { N=DeltaEngineering-Setup-v17.try$i.exe; cp $E /c/out/$N; E=/c/out/$N; }; [ -f $E ] && gh release upload standalone-v17-r2 $E && echo "UPLOAD OK try $i as $N" && break || { echo "upload try $i failed, no replace/delete; next try uses a new asset name"; sleep 20; }; done
       - name: Gate verdict (fails on timeout, absent result, error or failed step)
         if: always()
         shell: pwsh
@@ -312,5 +315,7 @@ jobs:
           $g = Get-Content 'C:/seed/g50/gui-result.json' -Raw -Encoding utf8 | ConvertFrom-Json
           if (-not $g.done -or $g.error) { throw 'V17 GATE FAIL: gui macro' }
           foreach ($k in $g.layouts_default.PSObject.Properties) { if ($k.Value.crossings_path -ne 0) { throw "V17 GATE FAIL: $($k.Name) path crossings" }; if ($k.Name -ne 'Z' -and $k.Value.crossings_dim -ne 0) { throw "V17 GATE FAIL: $($k.Name) dim crossings" }; if ($k.Name -eq 'Z' -and $k.Value.crossings_dim -gt 1) { throw 'V17 GATE FAIL: Z dim crossings > 1' } }
+          if ($g.lib_cmd_error -or @($g.lib_cmds).Count -ne 6) { throw 'V17 GATE FAIL: library commands not registered (6 expected)' }
+          foreach ($k in $g.lib_cmd_make.PSObject.Properties) { if (-not $k.Value) { throw "V17 GATE FAIL: library command part $($k.Name) invalid" } }
           foreach ($n in 'Z','L_rot45','L') { if (-not $g.layouts_default.$n.pdf_mm) { throw "V17 GATE FAIL: no pdf for $n" } }
-          'V17 GATE PASS: library counts 19/13/13/21/15/5, edits valid, layouts 0 path crossings (Z 1 dim crossing accepted), 3 PDFs exported'
+          'V17 GATE PASS: library counts 19/13/13/21/15/5, edits valid, layouts 0 path crossings (Z 1 dim crossing accepted), 3 PDFs exported, 6 Arabic library commands registered and creating valid parts'
