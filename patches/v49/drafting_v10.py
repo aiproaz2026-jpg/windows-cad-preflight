@@ -74,16 +74,17 @@ _SEARCH_MULTS=(1,1.5,2,3,4,6,8,12,16,0.75,0.5,0.3)
 
 
 def _dim_key(dim):
-    """(start,end) vertex indices of a linked dimension, or None."""
+    """(start,end) vertex indices of a linked dimension, or None.
+    FreeCAD returns LinkedGeometry as [(obj, ('Vertex1','Vertex2'))]: one entry holding both sub-names.
+    Older shapes, [(obj,'Vertex1'),(obj,'Vertex2')], are accepted too."""
     try:
-        out=[]
-        for _obj,sub in dim.LinkedGeometry:
-            # FreeCAD returns sub-names either as a string or as a tuple/list of strings.
-            if not isinstance(sub,str):
-                sub=sub[0] if len(sub)>0 else ''
-            if not sub.startswith('Vertex'):return None
-            out.append(int(sub[6:])-1)
-        return tuple(out) if len(out)==2 else None
+        subs=[]
+        for entry in dim.LinkedGeometry:
+            sub=entry[1]
+            if isinstance(sub,str):subs.append(sub)
+            else:subs.extend(list(sub))
+        if len(subs)!=2 or not all(x.startswith('Vertex') for x in subs):return None
+        return (int(subs[0][6:])-1,int(subs[1][6:])-1)
     except Exception:return None
 
 
