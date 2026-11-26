@@ -1,0 +1,86 @@
+name: Item2 edit+persist check run 42
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  editpersist:
+    runs-on: windows-2022
+    timeout-minutes: 30
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download v16c installer and verify sha256
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory C:/out -Force | Out-Null
+          gh release download standalone-v16c-r1 -p "DeltaEngineering-Setup-v16c.exe" -D C:/out
+          $want = ((Get-Content dist/v16c/DeltaEngineering-Setup-v16c.exe.sha256 -Raw) -split '\s+')[0].ToLower()
+          $got = (Get-FileHash C:/out/DeltaEngineering-Setup-v16c.exe -Algorithm SHA256).Hash.ToLower()
+          "sha match: $($got -eq $want)" | Out-File C:/out/info42.txt -Encoding utf8
+          if ($got -ne $want) { throw 'sha mismatch' }
+      - name: Silent install to fresh test dir (nothing existing touched)
+        shell: pwsh
+        run: |
+          $p = Start-Process 'C:\out\DeltaEngineering-Setup-v16c.exe' -ArgumentList '/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART','/LOG=C:\out\setup42.log','/DIR=C:\DeltaEditTest' -Wait -PassThru
+          "setup exit: $($p.ExitCode)" | Out-File C:/out/info42.txt -Append -Encoding utf8
+          if ($p.ExitCode -ne 0) { throw "setup exit $($p.ExitCode)" }
+      - name: Add Mesa llvmpipe software OpenGL (CI only)
+        shell: pwsh
+        run: |
+          $rel = Invoke-RestMethod https://api.github.com/repos/pal1000/mesa-dist-win/releases/latest
+          $a = $rel.assets | Where-Object { $_.name -match 'x64.*\.7z$' } | Select-Object -First 1
+          Invoke-WebRequest $a.browser_download_url -OutFile C:/mesa.7z
+          7z x C:/mesa.7z -oC:/mesa -y | Out-Null
+      - name: Copy Mesa into installed app (CI only)
+        shell: pwsh
+        run: |
+          $exe = Get-ChildItem C:/DeltaEditTest -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
+          $bin = $exe.Directory.FullName
+          Copy-Item C:/mesa/x64/opengl32.dll $bin -Force
+          foreach ($n in 'libgallium_wgl.dll','libglapi.dll') { if (Test-Path "C:/mesa/x64/$n") { Copy-Item "C:/mesa/x64/$n" $bin -Force } }
+      - name: Run edit+persist macro (patches/v42/DeltaEditPersist.FCMacro) on the installed v16c
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force C:/fit42 | Out-Null
+          $exe = Get-ChildItem C:/DeltaEditTest -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
+          $root = $exe.Directory.Parent.FullName
+          Copy-Item "$env:GITHUB_WORKSPACE/patches/v42/DeltaEditPersist.FCMacro" "$root\DeltaEditPersist.FCMacro" -Force
+          $env:DELTA_OUT = 'C:/fit42'; $env:GALLIUM_DRIVER = 'llvmpipe'; $env:MESA_GL_VERSION_OVERRIDE = '4.5'
+          Start-Process $exe.FullName -ArgumentList "`"$root\DeltaEditPersist.FCMacro`"" -RedirectStandardOutput C:/fit42/fc-out.txt -RedirectStandardError C:/fit42/fc-err.txt
+          $t = 0
+          while ($t -lt 420) { Start-Sleep 5; $t += 5; if ((Test-Path C:/fit42/gui-result42.json) -and (Select-String -Path C:/fit42/gui-result42.json -Pattern '"done": true' -Quiet)) { break } }
+          if (-not (Test-Path C:/fit42/gui-result42.json) -or -not (Select-String -Path C:/fit42/gui-result42.json -Pattern '"done": true' -Quiet)) {
+            try { Add-Type -AssemblyName System.Windows.Forms,System.Drawing; $b=[System.Windows.Forms.SystemInformation]::VirtualScreen; $bmp=New-Object System.Drawing.Bitmap $b.Width,$b.Height; $g=[System.Drawing.Graphics]::FromImage($bmp); $g.CopyFromScreen($b.Location,[System.Drawing.Point]::Empty,$b.Size); $bmp.Save('C:/fit42/fit42-hang.png') } catch { "screenshot failed: $_" | Out-File C:/fit42/diag.txt -Append }
+            Get-Process | Where-Object { $_.MainWindowTitle } | ForEach-Object { "$($_.ProcessName) | $($_.MainWindowTitle)" } | Out-File C:/fit42/diag.txt -Append
+          }
+          Start-Sleep 4; Get-Process FreeCAD -ErrorAction SilentlyContinue | Stop-Process -Force
+          exit 0
+      - name: Commit evidence
+        if: always()
+        shell: bash
+        run: |
+          git config user.name ci; git config user.email ci@users.noreply.github.com
+          git pull --rebase || true
+          mkdir -p dist/item2-42
+          cp /c/out/info42.txt dist/item2-42/ || true
+          cp /c/fit42/gui-result42.json /c/fit42/manifest-*.json dist/item2-42/ 2>/dev/null || true
+          cp /c/fit42/fc-out.txt /c/fit42/fc-err.txt /c/fit42/diag.txt dist/item2-42/ 2>/dev/null || true
+          for f in /c/fit42/*.png; do [ -f "$f" ] && base64 -w0 "$f" > "dist/item2-42/$(basename "$f").b64"; done
+          tail -30 /c/out/setup42.log > dist/item2-42/setup-log-tail.txt 2>/dev/null || true
+          git add dist
+          git commit -m "Add item2 edit+persist check evidence (run 42)" || true
+          for i in 1 2 3 4; do git pull --rebase >/dev/null 2>&1; git push && break; sleep 5; done
+      - name: Gate verdict
+        if: always()
+        shell: pwsh
+        run: |
+          $f = 'C:/fit42/gui-result42.json'
+          if (-not (Test-Path $f)) { throw 'GATE FAIL: no result file written' }
+          $r = Get-Content $f -Raw -Encoding utf8 | ConvertFrom-Json
+          if (-not $r.done) { throw 'GATE FAIL: macro did not finish' }
+          if ($r.error) { throw "GATE FAIL: macro error: $($r.error)" }
+          foreach ($k in $r.steps.PSObject.Properties) { if (-not $k.Value.ok) { throw "GATE FAIL: step $($k.Name) failed" } }
+          foreach ($k in $r.diffs.PSObject.Properties) { if ($k.Value.Count -gt 0) { throw "GATE FAIL: $($k.Name) has $($k.Value.Count) diffs" } }
+          'GATE PASS: all steps ok, reopen manifests identical within 1e-6 relative tolerance'
