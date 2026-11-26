@@ -1,0 +1,18 @@
+﻿{
+    "whoami":  "runnervmhh3zg\\cistduser",
+    "groups":  "\nGROUP INFORMATION\n-----------------\n\nGroup Name                             Type             SID          Attributes                                        \n====================================== ================ ============ ==================================================\nEveryone                               Well-known group S-1-1-0      Mandatory group, Enabled by default, Enabled group\nBUILTIN\\Users                          Alias            S-1-5-32-545 Mandatory group, Enabled by default, Enabled group\nNT AUTHORITY\\INTERACTIVE               Well-known group S-1-5-4      Mandatory group, Enabled by default, Enabled group\nCONSOLE LOGON                          Well-known group S-1-2-1      Mandatory group, Enabled by default, Enabled group\nNT AUTHORITY\\Authenticated Users       Well-known group S-1-5-11     Mandatory group, Enabled by default, Enabled group\nNT AUTHORITY\\This Organization         Well-known group S-1-5-15     Mandatory group, Enabled by default, Enabled group\nNT AUTHORITY\\Local account             Well-known group S-1-5-113    Mandatory group, Enabled by default, Enabled group\nLOCAL                                  Well-known group S-1-2-0      Mandatory group, Enabled by default, Enabled group\nNT AUTHORITY\\NTLM Authentication       Well-known group S-1-5-64-10  Mandatory group, Enabled by default, Enabled group\nMandatory Label\\Medium Mandatory Level Label            S-1-16-8192                                                    ",
+    "is_admin_role":  false,
+    "localappdata":  "C:\\Users\\runneradmin\\AppData\\Local",
+    "setup_exit":  1,
+    "app_exists":  false,
+    "app_files":  0,
+    "freecad_exe":  false,
+    "unins":  false,
+    "startmenu_lnk":  false,
+    "desktop_lnk":  false,
+    "hkcu_uninstall":  [
+
+                       ],
+    "user_cfg":  false,
+    "error":  "The term \u0027C:\\Users\\runneradmin\\AppData\\Local\\Programs\\DeltaEngineering\\bin\\FreeCADCmd.exe\u0027 is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again."
+}
