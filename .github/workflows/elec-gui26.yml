@@ -1,0 +1,94 @@
+name: v12 electrical GUI launcher test 26 on v15 installed copy - real shortcut command line and control without Delta launcher
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  gui:
+    runs-on: windows-2022
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download installer, verify SHA256, install, add Mesa (CI only)
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          New-Item -ItemType Directory C:/out,C:/seed -Force | Out-Null
+          foreach ($t in "standalone-v15-r1") { gh release download $t -p "DeltaEngineering-Setup-v15*.exe" -D C:/out; if ($LASTEXITCODE -eq 0) { break } }
+          $want = ((Get-Content dist/v15/DeltaEngineering-Setup-v15.exe.sha256 -Raw) -split '\s+')[0].ToLower()
+          $ok = $null
+          foreach ($f in Get-ChildItem C:/out -Filter "DeltaEngineering-Setup-v15*.exe") { if ((Get-FileHash $f.FullName -Algorithm SHA256).Hash.ToLower() -eq $want) { $ok = $f.FullName } }
+          if (-not $ok) { throw 'no downloaded asset matches the dist/v15 SHA256' }
+          "SHA256 MATCH $ok" | Tee-Object C:/seed/log.txt
+          $p = Start-Process $ok -ArgumentList '/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART' -Wait -PassThru
+          "setup exit $($p.ExitCode)" | Tee-Object -Append C:/seed/log.txt
+          $app = "$env:LOCALAPPDATA\Programs\DeltaEngineering"; $bin = "$app\bin"
+          Get-ChildItem $app -Directory | Select-Object -ExpandProperty Name | Tee-Object -Append C:/seed/log.txt
+          $rel = Invoke-RestMethod https://api.github.com/repos/pal1000/mesa-dist-win/releases/latest
+          $a = $rel.assets | Where-Object { $_.name -match 'release-msvc\.7z$' } | Select-Object -First 1
+          Invoke-WebRequest $a.browser_download_url -OutFile C:/mesa.7z
+          7z x C:/mesa.7z -oC:/mesa -y | Out-Null
+          Copy-Item C:/mesa/x64/opengl32.dll $bin -Force
+          foreach ($n in 'libgallium_wgl.dll','libglapi.dll') { if (Test-Path "C:/mesa/x64/$n") { Copy-Item "C:/mesa/x64/$n" $bin -Force } }
+      - name: Launcher startup sessions through the shortcut command line (control without Delta launcher)
+        shell: pwsh
+        run: |
+          Add-Type -AssemblyName System.Windows.Forms,System.Drawing
+          $app = "$env:LOCALAPPDATA\Programs\DeltaEngineering"; $bin = "$app\bin"
+          New-Item -ItemType Directory C:/obs -Force | Out-Null
+          $obs = [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String('CiMgLS0tLSBDSSB0ZXN0IG9ic2VydmVyIChhcHBlbmRlZCBmb3IgdGVzdHMgb25seSwgbm90IHBhcnQgb2YgdGhlIHByb2R1Y3QgbGF1bmNoZXIpIC0tLS0KaW1wb3J0IGpzb24gYXMgX2osIG9zIGFzIF9vLCB0aW1lIGFzIF90CnRyeToKICAgIGZyb20gUHlTaWRlNiBpbXBvcnQgUXRXaWRnZXRzIGFzIF9XLCBRdENvcmUgYXMgX0MsIFF0R3VpIGFzIF9HCmV4Y2VwdCBFeGNlcHRpb246CiAgICBmcm9tIFB5U2lkZSBpbXBvcnQgUXRXaWRnZXRzIGFzIF9XLCBRdENvcmUgYXMgX0MsIFF0R3VpIGFzIF9HCl9UMCA9IF90LnRpbWUoKQpfU0MgPSBfai5sb2FkKG9wZW4oJ0M6L29icy9zY2VuYXJpby5qc29uJywgZW5jb2Rpbmc9J3V0Zi04JykpCl9PRCA9IF9TQ1snZGlyJ107IF9vLm1ha2VkaXJzKF9PRCwgZXhpc3Rfb2s9VHJ1ZSkKX0xPRyA9IFtdOyBfRVggPSB7fQpkZWYgX213KCk6IHJldHVybiBHdWkuZ2V0TWFpbldpbmRvdygpCmRlZiBfZGsoKToKICAgIGZvciBkIGluIF9tdygpLmZpbmRDaGlsZHJlbihfVy5RRG9ja1dpZGdldCk6CiAgICAgICAgaWYgZC5vYmplY3ROYW1lKCkgPT0gJ1Rhc2tzJzogcmV0dXJuIGQKZGVmIF9zdGF0ZSh0YWcpOgogICAgZCA9IF9kaygpCiAgICBzID0geyd0Jzogcm91bmQoX3QudGltZSgpIC0gX1QwLCAyKSwgJ3RhZyc6IHRhZywgJ2FjdGl2ZSc6IGJvb2woR3VpLkNvbnRyb2wuYWN0aXZlRGlhbG9nKCkpfQogICAgaWYgZCBpcyBOb25lOiBzWydkb2NrJ10gPSBOb25lCiAgICBlbHNlOiBzLnVwZGF0ZSh2aXNpYmxlPWQuaXNWaXNpYmxlKCksIGZsb2F0aW5nPWQuaXNGbG9hdGluZygpLCB3PWQud2lkdGgoKSwgaD1kLmhlaWdodCgpKQogICAgcmV0dXJuIHMKZGVmIF9zYXZlKCk6CiAgICBvcGVuKF9PRCArICcvcmVzdWx0Lmpzb24nLCAndycsIGVuY29kaW5nPSd1dGYtOCcpLndyaXRlKF9qLmR1bXBzKHsnc2NlbmFyaW8nOiBfU0MsICdleHRyYSc6IF9FWCwgJ2xvZyc6IF9MT0d9LCBlbnN1cmVfYXNjaWk9RmFsc2UsIGluZGVudD0wKSkKZGVmIF9sb2codGFnKToKICAgIF9MT0cuYXBwZW5kKF9zdGF0ZSh0YWcpKTsgX3NhdmUoKQpkZWYgX3Nob3QobmFtZSk6CiAgICB0cnk6IF9tdygpLmdyYWIoKS5zYXZlKF9PRCArICcvJyArIG5hbWUgKyAnLmpwZycsICdKUEcnLCA3MCkKICAgIGV4Y2VwdCBFeGNlcHRpb24gYXMgZTogX0VYWydzaG90X2Vycl8nICsgbmFtZV0gPSBzdHIoZSkKZGVmIF9hY3QoKToKICAgIGZvciBhIGluIF9tdygpLmZpbmRDaGlsZHJlbihfRy5RQWN0aW9uIGlmIGhhc2F0dHIoX0csICdRQWN0aW9uJykgZWxzZSBfVy5RQWN0aW9uKToKICAgICAgICBpZiBhLnRleHQoKS5zdHJpcCgpID09ICfZhNmI2K3YqSDYp9mE2YXZh9in2YUnOiByZXR1cm4gYQpkZWYgX3NhbXBsZSgpOgogICAgX0xPRy5hcHBlbmQoX3N0YXRlKCdzJykpCiAgICBpZiBsZW4oX0xPRykgJSA4ID09IDA6IF9zYXZlKCkKX3NtcCA9IF9DLlFUaW1lcihfbXcoKSk7IF9zbXAuc2V0SW50ZXJ2YWwoMjUwKTsgX3NtcC50aW1lb3V0LmNvbm5lY3QoX3NhbXBsZSk7IF9zbXAuc3RhcnQoKQpjbGFzcyBfUDoKICAgIGRlZiBfX2luaXRfXyhzZWxmKTogc2VsZi5mb3JtID0gX1cuUUxhYmVsKCd0ZXN0IHRhc2sgcGFuZWwnKQogICAgZGVmIGFjY2VwdChzZWxmKTogcmV0dXJuIFRydWUKICAgIGRlZiByZWplY3Qoc2VsZik6IHJldHVybiBUcnVlCmRlZiBfaGlkZV9hdHRlbXB0KHRhZywgc2hvdCk6CiAgICBhID0gX2FjdCgpOyBfRVhbJ3RvZ2dsZV9hY3Rpb25fZm91bmQnXSA9IGEgaXMgbm90IE5vbmUKICAgIGlmIGEgaXMgbm90IE5vbmU6IGEudHJpZ2dlcigpCiAgICBfQy5RVGltZXIuc2luZ2xlU2hvdCgxMjAwLCBsYW1iZGE6IChfbG9nKHRhZyksIF9zaG90KHNob3QpKSkKZGVmIF9jaGFpbihzdGVwcyk6CiAgICBpZiBub3Qgc3RlcHM6IHJldHVybgogICAgZCwgZiA9IHN0ZXBzWzBdCiAgICBkZWYgZ28oKToKICAgICAgICB0cnk6IGYoKQogICAgICAgIGV4Y2VwdCBFeGNlcHRpb24gYXMgZTogX0VYWydzdGVwX2Vycl8lZCcgJSBsZW4oc3RlcHMpXSA9IHN0cihlKQogICAgICAgIF9jaGFpbihzdGVwc1sxOl0pCiAgICBfQy5RVGltZXIuc2luZ2xlU2hvdChkLCBnbykKZGVmIF9yZWFsX29wZW4oKToKICAgIGltcG9ydCBQYXJ0R3VpCiAgICBfRVhbJ3BhcnRfY21kX2tub3duJ10gPSAnUGFydF9QcmltaXRpdmVzJyBpbiBHdWkubGlzdENvbW1hbmRzKCkKICAgIGlmIG5vdCBBcHAubGlzdERvY3VtZW50cygpOiBBcHAubmV3RG9jdW1lbnQoJ1QnKQogICAgR3VpLnJ1bkNvbW1hbmQoJ1BhcnRfUHJpbWl0aXZlcycpCmRlZiBfZmluaXNoKCk6CiAgICBfbG9nKCdlbmQnKTsgX28ubWFrZWRpcnMoX09ELCBleGlzdF9vaz1UcnVlKQogICAgb3BlbihfT0QgKyAnL2RvbmUuanNvbicsICd3Jykud3JpdGUoJ3siZG9uZSI6IHRydWV9JykKZGVmIF9wcmVwKCk6CiAgICBkID0gX2RrKCk7IF9FWFsnZG9ja19mb3VuZCddID0gZCBpcyBub3QgTm9uZQogICAgYSA9IF9hY3QoKTsgX0VYWyd0b2dnbGVfYWN0aW9uX2ZvdW5kJ10gPSBhIGlzIG5vdCBOb25lCiAgICBfbG9nKCdwcmVwX3N0YXJ0JykKICAgIF90ZyA9IChsYW1iZGE6IGEudHJpZ2dlcigpKSBpZiBhIGlzIG5vdCBOb25lIGVsc2UgKGxhbWJkYTogR3VpLnJ1bkNvbW1hbmQoJ1N0ZF9Eb2NrT3ZlcmxheVRvZ2dsZVJpZ2h0JykpCiAgICBfdGcoKQogICAgX0MuUVRpbWVyLnNpbmdsZVNob3QoMTUwMCwgbGFtYmRhOiAoX2xvZygncHJlcF9hZnRlcl9idXR0b25fMScpLCAoX3RnKCkgaWYgbm90IF9TQy5nZXQoJ3Nob3cnKSBlbHNlIE5vbmUpKSkKICAgIF9DLlFUaW1lci5zaW5nbGVTaG90KDMwMDAsIGxhbWJkYTogX2xvZygncHJlcF9maW5hbCcpKQogICAgX0MuUVRpbWVyLnNpbmdsZVNob3QoNDAwMCwgbGFtYmRhOiAoX3NhdmUoKSwgX213KCkuY2xvc2UoKSkpCmRlZiBfcmVvcGVuKCk6CiAgICBkID0gX2RrKCk7IGEgPSBfYWN0KCkKICAgIF9FWFsncmVvcGVuX2RvY2tfdmlzaWJsZV9iZWZvcmUnXSA9IGJvb2woZC5pc1Zpc2libGUoKSkgaWYgZCBlbHNlIE5vbmUKICAgIGlmIGQgaXMgbm90IE5vbmUgYW5kIG5vdCBkLmlzVmlzaWJsZSgpOgogICAgICAgIGlmIGEgaXMgbm90IE5vbmU6IGEudHJpZ2dlcigpOyBfRVhbJ3Jlb3Blbl9tZXRob2QnXSA9ICd0b29sYmFyIGJ1dHRvbicKICAgICAgICBlbHNlOiBkLnNob3coKTsgX0VYWydyZW9wZW5fbWV0aG9kJ10gPSAnZG9jay5zaG93KCknCiAgICBfbG9nKCdyZW9wZW5lZCcpCmlmIF9TQ1sna2luZCddID09ICdwcmVwJzoKICAgIF9DLlFUaW1lci5zaW5nbGVTaG90KDEyMDAwLCBfcHJlcCkKZWxzZToKICAgIF9DLlFUaW1lci5zaW5nbGVTaG90KDI3MDAsIGxhbWJkYTogKF9sb2coJ3QyLjcnKSwgX3Nob3QoJ3QyLjcnKSkpCiAgICBpZiBfU0MuZ2V0KCdyZW9wZW4nKTogX0MuUVRpbWVyLnNpbmdsZVNob3QoMzAwMCwgX3Jlb3BlbikKICAgIF9DLlFUaW1lci5zaW5nbGVTaG90KDEwMDAwLCBsYW1iZGE6IChfbG9nKCd0MTAnKSwgX3Nob3QoJ3QxMCcpKSkKICAgIF9DLlFUaW1lci5zaW5nbGVTaG90KDIwMDAwLCBsYW1iZGE6IChfbG9nKCd0MjAnKSwgX3Nob3QoJ3QyMCcpKSkKICAgIGlmIF9TQy5nZXQoJ2RpYWxvZ3MnKToKICAgICAgICBfQy5RVGltZXIuc2luZ2xlU2hvdCgyMTAwMCwgbGFtYmRhOiBfY2hhaW4oWwogICAgICAgICAgICAoMCwgbGFtYmRhOiBHdWkuQ29udHJvbC5zaG93RGlhbG9nKF9QKCkpKSwKICAgICAgICAgICAgKDE4MDAsIGxhbWJkYTogKF9sb2coJ3Rlc3RfZGlhbG9nX29wZW4nKSwgX3Nob3QoJ3Rlc3RfZGlhbG9nX29wZW4nKSkpLAogICAgICAgICAgICAoMCwgbGFtYmRhOiBfaGlkZV9hdHRlbXB0KCd0ZXN0X2RpYWxvZ19oaWRlX2F0dGVtcHQnLCAndGVzdF9kaWFsb2dfaGlkZV9hdHRlbXB0JykpLAogICAgICAgICAgICAoMTgwMCwgbGFtYmRhOiBHdWkuQ29udHJvbC5jbG9zZURpYWxvZygpKSwKICAgICAgICAgICAgKDE1MDAsIGxhbWJkYTogX2xvZygndGVzdF9kaWFsb2dfY2xvc2VkKzEuNScpKSwKICAgICAgICAgICAgKDMwMDAsIGxhbWJkYTogX2xvZygndGVzdF9kaWFsb2dfY2xvc2VkKzQuNScpKSwKICAgICAgICAgICAgKDAsIF9yZWFsX29wZW4pLAogICAgICAgICAgICAoMjUwMCwgbGFtYmRhOiAoX2xvZygncmVhbF9kaWFsb2dfb3BlbicpLCBfc2hvdCgncmVhbF9kaWFsb2dfb3BlbicpKSksCiAgICAgICAgICAgICgwLCBsYW1iZGE6IF9oaWRlX2F0dGVtcHQoJ3JlYWxfZGlhbG9nX2hpZGVfYXR0ZW1wdCcsICdyZWFsX2RpYWxvZ19oaWRlX2F0dGVtcHQnKSksCiAgICAgICAgICAgICgxODAwLCBsYW1iZGE6IEd1aS5Db250cm9sLmNsb3NlRGlhbG9nKCkpLAogICAgICAgICAgICAoMTUwMCwgbGFtYmRhOiAoX2xvZygncmVhbF9kaWFsb2dfY2xvc2VkKzEuNScpLCBfc2hvdCgncmVhbF9jbG9zZWQnKSkpLAogICAgICAgICAgICAoMzAwMCwgbGFtYmRhOiBfbG9nKCdyZWFsX2RpYWxvZ19jbG9zZWQrNC41JykpLAogICAgICAgICAgICAoMCwgX2ZpbmlzaCldKSkKICAgIGVsc2U6CiAgICAgICAgX0MuUVRpbWVyLnNpbmdsZVNob3QoMjEwMDAsIF9maW5pc2gpCg=='))
+          $newl = [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String('IyBEZWx0YSBFbmdpbmVlcmluZyBsYXVuY2hlcjogYWN0aXZhdGVzIHRoZSBEZWx0YSB3b3JrYmVuY2ggYW5kIGNsb3NlcyBGcmVlQ0FEJ3Mgc3RvY2sgU3RhcnQgdGFiLiBJdCBuZXZlciBoaWRlcyBvciBtb3ZlcyBhbnkgcGFuZWwuCmltcG9ydCBGcmVlQ0FEIGFzIEFwcAppbXBvcnQgRnJlZUNBREd1aSBhcyBHdWkKaW1wb3J0IERlbHRhRW5naW5lZXJpbmcuY29yZQppbXBvcnQgRGVsdGFFbmdpbmVlcmluZy5kb21haW4KZnJvbSBEZWx0YUVuZ2luZWVyaW5nLmd1aSBpbXBvcnQgcmVnaXN0ZXIKaWYgJ0RlbHRhV29ya2JlbmNoJyBub3QgaW4gR3VpLmxpc3RXb3JrYmVuY2hlcygpOiByZWdpc3RlcigpCkd1aS5hY3RpdmF0ZVdvcmtiZW5jaCgnRGVsdGFXb3JrYmVuY2gnKQp0cnk6CiAgICB0cnk6CiAgICAgICAgZnJvbSBQeVNpZGU2IGltcG9ydCBRdFdpZGdldHMsIFF0Q29yZQogICAgZXhjZXB0IEV4Y2VwdGlvbjoKICAgICAgICBmcm9tIFB5U2lkZSBpbXBvcnQgUXRXaWRnZXRzLCBRdENvcmUKICAgIGRlZiBfY2xvc2Vfc3RhcnQoKToKICAgICAgICBmb3Igc3cgaW4gR3VpLmdldE1haW5XaW5kb3coKS5maW5kQ2hpbGRyZW4oUXRXaWRnZXRzLlFNZGlTdWJXaW5kb3cpOgogICAgICAgICAgICB3ID0gc3cud2lkZ2V0KCkKICAgICAgICAgICAgY24gPSB3Lm1ldGFPYmplY3QoKS5jbGFzc05hbWUoKSBpZiB3IGlzIG5vdCBOb25lIGVsc2UgJycKICAgICAgICAgICAgaWYgJ1N0YXJ0VmlldycgaW4gY24gb3IgKHN3LndpbmRvd1RpdGxlKCkuc3RyaXAoKSA9PSAnU3RhcnQnIGFuZCBub3QgQXBwLmxpc3REb2N1bWVudHMoKSk6CiAgICAgICAgICAgICAgICBzdy5jbG9zZSgpCiAgICBmb3IgbXMgaW4gKDE1MDAsIDQwMDAsIDgwMDApOgogICAgICAgIFF0Q29yZS5RVGltZXIuc2luZ2xlU2hvdChtcywgX2Nsb3NlX3N0YXJ0KQpleGNlcHQgRXhjZXB0aW9uIGFzIGU6CiAgICBBcHAuQ29uc29sZS5QcmludFdhcm5pbmcoJ0RlbHRhIGxhdW5jaGVyOiAnICsgc3RyKGUpICsgJ1xuJykK'))
+          $origl = [IO.File]::ReadAllText("$app\LaunchDelta.FCMacro", [Text.Encoding]::UTF8)
+          Copy-Item "$app\LaunchDelta.FCMacro" C:/obs/LaunchDelta.installed-original.txt
+          $lnkp = "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Delta Engineering.lnk"
+          "shortcut exists: $(Test-Path $lnkp)" | Tee-Object -Append C:/obs/obs-log.txt
+          $sc = (New-Object -ComObject WScript.Shell).CreateShortcut($lnkp)
+          "shortcut target: $($sc.TargetPath) | args: $($sc.Arguments) | wd: $($sc.WorkingDirectory)" | Tee-Object -Append C:/obs/obs-log.txt
+          "installed original launcher has _tidy: $($origl -match '_tidy') ; new launcher has _tidy: $($newl -match '_tidy')" | Tee-Object -Append C:/obs/obs-log.txt
+          $cfgdir = "$env:APPDATA\FreeCAD\v1-1"
+          "user.cfg exists after install: $(Test-Path $cfgdir\user.cfg)" | Tee-Object -Append C:/obs/obs-log.txt
+          Copy-Item "$cfgdir\user.cfg" C:/obs/user.cfg.pristine -Force
+          function Restore-Cfg { Copy-Item C:/obs/user.cfg.pristine "$cfgdir\user.cfg" -Force }
+          function Run-Session($name, $variant, $kind, $extra) {
+            $dir = "C:/obs/$name"; New-Item -ItemType Directory $dir -Force | Out-Null
+            $h = @{dir=$dir; kind=$kind; variant=$variant}; foreach ($k in $extra.Keys) { $h[$k] = $extra[$k] }
+            [IO.File]::WriteAllText('C:/obs/scenario.json', ($h | ConvertTo-Json), (New-Object Text.UTF8Encoding $false))
+            $body = if ($variant -eq 'baseline') { $origl } elseif ($variant -eq 'control') { 'import FreeCAD as App' + [char]10 + 'import FreeCADGui as Gui' + [char]10 } else { $newl }
+            [IO.File]::WriteAllText("$app\LaunchDelta.FCMacro", $body + "`n" + $obs, (New-Object Text.UTF8Encoding $false))
+            $env:GALLIUM_DRIVER = 'llvmpipe'; $env:MESA_GL_VERSION_OVERRIDE = '4.5'
+            $pr = Start-Process $sc.TargetPath -ArgumentList $sc.Arguments -WorkingDirectory $sc.WorkingDirectory -PassThru -RedirectStandardError "$dir/err.txt" -RedirectStandardOutput "$dir/out.txt"
+            $t = 0
+            while ($t -lt 110) { Start-Sleep 2; $t += 2; if ($kind -eq 'observe' -and (Test-Path "$dir/done.json")) { break }; if ($kind -eq 'prep' -and $pr.HasExited) { break } }
+            "$name kind=$kind exited=$($pr.HasExited) waited=$t done=$(Test-Path $dir/done.json)" | Tee-Object -Append C:/obs/obs-log.txt
+            try { $b=[System.Windows.Forms.SystemInformation]::VirtualScreen; $bmp=New-Object System.Drawing.Bitmap $b.Width,$b.Height; $g=[System.Drawing.Graphics]::FromImage($bmp); $g.CopyFromScreen($b.Location,[System.Drawing.Point]::Empty,$b.Size); $bmp.Save("$dir/screen.png") } catch {}
+            Stop-Process -Id $pr.Id -Force -ErrorAction SilentlyContinue
+            Get-Process FreeCAD -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
+            Start-Sleep 3
+          }
+          foreach ($v in 'control') {
+            Restore-Cfg
+            Run-Session "$v-2-prep_visible" $v prep @{show=$true}
+            Run-Session "$v-3-saved_visible" $v observe @{reopen=$false; dialogs=$false}
+            Restore-Cfg
+            Run-Session "$v-4-prep_hidden" $v prep @{show=$false}
+            Run-Session "$v-5-saved_hidden_untouched" $v observe @{reopen=$false; dialogs=$false}
+          }
+          Copy-Item C:/obs/user.cfg.pristine C:/obs/user.cfg.pristine.txt
+          
+      - name: Commit evidence
+        if: always()
+        shell: pwsh
+        run: |
+          git config user.name ci; git config user.email ci@users.noreply.github.com
+          New-Item -ItemType Directory -Force dist/launch26 | Out-Null
+          Copy-Item C:/obs/obs-log.txt,C:/seed/log.txt,C:/obs/LaunchDelta.installed-original.txt dist/launch26/ -ErrorAction SilentlyContinue; Copy-Item C:/obs/*.txt dist/launch26/ -ErrorAction SilentlyContinue
+          foreach ($d in Get-ChildItem C:/obs -Directory -ErrorAction SilentlyContinue) {
+            $n = $d.Name
+            foreach ($f in Get-ChildItem $d.FullName -File) {
+              if ($f.Extension -in '.json','.txt') { Copy-Item $f.FullName "dist/launch26/$n-$($f.Name)" }
+              elseif ($f.Extension -eq '.jpg') { [IO.File]::WriteAllText("$PWD/dist/launch26/$n-$($f.Name).b64", [Convert]::ToBase64String([IO.File]::ReadAllBytes($f.FullName))) }
+            }
+          }
+          git add dist; git commit -m "Add launcher test evidence" 2>&1 | Out-Null
+          foreach ($i in 1..4) { git pull --rebase 2>&1 | Out-Null; git push 2>&1 | Out-String | Write-Host; if ($LASTEXITCODE -eq 0) { break }; Start-Sleep 5 }
