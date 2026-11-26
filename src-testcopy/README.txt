@@ -1,0 +1,1 @@
+Test-copy patches against installed Delta v16 (private). Not an installer, not accepted. drafting_new.py: outer-side dimension placement (centroid), unit param, vertical label beside line. export_new.py: subtitle reflects unit. gui_new.py: event-driven menu title repair. g35.py: CI macro used in run 35 (45743936845). Known open: diagonal/Z/rot45 labels still sit on lines.
