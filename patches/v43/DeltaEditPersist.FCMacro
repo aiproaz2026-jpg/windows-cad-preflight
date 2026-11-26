@@ -1,0 +1,243 @@
+# Item 2 (editing + persistence) evidence macro for the v16c installed build.
+# Runs inside the installed app GUI (CI: Windows Server 2022 + Mesa llvmpipe, not real hardware).
+import os, json, time, traceback
+OUT = os.environ.get('DELTA_OUT', 'C:/fit43')
+os.makedirs(OUT, exist_ok=True)
+res = {'steps': {}, 'dialogs': [], 'diffs': {}, 'done': False}
+def save():
+    open(OUT + '/gui-result43.json', 'w', encoding='utf-8').write(json.dumps(res, ensure_ascii=False, indent=1, default=str))
+try:
+    import FreeCAD as App, FreeCADGui as Gui
+    from PySide import QtCore, QtWidgets
+    import importlib.util
+    _spec = importlib.util.find_spec('DeltaEngineering'); _pkg = list(_spec.submodule_search_locations)[0]
+    if os.path.exists(_pkg + '/core_patches.py'):
+        _ns = {}; exec(open(_pkg + '/core_patches.py', encoding='utf-8-sig').read(), _ns); res['core_patches'] = _ns['apply'](_pkg)
+    else:
+        res['core_patches'] = 'absent (integration run)'
+    import DeltaEngineering.core as dcore, DeltaEngineering.domain as ddom, DeltaEngineering.symbols as dsym
+    import DeltaEngineering.electrical as delec, DeltaEngineering.drafting as ddraft
+    from DeltaEngineering import fittings as dfit
+    from DeltaEngineering.gui import register
+    if 'DeltaWorkbench' not in Gui.listWorkbenches(): register()
+    Gui.activateWorkbench('DeltaWorkbench')
+    mw = Gui.getMainWindow()
+    counter = [0]
+    def handle():
+        w = QtWidgets.QApplication.activeModalWidget()
+        if not w: return
+        counter[0] += 1
+        info = {'n': counter[0], 'cls': type(w).__name__, 'title': w.windowTitle()}
+        try:
+            if isinstance(w, QtWidgets.QInputDialog):
+                info['label'] = w.labelText(); w.setTextValue('2 mm'); w.accept()
+            elif isinstance(w, QtWidgets.QMessageBox):
+                info['text'] = w.text()
+                yes = [b for b in w.findChildren(QtWidgets.QPushButton) if b.text() in ('نعم', 'Yes', '&Yes')]
+                if yes: yes[0].click()
+                else: w.accept()
+            elif isinstance(w, QtWidgets.QFileDialog):
+                info['filedialog'] = True; w.reject()
+            else:
+                w.accept()
+        except Exception:
+            info['err'] = traceback.format_exc()
+        res['dialogs'].append(info); save()
+    t = QtCore.QTimer(); t.setInterval(400); t.timeout.connect(handle); t.start()
+    def pump(n=5):
+        for _ in range(n): QtWidgets.QApplication.processEvents()
+    def shot(name):
+        try: mw.grab().save(OUT + '/' + name + '.png')
+        except Exception: pass
+    def run(name, fn):
+        t0 = time.time()
+        try:
+            out = fn(); res['steps'][name] = {'ok': True, 'secs': round(time.time() - t0, 2), 'detail': out}
+        except Exception:
+            res['steps'][name] = {'ok': False, 'secs': round(time.time() - t0, 2), 'detail': traceback.format_exc()}
+        save()
+    def ser(v):
+        try:
+            import FreeCAD as _A
+            if isinstance(v, _A.Units.Quantity): return float(v.Value)
+            if isinstance(v, _A.Vector): return [float(v.x), float(v.y), float(v.z)]
+            if isinstance(v, _A.Rotation): return [float(q) for q in v.Q]
+            if isinstance(v, _A.Placement): return {'Base': ser(v.Base), 'Rotation': ser(v.Rotation)}
+        except Exception: pass
+        if isinstance(v, (list, tuple)): return [ser(x) for x in v]
+        if isinstance(v, (int, float, str, bool)) or v is None: return v
+        if hasattr(v, 'Name'): return {'@obj': v.Name}
+        return str(v)
+    SKIP = {'Shape', 'Proxy', 'ExpressionEngine', 'Visibility', 'ViewObject'}
+    def manifest(doc, names):
+        m = {}
+        for n in names:
+            o = doc.getObject(n)
+            if o is None: m[n] = None; continue
+            props = {}
+            for p in o.PropertiesList:
+                if p in SKIP: continue
+                try: props[p] = ser(getattr(o, p))
+                except Exception: props[p] = '<unreadable>'
+            m[n] = {'Label': o.Label, 'TypeId': o.TypeId, 'props': props}
+        return m
+    def close(a, b, path=''):
+        if isinstance(a, float) and isinstance(b, (int, float)) or isinstance(b, float) and isinstance(a, (int, float)):
+            fa, fb = float(a), float(b)
+            return abs(fa - fb) <= max(1e-9, 1e-6 * max(abs(fa), abs(fb)))
+        if isinstance(a, dict) and isinstance(b, dict):
+            return set(a) == set(b) and all(close(a[k], b[k], path + '/' + str(k)) for k in a)
+        if isinstance(a, list) and isinstance(b, list):
+            return len(a) == len(b) and all(close(x, y, path) for x, y in zip(a, b))
+        return a == b
+    def diffs(a, b, path=''):
+        out = []
+        if isinstance(a, dict) and isinstance(b, dict):
+            for k in sorted(set(a) | set(b)):
+                if k not in a or k not in b: out.append(path + '/' + str(k) + ': key missing')
+                else: out += diffs(a[k], b[k], path + '/' + str(k))
+        elif isinstance(a, list) and isinstance(b, list):
+            if len(a) != len(b): out.append(path + ': len %d vs %d' % (len(a), len(b)))
+            else:
+                for i, (x, y) in enumerate(zip(a, b)): out += diffs(x, y, path + '[%d]' % i)
+        elif not close(a, b, path): out.append(path + ': %r vs %r' % (a, b))
+        return out
+    S = {}
+    tracked = []
+    V = App.Vector
+    def s_project():
+        Gui.runCommand('Delta_NewProject'); pump(10)
+        doc = App.ActiveDocument
+        assert doc is not None, 'no active document after Delta_NewProject'
+        S['doc'] = doc
+        return {'doc': doc.Name}
+    def s_piping():
+        doc = S['doc']
+        pipe = doc.addObject('Part::FeaturePython', 'PipeRoute')
+        dcore.PipeRoute(pipe, [V(0, 0, 0), V(800, 0, 0)], 60.3, 3.91)
+        from DeltaEngineering.documents import add_to
+        add_to(doc, 'PipingSystem', pipe)
+        doc.recompute()
+        assert not pipe.Shape.isNull(), 'pipe shape null: ' + str(pipe.Validation)
+        pump_ = dfit.create_fitting(doc, 'pump', '2')
+        valve = dfit.create_fitting(doc, 'gate_valve', '2')
+        elbow = dfit.create_fitting(doc, 'elbow90', '2')
+        flange = dfit.create_fitting(doc, 'flange', '2')
+        valve.Placement.Base = V(0, 500, 0); elbow.Placement.Base = V(900, 0, 0); flange.Placement.Base = V(-200, 0, 0)
+        doc.recompute()
+        S['pipe'] = pipe; S['valve'] = valve
+        tracked.extend([pipe.Name, pump_.Name, valve.Name, elbow.Name, flange.Name])
+        return {'pipe_len': pipe.CenterlineLength.Value, 'fittings': [pump_.Name, valve.Name, elbow.Name, flange.Name]}
+    def s_electrical():
+        doc = S['doc']
+        qf = dsym.create(doc, 'Breaker concept', 'QF1', V(0, 0, 0))
+        km = dsym.create(doc, 'Contactor concept', 'KM1', V(150, 0, 0))
+        fr = dsym.create(doc, 'Overload concept', 'FR1', V(300, 0, 0))
+        sb = dsym.create(doc, 'Pushbutton concept', 'SB1', V(450, 0, 0))
+        wires = []
+        pairs = [(qf, '1', km, '1'), (qf, '2', km, '2'), (qf, '3', km, '3'),
+                 (qf, '4', km, '4'), (qf, '5', km, '5'), (qf, '6', km, '6'),
+                 (km, 'A1', sb, '1'), (km, 'A2', sb, '2'), (fr, '1', km, '1')]
+        for i, (a, at, b, bt) in enumerate(pairs, 1):
+            wires.append(ddom.add_terminal_wire(doc, a, at, b, bt, 'W%d' % i))
+        doc.recompute()
+        S['sb'] = sb
+        tracked.extend([qf.Name, km.Name, fr.Name, sb.Name] + [w.Name for w in wires])
+        return {'devices': 4, 'wires': len(wires), 'netlist_size': len(ddom.netlist(doc))}
+    def s_edits():
+        doc = S['doc']
+        doc.openTransaction('Edit pipe route length')
+        S['pipe'].Route = [V(0, 0, 0), V(1000, 0, 0)]
+        doc.recompute(); doc.commitTransaction()
+        len_after = S['pipe'].CenterlineLength.Value
+        doc.openTransaction('Move gate valve')
+        S['valve'].Placement.Base = V(0, 700, 0)
+        doc.recompute(); doc.commitTransaction()
+        pos_after = S['valve'].Placement.Base.y
+        delec.rename_device(doc, S['sb'], 'SB2')
+        tag_after = S['sb'].Tag if hasattr(S['sb'], 'Tag') else S['sb'].Label
+        return {'pipe_len': len_after, 'valve_y': pos_after, 'device_tag': tag_after}
+    def s_undo_redo():
+        doc = S['doc']
+        for _ in range(3): doc.undo()
+        doc.recompute()
+        undone = {'pipe_len': S['pipe'].CenterlineLength.Value, 'valve_y': S['valve'].Placement.Base.y,
+                  'device_tag': S['sb'].Tag if hasattr(S['sb'], 'Tag') else S['sb'].Label}
+        assert abs(undone['pipe_len'] - 800) < 1e-6, 'undo pipe_len %r' % undone['pipe_len']
+        assert abs(undone['valve_y'] - 500) < 1e-6, 'undo valve_y %r' % undone['valve_y']
+        assert undone['device_tag'] == 'SB1', 'undo tag %r' % undone['device_tag']
+        for _ in range(3): doc.redo()
+        doc.recompute()
+        redone = {'pipe_len': S['pipe'].CenterlineLength.Value, 'valve_y': S['valve'].Placement.Base.y,
+                  'device_tag': S['sb'].Tag if hasattr(S['sb'], 'Tag') else S['sb'].Label}
+        assert abs(redone['pipe_len'] - 1000) < 1e-6, 'redo pipe_len %r' % redone['pipe_len']
+        assert abs(redone['valve_y'] - 700) < 1e-6, 'redo valve_y %r' % redone['valve_y']
+        assert redone['device_tag'] == 'SB2', 'redo tag %r' % redone['device_tag']
+        return {'undone': undone, 'redone': redone}
+    def s_drafting():
+        doc = S['doc']
+        path = ddraft.make_path(doc, [V(0, 0, 0), V(400, 0, 0), V(400, 250, 0)])
+        dim = ddraft.linked_dimension(doc, path, 0, 1, 80)
+        d1 = dim.Distance.Value if hasattr(dim.Distance, 'Value') else float(dim.Distance)
+        ddraft.update_path(doc, path, [V(0, 0, 0), V(500, 0, 0), V(500, 250, 0)])
+        doc.recompute()
+        d2 = dim.Distance.Value if hasattr(dim.Distance, 'Value') else float(dim.Distance)
+        assert abs(d1 - 400) < 1e-6 and abs(d2 - 500) < 1e-6, 'linked dim %r -> %r' % (d1, d2)
+        tracked.extend([path.Name, dim.Name])
+        return {'dim_before': d1, 'dim_after_path_edit': d2}
+    def s_assembly():
+        doc = S['doc']
+        b1 = doc.addObject('Part::Box', 'FixedPart'); b1.Length = 100; b1.Width = 60; b1.Height = 40
+        b2 = doc.addObject('Part::Cylinder', 'MountedPart'); b2.Radius = 20; b2.Height = 50
+        b2.Placement.Base = V(0, 0, 140)
+        doc.recompute()
+        gap = b1.Shape.distToShape(b2.Shape)[0]
+        tracked.extend([b1.Name, b2.Name])
+        return {'fixed_pair_vertex_gap_mm': round(gap, 6)}
+    def s_manifest_save():
+        doc = S['doc']
+        doc.recompute()
+        S['m1'] = manifest(doc, tracked)
+        open(OUT + '/manifest-initial.json', 'w', encoding='utf-8').write(json.dumps(S['m1'], ensure_ascii=False, indent=1, default=str))
+        path = 'C:/fit43/مشروع-محطة-الضخ.FCStd'
+        doc.saveAs(path)
+        S['path'] = path
+        shot('station43-before-save')
+        return {'saved': path, 'objects': len(tracked)}
+    def s_reopen(tag):
+        doc = S['doc']
+        name = doc.Name
+        App.closeDocument(name); pump(5)
+        doc2 = App.openDocument(S['path']); pump(5)
+        doc2.recompute()
+        S['doc'] = doc2
+        for key in ('pipe', 'valve', 'sb'):
+            S[key] = doc2.getObject(S[key].Name)
+        m = manifest(doc2, tracked)
+        open(OUT + '/manifest-%s.json' % tag, 'w', encoding='utf-8').write(json.dumps(m, ensure_ascii=False, indent=1, default=str))
+        d = diffs(S['m1'], m)
+        res['diffs'][tag] = d
+        shot('station43-' + tag)
+        return {'diff_count': len(d), 'first': d[:5]}
+    run('project', s_project)
+    if res['steps']['project']['ok']:
+        run('piping_build', s_piping)
+        run('electrical_build', s_electrical)
+        run('edits_in_transactions', s_edits)
+        run('undo_redo_x3', s_undo_redo)
+        run('drafting_linked_dim', s_drafting)
+        run('assembly_fixed_pair_gap', s_assembly)
+        run('manifest_save_arabic_path', s_manifest_save)
+        if res['steps']['manifest_save_arabic_path']['ok']:
+            run('reopen_1_compare', lambda: s_reopen('reopen1'))
+            run('reopen_2_compare', lambda: s_reopen('reopen2'))
+    shot('station43-final')
+except Exception:
+    res['error'] = traceback.format_exc()
+res['done'] = True
+save()
+try:
+    from PySide import QtWidgets
+    QtWidgets.QApplication.quit()
+except Exception:
+    pass
