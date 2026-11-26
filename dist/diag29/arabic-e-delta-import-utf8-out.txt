@@ -1,0 +1,3 @@
+While initializing FreeCAD the following exception occurred: 'Failed to init from config'
+
+Python is searching for its runtime files in the following directories:

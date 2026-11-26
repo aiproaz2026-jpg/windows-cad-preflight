@@ -1,0 +1,15 @@
+SHA256 MATCH
+setup ascii exit 0 dir exists True
+setup arabic exit 0 dir exists True
+ascii exe exists True
+ascii-a-version exit 0
+ascii-b-script-ascii exit 0
+ascii-c-script-utf8env exit 0
+ascii-d-delta-import exit 0
+ascii-e-delta-import-utf8 exit 0
+arabic exe exists True
+arabic-a-version exit -1073740791
+arabic-b-script-ascii exit -1073740791
+arabic-c-script-utf8env exit -1073740791
+arabic-d-delta-import exit -1073740791
+arabic-e-delta-import-utf8 exit -1073740791
