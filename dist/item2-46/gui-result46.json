@@ -1,0 +1,104 @@
+{
+ "steps": {
+  "project": {
+   "ok": true,
+   "secs": 1.59,
+   "detail": {
+    "doc": "EngineeringProject"
+   }
+  },
+  "piping_build": {
+   "ok": true,
+   "secs": 1.83,
+   "detail": {
+    "pipe_len": 800.0,
+    "fittings": [
+     "GenericFitting",
+     "GenericFitting001",
+     "GenericFitting002",
+     "GenericFitting003"
+    ]
+   }
+  },
+  "electrical_build": {
+   "ok": true,
+   "secs": 0.05,
+   "detail": {
+    "devices": 4,
+    "wires": 9,
+    "netlist_size": 9
+   }
+  },
+  "edits_in_transactions": {
+   "ok": true,
+   "secs": 0.09,
+   "detail": {
+    "pipe_len": 1000.0,
+    "valve_y": 700.0,
+    "device_tag": "SB2"
+   }
+  },
+  "undo_redo_x3": {
+   "ok": true,
+   "secs": 0.21,
+   "detail": {
+    "undone": {
+     "pipe_len": 800.0,
+     "valve_y": 500.0,
+     "device_tag": "SB1"
+    },
+    "redone": {
+     "pipe_len": 1000.0,
+     "valve_y": 700.0,
+     "device_tag": "SB2"
+    }
+   }
+  },
+  "drafting_linked_dim": {
+   "ok": true,
+   "secs": 0.53,
+   "detail": {
+    "dim_before": 400.0,
+    "dim_after_path_edit": 500.0
+   }
+  },
+  "assembly_fixed_pair_gap": {
+   "ok": true,
+   "secs": 0.02,
+   "detail": {
+    "fixed_pair_vertex_gap_mm": 100.0
+   }
+  },
+  "manifest_save_arabic_path": {
+   "ok": true,
+   "secs": 0.48,
+   "detail": {
+    "saved": "C:/fit46/مشروع-محطة-الضخ.FCStd",
+    "objects": 22
+   }
+  },
+  "reopen_1_compare": {
+   "ok": true,
+   "secs": 1.11,
+   "detail": {
+    "diff_count": 0,
+    "first": []
+   }
+  },
+  "reopen_2_compare": {
+   "ok": true,
+   "secs": 1.08,
+   "detail": {
+    "diff_count": 0,
+    "first": []
+   }
+  }
+ },
+ "dialogs": [],
+ "diffs": {
+  "reopen1": [],
+  "reopen2": []
+ },
+ "done": true,
+ "core_patches": "absent (integration run)"
+}
