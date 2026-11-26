@@ -1,0 +1,66 @@
+name: Item9 license inventory of installed v16c payload run 47
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  licinv:
+    runs-on: windows-2022
+    timeout-minutes: 25
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download v16c installer and verify sha256
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory C:/out -Force | Out-Null
+          gh release download standalone-v16c-r1 -p "DeltaEngineering-Setup-v16c.exe" -D C:/out
+          $want = ((Get-Content dist/v16c/DeltaEngineering-Setup-v16c.exe.sha256 -Raw) -split '\s+')[0].ToLower()
+          $got = (Get-FileHash C:/out/DeltaEngineering-Setup-v16c.exe -Algorithm SHA256).Hash.ToLower()
+          "sha match: $($got -eq $want)" | Out-File C:/out/info47.txt -Encoding utf8
+          if ($got -ne $want) { throw 'sha mismatch' }
+      - name: Silent install to fresh inventory dir (nothing existing touched)
+        shell: pwsh
+        run: |
+          $p = Start-Process 'C:\out\DeltaEngineering-Setup-v16c.exe' -ArgumentList '/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART','/LOG=C:\out\setup47.log','/DIR=C:\DeltaLic' -Wait -PassThru
+          "setup exit: $($p.ExitCode)" | Out-File C:/out/info47.txt -Append -Encoding utf8
+          if ($p.ExitCode -ne 0) { throw "setup exit $($p.ExitCode)" }
+      - name: Inventory installed payload (read-only listing)
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory C:/inv -Force | Out-Null
+          Get-ChildItem C:/DeltaLic -Recurse -File | ForEach-Object { $_.FullName.Substring(11) + "`t" + $_.Length } | Out-File C:/inv/payload-files.txt -Encoding utf8
+          "payload file count: $((Get-Content C:/inv/payload-files.txt | Measure-Object -Line).Lines)" | Out-File C:/out/info47.txt -Append -Encoding utf8
+          Get-ChildItem C:/DeltaLic/bin -Filter *.dll -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Name | Out-File C:/inv/bin-dlls.txt -Encoding utf8
+          Get-ChildItem C:/DeltaLic/lib -Recurse -Filter *.dll -ErrorAction SilentlyContinue | Select-Object -ExpandProperty FullName | ForEach-Object { $_.Substring(11) } | Out-File C:/inv/lib-dlls.txt -Encoding utf8
+          Get-ChildItem C:/DeltaLic -Recurse -File -ErrorAction SilentlyContinue | Where-Object { $_.Name -match 'licen|copying|copyright|notice|eula|credit' } | ForEach-Object { $_.FullName.Substring(11) } | Out-File C:/inv/notice-files.txt -Encoding utf8
+          Get-Content C:/inv/notice-files.txt | Measure-Object -Line | ForEach-Object { "notice files: $($_.Lines)" } | Out-File C:/out/info47.txt -Append -Encoding utf8
+          foreach ($dll in 'Qt6Core.dll','FreeCAD.exe','python311.dll','python3.dll','TKernel.dll','Coin.dll','xerces-c_3_2.dll','libfreetype.dll','pyside6.abi3.dll') {
+            $f = Get-ChildItem C:/DeltaLic -Recurse -Filter $dll -ErrorAction SilentlyContinue | Select-Object -First 1
+            if ($f) { $v = $f.VersionInfo; "$dll`t$($v.FileVersion)`t$($v.ProductName)`t$($v.LegalCopyright)" } else { "$dll`tNOT FOUND" }
+          } | Out-File C:/inv/dll-versions.txt -Encoding utf8
+          Get-ChildItem 'C:/DeltaLic/Mod' -Directory -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Name | Out-File C:/inv/mod-dirs.txt -Encoding utf8
+          Get-ChildItem 'C:/DeltaLic/doc' -Recurse -File -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Name | Out-File C:/inv/doc-files.txt -Encoding utf8
+      - name: Commit inventory evidence
+        if: always()
+        shell: bash
+        run: |
+          git config user.name ci; git config user.email ci@users.noreply.github.com
+          git pull --rebase || true
+          mkdir -p dist/item9-47
+          cp /c/out/info47.txt dist/item9-47/ || true
+          cp /c/inv/*.txt dist/item9-47/ || true
+          tail -30 /c/out/setup47.log > dist/item9-47/setup-log-tail.txt 2>/dev/null || true
+          git add dist
+          git commit -m "Add item9 v16c payload license inventory evidence (run 47)" || true
+          for i in 1 2 3 4; do git pull --rebase >/dev/null 2>&1; git push && break; sleep 5; done
+      - name: Gate verdict
+        if: always()
+        shell: pwsh
+        run: |
+          if (-not (Test-Path C:/inv/payload-files.txt)) { throw 'GATE FAIL: no payload listing' }
+          $n = (Get-Content C:/inv/payload-files.txt | Measure-Object -Line).Lines
+          if ($n -lt 1000) { throw "GATE FAIL: only $n payload files listed" }
+          if (-not (Test-Path C:/inv/notice-files.txt)) { throw 'GATE FAIL: no notice listing' }
+          "GATE PASS: $n payload files inventoried"
