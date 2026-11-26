@@ -107,10 +107,25 @@ def _best_placement(a,b,first,offset,others):
     return best
 
 
+def _links_to(dim,obj):
+    """True when a linked dimension refers to obj. Compares by identity, then by document object name,
+    because FreeCAD may hand back a different Python wrapper for the same object."""
+    try:
+        lg=dim.LinkedGeometry
+    except Exception:return False
+    try:
+        for e in lg:
+            o=e[0]
+            if o==obj or o is obj:return True
+            if getattr(o,'Name',None) is not None and getattr(o,'Name',None)==getattr(obj,'Name',0):return True
+    except Exception:return False
+    return False
+
+
 def _collect_dims(doc,obj):
     dims=[]
     for dim in doc.Objects:
-        if hasattr(dim,'LinkedGeometry') and any(e[0]==obj for e in dim.LinkedGeometry):
+        if _links_to(dim,obj):
             key=_dim_key(dim)
             if key is not None:dims.append((dim,key))
     return dims

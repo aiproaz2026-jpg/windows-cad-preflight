@@ -69,6 +69,19 @@ def run():
                 dims=[linked_dimension(d,path,i,i+1,100) for i in range(len(pts)-1)]
                 res[name]={'crossings_path':count(d,path,dims)['path'],'crossings_dim':count(d,path,dims)['dim'],'values':[round(x.Distance.Value,4) for x in dims],
                            'placements':[str(getattr(x,'PlacementMode','default')) for x in dims],'offsets':[round((x.Dimline-(x.Start+x.End)*0.5).Length,1) for x in dims]}
+                if name in ('Z','stair'):
+                    try:
+                        import DeltaEngineering.drafting as DR
+                        offs=lambda: [round((x.Dimline-(x.Start+x.End)*0.5).Length,1) for x in dims]
+                        dg={'lg':[repr(x.LinkedGeometry)[:140] for x in dims],'collected':len(DR._collect_dims(d,path)),'has_links_to':hasattr(DR,'_links_to'),'before':offs()}
+                        try:
+                            DR._repair_dims(d,path,[v.Point for v in path.Shape.Vertexes]); d.recompute()
+                        except Exception:
+                            dg['err']=traceback.format_exc()[-600:]
+                        dg['after']=offs(); dg['after_count']=count(d,path,dims)
+                        res[name]['diag']=dg
+                    except Exception:
+                        res[name]['diag']={'err':traceback.format_exc()[-600:]}
                 if name in ('Z','L_rot45','L'):
                     f=OUT+'/dim_%s_mm.pdf'%name
                     try:
