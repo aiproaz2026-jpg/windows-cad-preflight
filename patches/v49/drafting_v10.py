@@ -56,12 +56,13 @@ def _seg_hit_strict(p,q,r,t):
     def o(a,b,c):return (b.x-a.x)*(c.y-a.y)-(b.y-a.y)*(c.x-a.x)
     d1,d2,d3,d4=o(p,q,r),o(p,q,t),o(r,t,p),o(r,t,q)
     if ((d1>1e-9 and d2<-1e-9) or (d1<-1e-9 and d2>1e-9)) and ((d3>1e-9 and d4<-1e-9) or (d3<-1e-9 and d4>1e-9)):return True
-    def between(a,b,c):return min(a.x,b.x)-1e-9<=c.x<=max(a.x,b.x)+1e-9 and min(a.y,b.y)-1e-9<=c.y<=max(a.y,b.y)+1e-9
     if abs(d1)<=1e-9 and abs(d2)<=1e-9:
-        for c in (r,t):
-            if between(p,q,c) and (c-p).Length>1e-7 and (c-q).Length>1e-7:return True
-        for c in (p,q):
-            if between(r,t,c) and (c-r).Length>1e-7 and (c-t).Length>1e-7:return True
+        # Collinear: any shared stretch longer than 1e-7 counts, including two identical segments.
+        v=q-p;L=v.Length
+        if L>1e-7:
+            t1=(r-p).dot(v)/L;t2=(t-p).dot(v)/L
+            lo=max(0.0,min(t1,t2));hi=min(L,max(t1,t2))
+            if hi-lo>1e-7:return True
     return False
 
 
@@ -71,6 +72,7 @@ def _dimension_segments(a,b,side,offset):
 
 
 _SEARCH_MULTS=(1,1.5,2,3,4,6,8,12,16,0.75,0.5,0.3)
+_JOINT_MAX_MULT=8  # joint search never offsets a dimension more than 800 mm
 
 
 def _dim_key(dim):
@@ -233,6 +235,7 @@ def _joint_search(items,pathsegs):
     for a,b,first,skip in items:
         lst=[]
         for mult in _SEARCH_MULTS:
+            if mult>_JOINT_MAX_MULT:continue
             for sd in (first,first*-1):lst.append((sd,100.0*mult))
         cands.append(lst)
     path_sc=[]
@@ -257,7 +260,7 @@ def _joint_search(items,pathsegs):
         sc=sum(path_sc[i][combo[i]] for i in range(n))
         for i in range(n):
             for j in range(i+1,n):sc+=pair[(i,j)][combo[i]][combo[j]]
-        tot=sum(cands[i][combo[i]][1] for i in range(n))
+        tot=sum(abs(cands[i][combo[i]][1]-100.0) for i in range(n))  # prefer offsets near the 100 mm default
         key=(sc,tot)
         if best is None or key<best[0]:best=(key,combo)
     return [cands[i][best[1][i]] for i in range(n)]

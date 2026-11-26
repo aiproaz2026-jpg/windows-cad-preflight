@@ -79,6 +79,14 @@ def run():
                         except Exception:
                             dg['err']=traceback.format_exc()[-600:]
                         dg['after']=offs(); dg['after_count']=count(d,path,dims)
+                        pts_=[v.Point for v in path.Shape.Vertexes]; ps_=[(pts_[i],pts_[i+1]) for i in range(len(pts_)-1)]
+                        sg_=[]
+                        for x in dims:
+                            a_,b_=x.Start,x.End; v_=b_-a_; v_.normalize(); sd_=V(0,0,1).cross(v_); of_=(x.Dimline-(a_+b_)*0.5).dot(sd_)
+                            sg_.append(DR._dimension_segments(a_,b_,sd_,of_))
+                        dg['strict_path_hits_incl_overlap']=sum(1 for i_,m_ in enumerate(sg_) for s_ in m_ for k_,pp in enumerate(ps_) if k_!=i_ and DR._seg_hit_strict(s_[0],s_[1],pp[0],pp[1]))
+                        dg['strict_dim_hits']=sum(1 for i_,m_ in enumerate(sg_) for j_,n_ in enumerate(sg_) if j_>i_ for s_ in m_ for t_ in n_ if DR._seg_hit_strict(s_[0],s_[1],t_[0],t_[1]))
+                        dg['sides_offsets']=offs()
                         res[name]['diag']=dg
                     except Exception:
                         res[name]['diag']={'err':traceback.format_exc()[-600:]}
