@@ -1,0 +1,7 @@
+
+try:
+    from DeltaEngineering import ar_layer as _arl
+    _arl.register()
+except Exception as _e2:
+    import FreeCAD as _A2
+    _A2.Console.PrintError("arabic layer failed: " + str(_e2) + "\n")
