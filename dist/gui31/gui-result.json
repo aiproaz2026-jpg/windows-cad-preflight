@@ -1,0 +1,37 @@
+{
+ "stage": "assembly",
+ "workbench": "DeltaWorkbench",
+ "dims_mm": [
+  800.0,
+  500.0
+ ],
+ "images": [
+  "dims_gui.png",
+  "assembly_gui.png"
+ ],
+ "export_report": {
+  "dimensions": 2,
+  "values_mm": [
+   800.0,
+   500.0
+  ],
+  "fit_to_page": true
+ },
+ "pdf_valid": true,
+ "pdf_size": 12896,
+ "asm_objects": [
+  "MechanicalAssembly",
+  "Origin",
+  "X_Axis",
+  "Y_Axis",
+  "Z_Axis",
+  "XY_Plane",
+  "XZ_Plane",
+  "YZ_Plane",
+  "Origin001",
+  "Joints",
+  "AssemblyBase",
+  "AssemblyShaft"
+ ],
+ "done": true
+}
