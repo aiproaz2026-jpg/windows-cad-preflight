@@ -1,0 +1,95 @@
+{
+ "steps": {
+  "project": {
+   "ok": true,
+   "secs": 1.07,
+   "detail": {
+    "doc": "EngineeringProject"
+   }
+  },
+  "piping_build": {
+   "ok": true,
+   "secs": 1.19,
+   "detail": {
+    "pipe_len": 800.0,
+    "fittings": [
+     "GenericFitting",
+     "GenericFitting001",
+     "GenericFitting002",
+     "GenericFitting003"
+    ]
+   }
+  },
+  "electrical_build": {
+   "ok": true,
+   "secs": 0.04,
+   "detail": {
+    "devices": 4,
+    "wires": 9,
+    "netlist_size": 9
+   }
+  },
+  "edits_in_transactions": {
+   "ok": true,
+   "secs": 0.06,
+   "detail": {
+    "pipe_len": 1000.0,
+    "valve_y": 700.0,
+    "device_tag": "SB2"
+   }
+  },
+  "undo_redo_x3": {
+   "ok": true,
+   "secs": 0.15,
+   "detail": {
+    "undone": {
+     "pipe_len": 800.0,
+     "valve_y": 500.0,
+     "device_tag": "SB1"
+    },
+    "redone": {
+     "pipe_len": 1000.0,
+     "valve_y": 700.0,
+     "device_tag": "SB2"
+    }
+   }
+  },
+  "drafting_linked_dim": {
+   "ok": true,
+   "secs": 0.46,
+   "detail": {
+    "dim_before": 400.0,
+    "dim_after_path_edit": 500.0
+   }
+  },
+  "assembly_fixed_pair_gap": {
+   "ok": true,
+   "secs": 0.02,
+   "detail": {
+    "fixed_pair_vertex_gap_mm": 100.0
+   }
+  },
+  "manifest_save_arabic_path": {
+   "ok": true,
+   "secs": 0.32,
+   "detail": {
+    "saved": "C:/fit43/مشروع-محطة-الضخ.FCStd",
+    "objects": 22
+   }
+  },
+  "reopen_1_compare": {
+   "ok": false,
+   "secs": 0.72,
+   "detail": "Traceback (most recent call last):\n  File \"C:/DeltaEditTest/DeltaEditPersist.FCMacro\", line 55, in run\n    out = fn(); res['steps'][name] = {'ok': True, 'secs': round(time.time() - t0, 2), 'detail': out}\n          ^^^^\n  File \"C:/DeltaEditTest/DeltaEditPersist.FCMacro\", line 232, in <lambda>\n    run('reopen_1_compare', lambda: s_reopen('reopen1'))\n                                    ^^^^^^^^^^^^^^^^^^^\n  File \"C:/DeltaEditTest/DeltaEditPersist.FCMacro\", line 215, in s_reopen\n    S[key] = doc2.getObject(S[key].Name)\n                            ^^^^^^^^^^^\nReferenceError: Cannot access attribute 'Name' of deleted object\n"
+  },
+  "reopen_2_compare": {
+   "ok": false,
+   "secs": 0.68,
+   "detail": "Traceback (most recent call last):\n  File \"C:/DeltaEditTest/DeltaEditPersist.FCMacro\", line 55, in run\n    out = fn(); res['steps'][name] = {'ok': True, 'secs': round(time.time() - t0, 2), 'detail': out}\n          ^^^^\n  File \"C:/DeltaEditTest/DeltaEditPersist.FCMacro\", line 233, in <lambda>\n    run('reopen_2_compare', lambda: s_reopen('reopen2'))\n                                    ^^^^^^^^^^^^^^^^^^^\n  File \"C:/DeltaEditTest/DeltaEditPersist.FCMacro\", line 215, in s_reopen\n    S[key] = doc2.getObject(S[key].Name)\n                            ^^^^^^^^^^^\nReferenceError: Cannot access attribute 'Name' of deleted object\n"
+  }
+ },
+ "dialogs": [],
+ "diffs": {},
+ "done": true,
+ "core_patches": "absent (integration run)"
+}
