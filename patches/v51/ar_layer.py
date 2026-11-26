@@ -68,10 +68,8 @@ def _later(*_a):
 
 
 def register():
-    app = QtCore.QCoreApplication.instance()
-    t = _Translator()
-    _keep.append(t)
-    app.installTranslator(t)
+    # QTranslator subclass intentionally not installed (a CI run with it exited at startup); text sweep only.
+    _keep.append('sweep-only')
     mw = Gui.getMainWindow()
     if mw is not None:
         try:
