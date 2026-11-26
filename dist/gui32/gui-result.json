@@ -1,0 +1,229 @@
+{
+ "stage": "menus_final",
+ "menus": {
+  "t0_workbench": {
+   "wb": "DeltaWorkbench",
+   "titles": [
+    "&\\u0645\\u0644\\u0641",
+    "&\\u062a\\u0639\\u062f\\u064a\\u0644",
+    "&\\u0639\\u0631\\u0636",
+    "&\\u0623\\u062f\\u0648\\u0627\\u062a",
+    "&Macro",
+    "\\u062f\\u0644\\u062a\\u0627",
+    "&Windows",
+    "",
+    "&\\u0645\\u0633\\u0627\\u0639\\u062f\\u0629"
+   ]
+  },
+  "t1_after_part_doc": {
+   "wb": "DeltaWorkbench",
+   "titles": [
+    "&\\u0645\\u0644\\u0641",
+    "&\\u062a\\u0639\\u062f\\u064a\\u0644",
+    "&\\u0639\\u0631\\u0636",
+    "&\\u0623\\u062f\\u0648\\u0627\\u062a",
+    "&Macro",
+    "\\u062f\\u0644\\u062a\\u0627",
+    "&Windows",
+    "",
+    "&\\u0645\\u0633\\u0627\\u0639\\u062f\\u0629"
+   ]
+  },
+  "t2_after_dims": {
+   "wb": "DeltaWorkbench",
+   "titles": [
+    "&\\u0645\\u0644\\u0641",
+    "&\\u062a\\u0639\\u062f\\u064a\\u0644",
+    "&\\u0639\\u0631\\u0636",
+    "&\\u0623\\u062f\\u0648\\u0627\\u062a",
+    "&Macro",
+    "\\u062f\\u0644\\u062a\\u0627",
+    "&Windows",
+    "",
+    "&\\u0645\\u0633\\u0627\\u0639\\u062f\\u0629"
+   ]
+  },
+  "t3_after_assembly": {
+   "wb": "DeltaWorkbench",
+   "titles": [
+    "&\\u0645\\u0644\\u0641",
+    "&\\u062a\\u0639\\u062f\\u064a\\u0644",
+    "&\\u0639\\u0631\\u0636",
+    "&\\u0623\\u062f\\u0648\\u0627\\u062a",
+    "&Macro",
+    "\\xd8\\xaf\\xd9\\x84\\xd8\\xaa\\xd8\\xa7",
+    "&Windows",
+    "",
+    "&\\u0645\\u0633\\u0627\\u0639\\u062f\\u0629"
+   ]
+  },
+  "t4_back_to_dim": {
+   "wb": "DeltaWorkbench",
+   "titles": [
+    "&\\u0645\\u0644\\u0641",
+    "&\\u062a\\u0639\\u062f\\u064a\\u0644",
+    "&\\u0639\\u0631\\u0636",
+    "&\\u0623\\u062f\\u0648\\u0627\\u062a",
+    "&Macro",
+    "\\xd8\\xaf\\xd9\\x84\\xd8\\xaa\\xd8\\xa7",
+    "&Windows",
+    "",
+    "&\\u0645\\u0633\\u0627\\u0639\\u062f\\u0629"
+   ]
+  },
+  "t5_asm_again": {
+   "wb": "DeltaWorkbench",
+   "titles": [
+    "&\\u0645\\u0644\\u0641",
+    "&\\u062a\\u0639\\u062f\\u064a\\u0644",
+    "&\\u0639\\u0631\\u0636",
+    "&\\u0623\\u062f\\u0648\\u0627\\u062a",
+    "&Macro",
+    "\\xd8\\xaf\\xd9\\x84\\xd8\\xaa\\xd8\\xa7",
+    "&Windows",
+    "",
+    "&\\u0645\\u0633\\u0627\\u0639\\u062f\\u0629"
+   ]
+  },
+  "t6_final": {
+   "wb": "DeltaWorkbench",
+   "titles": [
+    "&\\u0645\\u0644\\u0641",
+    "&\\u062a\\u0639\\u062f\\u064a\\u0644",
+    "&\\u0639\\u0631\\u0636",
+    "&\\u0623\\u062f\\u0648\\u0627\\u062a",
+    "&Macro",
+    "\\xd8\\xaf\\xd9\\x84\\xd8\\xaa\\xd8\\xa7",
+    "&Windows",
+    "",
+    "&\\u0645\\u0633\\u0627\\u0639\\u062f\\u0629"
+   ]
+  }
+ },
+ "drafting_has_unit_param": true,
+ "dimlines": [
+  [
+   [
+    400.0,
+    -100.0,
+    0.0
+   ],
+   800.0
+  ],
+  [
+   [
+    900.0,
+    250.0,
+    0.0
+   ],
+   500.0
+  ]
+ ],
+ "images": [
+  "dims_gui_patched.png",
+  "dims_gui_override_in.png",
+  "assembly_gui_patched.png"
+ ],
+ "export": {
+  "mm": {
+   "report": {
+    "dimensions": 2,
+    "values_mm": [
+     800.0,
+     500.0
+    ],
+    "fit_to_page": true
+   },
+   "valid": true,
+   "size": 12900
+  },
+  "in": {
+   "report": {
+    "dimensions": 2,
+    "values_mm": [
+     800.0,
+     500.0
+    ],
+    "fit_to_page": true
+   },
+   "valid": true,
+   "size": 13961
+  }
+ },
+ "unit_override": {
+  "UnitOverride_set": "in"
+ },
+ "switch_docs": true,
+ "solver": {
+  "JointObject_names": [
+   "App",
+   "GroundedJoint",
+   "Gui",
+   "Joint",
+   "JointNoNegativeDistance",
+   "JointParallelForbidden",
+   "JointTypes",
+   "JointUsingAngle",
+   "JointUsingDistance",
+   "JointUsingDistance2",
+   "JointUsingLimitAngle",
+   "JointUsingLimitLength",
+   "JointUsingOffset",
+   "JointUsingPreSolve",
+   "JointUsingReverse",
+   "JointUsingRotation",
+   "MakeJointSelGate",
+   "Part",
+   "Preferences",
+   "QT_TRANSLATE_NOOP",
+   "QtCore",
+   "QtGui",
+   "QtWidgets",
+   "Sequence",
+   "SoSwitchMarker",
+   "TaskAssemblyCreateJoint",
+   "TranslatedJointTypes",
+   "UtilsAssembly",
+   "ViewProviderGroundedJoint",
+   "ViewProviderJoint",
+   "activeTask",
+   "coin",
+   "getContext",
+   "math",
+   "solveIfAllowed",
+   "translate"
+  ],
+  "solve_before": 0,
+  "joint_types": [
+   "Fixed",
+   "Revolute",
+   "Cylindrical",
+   "Slider",
+   "Ball",
+   "Distance",
+   "Parallel",
+   "Perpendicular",
+   "Angle",
+   "RackPinion",
+   "Screw",
+   "Gears",
+   "Belt"
+  ],
+  "props": [
+   "JointType",
+   "Placement1",
+   "Placement2",
+   "Reference1",
+   "Reference2"
+  ],
+  "solve_after_joint": 0,
+  "shaft_base": [
+   275.0,
+   200.0,
+   -130.0
+  ],
+  "joint_valid": true
+ },
+ "menus_final": true,
+ "done": true
+}
