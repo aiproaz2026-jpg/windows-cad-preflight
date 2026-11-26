@@ -1,0 +1,9 @@
+SHA256 MATCH C:\out\DeltaEngineering-Setup-v16.exe
+setup exit 0
+bin
+data
+DeltaDefaults
+doc
+Ext
+lib
+Mod
