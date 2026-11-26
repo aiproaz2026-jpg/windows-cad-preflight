@@ -1,0 +1,37 @@
+FreeCAD 1.1.4, Libs: 1.1.4R20260928 (Git shallow)
+(C) 2001-2026 FreeCAD contributors
+FreeCAD is free and open-source software licensed under the terms of LGPL2+ license.
+
+Recompute......
+						(50 %)							(100 %)									Recompute......
+						(50 %)							(100 %)									Recompute......
+						(50 %)							(100 %)									Recompute......
+						(50 %)							(100 %)									Recompute......
+						(50 %)							(100 %)									Recompute......
+						(50 %)							(100 %)									Recompute......
+						(6 %)							(13 %)							(20 %)							(26 %)							(33 %)							(40 %)							(46 %)							(53 %)							(60 %)							(66 %)							(73 %)							(80 %)							(86 %)							(93 %)	MbD: Assembling system. 
+MbD: Convergence = 0
+Time = 0
+						(100 %)									Importing project files......
+						(16 %)							(33 %)							(50 %)							(66 %)							(83 %)							(100 %)									Postprocessing......
+						(100 %)									Recompute......
+						(6 %)							(13 %)							(20 %)							(26 %)							(33 %)							(40 %)							(46 %)							(53 %)							(60 %)							(66 %)							(73 %)							(80 %)							(86 %)							(93 %)							(100 %)									Recompute......
+						(6 %)							(13 %)							(20 %)							(26 %)							(33 %)							(40 %)							(46 %)							(53 %)							(60 %)							(66 %)							(73 %)							(80 %)							(86 %)							(93 %)	MbD: Assembling system. 
+MbD: Convergence = 0
+Time = 0
+						(100 %)									Recompute......
+						(6 %)							(13 %)							(20 %)							(26 %)							(33 %)							(40 %)							(46 %)							(53 %)							(60 %)							(66 %)							(73 %)							(80 %)							(86 %)							(93 %)	MbD: Assembling system. 
+MbD: Convergence = 0
+Time = 0
+						(100 %)									Recompute......
+						(20 %)							(40 %)							(60 %)							(80 %)							(100 %)									Recompute......
+						(16 %)							(33 %)							(50 %)							(66 %)							(83 %)							(100 %)									Recompute......
+						(14 %)							(28 %)							(42 %)							(57 %)							(71 %)							(85 %)							(100 %)									Recompute......
+						(12 %)							(25 %)							(37 %)							(50 %)							(62 %)							(75 %)							(87 %)							(100 %)									Recompute......
+						(12 %)							(25 %)							(37 %)							(50 %)							(62 %)							(75 %)							(87 %)							(100 %)									Recompute......
+						(12 %)							(25 %)							(37 %)							(50 %)							(62 %)							(75 %)							(87 %)							(100 %)									Recompute......
+						(12 %)							(25 %)							(37 %)							(50 %)							(62 %)							(75 %)							(87 %)							(100 %)									Importing project files......
+						(50 %)							(100 %)									Postprocessing......
+						(100 %)									Recompute......
+						(12 %)							(25 %)							(37 %)							(50 %)							(62 %)							(75 %)							(87 %)							(100 %)									Recompute......
+						(12 %)							(25 %)							(37 %)							(50 %)							(62 %)							(75 %)							(87 %)							(100 %)									

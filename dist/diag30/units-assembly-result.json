@@ -1,0 +1,364 @@
+{
+ "stage": "dimension",
+ "sections": {
+  "units": {
+   "valid": [
+    {
+     "name": "1 in",
+     "got": 25.4,
+     "ref": 25.4,
+     "abs_err": 0.0,
+     "pass": true
+    },
+    {
+     "name": "2.5 cm",
+     "got": 25.0,
+     "ref": 25.0,
+     "abs_err": 0.0,
+     "pass": true
+    },
+    {
+     "name": "1 m",
+     "got": 1000.0,
+     "ref": 1000.0,
+     "abs_err": 0.0,
+     "pass": true
+    },
+    {
+     "name": "1 ft",
+     "got": 304.79999999999995,
+     "ref": 304.8,
+     "abs_err": 5.684341886080802e-14,
+     "pass": true
+    },
+    {
+     "name": "300 mm",
+     "got": 300.0,
+     "ref": 300.0,
+     "abs_err": 0.0,
+     "pass": true
+    },
+    {
+     "name": "12 \\u0628\\u0648\\u0635\\u0629",
+     "got": 304.79999999999995,
+     "ref": 304.8,
+     "abs_err": 5.684341886080802e-14,
+     "pass": true
+    },
+    {
+     "name": "\\u0663\\u0660\\u0660 \\u0645\\u0645",
+     "got": 300.0,
+     "ref": 300.0,
+     "abs_err": 0.0,
+     "pass": true
+    },
+    {
+     "name": "2 \\u0645",
+     "got": 2000.0,
+     "ref": 2000.0,
+     "abs_err": 0.0,
+     "pass": true
+    },
+    {
+     "name": "1.5 \\u0633\\u0645",
+     "got": 15.0,
+     "ref": 15.0,
+     "abs_err": 0.0,
+     "pass": true
+    },
+    {
+     "name": "-5 mm",
+     "got": -5.0,
+     "ref": -5.0,
+     "abs_err": 0.0,
+     "pass": true
+    },
+    {
+     "name": "1e3 mm",
+     "got": 1000.0,
+     "ref": 1000.0,
+     "abs_err": 0.0,
+     "pass": true
+    },
+    {
+     "name": "500",
+     "got": 500.0,
+     "ref": 500.0,
+     "abs_err": 0.0,
+     "pass": true
+    }
+   ],
+   "invalid_inputs": [
+    {
+     "text": "1+2",
+     "rejected": true
+    },
+    {
+     "text": "abc",
+     "rejected": true
+    },
+    {
+     "text": "1 km",
+     "rejected": true
+    },
+    {
+     "text": "",
+     "rejected": true
+    },
+    {
+     "text": "1,5 mm",
+     "rejected": true
+    },
+    {
+     "text": "nan mm",
+     "rejected": true
+    },
+    {
+     "text": "inf",
+     "rejected": true
+    },
+    {
+     "text": "1 mm mm",
+     "rejected": true
+    },
+    {
+     "text": "1e999 mm",
+     "rejected": true
+    }
+   ],
+   "all_valid_pass": true,
+   "all_invalid_rejected": true
+  },
+  "measurement": {
+   "rows": [
+    {
+     "name": "box volume",
+     "got": 1200000.0,
+     "ref": 1200000.0,
+     "abs_err": 0.0,
+     "pass": true
+    },
+    {
+     "name": "box area",
+     "got": 140000.0,
+     "ref": 140000.0,
+     "abs_err": 0.0,
+     "pass": true
+    },
+    {
+     "name": "box bbox xmax",
+     "got": 300.0,
+     "ref": 300.0,
+     "abs_err": 0.0,
+     "pass": true
+    },
+    {
+     "name": "box bbox zmax",
+     "got": 20.0,
+     "ref": 20.0,
+     "abs_err": 0.0,
+     "pass": true
+    },
+    {
+     "name": "cyl volume",
+     "got": 294524.31127404305,
+     "ref": 294524.3112740431,
+     "abs_err": 5.820766091346741e-11,
+     "pass": true
+    },
+    {
+     "name": "cyl area",
+     "got": 27488.93571891069,
+     "ref": 27488.93571891069,
+     "abs_err": 0.0,
+     "pass": true
+    },
+    {
+     "name": "cyl bbox xmin",
+     "got": 475.0,
+     "ref": 475.0,
+     "abs_err": 0.0,
+     "pass": true
+    },
+    {
+     "name": "cyl bbox xmax",
+     "got": 525.0,
+     "ref": 525.0,
+     "abs_err": 0.0,
+     "pass": true
+    },
+    {
+     "name": "box-cyl min distance",
+     "got": 175.0,
+     "ref": 175.0,
+     "abs_err": 0.0,
+     "pass": true
+    },
+    {
+     "name": "box face1-face2 distance",
+     "got": 300.0,
+     "ref": 300.0,
+     "abs_err": 0.0,
+     "pass": true
+    },
+    {
+     "name": "box face1-face2 angle",
+     "got": 0.0,
+     "ref": 0.0,
+     "abs_err": 0.0,
+     "pass": true
+    },
+    {
+     "name": "box face1-face3 angle",
+     "got": 90.0,
+     "ref": 90.0,
+     "abs_err": 0.0,
+     "pass": true
+    }
+   ],
+   "pass_count": 12,
+   "total": 12,
+   "max_abs_err": 5.820766091346741e-11
+  },
+  "assembly": {
+   "snapshot_same_after_reopen": true,
+   "before": {
+    "links": {
+     "BaseInstance": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "ShaftInstance": [
+      150.0,
+      100.0,
+      20.0
+     ]
+    },
+    "vols": {
+     "AssemblyBase": 1200000.0,
+     "AssemblyShaft": 294524.3112740431
+    },
+    "joints": [
+     "Joints",
+     "GroundedBase"
+    ],
+    "count": 15
+   },
+   "after_joints": [
+    "Joints",
+    "GroundedBase"
+   ],
+   "rows": [
+    {
+     "name": "base volume after reopen",
+     "got": 1200000.0,
+     "ref": 1200000.0,
+     "abs_err": 0.0,
+     "pass": true
+    },
+    {
+     "name": "shaft volume after reopen",
+     "got": 294524.3112740431,
+     "ref": 294524.3112740431,
+     "abs_err": 0.0,
+     "pass": true
+    },
+    {
+     "name": "interference at shaft z=20 (touching)",
+     "got": 0.0,
+     "ref": 0.0,
+     "abs_err": 0.0,
+     "pass": true
+    },
+    {
+     "name": "interference at shaft z=10",
+     "got": 19634.954084936213,
+     "ref": 19634.95408493621,
+     "abs_err": 3.637978807091713e-12,
+     "pass": true
+    },
+    {
+     "name": "shaft bbox zmin",
+     "got": 20.0,
+     "ref": 20.0,
+     "abs_err": 0.0,
+     "pass": true
+    },
+    {
+     "name": "shaft bbox zmax",
+     "got": 170.0,
+     "ref": 170.0,
+     "abs_err": 0.0,
+     "pass": true
+    },
+    {
+     "name": "shaft bbox xmin",
+     "got": 125.0,
+     "ref": 125.0,
+     "abs_err": 0.0,
+     "pass": true
+    }
+   ],
+   "all_pass": true,
+   "note": "placement/volume/interference only; joint solver not exercised"
+  },
+  "dimension_rows_so_far": [
+   {
+    "name": "dim 0-1",
+    "got": 800.0,
+    "ref": 800.0,
+    "abs_err": 0.0,
+    "pass": true
+   },
+   {
+    "name": "dim 1-2",
+    "got": 500.0,
+    "ref": 500.0,
+    "abs_err": 0.0,
+    "pass": true
+   },
+   {
+    "name": "dim 0-2",
+    "got": 943.3981132056604,
+    "ref": 943.3981132056604,
+    "abs_err": 0.0,
+    "pass": true
+   },
+   {
+    "name": "after edit dim 0-1",
+    "got": 1100.0,
+    "ref": 1100.0,
+    "abs_err": 0.0,
+    "pass": true
+   },
+   {
+    "name": "after edit dim 1-2",
+    "got": 700.0,
+    "ref": 700.0,
+    "abs_err": 0.0,
+    "pass": true
+   },
+   {
+    "name": "after edit dim 0-2",
+    "got": 1303.8404810405298,
+    "ref": 1303.8404810405298,
+    "abs_err": 0.0,
+    "pass": true
+   },
+   {
+    "name": "dimension objects after reopen",
+    "got": 3,
+    "ref": 3,
+    "pass": true
+   },
+   {
+    "name": "reopen dim 0-1",
+    "got": 1100.0,
+    "ref": 1100.0,
+    "abs_err": 0.0,
+    "pass": true
+   }
+  ]
+ }
+}
