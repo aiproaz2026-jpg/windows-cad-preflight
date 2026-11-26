@@ -1,0 +1,100 @@
+{
+ "stage": "layouts_default",
+ "default_placement": "search",
+ "images": [
+  "z_layout_fixed.png"
+ ],
+ "layouts_default": {
+  "L": {
+   "crossings": 0,
+   "values": [
+    800.0,
+    500.0
+   ],
+   "placements": [
+    "default",
+    "default"
+   ],
+   "pdf_mm": 12900
+  },
+  "L_rev": {
+   "crossings": 0,
+   "values": [
+    500.0,
+    800.0
+   ],
+   "placements": [
+    "default",
+    "default"
+   ]
+  },
+  "L_rot45": {
+   "crossings": 0,
+   "values": [
+    800.0,
+    500.0
+   ],
+   "placements": [
+    "default",
+    "default"
+   ],
+   "pdf_mm": 13017
+  },
+  "L_rot137": {
+   "crossings": 0,
+   "values": [
+    800.0,
+    500.0
+   ],
+   "placements": [
+    "default",
+    "default"
+   ]
+  },
+  "U": {
+   "crossings": 0,
+   "values": [
+    400.0,
+    300.0,
+    400.0
+   ],
+   "placements": [
+    "default",
+    "default",
+    "default"
+   ]
+  },
+  "Z": {
+   "crossings": 1,
+   "values": [
+    600.0,
+    670.8204,
+    600.0
+   ],
+   "placements": [
+    "default",
+    "default",
+    "default"
+   ],
+   "pdf_mm": 13232
+  },
+  "stair": {
+   "crossings": 0,
+   "values": [
+    400.0,
+    200.0,
+    200.0,
+    200.0,
+    200.0
+   ],
+   "placements": [
+    "default",
+    "default",
+    "default",
+    "default",
+    "default"
+   ]
+  }
+ },
+ "done": true
+}
