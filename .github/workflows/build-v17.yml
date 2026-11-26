@@ -35,7 +35,7 @@ jobs:
           python patches/v16/patch_export2.py $M/DeltaEngineering/export.py
           python patches/v16/patch_export3.py $M/DeltaEngineering/export.py
           cp patches/v16/identifiers.py $M/DeltaEngineering/identifiers.py
-          printf '\ntry:\n    from DeltaEngineering.identifiers import install as _delta_ids\n    from PySide import QtCore as _delta_qc\n    _delta_qc.QTimer.singleShot(2000, _delta_ids)\nexcept Exception:\n    pass\n' >> $M/InitGui.py
+          cat patches/v50/initgui_append.txt >> C:/delta/DeltaEngineering/package/Mod/DeltaEngineering/InitGui.py
           tail -8 $M/InitGui.py
       - name: Apply v16 patches (paired pole rows, per-terminal leads, three-pole breaker, Tasks panel toolbar button)
         shell: bash

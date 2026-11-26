@@ -1,0 +1,7 @@
+
+try:
+    from DeltaEngineering import library_commands as _lc
+    _lc.register()
+except Exception as _e:
+    import FreeCAD as _A
+    _A.Console.PrintError("library commands failed: " + str(_e) + "\n")
