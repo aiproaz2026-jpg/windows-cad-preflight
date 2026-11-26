@@ -1,0 +1,60 @@
+name: GUI dimension export and assembly view run 31 on v16 installer
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  gui:
+    runs-on: windows-2022
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download installer, verify SHA256, install, add Mesa (CI only)
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          New-Item -ItemType Directory C:/out,C:/seed -Force | Out-Null
+          foreach ($t in "standalone-v16-r1") { gh release download $t -p "DeltaEngineering-Setup-v16*.exe" -D C:/out; if ($LASTEXITCODE -eq 0) { break } }
+          $want = ((Get-Content dist/v16/DeltaEngineering-Setup-v16.exe.sha256 -Raw) -split '\s+')[0].ToLower()
+          $ok = $null
+          foreach ($f in Get-ChildItem C:/out -Filter "DeltaEngineering-Setup-v16*.exe") { if ((Get-FileHash $f.FullName -Algorithm SHA256).Hash.ToLower() -eq $want) { $ok = $f.FullName } }
+          if (-not $ok) { throw 'no downloaded asset matches the dist/v16 SHA256' }
+          "SHA256 MATCH $ok" | Tee-Object C:/seed/log.txt
+          $p = Start-Process $ok -ArgumentList '/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART' -Wait -PassThru
+          "setup exit $($p.ExitCode)" | Tee-Object -Append C:/seed/log.txt
+          $app = "$env:LOCALAPPDATA\Programs\DeltaEngineering"; $bin = "$app\bin"
+          Get-ChildItem $app -Directory | Select-Object -ExpandProperty Name | Tee-Object -Append C:/seed/log.txt
+          $rel = Invoke-RestMethod https://api.github.com/repos/pal1000/mesa-dist-win/releases/latest
+          $a = $rel.assets | Where-Object { $_.name -match 'release-msvc\.7z$' } | Select-Object -First 1
+          Invoke-WebRequest $a.browser_download_url -OutFile C:/mesa.7z
+          7z x C:/mesa.7z -oC:/mesa -y | Out-Null
+          Copy-Item C:/mesa/x64/opengl32.dll $bin -Force
+          foreach ($n in 'libgallium_wgl.dll','libglapi.dll') { if (Test-Path "C:/mesa/x64/$n") { Copy-Item "C:/mesa/x64/$n" $bin -Force } }
+          
+      - name: GUI dimension export and assembly
+        shell: pwsh
+        run: |
+          Add-Type -AssemblyName System.Windows.Forms,System.Drawing
+          $app = "$env:LOCALAPPDATA\Programs\DeltaEngineering"; $bin = "$app\bin"
+          $mt = [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String('aW1wb3J0IG9zLGpzb24sdHJhY2ViYWNrCmltcG9ydCBGcmVlQ0FEIGFzIEFwcCwgRnJlZUNBREd1aSBhcyBHdWkKZnJvbSBQeVNpZGUgaW1wb3J0IFF0Q29yZSwgUXRXaWRnZXRzCk9VVD0nQEBPVVRAQCcKb3MubWFrZWRpcnMoT1VULGV4aXN0X29rPVRydWUpClI9eydzdGFnZSc6J3N0YXJ0J30KZGVmIHcoKToKICAgIHdpdGggb3BlbihPVVQrJy9ndWktcmVzdWx0Lmpzb24nLCd3JyxlbmNvZGluZz0ndXRmLTgnKSBhcyBmOiBmLndyaXRlKGpzb24uZHVtcHMoUixlbnN1cmVfYXNjaWk9VHJ1ZSxpbmRlbnQ9MSkpCmRlZiBwdW1wKG49MzApOgogICAgZm9yIF8gaW4gcmFuZ2Uobik6CiAgICAgICAgUXRXaWRnZXRzLlFBcHBsaWNhdGlvbi5wcm9jZXNzRXZlbnRzKCk7IFF0Q29yZS5RVGhyZWFkLm1zbGVlcCgyMCkKZGVmIGdyYWIobmFtZSk6CiAgICBwdW1wKDQwKTsgR3VpLmdldE1haW5XaW5kb3coKS5ncmFiKCkuc2F2ZShPVVQrJy8nK25hbWUrJy5wbmcnKTsgUi5zZXRkZWZhdWx0KCdpbWFnZXMnLFtdKS5hcHBlbmQobmFtZSsnLnBuZycpOyB3KCkKZGVmIHJ1bigpOgogICAgdHJ5OgogICAgICAgIFJbJ3N0YWdlJ109J3dvcmtiZW5jaCc7IHcoKQogICAgICAgIEd1aS5hY3RpdmF0ZVdvcmtiZW5jaCgnRGVsdGFXb3JrYmVuY2gnKTsgcHVtcCg2MCkKICAgICAgICBSWyd3b3JrYmVuY2gnXT1HdWkuYWN0aXZlV29ya2JlbmNoKCkubmFtZSgpOyB3KCkKICAgICAgICBmcm9tIERlbHRhRW5naW5lZXJpbmcuZHJhZnRpbmcgaW1wb3J0IG1ha2VfcGF0aCxsaW5rZWRfZGltZW5zaW9uLHVwZGF0ZV9wYXRoLGV4cG9ydF9kaW1lbnNpb25lZAogICAgICAgIFY9QXBwLlZlY3RvcgogICAgICAgIGQ9QXBwLm5ld0RvY3VtZW50KCdEaW1Eb2MnKTsgQXBwLnNldEFjdGl2ZURvY3VtZW50KGQuTmFtZSk7IHB1bXAoMjApCiAgICAgICAgcGF0aD1tYWtlX3BhdGgoZCxbVigwLDAsMCksVig4MDAsMCwwKSxWKDgwMCw1MDAsMCldKQogICAgICAgIGQxPWxpbmtlZF9kaW1lbnNpb24oZCxwYXRoLDAsMSwxMDApOyBkMj1saW5rZWRfZGltZW5zaW9uKGQscGF0aCwxLDIsMTAwKQogICAgICAgIGZvciB4IGluIChkMSxkMik6CiAgICAgICAgICAgIHRyeTogeC5WaWV3T2JqZWN0LkZvbnRTaXplPTMwCiAgICAgICAgICAgIGV4Y2VwdCBFeGNlcHRpb24gYXMgZTogUlsnZm9udHNpemVfZXJyJ109c3RyKGUpWzoxMDBdCiAgICAgICAgZC5yZWNvbXB1dGUoKTsgdj1HdWkuQWN0aXZlRG9jdW1lbnQuQWN0aXZlVmlldzsgdi52aWV3VG9wKCk7IHYuZml0QWxsKCk7IHB1bXAoNjApCiAgICAgICAgUlsnZGltc19tbSddPVtkMS5EaXN0YW5jZS5WYWx1ZSxkMi5EaXN0YW5jZS5WYWx1ZV07IHcoKQogICAgICAgIGdyYWIoJ2RpbXNfZ3VpJykKICAgICAgICBSWydzdGFnZSddPSdleHBvcnQnOyB3KCkKICAgICAgICBwZGY9T1VUKycvZGltZW5zaW9uZWQucGRmJwogICAgICAgIHJlcD1leHBvcnRfZGltZW5zaW9uZWQoZCxwYXRoLHBkZikKICAgICAgICBSWydleHBvcnRfcmVwb3J0J109cmVwCiAgICAgICAgUlsncGRmX3ZhbGlkJ109b3MucGF0aC5leGlzdHMocGRmKSBhbmQgb3BlbihwZGYsJ3JiJykucmVhZCg1KT09YiclUERGLScKICAgICAgICBSWydwZGZfc2l6ZSddPW9zLnBhdGguZ2V0c2l6ZShwZGYpIGlmIG9zLnBhdGguZXhpc3RzKHBkZikgZWxzZSAwOyB3KCkKICAgICAgICBSWydzdGFnZSddPSdhc3NlbWJseSc7IHcoKQogICAgICAgIGZyb20gRGVsdGFFbmdpbmVlcmluZy5tZWNoYW5pY2FsIGltcG9ydCBtYWtlX2Fzc2VtYmx5X2V4YW1wbGUKICAgICAgICBkMl89QXBwLm5ld0RvY3VtZW50KCdBc21Eb2MnKTsgQXBwLnNldEFjdGl2ZURvY3VtZW50KGQyXy5OYW1lKTsgcHVtcCgzMCkKICAgICAgICBhc209bWFrZV9hc3NlbWJseV9leGFtcGxlKGQyXyk7IHB1bXAoNDApCiAgICAgICAgdj1HdWkuQWN0aXZlRG9jdW1lbnQuQWN0aXZlVmlldzsgdi52aWV3SXNvbWV0cmljKCk7IHYuZml0QWxsKCk7IHB1bXAoNjApCiAgICAgICAgUlsnYXNtX29iamVjdHMnXT1bby5OYW1lIGZvciBvIGluIGQyXy5PYmplY3RzXVs6MTJdOyB3KCkKICAgICAgICBncmFiKCdhc3NlbWJseV9ndWknKQogICAgZXhjZXB0IEV4Y2VwdGlvbjoKICAgICAgICBSWydlcnJvciddPXRyYWNlYmFjay5mb3JtYXRfZXhjKClbLTE1MDA6XQogICAgUlsnZG9uZSddPVRydWU7IHcoKQpRdENvcmUuUVRpbWVyLnNpbmdsZVNob3QoOTAwMCxydW4pCg=='))
+          $out = "C:/seed/g31"; New-Item -ItemType Directory $out -Force | Out-Null
+          $mm = $mt.Replace('@@OUT@@', $out)
+          [IO.File]::WriteAllText("C:/seed/gui31.FCMacro", $mm, (New-Object Text.UTF8Encoding $false))
+          $env:GALLIUM_DRIVER = 'llvmpipe'; $env:MESA_GL_VERSION_OVERRIDE = '4.5'
+          $pr = Start-Process "$bin\FreeCAD.exe" -ArgumentList "C:\seed\gui31.FCMacro" -WorkingDirectory $app -PassThru -RedirectStandardError "C:/seed/err31.txt" -RedirectStandardOutput "C:/seed/stdout31.txt"
+          $t = 0; while ($t -lt 300) { Start-Sleep 3; $t += 3; if ((Test-Path "$out/gui-result.json") -and (Select-String -Path "$out/gui-result.json" -Pattern '"done": true' -Quiet)) { break }; if ($pr.HasExited) { break } }
+          "gui31 exited=$($pr.HasExited) exitcode=$(if ($pr.HasExited) { $pr.ExitCode }) waited=$t" | Tee-Object -Append C:/seed/log.txt
+          Start-Sleep 3
+          $b=[System.Windows.Forms.SystemInformation]::VirtualScreen; $bmp=New-Object System.Drawing.Bitmap $b.Width,$b.Height; $g=[System.Drawing.Graphics]::FromImage($bmp); $g.CopyFromScreen($b.Location,[System.Drawing.Point]::Empty,$b.Size); $bmp.Save("C:/seed/screen31.png")
+          Stop-Process -Id $pr.Id -Force -ErrorAction SilentlyContinue
+          git config user.name ci; git config user.email ci@users.noreply.github.com
+          New-Item -ItemType Directory -Force dist/gui31 | Out-Null
+          Copy-Item C:/seed/log.txt,C:/seed/err31.txt,C:/seed/stdout31.txt dist/gui31/ -ErrorAction SilentlyContinue
+          foreach ($f in Get-ChildItem $out -File -ErrorAction SilentlyContinue) {
+            if ($f.Extension -in '.png','.pdf') { [IO.File]::WriteAllText("$PWD/dist/gui31/$($f.Name).b64", [Convert]::ToBase64String([IO.File]::ReadAllBytes($f.FullName))) } else { Copy-Item $f.FullName dist/gui31/ }
+          }
+          if (Test-Path C:/seed/screen31.png) { [IO.File]::WriteAllText("$PWD/dist/gui31/screen31.png.b64", [Convert]::ToBase64String([IO.File]::ReadAllBytes("C:/seed/screen31.png"))) }
+          git add dist; git commit -m "Add GUI dimension export evidence" 2>&1 | Out-Null
+          foreach ($i in 1..4) { git pull --rebase 2>&1 | Out-Null; git push 2>&1 | Out-String | Write-Host; if ($LASTEXITCODE -eq 0) { break }; Start-Sleep 5 }
+          
