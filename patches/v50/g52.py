@@ -71,6 +71,7 @@ def run():
             import traceback; R['lib_cmd_error']=traceback.format_exc()[-600:]
         try:
             import re
+            from PySide import QtGui
             lat=re.compile(r'[A-Za-z]{2,}')
             found={}
             def add(txt,kind,cls,wb):
@@ -79,7 +80,7 @@ def run():
             def scan(wb):
                 mw=Gui.getMainWindow()
                 add(mw.windowTitle(),'title','main',wb)
-                for a in mw.findChildren(QtWidgets.QAction):
+                for a in mw.findChildren(QtGui.QAction):
                     add(a.text().replace('&',''),'action',a.objectName()[:30],wb); add(a.toolTip(),'tooltip',a.objectName()[:30],wb); add(a.statusTip(),'status',a.objectName()[:30],wb)
                 for m in mw.findChildren(QtWidgets.QMenu): add(m.title().replace('&',''),'menu','',wb)
                 for t in mw.findChildren(QtWidgets.QToolBar): add(t.windowTitle(),'toolbar','',wb)
