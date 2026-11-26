@@ -1,0 +1,30 @@
+2026-11-26 14:28:43.783   -- File entry --
+2026-11-26 14:28:43.783   Dest filename: C:\DeltaEditTest\Mod\Web\__pycache__\Init.cpython-311.pyc
+2026-11-26 14:28:43.783   Time stamp of our file: 2026-09-28 15:27:50.000
+2026-11-26 14:28:43.783   Installing the file.
+2026-11-26 14:28:43.783   Creating directory: C:\DeltaEditTest\Mod\Web\__pycache__
+2026-11-26 14:28:43.783   Successfully installed the file.
+2026-11-26 14:28:43.783   -- File entry --
+2026-11-26 14:28:43.783   Dest filename: C:\Users\runneradmin\AppData\Roaming\FreeCAD\v1-1\user.cfg
+2026-11-26 14:28:43.798   Time stamp of our file: 2026-11-26 12:57:20.000
+2026-11-26 14:28:43.798   Installing the file.
+2026-11-26 14:28:43.798   Creating directory: C:\Users\runneradmin\AppData\Roaming\FreeCAD
+2026-11-26 14:28:43.798   Creating directory: C:\Users\runneradmin\AppData\Roaming\FreeCAD\v1-1
+2026-11-26 14:28:43.798   Successfully installed the file.
+2026-11-26 14:28:43.798   -- Icon entry --
+2026-11-26 14:28:43.798   Dest filename: C:\Users\runneradmin\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Delta Engineering.lnk
+2026-11-26 14:28:43.798   Creating the icon.
+2026-11-26 14:28:44.362   Successfully created the icon.
+2026-11-26 14:28:44.377   -- Icon entry --
+2026-11-26 14:28:44.377   Dest filename: C:\Users\runneradmin\Desktop\Delta Engineering.lnk
+2026-11-26 14:28:44.377   Creating the icon.
+2026-11-26 14:28:44.377   Successfully created the icon.
+2026-11-26 14:28:44.377   Saving uninstall information.
+2026-11-26 14:28:44.377   Creating new uninstall key: HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Uninstall\Delta Engineering_is1
+2026-11-26 14:28:44.377   Writing uninstall key values.
+2026-11-26 14:28:44.377   Detected previous administrative 64-bit install? No
+2026-11-26 14:28:44.377   Detected previous administrative 32-bit install? No
+2026-11-26 14:28:45.002   Installation process succeeded.
+2026-11-26 14:28:45.002   Need to restart Windows? No
+2026-11-26 14:28:45.018   Deinitializing Setup.
+2026-11-26 14:28:45.018   Log closed.

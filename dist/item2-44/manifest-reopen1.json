@@ -1,0 +1,1108 @@
+{
+ "PipeRoute": {
+  "Label": "PipeRoute",
+  "TypeId": "Part::FeaturePython",
+  "props": {
+   "CenterlineLength": 1000.0,
+   "Label": "PipeRoute",
+   "Label2": "",
+   "OuterDiameter": 60.3,
+   "Placement": {
+    "Base": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "Rotation": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "Route": [
+    [
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     1000.0,
+     0.0,
+     0.0
+    ]
+   ],
+   "ShapeMaterial": {
+    "@obj": "Default"
+   },
+   "Validation": "Valid route; fittings not generated",
+   "WallThickness": 3.91,
+   "_ElementMapVersion": "15.70200.5"
+  }
+ },
+ "GenericFitting": {
+  "Label": "مضخة طرد مركزي عامة (غلاف تقريبي) 2",
+  "TypeId": "Part::FeaturePython",
+  "props": {
+   "FittingKind": "pump",
+   "Label": "مضخة طرد مركزي عامة (غلاف تقريبي) 2",
+   "Label2": "",
+   "Length": 241.2,
+   "OuterDiameter": 60.3,
+   "OuterDiameter2": 60.3,
+   "Placement": {
+    "Base": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "Rotation": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "PortCenters": [
+    [
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     180.89999999999998,
+     0.0,
+     145.52499999999998
+    ]
+   ],
+   "PortDirections": [
+    [
+     -1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.0,
+     1.0
+    ]
+   ],
+   "PortOuterDiameters": [
+    60.3,
+    60.3
+   ],
+   "Scope": "هندسة عامة توضيحية، ليست كتالوج مصنّع ولا معيار شفات. تطابق المقاس لا يعني توافق الضغط أو المعيار. | Generic illustrative geometry. Not a manufacturer catalog or flange standard. Matching port diameter is geometric continuity only, not pressure or standards compatibility.",
+   "ShapeMaterial": {
+    "@obj": "Default"
+   },
+   "SizePort1": "NPS 2",
+   "SizePort2": "NPS 2",
+   "Validation": "Valid generic geometry. Generic illustrative geometry. Not a manufacturer catalog or flange standard. Matching port diameter is geometric continuity only, not pressure or standards compatibility.",
+   "WallThickness": 3.91,
+   "WallThickness2": 3.91,
+   "_ElementMapVersion": "15.70200.5"
+  }
+ },
+ "GenericFitting001": {
+  "Label": "محبس بوابة عام 2",
+  "TypeId": "Part::FeaturePython",
+  "props": {
+   "FittingKind": "gate_valve",
+   "Label": "محبس بوابة عام 2",
+   "Label2": "",
+   "Length": 150.75,
+   "OuterDiameter": 60.3,
+   "OuterDiameter2": 60.3,
+   "Placement": {
+    "Base": [
+     0.0,
+     700.0,
+     0.0
+    ],
+    "Rotation": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "PortCenters": [
+    [
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     150.75,
+     0.0,
+     0.0
+    ]
+   ],
+   "PortDirections": [
+    [
+     -1.0,
+     0.0,
+     0.0
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ]
+   ],
+   "PortOuterDiameters": [
+    60.3,
+    60.3
+   ],
+   "Scope": "هندسة عامة توضيحية، ليست كتالوج مصنّع ولا معيار شفات. تطابق المقاس لا يعني توافق الضغط أو المعيار. | Generic illustrative geometry. Not a manufacturer catalog or flange standard. Matching port diameter is geometric continuity only, not pressure or standards compatibility.",
+   "ShapeMaterial": {
+    "@obj": "Default"
+   },
+   "SizePort1": "NPS 2",
+   "SizePort2": "NPS 2",
+   "Validation": "Valid generic geometry. Generic illustrative geometry. Not a manufacturer catalog or flange standard. Matching port diameter is geometric continuity only, not pressure or standards compatibility.",
+   "WallThickness": 3.91,
+   "WallThickness2": 3.91,
+   "_ElementMapVersion": "15.70200.5"
+  }
+ },
+ "GenericFitting002": {
+  "Label": "كوع 90 درجة عام 2",
+  "TypeId": "Part::FeaturePython",
+  "props": {
+   "FittingKind": "elbow90",
+   "Label": "كوع 90 درجة عام 2",
+   "Label2": "",
+   "Length": 90.44999999999999,
+   "OuterDiameter": 60.3,
+   "OuterDiameter2": 60.3,
+   "Placement": {
+    "Base": [
+     900.0,
+     0.0,
+     0.0
+    ],
+    "Rotation": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "PortCenters": [
+    [
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     90.44999999999999,
+     90.44999999999999,
+     0.0
+    ]
+   ],
+   "PortDirections": [
+    [
+     -1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     1.0,
+     0.0
+    ]
+   ],
+   "PortOuterDiameters": [
+    60.3,
+    60.3
+   ],
+   "Scope": "هندسة عامة توضيحية، ليست كتالوج مصنّع ولا معيار شفات. تطابق المقاس لا يعني توافق الضغط أو المعيار. | Generic illustrative geometry. Not a manufacturer catalog or flange standard. Matching port diameter is geometric continuity only, not pressure or standards compatibility.",
+   "ShapeMaterial": {
+    "@obj": "Default"
+   },
+   "SizePort1": "NPS 2",
+   "SizePort2": "NPS 2",
+   "Validation": "Valid generic geometry. Generic illustrative geometry. Not a manufacturer catalog or flange standard. Matching port diameter is geometric continuity only, not pressure or standards compatibility.",
+   "WallThickness": 3.91,
+   "WallThickness2": 3.91,
+   "_ElementMapVersion": "15.70200.5"
+  }
+ },
+ "GenericFitting003": {
+  "Label": "شفة عامة 2",
+  "TypeId": "Part::FeaturePython",
+  "props": {
+   "FittingKind": "flange",
+   "Label": "شفة عامة 2",
+   "Label2": "",
+   "Length": 12.06,
+   "OuterDiameter": 60.3,
+   "OuterDiameter2": 60.3,
+   "Placement": {
+    "Base": [
+     -200.0,
+     0.0,
+     0.0
+    ],
+    "Rotation": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "PortCenters": [
+    [
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     12.06,
+     0.0,
+     0.0
+    ]
+   ],
+   "PortDirections": [
+    [
+     -1.0,
+     0.0,
+     0.0
+    ],
+    [
+     1.0,
+     0.0,
+     0.0
+    ]
+   ],
+   "PortOuterDiameters": [
+    60.3,
+    60.3
+   ],
+   "Scope": "هندسة عامة توضيحية، ليست كتالوج مصنّع ولا معيار شفات. تطابق المقاس لا يعني توافق الضغط أو المعيار. | Generic illustrative geometry. Not a manufacturer catalog or flange standard. Matching port diameter is geometric continuity only, not pressure or standards compatibility.",
+   "ShapeMaterial": {
+    "@obj": "Default"
+   },
+   "SizePort1": "NPS 2",
+   "SizePort2": "NPS 2",
+   "Validation": "Valid generic geometry. Generic illustrative geometry. Not a manufacturer catalog or flange standard. Matching port diameter is geometric continuity only, not pressure or standards compatibility.",
+   "WallThickness": 3.91,
+   "WallThickness2": 3.91,
+   "_ElementMapVersion": "15.70200.5"
+  }
+ },
+ "IllustrativeDevice": {
+  "Label": "QF1",
+  "TypeId": "PartDesign::FeaturePython",
+  "props": {
+   "BaseFeature": null,
+   "DeviceType": "Breaker concept",
+   "Label": "QF1",
+   "Label2": "",
+   "PairedRows": true,
+   "Placement": {
+    "Base": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "Rotation": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "Position": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "PreviewShape": "<Shape object at 00000185E00FFFC0>",
+   "ShapeMaterial": {
+    "@obj": "Default"
+   },
+   "Suppressed": false,
+   "SuppressedShape": "<Shape object at 00000185E00FFC50>",
+   "SymbolScope": "Original illustrative shape only. Not IEC/ANSI, manufacturer, wiring, rating or circuit validation.",
+   "SymbolTemplate": "Breaker concept",
+   "Tag": "QF1",
+   "TerminalSide": "Right",
+   "TerminalSides": [
+    "1=Left",
+    "2=Right",
+    "3=Left",
+    "4=Right",
+    "5=Left",
+    "6=Right"
+   ],
+   "Terminals": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "_Body": null,
+   "_ElementMapVersion": "15.70200.5"
+  }
+ },
+ "IllustrativeDevice001": {
+  "Label": "KM1",
+  "TypeId": "PartDesign::FeaturePython",
+  "props": {
+   "BaseFeature": null,
+   "DeviceType": "Contactor concept",
+   "Label": "KM1",
+   "Label2": "",
+   "PairedRows": true,
+   "Placement": {
+    "Base": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "Rotation": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "Position": [
+    150.0,
+    0.0,
+    0.0
+   ],
+   "PreviewShape": "<Shape object at 00000185E0100280>",
+   "ShapeMaterial": {
+    "@obj": "Default"
+   },
+   "Suppressed": false,
+   "SuppressedShape": "<Shape object at 00000185E00FF6D0>",
+   "SymbolScope": "Original illustrative shape only. Not IEC/ANSI, manufacturer, wiring, rating or circuit validation.",
+   "SymbolTemplate": "Contactor concept",
+   "Tag": "KM1",
+   "TerminalSide": "Right",
+   "TerminalSides": [
+    "1=Left",
+    "2=Right",
+    "3=Left",
+    "4=Right",
+    "5=Left",
+    "6=Right",
+    "A1=Left",
+    "A2=Left"
+   ],
+   "Terminals": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "A1",
+    "A2"
+   ],
+   "_Body": null,
+   "_ElementMapVersion": "15.70200.5"
+  }
+ },
+ "IllustrativeDevice002": {
+  "Label": "FR1",
+  "TypeId": "PartDesign::FeaturePython",
+  "props": {
+   "BaseFeature": null,
+   "DeviceType": "Overload concept",
+   "Label": "FR1",
+   "Label2": "",
+   "PairedRows": true,
+   "Placement": {
+    "Base": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "Rotation": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "Position": [
+    300.0,
+    0.0,
+    0.0
+   ],
+   "PreviewShape": "<Shape object at 00000185E00FFBA0>",
+   "ShapeMaterial": {
+    "@obj": "Default"
+   },
+   "Suppressed": false,
+   "SuppressedShape": "<Shape object at 00000185E00FF150>",
+   "SymbolScope": "Original illustrative shape only. Not IEC/ANSI, manufacturer, wiring, rating or circuit validation.",
+   "SymbolTemplate": "Overload concept",
+   "Tag": "FR1",
+   "TerminalSide": "Right",
+   "TerminalSides": [
+    "1=Left",
+    "2=Right",
+    "3=Left",
+    "4=Right",
+    "5=Left",
+    "6=Right"
+   ],
+   "Terminals": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "_Body": null,
+   "_ElementMapVersion": "15.70200.5"
+  }
+ },
+ "IllustrativeDevice003": {
+  "Label": "SB2",
+  "TypeId": "PartDesign::FeaturePython",
+  "props": {
+   "BaseFeature": null,
+   "DeviceType": "Pushbutton concept",
+   "Label": "SB2",
+   "Label2": "",
+   "Placement": {
+    "Base": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "Rotation": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "Position": [
+    450.0,
+    0.0,
+    0.0
+   ],
+   "PreviewShape": "<Shape object at 00000185E00FF6D0>",
+   "ShapeMaterial": {
+    "@obj": "Default"
+   },
+   "Suppressed": false,
+   "SuppressedShape": "<Shape object at 00000185E00FF570>",
+   "SymbolScope": "Original illustrative shape only. Not IEC/ANSI, manufacturer, wiring, rating or circuit validation.",
+   "SymbolTemplate": "Pushbutton concept",
+   "Tag": "SB2",
+   "TerminalSide": "Right",
+   "Terminals": [
+    "1",
+    "2"
+   ],
+   "_Body": null,
+   "_ElementMapVersion": "15.70200.5"
+  }
+ },
+ "TerminalWire": {
+  "Label": "TerminalWire",
+  "TypeId": "PartDesign::FeaturePython",
+  "props": {
+   "BaseFeature": null,
+   "Label": "TerminalWire",
+   "Label2": "",
+   "Placement": {
+    "Base": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "Rotation": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "PreviewShape": "<Shape object at 00000185E00FEFF0>",
+   "SchematicOffset": 0.0,
+   "ShapeMaterial": {
+    "@obj": "Default"
+   },
+   "SourceDevice": {
+    "@obj": "IllustrativeDevice"
+   },
+   "SourceTerminal": "1",
+   "Suppressed": false,
+   "SuppressedShape": "<Shape object at 00000185E01001D0>",
+   "TargetDevice": {
+    "@obj": "IllustrativeDevice001"
+   },
+   "TargetTerminal": "1",
+   "Validation": "Logical connection only",
+   "WireId": "W1",
+   "_Body": null,
+   "_ElementMapVersion": "15.70200.5"
+  }
+ },
+ "TerminalWire001": {
+  "Label": "TerminalWire001",
+  "TypeId": "PartDesign::FeaturePython",
+  "props": {
+   "BaseFeature": null,
+   "Label": "TerminalWire001",
+   "Label2": "",
+   "Placement": {
+    "Base": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "Rotation": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "PreviewShape": "<Shape object at 00000185E00FFC50>",
+   "SchematicOffset": 0.0,
+   "ShapeMaterial": {
+    "@obj": "Default"
+   },
+   "SourceDevice": {
+    "@obj": "IllustrativeDevice"
+   },
+   "SourceTerminal": "2",
+   "Suppressed": false,
+   "SuppressedShape": "<Shape object at 00000185E00FF8E0>",
+   "TargetDevice": {
+    "@obj": "IllustrativeDevice001"
+   },
+   "TargetTerminal": "2",
+   "Validation": "Logical connection only",
+   "WireId": "W2",
+   "_Body": null,
+   "_ElementMapVersion": "15.70200.5"
+  }
+ },
+ "TerminalWire002": {
+  "Label": "TerminalWire002",
+  "TypeId": "PartDesign::FeaturePython",
+  "props": {
+   "BaseFeature": null,
+   "Label": "TerminalWire002",
+   "Label2": "",
+   "Placement": {
+    "Base": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "Rotation": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "PreviewShape": "<Shape object at 00000185E00FEDE0>",
+   "SchematicOffset": 0.0,
+   "ShapeMaterial": {
+    "@obj": "Default"
+   },
+   "SourceDevice": {
+    "@obj": "IllustrativeDevice"
+   },
+   "SourceTerminal": "3",
+   "Suppressed": false,
+   "SuppressedShape": "<Shape object at 00000185E00FF200>",
+   "TargetDevice": {
+    "@obj": "IllustrativeDevice001"
+   },
+   "TargetTerminal": "3",
+   "Validation": "Logical connection only",
+   "WireId": "W3",
+   "_Body": null,
+   "_ElementMapVersion": "15.70200.5"
+  }
+ },
+ "TerminalWire003": {
+  "Label": "TerminalWire003",
+  "TypeId": "PartDesign::FeaturePython",
+  "props": {
+   "BaseFeature": null,
+   "Label": "TerminalWire003",
+   "Label2": "",
+   "Placement": {
+    "Base": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "Rotation": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "PreviewShape": "<Shape object at 00000185E00FE860>",
+   "SchematicOffset": 0.0,
+   "ShapeMaterial": {
+    "@obj": "Default"
+   },
+   "SourceDevice": {
+    "@obj": "IllustrativeDevice"
+   },
+   "SourceTerminal": "4",
+   "Suppressed": false,
+   "SuppressedShape": "<Shape object at 00000185E00FFFC0>",
+   "TargetDevice": {
+    "@obj": "IllustrativeDevice001"
+   },
+   "TargetTerminal": "4",
+   "Validation": "Logical connection only",
+   "WireId": "W4",
+   "_Body": null,
+   "_ElementMapVersion": "15.70200.5"
+  }
+ },
+ "TerminalWire004": {
+  "Label": "TerminalWire004",
+  "TypeId": "PartDesign::FeaturePython",
+  "props": {
+   "BaseFeature": null,
+   "Label": "TerminalWire004",
+   "Label2": "",
+   "Placement": {
+    "Base": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "Rotation": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "PreviewShape": "<Shape object at 00000185E00FE7B0>",
+   "SchematicOffset": 0.0,
+   "ShapeMaterial": {
+    "@obj": "Default"
+   },
+   "SourceDevice": {
+    "@obj": "IllustrativeDevice"
+   },
+   "SourceTerminal": "5",
+   "Suppressed": false,
+   "SuppressedShape": "<Shape object at 00000185E01001D0>",
+   "TargetDevice": {
+    "@obj": "IllustrativeDevice001"
+   },
+   "TargetTerminal": "5",
+   "Validation": "Logical connection only",
+   "WireId": "W5",
+   "_Body": null,
+   "_ElementMapVersion": "15.70200.5"
+  }
+ },
+ "TerminalWire005": {
+  "Label": "TerminalWire005",
+  "TypeId": "PartDesign::FeaturePython",
+  "props": {
+   "BaseFeature": null,
+   "Label": "TerminalWire005",
+   "Label2": "",
+   "Placement": {
+    "Base": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "Rotation": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "PreviewShape": "<Shape object at 00000185E00FF2B0>",
+   "SchematicOffset": 0.0,
+   "ShapeMaterial": {
+    "@obj": "Default"
+   },
+   "SourceDevice": {
+    "@obj": "IllustrativeDevice"
+   },
+   "SourceTerminal": "6",
+   "Suppressed": false,
+   "SuppressedShape": "<Shape object at 00000185E00FE7B0>",
+   "TargetDevice": {
+    "@obj": "IllustrativeDevice001"
+   },
+   "TargetTerminal": "6",
+   "Validation": "Logical connection only",
+   "WireId": "W6",
+   "_Body": null,
+   "_ElementMapVersion": "15.70200.5"
+  }
+ },
+ "TerminalWire006": {
+  "Label": "TerminalWire006",
+  "TypeId": "PartDesign::FeaturePython",
+  "props": {
+   "BaseFeature": null,
+   "Label": "TerminalWire006",
+   "Label2": "",
+   "Placement": {
+    "Base": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "Rotation": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "PreviewShape": "<Shape object at 00000185E00FEFF0>",
+   "SchematicOffset": 0.0,
+   "ShapeMaterial": {
+    "@obj": "Default"
+   },
+   "SourceDevice": {
+    "@obj": "IllustrativeDevice001"
+   },
+   "SourceTerminal": "A1",
+   "Suppressed": false,
+   "SuppressedShape": "<Shape object at 00000185E01003E0>",
+   "TargetDevice": {
+    "@obj": "IllustrativeDevice003"
+   },
+   "TargetTerminal": "1",
+   "Validation": "Logical connection only",
+   "WireId": "W7",
+   "_Body": null,
+   "_ElementMapVersion": "15.70200.5"
+  }
+ },
+ "TerminalWire007": {
+  "Label": "TerminalWire007",
+  "TypeId": "PartDesign::FeaturePython",
+  "props": {
+   "BaseFeature": null,
+   "Label": "TerminalWire007",
+   "Label2": "",
+   "Placement": {
+    "Base": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "Rotation": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "PreviewShape": "<Shape object at 00000185E00FF6D0>",
+   "SchematicOffset": 0.0,
+   "ShapeMaterial": {
+    "@obj": "Default"
+   },
+   "SourceDevice": {
+    "@obj": "IllustrativeDevice001"
+   },
+   "SourceTerminal": "A2",
+   "Suppressed": false,
+   "SuppressedShape": "<Shape object at 00000185E00FEC80>",
+   "TargetDevice": {
+    "@obj": "IllustrativeDevice003"
+   },
+   "TargetTerminal": "2",
+   "Validation": "Logical connection only",
+   "WireId": "W8",
+   "_Body": null,
+   "_ElementMapVersion": "15.70200.5"
+  }
+ },
+ "TerminalWire008": {
+  "Label": "TerminalWire008",
+  "TypeId": "PartDesign::FeaturePython",
+  "props": {
+   "BaseFeature": null,
+   "Label": "TerminalWire008",
+   "Label2": "",
+   "Placement": {
+    "Base": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "Rotation": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "PreviewShape": "<Shape object at 00000185E00FEC80>",
+   "SchematicOffset": 0.0,
+   "ShapeMaterial": {
+    "@obj": "Default"
+   },
+   "SourceDevice": {
+    "@obj": "IllustrativeDevice002"
+   },
+   "SourceTerminal": "1",
+   "Suppressed": false,
+   "SuppressedShape": "<Shape object at 00000185E00FE7B0>",
+   "TargetDevice": {
+    "@obj": "IllustrativeDevice001"
+   },
+   "TargetTerminal": "1",
+   "Validation": "Logical connection only",
+   "WireId": "W9",
+   "_Body": null,
+   "_ElementMapVersion": "15.70200.5"
+  }
+ },
+ "Wire": {
+  "Label": "مسار مرسوم",
+  "TypeId": "Part::FeaturePython",
+  "props": {
+   "Area": 0.0,
+   "AttacherEngine": "Engine 3D",
+   "AttacherType": "Attacher::AttachEngine3D",
+   "AttachmentOffset": {
+    "Base": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "Rotation": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "AttachmentSupport": [],
+   "Base": null,
+   "ChamferSize": 0.0,
+   "Closed": false,
+   "End": [
+    500.0,
+    250.0,
+    0.0
+   ],
+   "FilletRadius": 0.0,
+   "Label": "مسار مرسوم",
+   "Label2": "",
+   "Length": 750.0,
+   "MakeFace": false,
+   "MapMode": "Deactivated",
+   "MapPathParameter": 0.0,
+   "MapReversed": false,
+   "Placement": {
+    "Base": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "Rotation": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "Points": [
+    [
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     500.0,
+     0.0,
+     0.0
+    ],
+    [
+     500.0,
+     250.0,
+     0.0
+    ]
+   ],
+   "ShapeMaterial": {
+    "@obj": "Default"
+   },
+   "Start": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "Subdivisions": 0,
+   "Tool": null,
+   "_ElementMapVersion": "15.70200.5"
+  }
+ },
+ "Dimension": {
+  "Label": "بعد مرتبط بالرسم",
+  "TypeId": "App::FeaturePython",
+  "props": {
+   "Diameter": false,
+   "Dimline": [
+    200.0,
+    80.0,
+    0.0
+   ],
+   "Direction": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "Distance": 500.0,
+   "End": [
+    500.0,
+    0.0,
+    0.0
+   ],
+   "Label": "بعد مرتبط بالرسم",
+   "Label2": "",
+   "LinkedGeometry": [
+    [
+     {
+      "@obj": "Wire"
+     },
+     [
+      "Vertex1",
+      "Vertex2"
+     ]
+    ]
+   ],
+   "Normal": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "Start": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "Support": {
+    "@obj": "Wire"
+   }
+  }
+ },
+ "FixedPart": {
+  "Label": "FixedPart",
+  "TypeId": "Part::Box",
+  "props": {
+   "AttacherEngine": "Engine 3D",
+   "AttacherType": "Attacher::AttachEngine3D",
+   "AttachmentOffset": {
+    "Base": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "Rotation": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "AttachmentSupport": [],
+   "Height": 40.0,
+   "Label": "FixedPart",
+   "Label2": "",
+   "Length": 100.0,
+   "MapMode": "Deactivated",
+   "MapPathParameter": 0.0,
+   "MapReversed": false,
+   "Placement": {
+    "Base": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "Rotation": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "ShapeMaterial": {
+    "@obj": "Default"
+   },
+   "Width": 60.0,
+   "_ElementMapVersion": "15.70200.5"
+  }
+ },
+ "MountedPart": {
+  "Label": "MountedPart",
+  "TypeId": "Part::Cylinder",
+  "props": {
+   "Angle": 360.0,
+   "AttacherEngine": "Engine 3D",
+   "AttacherType": "Attacher::AttachEngine3D",
+   "AttachmentOffset": {
+    "Base": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "Rotation": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "AttachmentSupport": [],
+   "FirstAngle": 0.0,
+   "Height": 50.0,
+   "Label": "MountedPart",
+   "Label2": "",
+   "MapMode": "Deactivated",
+   "MapPathParameter": 0.0,
+   "MapReversed": false,
+   "Placement": {
+    "Base": [
+     0.0,
+     0.0,
+     140.0
+    ],
+    "Rotation": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "Radius": 20.0,
+   "SecondAngle": 0.0,
+   "ShapeMaterial": {
+    "@obj": "Default"
+   },
+   "_ElementMapVersion": "15.70200.5"
+  }
+ }
+}

@@ -1,0 +1,170 @@
+{
+ "steps": {
+  "project": {
+   "ok": true,
+   "secs": 0.95,
+   "detail": {
+    "doc": "EngineeringProject"
+   }
+  },
+  "piping_build": {
+   "ok": true,
+   "secs": 1.13,
+   "detail": {
+    "pipe_len": 800.0,
+    "fittings": [
+     "GenericFitting",
+     "GenericFitting001",
+     "GenericFitting002",
+     "GenericFitting003"
+    ]
+   }
+  },
+  "electrical_build": {
+   "ok": true,
+   "secs": 0.04,
+   "detail": {
+    "devices": 4,
+    "wires": 9,
+    "netlist_size": 9
+   }
+  },
+  "edits_in_transactions": {
+   "ok": true,
+   "secs": 0.06,
+   "detail": {
+    "pipe_len": 1000.0,
+    "valve_y": 700.0,
+    "device_tag": "SB2"
+   }
+  },
+  "undo_redo_x3": {
+   "ok": true,
+   "secs": 0.13,
+   "detail": {
+    "undone": {
+     "pipe_len": 800.0,
+     "valve_y": 500.0,
+     "device_tag": "SB1"
+    },
+    "redone": {
+     "pipe_len": 1000.0,
+     "valve_y": 700.0,
+     "device_tag": "SB2"
+    }
+   }
+  },
+  "drafting_linked_dim": {
+   "ok": true,
+   "secs": 0.32,
+   "detail": {
+    "dim_before": 400.0,
+    "dim_after_path_edit": 500.0
+   }
+  },
+  "assembly_fixed_pair_gap": {
+   "ok": true,
+   "secs": 0.01,
+   "detail": {
+    "fixed_pair_vertex_gap_mm": 100.0
+   }
+  },
+  "manifest_save_arabic_path": {
+   "ok": true,
+   "secs": 0.29,
+   "detail": {
+    "saved": "C:/fit44/مشروع-محطة-الضخ.FCStd",
+    "objects": 22
+   }
+  },
+  "reopen_1_compare": {
+   "ok": true,
+   "secs": 0.66,
+   "detail": {
+    "diff_count": 26,
+    "first": [
+     "/IllustrativeDevice/props/PreviewShape: '<Shape object at 00000185984DE4E0>' vs '<Shape object at 00000185E00FFFC0>'",
+     "/IllustrativeDevice/props/SuppressedShape: '<Shape object at 00000185984DE850>' vs '<Shape object at 00000185E00FFC50>'",
+     "/IllustrativeDevice001/props/PreviewShape: '<Shape object at 00000185984DEA60>' vs '<Shape object at 00000185E0100280>'",
+     "/IllustrativeDevice001/props/SuppressedShape: '<Shape object at 00000185984DFC40>' vs '<Shape object at 00000185E00FF6D0>'",
+     "/IllustrativeDevice002/props/PreviewShape: '<Shape object at 00000185984DFAE0>' vs '<Shape object at 00000185E00FFBA0>'"
+    ]
+   }
+  },
+  "reopen_2_compare": {
+   "ok": true,
+   "secs": 0.64,
+   "detail": {
+    "diff_count": 26,
+    "first": [
+     "/IllustrativeDevice/props/PreviewShape: '<Shape object at 00000185984DE4E0>' vs '<Shape object at 0000018595FEAE70>'",
+     "/IllustrativeDevice/props/SuppressedShape: '<Shape object at 00000185984DE850>' vs '<Shape object at 0000018595FEA840>'",
+     "/IllustrativeDevice001/props/PreviewShape: '<Shape object at 00000185984DEA60>' vs '<Shape object at 0000018595FEAA50>'",
+     "/IllustrativeDevice001/props/SuppressedShape: '<Shape object at 00000185984DFC40>' vs '<Shape object at 0000018595FEA4D0>'",
+     "/IllustrativeDevice002/props/PreviewShape: '<Shape object at 00000185984DFAE0>' vs '<Shape object at 0000018595FEA4D0>'"
+    ]
+   }
+  }
+ },
+ "dialogs": [],
+ "diffs": {
+  "reopen1": [
+   "/IllustrativeDevice/props/PreviewShape: '<Shape object at 00000185984DE4E0>' vs '<Shape object at 00000185E00FFFC0>'",
+   "/IllustrativeDevice/props/SuppressedShape: '<Shape object at 00000185984DE850>' vs '<Shape object at 00000185E00FFC50>'",
+   "/IllustrativeDevice001/props/PreviewShape: '<Shape object at 00000185984DEA60>' vs '<Shape object at 00000185E0100280>'",
+   "/IllustrativeDevice001/props/SuppressedShape: '<Shape object at 00000185984DFC40>' vs '<Shape object at 00000185E00FF6D0>'",
+   "/IllustrativeDevice002/props/PreviewShape: '<Shape object at 00000185984DFAE0>' vs '<Shape object at 00000185E00FFBA0>'",
+   "/IllustrativeDevice002/props/SuppressedShape: '<Shape object at 00000185984DF1F0>' vs '<Shape object at 00000185E00FF150>'",
+   "/IllustrativeDevice003/props/PreviewShape: '<Shape object at 00000185984DFC40>' vs '<Shape object at 00000185E00FF6D0>'",
+   "/IllustrativeDevice003/props/SuppressedShape: '<Shape object at 00000185984DE850>' vs '<Shape object at 00000185E00FF570>'",
+   "/TerminalWire/props/PreviewShape: '<Shape object at 00000185984DE4E0>' vs '<Shape object at 00000185E00FEFF0>'",
+   "/TerminalWire/props/SuppressedShape: '<Shape object at 00000185984DE850>' vs '<Shape object at 00000185E01001D0>'",
+   "/TerminalWire001/props/PreviewShape: '<Shape object at 00000185984DE4E0>' vs '<Shape object at 00000185E00FFC50>'",
+   "/TerminalWire001/props/SuppressedShape: '<Shape object at 00000185984DF1F0>' vs '<Shape object at 00000185E00FF8E0>'",
+   "/TerminalWire002/props/PreviewShape: '<Shape object at 00000185984DFC40>' vs '<Shape object at 00000185E00FEDE0>'",
+   "/TerminalWire002/props/SuppressedShape: '<Shape object at 00000185984DE4E0>' vs '<Shape object at 00000185E00FF200>'",
+   "/TerminalWire003/props/PreviewShape: '<Shape object at 00000185984DE4E0>' vs '<Shape object at 00000185E00FE860>'",
+   "/TerminalWire003/props/SuppressedShape: '<Shape object at 00000185984DE4E0>' vs '<Shape object at 00000185E00FFFC0>'",
+   "/TerminalWire004/props/PreviewShape: '<Shape object at 00000185984DF1F0>' vs '<Shape object at 00000185E00FE7B0>'",
+   "/TerminalWire004/props/SuppressedShape: '<Shape object at 00000185984DFB90>' vs '<Shape object at 00000185E01001D0>'",
+   "/TerminalWire005/props/PreviewShape: '<Shape object at 00000185984DF1F0>' vs '<Shape object at 00000185E00FF2B0>'",
+   "/TerminalWire005/props/SuppressedShape: '<Shape object at 00000185984DF1F0>' vs '<Shape object at 00000185E00FE7B0>'",
+   "/TerminalWire006/props/PreviewShape: '<Shape object at 00000185984DE4E0>' vs '<Shape object at 00000185E00FEFF0>'",
+   "/TerminalWire006/props/SuppressedShape: '<Shape object at 00000185984DFC40>' vs '<Shape object at 00000185E01003E0>'",
+   "/TerminalWire007/props/PreviewShape: '<Shape object at 00000185984DFAE0>' vs '<Shape object at 00000185E00FF6D0>'",
+   "/TerminalWire007/props/SuppressedShape: '<Shape object at 00000185984DF1F0>' vs '<Shape object at 00000185E00FEC80>'",
+   "/TerminalWire008/props/PreviewShape: '<Shape object at 00000185984DEA60>' vs '<Shape object at 00000185E00FEC80>'",
+   "/TerminalWire008/props/SuppressedShape: '<Shape object at 00000185984DE850>' vs '<Shape object at 00000185E00FE7B0>'"
+  ],
+  "reopen2": [
+   "/IllustrativeDevice/props/PreviewShape: '<Shape object at 00000185984DE4E0>' vs '<Shape object at 0000018595FEAE70>'",
+   "/IllustrativeDevice/props/SuppressedShape: '<Shape object at 00000185984DE850>' vs '<Shape object at 0000018595FEA840>'",
+   "/IllustrativeDevice001/props/PreviewShape: '<Shape object at 00000185984DEA60>' vs '<Shape object at 0000018595FEAA50>'",
+   "/IllustrativeDevice001/props/SuppressedShape: '<Shape object at 00000185984DFC40>' vs '<Shape object at 0000018595FEA4D0>'",
+   "/IllustrativeDevice002/props/PreviewShape: '<Shape object at 00000185984DFAE0>' vs '<Shape object at 0000018595FEA4D0>'",
+   "/IllustrativeDevice002/props/SuppressedShape: '<Shape object at 00000185984DF1F0>' vs '<Shape object at 0000018595FEAE70>'",
+   "/IllustrativeDevice003/props/PreviewShape: '<Shape object at 00000185984DFC40>' vs '<Shape object at 0000018595FEA4D0>'",
+   "/IllustrativeDevice003/props/SuppressedShape: '<Shape object at 00000185984DE850>' vs '<Shape object at 0000018595FEA4D0>'",
+   "/TerminalWire/props/PreviewShape: '<Shape object at 00000185984DE4E0>' vs '<Shape object at 0000018595FEA4D0>'",
+   "/TerminalWire/props/SuppressedShape: '<Shape object at 00000185984DE850>' vs '<Shape object at 0000018595FEAE70>'",
+   "/TerminalWire001/props/PreviewShape: '<Shape object at 00000185984DE4E0>' vs '<Shape object at 0000018595FEAA50>'",
+   "/TerminalWire001/props/SuppressedShape: '<Shape object at 00000185984DF1F0>' vs '<Shape object at 0000018595FEAE70>'",
+   "/TerminalWire002/props/PreviewShape: '<Shape object at 00000185984DFC40>' vs '<Shape object at 0000018595FEAE70>'",
+   "/TerminalWire002/props/SuppressedShape: '<Shape object at 00000185984DE4E0>' vs '<Shape object at 0000018595FEA580>'",
+   "/TerminalWire003/props/PreviewShape: '<Shape object at 00000185984DE4E0>' vs '<Shape object at 0000018595FEA4D0>'",
+   "/TerminalWire003/props/SuppressedShape: '<Shape object at 00000185984DE4E0>' vs '<Shape object at 0000018595FEA4D0>'",
+   "/TerminalWire004/props/PreviewShape: '<Shape object at 00000185984DF1F0>' vs '<Shape object at 0000018595FEA4D0>'",
+   "/TerminalWire004/props/SuppressedShape: '<Shape object at 00000185984DFB90>' vs '<Shape object at 0000018595FEAA50>'",
+   "/TerminalWire005/props/PreviewShape: '<Shape object at 00000185984DF1F0>' vs '<Shape object at 0000018595FEAE70>'",
+   "/TerminalWire005/props/SuppressedShape: '<Shape object at 00000185984DF1F0>' vs '<Shape object at 0000018595FEA4D0>'",
+   "/TerminalWire006/props/PreviewShape: '<Shape object at 00000185984DE4E0>' vs '<Shape object at 0000018595FEA4D0>'",
+   "/TerminalWire006/props/SuppressedShape: '<Shape object at 00000185984DFC40>' vs '<Shape object at 0000018595FEA4D0>'",
+   "/TerminalWire007/props/PreviewShape: '<Shape object at 00000185984DFAE0>' vs '<Shape object at 0000018595FEA840>'",
+   "/TerminalWire007/props/SuppressedShape: '<Shape object at 00000185984DF1F0>' vs '<Shape object at 0000018595FEA4D0>'",
+   "/TerminalWire008/props/PreviewShape: '<Shape object at 00000185984DEA60>' vs '<Shape object at 0000018595FEA840>'",
+   "/TerminalWire008/props/SuppressedShape: '<Shape object at 00000185984DE850>' vs '<Shape object at 0000018595FEA4D0>'"
+  ]
+ },
+ "done": true,
+ "core_patches": "absent (integration run)"
+}
