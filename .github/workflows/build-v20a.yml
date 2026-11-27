@@ -161,7 +161,7 @@ jobs:
           $out.Add('Each listed file is shipped unchanged in the installation folder at the path shown. Count: ' + $files.Count)
           $out.Add('')
           foreach ($f in ($files | Sort-Object FullName)) {
-            $rel = $f.FullName.Substring($root.Length).TrimStart('\','/').Replace('\','/')
+            $bs = [string][char]92; $rel = $f.FullName.Substring($root.Length).Replace($bs,'/').TrimStart('/')
             $h = (Get-FileHash $f.FullName -Algorithm SHA256).Hash.Substring(0,16)
             $first = ''
             try { $first = ((Get-Content $f.FullName -TotalCount 3 -ErrorAction Stop) -join ' ').Trim(); if ($first.Length -gt 100) { $first = $first.Substring(0,100) } } catch {}
