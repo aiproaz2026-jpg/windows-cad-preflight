@@ -84,7 +84,7 @@ def sweep():
     cnt = 0
     for a in mw.findChildren(QtGui.QAction):
         for get, put in ((a.text, a.setText), (a.toolTip, a.setToolTip), (a.statusTip, a.setStatusTip)):
-            r = DICT.get(_n(get()))
+            r = _lk(_n(get()))
             if r and get() != r:
                 put(r)
                 cnt += 1
@@ -95,29 +95,29 @@ def sweep():
             a.setToolTip(t2)
             cnt += 1
     for m in mw.findChildren(QtWidgets.QMenu):
-        r = DICT.get(_n(m.title()))
+        r = _lk(_n(m.title()))
         if r and m.title() != r:
             m.setTitle(r)
             cnt += 1
     for w in mw.findChildren(QtWidgets.QToolBar) + mw.findChildren(QtWidgets.QDockWidget):
-        r = DICT.get(_n(w.windowTitle()))
+        r = _lk(_n(w.windowTitle()))
         if r and w.windowTitle() != r:
             w.setWindowTitle(r)
             cnt += 1
     for c in (QtWidgets.QLabel, QtWidgets.QPushButton, QtWidgets.QCheckBox, QtWidgets.QRadioButton):
         for w in mw.findChildren(c):
-            r = DICT.get(_n(w.text()))
+            r = _lk(_n(w.text()))
             if r and w.text() != r:
                 w.setText(r)
                 cnt += 1
     for w in mw.findChildren(QtWidgets.QGroupBox):
-        r = DICT.get(_n(w.title()))
+        r = _lk(_n(w.title()))
         if r and w.title() != r:
             w.setTitle(r)
             cnt += 1
     for tb in mw.findChildren(QtWidgets.QTabBar):
         for k in range(tb.count()):
-            r = DICT.get(_n(tb.tabText(k)))
+            r = _lk(_n(tb.tabText(k)))
             if r and tb.tabText(k) != r:
                 tb.setTabText(k, r)
                 cnt += 1
