@@ -1,0 +1,992 @@
+{
+ "steps": {
+  "fittings_tab_present_and_layout": {
+   "ok": true,
+   "secs": 0.97,
+   "detail": {
+    "tasks_dock_before_panel": {
+     "exists": true,
+     "visible": true,
+     "size": [
+      400,
+      344
+     ],
+     "child_widgets": [
+      "QAbstractButton",
+      "QFrame",
+      "QScrollArea",
+      "QScrollBar",
+      "QToolButton",
+      "QWidget"
+     ],
+     "active_dialog": false
+    },
+    "viewport_before": [
+     1349,
+     506
+    ],
+    "tasks_dock_after_panel_visible": false,
+    "viewport_after": [
+     943,
+     506
+    ],
+    "tab_index": 4,
+    "metrics": {
+     "checked_widgets": 22,
+     "clipped_count": 0,
+     "clipped_first": [],
+     "overlapping_buttons": [],
+     "overlap_count": 0
+    },
+    "layout": {
+     "screen": [
+      1024,
+      768
+     ],
+     "window": [
+      1615,
+      728
+     ],
+     "window_min_hint": [
+      1392,
+      377
+     ],
+     "window_fits_screen": false,
+     "window_top_left": [
+      0,
+      0
+     ],
+     "viewport_px": [
+      943,
+      506
+     ],
+     "docks": [
+      {
+       "name": "Model",
+       "w": 260,
+       "h": 536,
+       "floating": false
+      },
+      {
+       "name": "DeltaDraftingPanel",
+       "w": 400,
+       "h": 536,
+       "floating": false
+      }
+     ]
+    },
+    "horizontal_scroll_needed": false,
+    "hbar_max": 0,
+    "content_w": 370,
+    "viewport_w": 370,
+    "vbar_max": 157,
+    "task_dialog_active_when_open": true,
+    "tasks_dock_visible_when_task_dialog_opens": true,
+    "task_dialog_active_after_close": false
+   }
+  },
+  "station_built_through_panel_buttons": {
+   "ok": true,
+   "secs": 4.63,
+   "detail": {
+    "report_text": "وصلات متطابقة: 7\nمنافذ مفتوحة: 2\n  GenericFitting005.1\n  GenericFitting007.1\nلا أخطاء هندسية في الاستمرارية أو التداخل.\nهندسة عامة توضيحية، ليست كتالوج مصنّع ولا معيار شفات. تطابق المقاس لا يعني توافق الضغط أو المعيار.",
+    "connected": 7,
+    "open_ports": [
+     "GenericFitting005.1",
+     "GenericFitting007.1"
+    ],
+    "errors": [],
+    "metrics_after": {
+     "checked_widgets": 22,
+     "clipped_count": 0,
+     "clipped_first": [],
+     "overlapping_buttons": [],
+     "overlap_count": 0
+    }
+   }
+  },
+  "mismatch_refused_through_ui": {
+   "ok": true,
+   "secs": 1.7,
+   "detail": {
+    "placement_unchanged": true,
+    "status": "لم يتم التعديل: تعذر إكمال العملية. راجع التحديد والقيم وحالة المصدر ثم أعد المحاولة. احتفظ بالتفصيل التقني عند طلب المساعدة:\nPort diameter mismatch: 114.300 mm vs 60.300 mm. Geometric continuity only, no compatibility implied.",
+    "new_dialogs": [
+     {
+      "n": 1,
+      "cls": "QMessageBox",
+      "title": "تعذر الرسم",
+      "text": "تعذر إكمال العملية. راجع التحديد والقيم وحالة المصدر ثم أعد المحاولة. احتفظ بالتفصيل التقني عند طلب المساعدة:\nPort diameter mismatch: 114.300 mm vs 60.300 mm. Geometric continuity only, no compatibility implied."
+     }
+    ]
+   }
+  },
+  "quantity_csv_through_panel": {
+   "ok": true,
+   "secs": 0.1,
+   "detail": {
+    "rows": [
+     {
+      "item": "محبس كروي عام",
+      "kind": "ball_valve",
+      "size": "NPS 4",
+      "qty": 1,
+      "unit": "pcs"
+     },
+     {
+      "item": "صمام عدم رجوع عام",
+      "kind": "check_valve",
+      "size": "NPS 3",
+      "qty": 1,
+      "unit": "pcs"
+     },
+     {
+      "item": "شفة عامة",
+      "kind": "flange",
+      "size": "NPS 2",
+      "qty": 2,
+      "unit": "pcs"
+     },
+     {
+      "item": "شفة عامة",
+      "kind": "flange",
+      "size": "NPS 3",
+      "qty": 1,
+      "unit": "pcs"
+     },
+     {
+      "item": "محبس بوابة عام",
+      "kind": "gate_valve",
+      "size": "NPS 2",
+      "qty": 1,
+      "unit": "pcs"
+     },
+     {
+      "item": "مضخة طرد مركزي عامة (غلاف تقريبي)",
+      "kind": "pump",
+      "size": "NPS 3 x NPS 2",
+      "qty": 1,
+      "unit": "pcs"
+     },
+     {
+      "item": "مخفّض متحد المحور",
+      "kind": "reducer",
+      "size": "NPS 2 x NPS 4",
+      "qty": 1,
+      "unit": "pcs"
+     }
+    ],
+    "csv_bytes": 764
+   }
+  },
+  "save_reopen_arabic_path": {
+   "ok": true,
+   "secs": 0.74,
+   "detail": {
+    "objects": 8,
+    "max_volume_diff": 3.725290298461914e-09,
+    "connections": 7
+   }
+  },
+  "station_with_pipes_elbow_through_panel": {
+   "ok": true,
+   "secs": 8.01,
+   "detail": {
+    "elbow_volume": 98414.06548998691,
+    "elbow_expected_pappus": 98414.0654899867,
+    "report_text": "وصلات متطابقة: 13\nمنافذ مفتوحة: 2\n  GenericFitting004.1\n  GenericFitting013.1\nلا أخطاء هندسية في الاستمرارية أو التداخل.\nهندسة عامة توضيحية، ليست كتالوج مصنّع ولا معيار شفات. تطابق المقاس لا يعني توافق الضغط أو المعيار.",
+    "connected": 13,
+    "open_ports": [
+     "GenericFitting004.1",
+     "GenericFitting013.1"
+    ],
+    "errors": [],
+    "takeoff": [
+     {
+      "item": "محبس كروي عام",
+      "kind": "ball_valve",
+      "size": "NPS 4",
+      "qty": 1,
+      "unit": "pcs"
+     },
+     {
+      "item": "صمام عدم رجوع عام",
+      "kind": "check_valve",
+      "size": "NPS 3",
+      "qty": 1,
+      "unit": "pcs"
+     },
+     {
+      "item": "كوع 90 درجة عام",
+      "kind": "elbow90",
+      "size": "NPS 2",
+      "qty": 1,
+      "unit": "pcs"
+     },
+     {
+      "item": "شفة عامة",
+      "kind": "flange",
+      "size": "NPS 2",
+      "qty": 2,
+      "unit": "pcs"
+     },
+     {
+      "item": "شفة عامة",
+      "kind": "flange",
+      "size": "NPS 3",
+      "qty": 1,
+      "unit": "pcs"
+     },
+     {
+      "item": "محبس بوابة عام",
+      "kind": "gate_valve",
+      "size": "NPS 2",
+      "qty": 1,
+      "unit": "pcs"
+     },
+     {
+      "item": "مضخة طرد مركزي عامة (غلاف تقريبي)",
+      "kind": "pump",
+      "size": "NPS 3 x NPS 2",
+      "qty": 1,
+      "unit": "pcs"
+     },
+     {
+      "item": "مخفّض متحد المحور",
+      "kind": "reducer",
+      "size": "NPS 2 x NPS 4",
+      "qty": 1,
+      "unit": "pcs"
+     },
+     {
+      "item": "ماسورة مستقيمة",
+      "kind": "tube",
+      "size": "OD 114.3 x 6.02 mm",
+      "qty": 1.5,
+      "unit": "m"
+     },
+     {
+      "item": "ماسورة مستقيمة",
+      "kind": "tube",
+      "size": "OD 60.3 x 3.91 mm",
+      "qty": 1.4,
+      "unit": "m"
+     },
+     {
+      "item": "ماسورة مستقيمة",
+      "kind": "tube",
+      "size": "OD 88.9 x 5.49 mm",
+      "qty": 1.8,
+      "unit": "m"
+     }
+    ],
+    "model_extent_mm": [
+     2911,
+     2669,
+     1439
+    ]
+   }
+  },
+  "station_scaled_pdf": {
+   "ok": true,
+   "secs": 1.59,
+   "detail": {
+    "Top_denominator_10_rejected": "View exceeds A3 drawing area at this scale; choose a larger denominator",
+    "Top": {
+     "denominator": 15,
+     "bytes": 17379,
+     "result": {
+      "view": "Top",
+      "projection_direction": [
+       0.0,
+       0.0,
+       1.0
+      ],
+      "scale_denominator": 15.0,
+      "projected_model_mm": [
+       2911.25,
+       2669.185
+      ],
+      "paper_geometry_mm": [
+       194.08333333333334,
+       177.94566666666665
+      ],
+      "paper_calibration_mm": 100,
+      "paper_size_mm": [
+       420,
+       297
+      ]
+     }
+    },
+    "Front": {
+     "denominator": 10,
+     "bytes": 16409,
+     "result": {
+      "view": "Front",
+      "projection_direction": [
+       0.0,
+       -1.0,
+       0.0
+      ],
+      "scale_denominator": 10.0,
+      "projected_model_mm": [
+       2911.25,
+       1439.5539999999996
+      ],
+      "paper_geometry_mm": [
+       291.125,
+       143.95539999999997
+      ],
+      "paper_calibration_mm": 100,
+      "paper_size_mm": [
+       420,
+       297
+      ]
+     }
+    }
+   }
+  },
+  "motor_starter_circuit_symbols_and_pdf": {
+   "ok": true,
+   "secs": 1.64,
+   "detail": {
+    "template_combo_items": 110,
+    "template_keys": [
+     "Generic block",
+     "Motor concept",
+     "Switch concept",
+     "Coil concept",
+     "Earth concept",
+     "Breaker concept",
+     "Contactor concept",
+     "Overload concept",
+     "Fuse concept",
+     "Pushbutton concept",
+     "Resistor (illustr.)",
+     "Variable resistor (illustr.)",
+     "Capacitor (illustr.)",
+     "Inductor (illustr.)",
+     "Diode (illustr.)",
+     "LED (illustr.)",
+     "Battery (illustr.)",
+     "AC source (illustr.)",
+     "Lamp (illustr.)",
+     "Buzzer (illustr.)",
+     "Ground (illustr.)",
+     "Terminal (illustr.)",
+     "Switch NO (illustr.)",
+     "Switch NC (illustr.)",
+     "Pushbutton NO (illustr.)",
+     "Pushbutton NC (illustr.)",
+     "Emergency stop (illustr.)",
+     "Selector switch (illustr.)",
+     "Limit switch (illustr.)",
+     "Float switch (illustr.)",
+     "Pressure switch (illustr.)",
+     "Flow switch (illustr.)",
+     "Relay coil (illustr.)",
+     "Contactor coil (illustr.)",
+     "Timer coil ON-delay (illustr.)",
+     "Solenoid valve coil (illustr.)",
+     "Contact NO (illustr.)",
+     "Contact NC (illustr.)",
+     "Fuse (illustr.)",
+     "Breaker 1P (illustr.)",
+     "Breaker 3P (illustr.)",
+     "Contactor 3P (illustr.)",
+     "Overload relay (illustr.)",
+     "Motor 3-phase (illustr.)",
+     "Motor 1-phase (illustr.)",
+     "Transformer (illustr.)",
+     "Voltmeter (illustr.)",
+     "Ammeter (illustr.)",
+     "Heater element (illustr.)",
+     "VFD block (illustr.)",
+     "PLC block (illustr.)",
+     "Resistor (IEC-style)",
+     "Variable resistor (IEC-style)",
+     "Capacitor (IEC-style)",
+     "Inductor (IEC-style)",
+     "Diode (IEC-style)",
+     "LED (IEC-style)",
+     "Battery (IEC-style)",
+     "AC source (IEC-style)",
+     "Lamp (IEC-style)",
+     "Buzzer (IEC-style)",
+     "Ground (IEC-style)",
+     "Terminal (IEC-style)",
+     "Switch NO (IEC-style)",
+     "Switch NC (IEC-style)",
+     "Pushbutton NO (IEC-style)",
+     "Pushbutton NC (IEC-style)",
+     "Emergency stop (IEC-style)",
+     "Selector switch (IEC-style)",
+     "Limit switch (IEC-style)",
+     "Float switch (IEC-style)",
+     "Pressure switch (IEC-style)",
+     "Flow switch (IEC-style)",
+     "Relay coil (IEC-style)",
+     "Contactor coil (IEC-style)",
+     "Timer coil ON-delay (IEC-style)",
+     "Solenoid valve coil (IEC-style)",
+     "Contact NO (IEC-style)",
+     "Contact NC (IEC-style)",
+     "Fuse (IEC-style)",
+     "Breaker 1P (IEC-style)",
+     "Breaker 3P (IEC-style)",
+     "Contactor 3P (IEC-style)",
+     "Overload relay (IEC-style)",
+     "Motor 3-phase (IEC-style)",
+     "Motor 1-phase (IEC-style)",
+     "Transformer (IEC-style)",
+     "Voltmeter (IEC-style)",
+     "Ammeter (IEC-style)",
+     "Heater element (IEC-style)",
+     "VFD block (IEC-style)",
+     "PLC block (IEC-style)",
+     "Fuse (IEC)",
+     "Switch NO (IEC)",
+     "Switch NC (IEC)",
+     "Disconnector (IEC)",
+     "Breaker 1P (IEC)",
+     "Motor protection breaker (IEC)",
+     "Breaker 3P (IEC)",
+     "Contactor NO contact (IEC)",
+     "Contactor NC contact (IEC)",
+     "Contactor 3P (IEC)",
+     "Signal lamp (IEC-style)",
+     "Flashing beacon (IEC-style)",
+     "Bell (IEC-style)",
+     "Horn (IEC-style)",
+     "Wattmeter (IEC-style)",
+     "Frequency meter (IEC-style)",
+     "Energy meter kWh (IEC-style)",
+     "Hour counter (IEC-style)"
+    ],
+    "wires": 9,
+    "connectivity": {
+     "nets": [
+      {
+       "id": "NET001",
+       "members": [
+        {
+         "device": "F1",
+         "terminal": "1"
+        },
+        {
+         "device": "KM1",
+         "terminal": "2"
+        }
+       ],
+       "wires": [
+        "W4"
+       ],
+       "isolated": false
+      },
+      {
+       "id": "NET002",
+       "members": [
+        {
+         "device": "F1",
+         "terminal": "2"
+        },
+        {
+         "device": "M1",
+         "terminal": "U"
+        }
+       ],
+       "wires": [
+        "W7"
+       ],
+       "isolated": false
+      },
+      {
+       "id": "NET003",
+       "members": [
+        {
+         "device": "F1",
+         "terminal": "3"
+        },
+        {
+         "device": "KM1",
+         "terminal": "4"
+        }
+       ],
+       "wires": [
+        "W5"
+       ],
+       "isolated": false
+      },
+      {
+       "id": "NET004",
+       "members": [
+        {
+         "device": "F1",
+         "terminal": "4"
+        },
+        {
+         "device": "M1",
+         "terminal": "V"
+        }
+       ],
+       "wires": [
+        "W8"
+       ],
+       "isolated": false
+      },
+      {
+       "id": "NET005",
+       "members": [
+        {
+         "device": "F1",
+         "terminal": "5"
+        },
+        {
+         "device": "KM1",
+         "terminal": "6"
+        }
+       ],
+       "wires": [
+        "W6"
+       ],
+       "isolated": false
+      },
+      {
+       "id": "NET006",
+       "members": [
+        {
+         "device": "F1",
+         "terminal": "6"
+        },
+        {
+         "device": "M1",
+         "terminal": "W"
+        }
+       ],
+       "wires": [
+        "W9"
+       ],
+       "isolated": false
+      },
+      {
+       "id": "NET007",
+       "members": [
+        {
+         "device": "KM1",
+         "terminal": "1"
+        },
+        {
+         "device": "Q1",
+         "terminal": "2"
+        }
+       ],
+       "wires": [
+        "W1"
+       ],
+       "isolated": false
+      },
+      {
+       "id": "NET008",
+       "members": [
+        {
+         "device": "KM1",
+         "terminal": "3"
+        },
+        {
+         "device": "Q1",
+         "terminal": "4"
+        }
+       ],
+       "wires": [
+        "W2"
+       ],
+       "isolated": false
+      },
+      {
+       "id": "NET009",
+       "members": [
+        {
+         "device": "KM1",
+         "terminal": "5"
+        },
+        {
+         "device": "Q1",
+         "terminal": "6"
+        }
+       ],
+       "wires": [
+        "W3"
+       ],
+       "isolated": false
+      },
+      {
+       "id": "NET010",
+       "members": [
+        {
+         "device": "KM1",
+         "terminal": "A1"
+        }
+       ],
+       "wires": [],
+       "isolated": true
+      },
+      {
+       "id": "NET011",
+       "members": [
+        {
+         "device": "KM1",
+         "terminal": "A2"
+        }
+       ],
+       "wires": [],
+       "isolated": true
+      },
+      {
+       "id": "NET012",
+       "members": [
+        {
+         "device": "M1",
+         "terminal": "PE"
+        }
+       ],
+       "wires": [],
+       "isolated": true
+      },
+      {
+       "id": "NET013",
+       "members": [
+        {
+         "device": "Q1",
+         "terminal": "1"
+        }
+       ],
+       "wires": [],
+       "isolated": true
+      },
+      {
+       "id": "NET014",
+       "members": [
+        {
+         "device": "Q1",
+         "terminal": "3"
+        }
+       ],
+       "wires": [],
+       "isolated": true
+      },
+      {
+       "id": "NET015",
+       "members": [
+        {
+         "device": "Q1",
+         "terminal": "5"
+        }
+       ],
+       "wires": [],
+       "isolated": true
+      }
+     ],
+     "unwired": [
+      {
+       "device": "KM1",
+       "terminal": "A1"
+      },
+      {
+       "device": "KM1",
+       "terminal": "A2"
+      },
+      {
+       "device": "M1",
+       "terminal": "PE"
+      },
+      {
+       "device": "Q1",
+       "terminal": "1"
+      },
+      {
+       "device": "Q1",
+       "terminal": "3"
+      },
+      {
+       "device": "Q1",
+       "terminal": "5"
+      }
+     ],
+     "duplicate_pair_wires": [],
+     "scope": "Explicit terminal graph only. No inferred device-internal connections, crossing junctions, circuits, voltage/current/rating or safety checks."
+    },
+    "symbol_shapes_valid": true,
+    "export": {
+     "source_signature": "d003e8b3c7696c137220693995179eae09033424f608c58ce2ad732d008a6067",
+     "centerline_mm": 0,
+     "wire_count": 9,
+     "synchronous_projection": true
+    },
+    "bboxes": {
+     "Q1": [
+      3937.0,
+      -28.0,
+      4063.0,
+      28.0
+     ],
+     "KM1": [
+      4337.0,
+      -42.0,
+      4463.0,
+      42.0
+     ],
+     "F1": [
+      4337.0,
+      -328.0,
+      4463.0,
+      -272.0
+     ],
+     "M1": [
+      4365.0,
+      -638.0,
+      4435.0,
+      -562.0
+     ]
+    },
+    "wire_shape_lengths": [
+     294.0,
+     294.0,
+     294.0,
+     532.0,
+     604.0,
+     676.0,
+     519.8,
+     547.0,
+     564.8
+    ],
+    "vis": {
+     "Q1": true,
+     "KM1": true,
+     "F1": true,
+     "M1": true
+    },
+    "diag": {
+     "display_modes": [
+      "Flat Lines",
+      "Shaded",
+      "Wireframe",
+      "Points"
+     ],
+     "display_mode": "Flat Lines",
+     "shape_type": "Compound",
+     "edges": 26,
+     "type_id": "PartDesign::FeaturePython",
+     "vo_type": "ViewProvider",
+     "vo_visible": true,
+     "camera": "Orthographic",
+     "ctl_edges": 1
+    },
+    "overlay_titles_visible_after_view_steps": [
+     false
+    ],
+    "tasks_dock_visible_after_view_steps": false
+   }
+  },
+  "strip_probe": {
+   "ok": true,
+   "secs": 0.02,
+   "detail": {
+    "widgets_near_strip": [
+     {
+      "rect": [
+       956,
+       296,
+       37,
+       24
+      ],
+      "cls": "QLabel",
+      "name": "",
+      "title": "",
+      "chain": [
+       "QLabel:",
+       "QWidget:GeneralSettingsWidget",
+       "QGroupBox:FirstStartWidget",
+       "QWidget:",
+       "QWidget:qt_scrollarea_viewport",
+       "QScrollArea:"
+      ]
+     },
+     {
+      "rect": [
+       790,
+       296,
+       160,
+       24
+      ],
+      "cls": "QComboBox",
+      "name": "",
+      "title": "",
+      "chain": [
+       "QComboBox:",
+       "QWidget:GeneralSettingsWidget",
+       "QGroupBox:FirstStartWidget",
+       "QWidget:",
+       "QWidget:qt_scrollarea_viewport",
+       "QScrollArea:"
+      ]
+     },
+     {
+      "rect": [
+       644,
+       296,
+       104,
+       24
+      ],
+      "cls": "QLabel",
+      "name": "",
+      "title": "",
+      "chain": [
+       "QLabel:",
+       "QWidget:GeneralSettingsWidget",
+       "QGroupBox:FirstStartWidget",
+       "QWidget:",
+       "QWidget:qt_scrollarea_viewport",
+       "QScrollArea:"
+      ]
+     }
+    ],
+    "docks": [
+     {
+      "name": "DeltaElectricalPanel",
+      "title": "محرر الكهرباء التجريبي",
+      "visible": true,
+      "floating": false,
+      "geom": [
+       -850,
+       -586,
+       350,
+       86
+      ]
+     },
+     {
+      "name": "Selection view",
+      "title": "عرض التحديد",
+      "visible": false,
+      "floating": false,
+      "geom": [
+       0,
+       0,
+       210,
+       127
+      ]
+     },
+     {
+      "name": "Model",
+      "title": "النموذج",
+      "visible": true,
+      "floating": false,
+      "geom": [
+       0,
+       161,
+       260,
+       536
+      ]
+     },
+     {
+      "name": "Python console",
+      "title": "وحدة بايثون",
+      "visible": false,
+      "floating": false,
+      "geom": [
+       0,
+       0,
+       100,
+       92
+      ]
+     },
+     {
+      "name": "Report view",
+      "title": "عرض التقارير",
+      "visible": false,
+      "floating": false,
+      "geom": [
+       0,
+       0,
+       100,
+       92
+      ]
+     },
+     {
+      "name": "Tasks",
+      "title": "المهام",
+      "visible": false,
+      "floating": false,
+      "geom": [
+       0,
+       172,
+       400,
+       82
+      ]
+     },
+     {
+      "name": "DeltaDraftingPanel",
+      "title": "الرسم والأبعاد | مليمتر",
+      "visible": true,
+      "floating": false,
+      "geom": [
+       1215,
+       161,
+       400,
+       510
+      ]
+     }
+    ]
+   }
+  },
+  "tasks_dock_hidden_again_after_task_closes": {
+   "ok": true,
+   "secs": 4.24,
+   "detail": {
+    "dialog_active_when_open": true,
+    "dialog_active_after_close": false,
+    "visible_while_task_open": true,
+    "visible_after_close_and_4s": false,
+    "overlay_title_visible_after_close": [
+     false,
+     false,
+     false,
+     false,
+     true,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "overlay_title_visible_while_task_open_2nd": [
+     false,
+     false,
+     false,
+     false,
+     true,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ]
+   }
+  }
+ },
+ "dialogs": [
+  {
+   "n": 1,
+   "cls": "QMessageBox",
+   "title": "تعذر الرسم",
+   "text": "تعذر إكمال العملية. راجع التحديد والقيم وحالة المصدر ثم أعد المحاولة. احتفظ بالتفصيل التقني عند طلب المساعدة:\nPort diameter mismatch: 114.300 mm vs 60.300 mm. Geometric continuity only, no compatibility implied."
+  }
+ ],
+ "done": true,
+ "core_patches": "absent (integration run: patches came from apply_v7 on the source tree)"
+}

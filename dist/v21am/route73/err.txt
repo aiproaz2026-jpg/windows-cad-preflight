@@ -1,0 +1,276 @@
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+TerminalWire: too many values to unpack (expected 2)
+TerminalWire001: too many values to unpack (expected 2)
+TerminalWire002: too many values to unpack (expected 2)
+TerminalWire003: too many values to unpack (expected 2)
+TerminalWire004: too many values to unpack (expected 2)
+TerminalWire005: too many values to unpack (expected 2)
+TerminalWire006: too many values to unpack (expected 2)
+TerminalWire007: too many values to unpack (expected 2)
+TerminalWire008: too many values to unpack (expected 2)
+TerminalWire009: too many values to unpack (expected 2)
+TerminalWire010: too many values to unpack (expected 2)
+TerminalWire011: too many values to unpack (expected 2)
+TerminalWire012: too many values to unpack (expected 2)
+TerminalWire013: too many values to unpack (expected 2)
+TerminalWire014: too many values to unpack (expected 2)
+TerminalWire015: too many values to unpack (expected 2)
+TerminalWire016: too many values to unpack (expected 2)
+TerminalWire017: too many values to unpack (expected 2)
+TerminalWire018: too many values to unpack (expected 2)
+TerminalWire019: too many values to unpack (expected 2)
+TerminalWire020: too many values to unpack (expected 2)
+TerminalWire021: too many values to unpack (expected 2)
+TerminalWire022: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\wire_route.py", line 357, in execute
+    pts, ok = planned
+    ^^^^^^^
+<class 'ValueError'>: too many values to unpack (expected 2)
+TerminalWire: too many values to unpack (expected 2)
+TerminalWire001: too many values to unpack (expected 2)
+TerminalWire002: too many values to unpack (expected 2)
+TerminalWire003: too many values to unpack (expected 2)
+TerminalWire004: too many values to unpack (expected 2)
+TerminalWire005: too many values to unpack (expected 2)
+TerminalWire006: too many values to unpack (expected 2)
+TerminalWire007: too many values to unpack (expected 2)
+TerminalWire008: too many values to unpack (expected 2)
+TerminalWire009: too many values to unpack (expected 2)
+TerminalWire010: too many values to unpack (expected 2)
+TerminalWire011: too many values to unpack (expected 2)
+TerminalWire012: too many values to unpack (expected 2)
+TerminalWire013: too many values to unpack (expected 2)
+TerminalWire014: too many values to unpack (expected 2)
+TerminalWire015: too many values to unpack (expected 2)
+TerminalWire016: too many values to unpack (expected 2)
+TerminalWire017: too many values to unpack (expected 2)
+TerminalWire018: too many values to unpack (expected 2)
+TerminalWire019: too many values to unpack (expected 2)
+TerminalWire020: too many values to unpack (expected 2)
+TerminalWire021: too many values to unpack (expected 2)
+TerminalWire022: too many values to unpack (expected 2)

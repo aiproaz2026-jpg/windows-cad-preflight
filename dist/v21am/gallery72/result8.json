@@ -1,0 +1,9 @@
+{
+ "done": true,
+ "term_table": 89,
+ "netlist": 10,
+ "route": 10,
+ "devices": 9,
+ "wires": 10,
+ "pdf_bytes": 19244
+}
