@@ -329,6 +329,7 @@ jobs:
           using System.Text.Json;
           using System.Threading;
           using FlaUI.Core;
+          using Application = FlaUI.Core.Application;
           using FlaUI.Core.AutomationElements;
           using FlaUI.Core.Definitions;
           using FlaUI.UIA3;
