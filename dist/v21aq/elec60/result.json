@@ -1,0 +1,509 @@
+{
+ "done": true,
+ "bad": [],
+ "symbols": {
+  "Resistor (illustr.)": {
+   "ok": true,
+   "edges": 10,
+   "terminals": 2
+  },
+  "Variable resistor (illustr.)": {
+   "ok": true,
+   "edges": 13,
+   "terminals": 2
+  },
+  "Capacitor (illustr.)": {
+   "ok": true,
+   "edges": 8,
+   "terminals": 2
+  },
+  "Inductor (illustr.)": {
+   "ok": true,
+   "edges": 10,
+   "terminals": 2
+  },
+  "Diode (illustr.)": {
+   "ok": true,
+   "edges": 10,
+   "terminals": 2
+  },
+  "LED (illustr.)": {
+   "ok": true,
+   "edges": 12,
+   "terminals": 2
+  },
+  "Battery (illustr.)": {
+   "ok": true,
+   "edges": 10,
+   "terminals": 2
+  },
+  "AC source (illustr.)": {
+   "ok": true,
+   "edges": 9,
+   "terminals": 2
+  },
+  "Lamp (illustr.)": {
+   "ok": true,
+   "edges": 9,
+   "terminals": 2
+  },
+  "Buzzer (illustr.)": {
+   "ok": true,
+   "edges": 11,
+   "terminals": 2
+  },
+  "Ground (illustr.)": {
+   "ok": true,
+   "edges": 6,
+   "terminals": 1
+  },
+  "Terminal (illustr.)": {
+   "ok": true,
+   "edges": 4,
+   "terminals": 1
+  },
+  "Switch NO (illustr.)": {
+   "ok": true,
+   "edges": 7,
+   "terminals": 2
+  },
+  "Switch NC (illustr.)": {
+   "ok": true,
+   "edges": 8,
+   "terminals": 2
+  },
+  "Pushbutton NO (illustr.)": {
+   "ok": true,
+   "edges": 9,
+   "terminals": 2
+  },
+  "Pushbutton NC (illustr.)": {
+   "ok": true,
+   "edges": 10,
+   "terminals": 2
+  },
+  "Emergency stop (illustr.)": {
+   "ok": true,
+   "edges": 10,
+   "terminals": 2
+  },
+  "Selector switch (illustr.)": {
+   "ok": true,
+   "edges": 12,
+   "terminals": 3
+  },
+  "Limit switch (illustr.)": {
+   "ok": true,
+   "edges": 9,
+   "terminals": 2
+  },
+  "Float switch (illustr.)": {
+   "ok": true,
+   "edges": 9,
+   "terminals": 2
+  },
+  "Pressure switch (illustr.)": {
+   "ok": true,
+   "edges": 11,
+   "terminals": 2
+  },
+  "Flow switch (illustr.)": {
+   "ok": true,
+   "edges": 11,
+   "terminals": 2
+  },
+  "Relay coil (illustr.)": {
+   "ok": true,
+   "edges": 10,
+   "terminals": 2
+  },
+  "Contactor coil (illustr.)": {
+   "ok": true,
+   "edges": 11,
+   "terminals": 2
+  },
+  "Timer coil ON-delay (illustr.)": {
+   "ok": true,
+   "edges": 11,
+   "terminals": 2
+  },
+  "Solenoid valve coil (illustr.)": {
+   "ok": true,
+   "edges": 12,
+   "terminals": 2
+  },
+  "Contact NO (illustr.)": {
+   "ok": true,
+   "edges": 7,
+   "terminals": 2
+  },
+  "Contact NC (illustr.)": {
+   "ok": true,
+   "edges": 8,
+   "terminals": 2
+  },
+  "Fuse (illustr.)": {
+   "ok": true,
+   "edges": 9,
+   "terminals": 2
+  },
+  "Breaker 1P (illustr.)": {
+   "ok": true,
+   "edges": 8,
+   "terminals": 2
+  },
+  "Breaker 3P (illustr.)": {
+   "ok": true,
+   "edges": 18,
+   "terminals": 6
+  },
+  "Contactor 3P (illustr.)": {
+   "ok": true,
+   "edges": 26,
+   "terminals": 8
+  },
+  "Overload relay (illustr.)": {
+   "ok": true,
+   "edges": 26,
+   "terminals": 8
+  },
+  "Motor 3-phase (illustr.)": {
+   "ok": true,
+   "edges": 13,
+   "terminals": 4
+  },
+  "Motor 1-phase (illustr.)": {
+   "ok": true,
+   "edges": 9,
+   "terminals": 3
+  },
+  "Transformer (illustr.)": {
+   "ok": true,
+   "edges": 14,
+   "terminals": 4
+  },
+  "Voltmeter (illustr.)": {
+   "ok": true,
+   "edges": 9,
+   "terminals": 2
+  },
+  "Ammeter (illustr.)": {
+   "ok": true,
+   "edges": 10,
+   "terminals": 2
+  },
+  "Heater element (illustr.)": {
+   "ok": true,
+   "edges": 13,
+   "terminals": 2
+  },
+  "VFD block (illustr.)": {
+   "ok": true,
+   "edges": 23,
+   "terminals": 7
+  },
+  "PLC block (illustr.)": {
+   "ok": true,
+   "edges": 18,
+   "terminals": 6
+  },
+  "Resistor (IEC-style)": {
+   "ok": true,
+   "edges": 10,
+   "terminals": 2
+  },
+  "Variable resistor (IEC-style)": {
+   "ok": true,
+   "edges": 13,
+   "terminals": 2
+  },
+  "Capacitor (IEC-style)": {
+   "ok": true,
+   "edges": 8,
+   "terminals": 2
+  },
+  "Inductor (IEC-style)": {
+   "ok": true,
+   "edges": 10,
+   "terminals": 2
+  },
+  "Diode (IEC-style)": {
+   "ok": true,
+   "edges": 10,
+   "terminals": 2
+  },
+  "LED (IEC-style)": {
+   "ok": true,
+   "edges": 12,
+   "terminals": 2
+  },
+  "Battery (IEC-style)": {
+   "ok": true,
+   "edges": 10,
+   "terminals": 2
+  },
+  "AC source (IEC-style)": {
+   "ok": true,
+   "edges": 9,
+   "terminals": 2
+  },
+  "Lamp (IEC-style)": {
+   "ok": true,
+   "edges": 9,
+   "terminals": 2
+  },
+  "Buzzer (IEC-style)": {
+   "ok": true,
+   "edges": 12,
+   "terminals": 2
+  },
+  "Ground (IEC-style)": {
+   "ok": true,
+   "edges": 6,
+   "terminals": 1
+  },
+  "Terminal (IEC-style)": {
+   "ok": true,
+   "edges": 4,
+   "terminals": 1
+  },
+  "Switch NO (IEC-style)": {
+   "ok": true,
+   "edges": 9,
+   "terminals": 2
+  },
+  "Switch NC (IEC-style)": {
+   "ok": true,
+   "edges": 9,
+   "terminals": 2
+  },
+  "Pushbutton NO (IEC-style)": {
+   "ok": true,
+   "edges": 11,
+   "terminals": 2
+  },
+  "Pushbutton NC (IEC-style)": {
+   "ok": true,
+   "edges": 11,
+   "terminals": 2
+  },
+  "Emergency stop (IEC-style)": {
+   "ok": true,
+   "edges": 11,
+   "terminals": 2
+  },
+  "Selector switch (IEC-style)": {
+   "ok": true,
+   "edges": 15,
+   "terminals": 3
+  },
+  "Limit switch (IEC-style)": {
+   "ok": true,
+   "edges": 11,
+   "terminals": 2
+  },
+  "Float switch (IEC-style)": {
+   "ok": true,
+   "edges": 11,
+   "terminals": 2
+  },
+  "Pressure switch (IEC-style)": {
+   "ok": true,
+   "edges": 13,
+   "terminals": 2
+  },
+  "Flow switch (IEC-style)": {
+   "ok": true,
+   "edges": 13,
+   "terminals": 2
+  },
+  "Relay coil (IEC-style)": {
+   "ok": true,
+   "edges": 10,
+   "terminals": 2
+  },
+  "Contactor coil (IEC-style)": {
+   "ok": true,
+   "edges": 11,
+   "terminals": 2
+  },
+  "Timer coil ON-delay (IEC-style)": {
+   "ok": true,
+   "edges": 11,
+   "terminals": 2
+  },
+  "Solenoid valve coil (IEC-style)": {
+   "ok": true,
+   "edges": 12,
+   "terminals": 2
+  },
+  "Contact NO (IEC-style)": {
+   "ok": true,
+   "edges": 7,
+   "terminals": 2
+  },
+  "Contact NC (IEC-style)": {
+   "ok": true,
+   "edges": 8,
+   "terminals": 2
+  },
+  "Fuse (IEC-style)": {
+   "ok": true,
+   "edges": 9,
+   "terminals": 2
+  },
+  "Breaker 1P (IEC-style)": {
+   "ok": true,
+   "edges": 11,
+   "terminals": 2
+  },
+  "Breaker 3P (IEC-style)": {
+   "ok": true,
+   "edges": 21,
+   "terminals": 6
+  },
+  "Contactor 3P (IEC-style)": {
+   "ok": true,
+   "edges": 26,
+   "terminals": 8
+  },
+  "Overload relay (IEC-style)": {
+   "ok": true,
+   "edges": 26,
+   "terminals": 8
+  },
+  "Motor 3-phase (IEC-style)": {
+   "ok": true,
+   "edges": 13,
+   "terminals": 4
+  },
+  "Motor 1-phase (IEC-style)": {
+   "ok": true,
+   "edges": 9,
+   "terminals": 3
+  },
+  "Transformer (IEC-style)": {
+   "ok": true,
+   "edges": 10,
+   "terminals": 4
+  },
+  "Voltmeter (IEC-style)": {
+   "ok": true,
+   "edges": 9,
+   "terminals": 2
+  },
+  "Ammeter (IEC-style)": {
+   "ok": true,
+   "edges": 10,
+   "terminals": 2
+  },
+  "Heater element (IEC-style)": {
+   "ok": true,
+   "edges": 13,
+   "terminals": 2
+  },
+  "VFD block (IEC-style)": {
+   "ok": true,
+   "edges": 23,
+   "terminals": 7
+  },
+  "PLC block (IEC-style)": {
+   "ok": true,
+   "edges": 18,
+   "terminals": 6
+  },
+  "Fuse (IEC)": {
+   "ok": true,
+   "edges": 9,
+   "terminals": 2
+  },
+  "Switch NO (IEC)": {
+   "ok": true,
+   "edges": 9,
+   "terminals": 2
+  },
+  "Switch NC (IEC)": {
+   "ok": true,
+   "edges": 10,
+   "terminals": 2
+  },
+  "Disconnector (IEC)": {
+   "ok": true,
+   "edges": 10,
+   "terminals": 2
+  },
+  "Breaker 1P (IEC)": {
+   "ok": true,
+   "edges": 11,
+   "terminals": 2
+  },
+  "Motor protection breaker (IEC)": {
+   "ok": true,
+   "edges": 16,
+   "terminals": 2
+  },
+  "Breaker 3P (IEC)": {
+   "ok": true,
+   "edges": 40,
+   "terminals": 6
+  },
+  "Contactor NO contact (IEC)": {
+   "ok": true,
+   "edges": 10,
+   "terminals": 2
+  },
+  "Contactor NC contact (IEC)": {
+   "ok": true,
+   "edges": 11,
+   "terminals": 2
+  },
+  "Contactor 3P (IEC)": {
+   "ok": true,
+   "edges": 41,
+   "terminals": 8
+  },
+  "Signal lamp (IEC-style)": {
+   "ok": true,
+   "edges": 9,
+   "terminals": 2
+  },
+  "Flashing beacon (IEC-style)": {
+   "ok": true,
+   "edges": 12,
+   "terminals": 2
+  },
+  "Bell (IEC-style)": {
+   "ok": true,
+   "edges": 9,
+   "terminals": 2
+  },
+  "Horn (IEC-style)": {
+   "ok": true,
+   "edges": 12,
+   "terminals": 2
+  },
+  "Wattmeter (IEC-style)": {
+   "ok": true,
+   "edges": 11,
+   "terminals": 2
+  },
+  "Frequency meter (IEC-style)": {
+   "ok": true,
+   "edges": 13,
+   "terminals": 2
+  },
+  "Energy meter kWh (IEC-style)": {
+   "ok": true,
+   "edges": 15,
+   "terminals": 4
+  },
+  "Hour counter (IEC-style)": {
+   "ok": true,
+   "edges": 13,
+   "terminals": 2
+  }
+ },
+ "lib_count": 100,
+ "starter_netlist": 9,
+ "starter_route": 10
+}

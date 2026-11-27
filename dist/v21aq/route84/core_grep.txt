@@ -1,0 +1,2 @@
+            from . import wire_route
+            if wire_route.plan(obj) is not None:
