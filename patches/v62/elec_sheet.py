@@ -22,9 +22,9 @@ try:
     for a, sa, b, sb in ((Q, '2', K, '1L1'), (Q, '4', K, '3L2'), (Q, '6', K, '5L3'), (K, '2T1', F, '1L1'), (K, '4T2', F, '3L2'), (K, '6T3', F, '5L3'), (F, '2T1', M, 'U1'), (F, '4T2', M, 'V1'), (F, '6T3', M, 'W1')):
         n += 1; add_terminal_wire(d, a, sa, b, sb, 'W%d' % n)
     # control circuit: stop (NC) - start (NO) - contactor coil, with hold-in contact in parallel to start
-    T1 = create(d, 'Terminal (illustr.)', 'L1', V(4000, -900, 0)); S1 = create(d, 'Pushbutton NC (illustr.)', 'S1', V(4400, -900, 0))
-    S2 = create(d, 'Pushbutton NO (illustr.)', 'S2', V(4800, -900, 0)); KC = create(d, 'Contactor coil (illustr.)', 'KM1-coil', V(5200, -900, 0))
-    T2 = create(d, 'Terminal (illustr.)', 'N', V(5600, -900, 0)); KA = create(d, 'Contact NO (illustr.)', 'KM1-13', V(4800, -1200, 0))
+    T1 = create(d, 'Terminal (illustr.)', 'L1', V(4000, -450, 0)); S1 = create(d, 'Pushbutton NC (illustr.)', 'S1', V(4400, -450, 0))
+    S2 = create(d, 'Pushbutton NO (illustr.)', 'S2', V(4800, -450, 0)); KC = create(d, 'Contactor coil (illustr.)', 'KM1-coil', V(5200, -450, 0))
+    T2 = create(d, 'Terminal (illustr.)', 'N', V(5600, -450, 0)); KA = create(d, 'Contact NO (illustr.)', 'KM1-13', V(4800, -720, 0))
     for a, sa, b, sb in ((T1, '1', S1, '21'), (S1, '22', S2, '13'), (S2, '14', KC, 'A1'), (KC, 'A2', T2, '1'), (S2, '13', KA, '13'), (S2, '14', KA, '14')):
         n += 1; add_terminal_wire(d, a, sa, b, sb, 'W%d' % n)
     d.recompute()
