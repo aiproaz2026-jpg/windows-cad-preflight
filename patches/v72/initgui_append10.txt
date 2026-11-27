@@ -1,0 +1,7 @@
+
+try:
+    from DeltaEngineering import iec_style as _ie
+    _ie.install()
+except Exception as _e10:
+    import FreeCAD as _A10
+    _A10.Console.PrintError("iec style failed: " + str(_e10) + "\n")
