@@ -17,8 +17,8 @@ def _label_offset(nodes, edges, n):
             o = b if a == n else a
             dirs.append(math.atan2(nodes[o].y - nodes[n].y, nodes[o].x - nodes[n].x))
     best, bs = (6, 6), -1
-    for ox, oy in ((6, 6), (-30, 6), (6, -12), (-30, -12), (6, 0), (-30, 0)):
-        ang = math.atan2(oy + 4, ox + 12)
+    for ox, oy in ((6, 6), (-62, 6), (6, -12), (-62, -12), (6, 0), (-62, 0)):
+        ang = math.atan2(oy + 4, ox + 12 if ox > 0 else -20)
         s = min([abs(math.atan2(math.sin(ang - d), math.cos(ang - d))) for d in dirs] or [3.0])
         if s > bs + 1e-9:
             bs, best = s, (ox, oy)

@@ -46,8 +46,8 @@ try:
                 dx_ = nodes[o_].x - nodes[n].x; dy_ = nodes[o_].y - nodes[n].y
                 dirs.append(_m.atan2(dy_, dx_))
         best_ = (6, 6); bs_ = -1
-        for ox_, oy_ in ((6, 6), (-30, 6), (6, -12), (-30, -12), (6, 0), (-30, 0)):
-            ang_ = _m.atan2(oy_ + 4, ox_ + 12)
+        for ox_, oy_ in ((6, 6), (-62, 6), (6, -12), (-62, -12), (6, 0), (-62, 0)):
+            ang_ = _m.atan2(oy_ + 4, ox_ + 12 if ox_ > 0 else -20)
             s_ = min([abs(_m.atan2(_m.sin(ang_ - d_), _m.cos(ang_ - d_))) for d_ in dirs] or [3.0])
             if s_ > bs_ + 1e-9:
                 bs_, best_ = s_, (ox_, oy_)
