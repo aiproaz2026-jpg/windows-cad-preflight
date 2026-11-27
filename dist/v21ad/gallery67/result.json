@@ -1,0 +1,481 @@
+{
+ "done": true,
+ "table": 56,
+ "edge_counts": {
+  "Resistor (illustr.)": [
+   10,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Variable resistor (illustr.)": [
+   13,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Capacitor (illustr.)": [
+   8,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Inductor (illustr.)": [
+   10,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Diode (illustr.)": [
+   10,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "LED (illustr.)": [
+   12,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Battery (illustr.)": [
+   10,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "AC source (illustr.)": [
+   9,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Lamp (illustr.)": [
+   9,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Buzzer (illustr.)": [
+   11,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Ground (illustr.)": [
+   6,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Terminal (illustr.)": [
+   4,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Switch NO (illustr.)": [
+   7,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Switch NC (illustr.)": [
+   8,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Pushbutton NO (illustr.)": [
+   9,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Pushbutton NC (illustr.)": [
+   10,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Emergency stop (illustr.)": [
+   10,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Selector switch (illustr.)": [
+   12,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Limit switch (illustr.)": [
+   9,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Float switch (illustr.)": [
+   9,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Pressure switch (illustr.)": [
+   11,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Flow switch (illustr.)": [
+   11,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Relay coil (illustr.)": [
+   10,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Contactor coil (illustr.)": [
+   11,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Timer coil ON-delay (illustr.)": [
+   11,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Solenoid valve coil (illustr.)": [
+   12,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Contact NO (illustr.)": [
+   7,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Contact NC (illustr.)": [
+   8,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Fuse (illustr.)": [
+   9,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Breaker 1P (illustr.)": [
+   8,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Breaker 3P (illustr.)": [
+   18,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Contactor 3P (illustr.)": [
+   26,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Overload relay (illustr.)": [
+   26,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Motor 3-phase (illustr.)": [
+   13,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Motor 1-phase (illustr.)": [
+   9,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Transformer (illustr.)": [
+   14,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Voltmeter (illustr.)": [
+   9,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Ammeter (illustr.)": [
+   10,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Heater element (illustr.)": [
+   13,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "VFD block (illustr.)": [
+   23,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "PLC block (illustr.)": [
+   18,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Resistor (IEC-style)": [
+   10,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Variable resistor (IEC-style)": [
+   13,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Capacitor (IEC-style)": [
+   8,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Inductor (IEC-style)": [
+   10,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Diode (IEC-style)": [
+   10,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "LED (IEC-style)": [
+   12,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Battery (IEC-style)": [
+   10,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "AC source (IEC-style)": [
+   9,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Lamp (IEC-style)": [
+   9,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Buzzer (IEC-style)": [
+   11,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Ground (IEC-style)": [
+   6,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Terminal (IEC-style)": [
+   4,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Switch NO (IEC-style)": [
+   9,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Switch NC (IEC-style)": [
+   9,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Pushbutton NO (IEC-style)": [
+   11,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Pushbutton NC (IEC-style)": [
+   11,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Emergency stop (IEC-style)": [
+   11,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Selector switch (IEC-style)": [
+   15,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Limit switch (IEC-style)": [
+   11,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Float switch (IEC-style)": [
+   11,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Pressure switch (IEC-style)": [
+   13,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Flow switch (IEC-style)": [
+   13,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Relay coil (IEC-style)": [
+   10,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Contactor coil (IEC-style)": [
+   11,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Timer coil ON-delay (IEC-style)": [
+   11,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Solenoid valve coil (IEC-style)": [
+   12,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Contact NO (IEC-style)": [
+   7,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Contact NC (IEC-style)": [
+   8,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Fuse (IEC-style)": [
+   9,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Breaker 1P (IEC-style)": [
+   11,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Breaker 3P (IEC-style)": [
+   21,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Contactor 3P (IEC-style)": [
+   26,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Overload relay (IEC-style)": [
+   26,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Motor 3-phase (IEC-style)": [
+   13,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Motor 1-phase (IEC-style)": [
+   9,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Transformer (IEC-style)": [
+   10,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Voltmeter (IEC-style)": [
+   9,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Ammeter (IEC-style)": [
+   10,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "Heater element (IEC-style)": [
+   13,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "VFD block (IEC-style)": [
+   23,
+   "False",
+   "PartDesign::FeaturePython"
+  ],
+  "PLC block (IEC-style)": [
+   18,
+   "False",
+   "PartDesign::FeaturePython"
+  ]
+ },
+ "two_terminal_at_leads": 56,
+ "sample": [
+  [
+   "Resistor (illustr.)",
+   [
+    [
+     60.0,
+     10.0,
+     0.0
+    ],
+    [
+     60.0,
+     -10.0,
+     0.0
+    ]
+   ]
+  ],
+  [
+   "Variable resistor (illustr.)",
+   [
+    [
+     60.0,
+     10.0,
+     0.0
+    ],
+    [
+     60.0,
+     -10.0,
+     0.0
+    ]
+   ]
+  ],
+  [
+   "Capacitor (illustr.)",
+   [
+    [
+     60.0,
+     10.0,
+     0.0
+    ],
+    [
+     60.0,
+     -10.0,
+     0.0
+    ]
+   ]
+  ],
+  [
+   "Inductor (illustr.)",
+   [
+    [
+     60.0,
+     10.0,
+     0.0
+    ],
+    [
+     60.0,
+     -10.0,
+     0.0
+    ]
+   ]
+  ]
+ ],
+ "symbols": 82,
+ "pdf_bytes": 170315
+}
