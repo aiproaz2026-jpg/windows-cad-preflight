@@ -1,0 +1,5 @@
+{
+ "done": false,
+ "term_table": 23,
+ "error": "Traceback (most recent call last):\n  File \"<string>\", line 23, in <module>\n  File \"<string>\", line 20, in row\n  File \"<string>\", line 20, in <listcomp>\n  File \"C:\\DeltaTest\\Mod\\DeltaEngineering\\DeltaEngineering\\symbols.py\", line 29, in create\n    if not tag or any(getattr(o,'Tag',None)==tag for o in doc.Objects):raise ValueError('Use a unique nonempty device tag')\n                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: Use a unique nonempty device tag\n"
+}
