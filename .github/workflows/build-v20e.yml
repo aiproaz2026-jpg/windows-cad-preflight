@@ -62,6 +62,7 @@ jobs:
           tail -8 C:/delta/DeltaEngineering/package/Mod/DeltaEngineering/InitGui.py
           cp patches/v51/ar_dict.py $M/ar_dict.py
           cp patches/v54/ar_layer.py patches/v54/ar_dict2.py patches/v54/ar_dict3.py $M/
+          cp patches/v59/ar_layer.py patches/v59/ar_dict4.py $M/
           cat patches/v51/initgui_append2.txt >> C:/delta/DeltaEngineering/package/Mod/DeltaEngineering/InitGui.py
           sed -i "s/ | Mechanical'/'/; s/ | Piping'/'/; s/ | Electrical'/'/" $M/core.py
           cp patches/v52/fittings3d.py patches/v52/fit_commands.py patches/v52/brand.py $M/
@@ -72,7 +73,7 @@ jobs:
           cat patches/v53/initgui_append4.txt >> C:/delta/DeltaEngineering/package/Mod/DeltaEngineering/InitGui.py
           cat patches/v57/initgui_append5.txt >> C:/delta/DeltaEngineering/package/Mod/DeltaEngineering/InitGui.py
           grep -n "root.Label\|piping.Label\|electrical.Label" $M/core.py
-          python -m py_compile $M/drafting.py $M/parts_library.py $M/fittings_library.py $M/library_commands.py $M/ar_dict.py $M/ar_dict2.py $M/ar_dict3.py $M/ar_layer.py $M/core.py $M/fittings3d.py $M/fit_commands.py $M/brand.py $M/equipment3d.py $M/eq_commands.py $M/threads3d.py $M/thr_commands.py $M/gui.py $M/export.py && echo v17 patches compile ok
+          python -m py_compile $M/drafting.py $M/parts_library.py $M/fittings_library.py $M/library_commands.py $M/ar_dict.py $M/ar_dict2.py $M/ar_dict3.py $M/ar_dict4.py $M/ar_layer.py $M/core.py $M/fittings3d.py $M/fit_commands.py $M/brand.py $M/equipment3d.py $M/eq_commands.py $M/threads3d.py $M/thr_commands.py $M/gui.py $M/export.py && echo v17 patches compile ok
           sha256sum $M/drafting.py $M/parts_library.py $M/fittings_library.py | tee -a /c/out/source-revision.txt
       - name: Import check of patched package with plain python syntax compile
         shell: bash
