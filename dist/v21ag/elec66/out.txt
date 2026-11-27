@@ -1,0 +1,4 @@
+{"done": true, "valid_example_errors": [], "bad_rejected": true, "bad_save_blocked": true, "user_file": "C:/seed/elec66/elec_symbols.json", "lib_count": 60, "edges": 7, "terminals": ["1", "2"]}
+Recompute......
+						(20 %)							(40 %)							(60 %)							(80 %)							(100 %)									Recompute......
+						(20 %)							(40 %)							(60 %)							(80 %)							(100 %)									
