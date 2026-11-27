@@ -1,0 +1,7 @@
+
+try:
+    from DeltaEngineering import net_export as _ne
+    _ne.register()
+except Exception as _e9:
+    import FreeCAD as _A9
+    _A9.Console.PrintError("network export failed: " + str(_e9) + "\n")
