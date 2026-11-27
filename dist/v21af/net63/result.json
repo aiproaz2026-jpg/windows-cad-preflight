@@ -1,0 +1,22 @@
+{
+ "done": true,
+ "pipes": 7,
+ "fittings": {
+  "tee_eq": 2,
+  "elbow90lr": 1,
+  "elbow45": 1
+ },
+ "total_pipe_mm": 11352.2,
+ "max_joint_gap_mm": 2.910328916978174e-14,
+ "bad": [],
+ "text_net": [
+  2,
+  [
+   "B"
+  ]
+ ],
+ "bad_bend_rejected": true,
+ "edit_changes_volume": true,
+ "step_bytes": 62056,
+ "pdf_bytes": 3290
+}
