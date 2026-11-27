@@ -13,6 +13,7 @@ for _m, _n2 in (('ar_dict2', 'DICT2'), ('ar_dict3', 'DICT3'), ('ar_dict4', 'DICT
     except Exception:
         pass
 _B = re.compile(r'<b>(.*?)</b>', re.S)
+_TN = re.compile(r'(<(?:p|li)[^>]*>)([^<>]+)(</(?:p|li)>)')
 _P = re.compile(r'(</p>\s*<p[^>]*>)([^<]+)(</p>)')
 
 
@@ -21,6 +22,7 @@ def _tip(t):
     if not t or '<p' not in t:
         return t
     t2 = _B.sub(lambda m: '<b>' + (_lk(_n(m.group(1))) or m.group(1)) + '</b>', t)
+    t2 = _TN.sub(lambda m: m.group(1) + (_lk(_n(m.group(2))) or m.group(2)) + m.group(3), t2)
     t2 = _P.sub(lambda m: m.group(1) + (_lk(_n(m.group(2))) or m.group(2)) + m.group(3), t2)
     return t2
 
@@ -44,8 +46,18 @@ def relabel(doc):
     return n
 
 
+class _S(str):
+    raw = ''
+
+
+def _c(x):
+    return ' '.join((x or '').replace('&', '').split())
+
+
 def _n(s):
-    return ' '.join((s or '').replace('&', '').split())
+    r = _S(_c(s))
+    r.raw = s or ''
+    return r
 
 
 _PFX = {}
@@ -54,7 +66,14 @@ _PFX = {}
 def _lk(k):
     """Exact match, else prefix match against a stored key (keys may be truncated sentences)."""
     r = DICT.get(k)
-    if r is not None or len(k) < 25:
+    if r is not None:
+        return r
+    raw = getattr(k, 'raw', '')
+    if '\n' in raw:
+        parts = [_lk(_n(x)) or x for x in raw.split('\n')]
+        if any(p != x for p, x in zip(parts, raw.split('\n'))):
+            return '\n'.join(parts)
+    if len(k) < 25:
         return r
     if k in _PFX:
         return _PFX[k]
