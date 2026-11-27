@@ -1,0 +1,8 @@
+{
+ "done": true,
+ "netlist": 15,
+ "route": 6,
+ "devices": 10,
+ "wires": 15,
+ "pdf_bytes": 28676
+}
