@@ -146,7 +146,7 @@ class Equip3D(object):
             obj.BodyDiameter = bd; obj.StemDiameter = max(6.0, round(0.2 * 2 * ri, 1))
             if k == 'gate_valve':
                 obj.BonnetDiameter = round(0.7 * bd, 1); obj.BonnetHeight = round(0.8 * bd, 1); obj.StemHeight = round(1.2 * bd, 1)
-                obj.HandwheelDiameter = round(2.0 * bd, 1); obj.HandwheelThickness = 8.0; obj.LeverLength = 10.0; obj.LeverWidth = 10.0
+                obj.HandwheelDiameter = round(min(2.0 * bd, 0.9 * ff), 1); obj.HandwheelThickness = 8.0; obj.LeverLength = 10.0; obj.LeverWidth = 10.0
             elif k == 'ball_valve':
                 obj.BonnetDiameter = round(0.5 * bd, 1); obj.BonnetHeight = round(0.3 * bd, 1); obj.StemHeight = round(0.4 * bd, 1)
                 obj.HandwheelDiameter = 10.0; obj.HandwheelThickness = 8.0; obj.LeverLength = round(2.5 * bd, 1); obj.LeverWidth = 20.0
