@@ -1,0 +1,7 @@
+
+try:
+    from DeltaEngineering import thr_commands as _tc
+    _tc.register()
+except Exception as _e6:
+    import FreeCAD as _A6
+    _A6.Console.PrintError("thread commands failed: " + str(_e6) + "\n")
