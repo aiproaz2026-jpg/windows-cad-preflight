@@ -24,7 +24,7 @@ try:
     doc.saveAs(OUT + '/pump_station3_piping.FCStd')
     pw, ph = 1190.55, 841.89
     xs = [v.x for v in nodes.values()]; ys = [v.y for v in nodes.values()]
-    x0, x1, y0, y1 = min(xs) - 600, max(xs) + 600, min(ys) - 600, max(ys) + 600
+    x0, x1, y0, y1 = min(xs) - 1100, max(xs) + 600, min(ys) - 600, max(ys) + 600
     sc = min((pw - 440) / (x1 - x0), (ph - 140) / (y1 - y0)); ox, oy = 40, 80
     X = lambda x: ox + (x - x0) * sc; Y = lambda y: oy + (y - y0) * sc
     pg = minipdf.Page(pw, ph); pg.rect(20, 20, pw - 40, ph - 40, 1.5)
