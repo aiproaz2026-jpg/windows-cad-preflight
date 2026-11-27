@@ -1,0 +1,24 @@
+# GitLab CI (free tier, Windows hosted runner, beta). Trigger a pipeline with variable BUILD=probe or BUILD=v20g.
+workflow:
+  rules:
+    - if: '$BUILD == "probe" || $BUILD == "v20g"'
+default:
+  tags: [saas-windows-medium-amd64]
+probe:
+  rules:
+    - if: '$BUILD == "probe"'
+  timeout: 15m
+  script:
+    - powershell -NoProfile -ExecutionPolicy Bypass -File ci/gl/probe.ps1
+build-v20g:
+  rules:
+    - if: '$BUILD == "v20g"'
+  timeout: 3h
+  script:
+    - powershell -NoProfile -ExecutionPolicy Bypass -File ci/gl/driver.ps1
+  artifacts:
+    when: always
+    expire_in: 30 days
+    paths:
+      - out/
+      - dist/

@@ -1,0 +1,142 @@
+[
+ {
+  "file": "ci/gl/step_01.sh",
+  "shell": "bash",
+  "name": "Write v12 patch files (electrical per-terminal side)",
+  "coe": false,
+  "always": false
+ },
+ {
+  "file": "ci/gl/step_02.sh",
+  "shell": "bash",
+  "name": "Unpack v58 source and apply patches/v12 chain (v3 to v12)",
+  "coe": false,
+  "always": false
+ },
+ {
+  "file": "ci/gl/step_03.sh",
+  "shell": "bash",
+  "name": "Apply v16 patches (page layout, label side, contactor marks, on-screen identifiers)",
+  "coe": false,
+  "always": false
+ },
+ {
+  "file": "ci/gl/step_04.sh",
+  "shell": "bash",
+  "name": "Apply v16 patches (paired pole rows, per-terminal leads, three-pole breaker, Tasks panel toolbar button)",
+  "coe": false,
+  "always": false
+ },
+ {
+  "file": "ci/gl/step_05.sh",
+  "shell": "bash",
+  "name": "Apply v17 patches (drafting v10, parts library, fittings library)",
+  "coe": false,
+  "always": false
+ },
+ {
+  "file": "ci/gl/step_06.sh",
+  "shell": "bash",
+  "name": "Import check of patched package with plain python syntax compile",
+  "coe": false,
+  "always": false
+ },
+ {
+  "file": "ci/gl/step_07.ps1",
+  "shell": "pwsh",
+  "name": "Stage official FreeCAD 1.1.4 plus Delta addon (offline bundle)",
+  "coe": false,
+  "always": false
+ },
+ {
+  "file": "ci/gl/step_08.ps1",
+  "shell": "pwsh",
+  "name": "Generate THIRD-PARTY-NOTICES index from the staged payload",
+  "coe": false,
+  "always": false
+ },
+ {
+  "file": "ci/gl/step_09.ps1",
+  "shell": "pwsh",
+  "name": "Build offline installer with Inno Setup",
+  "coe": false,
+  "always": false
+ },
+ {
+  "file": "ci/gl/step_10.ps1",
+  "shell": "pwsh",
+  "name": "Add Mesa llvmpipe software OpenGL (CI only)",
+  "coe": false,
+  "always": false
+ },
+ {
+  "file": "ci/gl/step_11.ps1",
+  "shell": "pwsh",
+  "name": "Install silently as the setup exe (per-user, no admin) and check files",
+  "coe": false,
+  "always": false
+ },
+ {
+  "file": "ci/gl/step_12.ps1",
+  "shell": "pwsh",
+  "name": "Copy Mesa into installed app (CI only)",
+  "coe": false,
+  "always": false
+ },
+ {
+  "file": "ci/gl/step_13.ps1",
+  "shell": "pwsh",
+  "name": "Run GUI macro (patches/v7/macro_gui_test.py) on the installed v12 at 1366x768",
+  "coe": false,
+  "always": false
+ },
+ {
+  "file": "ci/gl/step_14.ps1",
+  "shell": "pwsh",
+  "name": "Electrical wiring route test on the installed v12 (headless FreeCAD)",
+  "coe": true,
+  "always": false
+ },
+ {
+  "file": "ci/gl/step_15.ps1",
+  "shell": "pwsh",
+  "name": "v17 library counts and Z/PDF layout check on the installed v17",
+  "coe": true,
+  "always": false
+ },
+ {
+  "file": "ci/gl/step_16.ps1",
+  "shell": "pwsh",
+  "name": "FlaUI (UI Automation) gate on the installed app (free, CI only, evidence not a certification)",
+  "coe": true,
+  "always": false
+ },
+ {
+  "file": "ci/gl/step_17.ps1",
+  "shell": "pwsh",
+  "name": "Tesseract Arabic OCR gate on the CI screenshot of the Arabic UI (free, CI only)",
+  "coe": true,
+  "always": false
+ },
+ {
+  "file": "ci/gl/step_19.sh",
+  "shell": "bash",
+  "name": "Publish installer as private release asset and commit evidence",
+  "coe": false,
+  "always": true
+ },
+ {
+  "file": "ci/gl/step_20.ps1",
+  "shell": "pwsh",
+  "name": "Gate verdict (fails on timeout, absent result, error or failed step)",
+  "coe": false,
+  "always": true
+ },
+ {
+  "file": "ci/gl/step_21.ps1",
+  "shell": "pwsh",
+  "name": "Gate v19 checks (library counts, Z/L/U layouts, PDF export)",
+  "coe": false,
+  "always": true
+ }
+]
