@@ -12,7 +12,11 @@ def _leads(prims):
             pts += [tuple(q[0]), tuple(q[-1])]
     h = [x for x, y in pts if abs(y) < 1e-6]
     if h and max(h) - min(h) >= 60 and abs(max(h) + min(h)) < 1e-6:
-        return ((min(h), 0.0), (max(h), 0.0))
+        lo, hi = min(h), max(h)
+        # core draws a leader from x=+/-35 to the terminal; an identical point makes Part.makeLine fail and the symbol vanish, so stay 0.01 mm inside.
+        if abs(abs(hi) - 35.0) < 1e-6:
+            lo, hi = lo + 0.01, hi - 0.01
+        return ((lo, 0.0), (hi, 0.0))
     return None
 
 
