@@ -1,0 +1,30 @@
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\core.py", line 89, in execute
+    shapes.append(Part.makeLine(anchor,endpoint))
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<class 'Part.OCCError'>: Line through identical points
+S1: Line through identical points
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\core.py", line 89, in execute
+    shapes.append(Part.makeLine(anchor,endpoint))
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<class 'Part.OCCError'>: Line through identical points
+S1: Line through identical points
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\core.py", line 89, in execute
+    shapes.append(Part.makeLine(anchor,endpoint))
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<class 'Part.OCCError'>: Line through identical points
+S1: Line through identical points
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\core.py", line 89, in execute
+    shapes.append(Part.makeLine(anchor,endpoint))
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<class 'Part.OCCError'>: Line through identical points
+S1: Line through identical points
+Traceback (most recent call last):
+  File "C:\DeltaTest\Mod\DeltaEngineering\DeltaEngineering\core.py", line 89, in execute
+    shapes.append(Part.makeLine(anchor,endpoint))
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<class 'Part.OCCError'>: Line through identical points
+S1: Line through identical points
