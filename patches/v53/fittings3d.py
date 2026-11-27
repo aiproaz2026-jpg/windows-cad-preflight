@@ -151,6 +151,11 @@ class Fitting3D(object):
                 self.load(obj, obj.SizePreset)
 
     def execute(self, obj):
+        pl = App.Placement(obj.Placement)
+        self._build(obj)
+        obj.Placement = pl
+
+    def _build(self, obj):
         k = self.kind
         if k.startswith('elbow'):
             ro = obj.OuterDiameter.Value / 2.0; ri = ro - obj.Wall.Value
