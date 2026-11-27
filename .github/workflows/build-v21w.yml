@@ -65,6 +65,7 @@ jobs:
           cp patches/v59/ar_dict4.py $M/
           cp patches/v65/ar_layer.py patches/v61/ar_props.py $M/
           cp patches/v60/elec_lib_data.py $M/elec_lib_data.py
+          cat patches/v73/elec_iec_passive_append.py >> $M/elec_lib_data.py
           cp patches/v62/minipdf.py $M/minipdf.py
           cp patches/v66/elec_libedit.py $M/elec_libedit.py
           cp patches/v71/term_ends.py $M/term_ends.py
