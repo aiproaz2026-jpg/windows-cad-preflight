@@ -1,0 +1,7 @@
+
+try:
+    from DeltaEngineering import term_ends as _te
+    _te.install()
+except Exception as _e8:
+    import FreeCAD as _A8
+    _A8.Console.PrintError("terminal ends failed: " + str(_e8) + "\n")

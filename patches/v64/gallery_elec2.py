@@ -16,7 +16,7 @@ try:
     T1 = create(d, 'Terminal (illustr.)', 'L1', V(4000, 0, 0)); F1 = create(d, 'Fuse (illustr.)', 'F1', V(4400, 0, 0))
     KM = create(d, 'Contact NO (illustr.)', 'KM1', V(4800, 0, 0)); M = create(d, 'Motor 1-phase (illustr.)', 'M1', V(5200, 0, 0))
     T2 = create(d, 'Terminal (illustr.)', 'N', V(5600, 0, 0))
-    for dev, sides in ((F1, {'1': 'Left', '2': 'Right'}), (KM, {'13': 'Left', '14': 'Right'}), (M, {'U1': 'Left', 'U2': 'Right', 'PE': 'Left'})):
+    for dev, sides in ((KM, {'13': 'Left', '14': 'Right'}), (M, {'U1': 'Left', 'U2': 'Right', 'PE': 'Left'})):
         set_terminal_sides(d, dev, sides)
     n = 0
     for a, sa, b, sb in ((T1, '1', F1, '1'), (F1, '2', KM, '13'), (KM, '14', M, 'U1'), (M, 'U2', T2, '1')):
@@ -24,9 +24,7 @@ try:
     C1 = create(d, 'Terminal (illustr.)', 'L1c', V(4000, -450, 0)); F2 = create(d, 'Fuse (illustr.)', 'F2', V(4400, -450, 0))
     S1 = create(d, 'Float switch (illustr.)', 'S1', V(4800, -450, 0)); KC = create(d, 'Contactor coil (illustr.)', 'KM1-coil', V(5200, -450, 0))
     C2 = create(d, 'Terminal (illustr.)', 'Nc', V(5600, -450, 0)); H1 = create(d, 'Lamp (illustr.)', 'H1', V(5200, -720, 0))
-    for dev, sides in ((F2, {'1': 'Left', '2': 'Right'}), (S1, {'1': 'Left', '2': 'Right'}), (H1, {'X1': 'Left', 'X2': 'Right'})):
-        set_terminal_sides(d, dev, sides)
-    for a, sa, b, sb in ((C1, '1', F2, '1'), (F2, '2', S1, '1'), (S1, '2', KC, 'A1'), (KC, 'A2', C2, '1'), (S1, '2', H1, 'X1'), (H1, 'X2', C2, '1')):
+        for a, sa, b, sb in ((C1, '1', F2, '1'), (F2, '2', S1, '1'), (S1, '2', KC, 'A1'), (KC, 'A2', C2, '1'), (S1, '2', H1, 'X1'), (H1, 'X2', C2, '1')):
         n += 1; add_terminal_wire(d, a, sa, b, sb, 'W%d' % n)
     d.recompute()
     res['netlist'] = len(netlist(d)); res['route'] = routecheck.check(d)['count']
