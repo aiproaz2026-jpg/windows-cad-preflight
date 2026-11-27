@@ -60,13 +60,13 @@ def _metric_shape(d, P, L, modeled):
     if not modeled:
         return Part.makeCylinder((d - 0.6495 * P) / 2.0, L), False
     h = (d - d1) / 2.0
-    H = L + 3.0 * P
+    # No trimming boolean: the ridge starts and ends inside the shank (trimming by a common failed in the kernel, prototype-tested).
+    H = L - 0.9 * P
     helix = Part.makeHelix(P, H, r1)
     prof = _ridge(r1, h, 0.75 * P, 0.125 * P)
     sweep = Part.Wire(helix).makePipeShell([prof], True, True)
-    sweep.translate(V(0, 0, -1.5 * P))
-    box = Part.makeCylinder(d / 2.0 + 0.01, L)
-    s = core.fuse(sweep).common(box)
+    sweep.translate(V(0, 0, 0.45 * P))
+    s = core.fuse(sweep)
     s = s.removeSplitter() if hasattr(s, 'removeSplitter') else s
     return s, True
 
@@ -86,14 +86,14 @@ def _npt_shape(nps, modeled, body_len):
         core = Part.makeCone(rp0, rp0 + k * L, L)
     else:
         core = Part.makeCone(rcore0, rcore1, L)
-        H = L + 3.0 * P
+        z0 = 0.55 * P
+        rs = rcore0 + k * z0
         ang = math.degrees(math.atan(k))
-        helix = Part.makeHelix(P, H, rcore0 - k * 1.5 * P, ang)
-        prof = _ridge(rcore0 - k * 1.5 * P, h, 0.95 * P, 0.026 * P)
+        helix = Part.makeHelix(P, L - 1.1 * P, rs, ang)
+        prof = _ridge(rs, h, 0.95 * P, 0.026 * P)
         sweep = Part.Wire(helix).makePipeShell([prof], True, True)
-        sweep.translate(V(0, 0, -1.5 * P))
-        env = Part.makeCone(rp0 + h / 2.0 + 0.01, rp0 + h / 2.0 + 0.01 + k * L, L)
-        core = core.fuse(sweep).common(env)
+        sweep.translate(V(0, 0, z0))
+        core = core.fuse(sweep)
     # local frame: z=0 small end. Final: free (small) end at the top of a plain body of OD D.
     core.rotate(V(0, 0, 0), V(1, 0, 0), 180)
     core.translate(V(0, 0, body_len + L))
