@@ -1,0 +1,24 @@
+{
+ "done": true,
+ "route_noop": true,
+ "pipes": 8,
+ "fittings": {
+  "tee_eq": 1,
+  "elbow45": 4
+ },
+ "total_pipe_mm": 9818.6,
+ "max_joint_gap_mm": 1.0044648285688315e-12,
+ "bad": [],
+ "fitting_rows": 5,
+ "fitting_kinds": [
+  "elbow45",
+  "tee_eq"
+ ],
+ "short_segments": [],
+ "step_bytes": 85981,
+ "fcstd_bytes": 23675,
+ "pdf_bytes": 8118,
+ "segments_labeled": 8,
+ "segments": 8,
+ "nodes": 9
+}

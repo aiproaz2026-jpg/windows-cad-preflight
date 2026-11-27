@@ -1,0 +1,27 @@
+{
+ "done": true,
+ "inserted": [
+  "D4~OUT"
+ ],
+ "route_bad": [],
+ "pipes": 13,
+ "fittings": {
+  "tee_eq": 4,
+  "elbow90lr": 2
+ },
+ "total_pipe_mm": 23932.0,
+ "max_joint_gap_mm": 3.326880744395831e-14,
+ "bad": [],
+ "fitting_rows": 6,
+ "fitting_kinds": [
+  "elbow90lr",
+  "tee_eq"
+ ],
+ "short_segments": [],
+ "step_bytes": 98111,
+ "fcstd_bytes": 36254,
+ "pdf_bytes": 12925,
+ "segments_labeled": 13,
+ "segments": 13,
+ "nodes": 15
+}
