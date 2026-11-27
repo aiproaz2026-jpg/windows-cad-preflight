@@ -36,9 +36,25 @@ try:
         pg.rect(X(a.x) - 28, Y(b.y), 56, Y(a.y) - Y(b.y), 1.2)
         pg.text(X(a.x) - 24, (Y(a.y) + Y(b.y)) / 2, 'Pump P' + k, 8)
         pg.text(X(a.x) + 32, (Y(a.y) + Y(b.y)) / 2 - 10, '(symbol only)', 6.5)
-    pg.text(X(0), Y(0) + 8, 'Suction header (in)', 8); pg.text(X(0), Y(-5600) - 12, 'Discharge header (out)', 8)
+    pg.text(X(0), Y(0) + 24, 'Suction header (in)', 8); pg.text(X(0), Y(-5600) - 12, 'Discharge header (out)', 8)
+    import math as _m
+    def _lblpos(n, edges_):
+        dirs = []
+        for a_, b_ in edges_:
+            if n in (a_, b_):
+                o_ = b_ if a_ == n else a_
+                dx_ = nodes[o_].x - nodes[n].x; dy_ = nodes[o_].y - nodes[n].y
+                dirs.append(_m.atan2(dy_, dx_))
+        best_ = (6, 6); bs_ = -1
+        for ox_, oy_ in ((6, 6), (-30, 6), (6, -12), (-30, -12), (6, 0), (-30, 0)):
+            ang_ = _m.atan2(oy_ + 4, ox_ + 12)
+            s_ = min([abs(_m.atan2(_m.sin(ang_ - d_), _m.cos(ang_ - d_))) for d_ in dirs] or [3.0])
+            if s_ > bs_ + 1e-9:
+                bs_, best_ = s_, (ox_, oy_)
+        return best_
     for n, p in nodes.items():
-        pg.text(X(p.x) + 6, Y(p.y) + 6, n + (' [' + r['plan']['fittings'][n]['kind'] + ']' if n in r['plan']['fittings'] else ''), 7)
+        _o = _lblpos(n, EDGES)
+        pg.text(X(p.x) + _o[0], Y(p.y) + _o[1], n + (' [' + r['plan']['fittings'][n]['kind'] + ']' if n in r['plan']['fittings'] else ''), 7)
     tx = pw - 400; ty = ph - 60
     pg.text(tx, ty, 'Two-pump station piping, NPS 4, SCH 40 (ILLUSTRATIVE, generic)', 9); ty -= 16
     for row in rows:

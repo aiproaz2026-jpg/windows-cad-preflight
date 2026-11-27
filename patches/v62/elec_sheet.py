@@ -45,7 +45,7 @@ try:
     nw = 0
     for o in d.Objects:
         if hasattr(o, 'SourceTerminal') and not o.Shape.isNull():
-            add(o.Shape, 0.7, (0.75, 0.22, 0.17)); nw += 1
+            add(o.Shape, 1.0, (0.75, 0.22, 0.17)); nw += 1
     res['devices'] = ndev; res['wires'] = nw
     pw, ph = 1190.55, 841.89
     x0, x1, y0, y1 = min(xs) - 60, max(xs) + 60, min(ys) - 80, max(ys) + 120
