@@ -1,0 +1,8 @@
+name: Probe Actions availability
+on: workflow_dispatch
+jobs:
+  probe:
+    runs-on: windows-2022
+    timeout-minutes: 5
+    steps:
+      - run: Write-Host "actions ok"; $PSVersionTable.PSVersion.ToString()
