@@ -15,7 +15,8 @@ try:
     pg.text(40, 800, 'Electrical symbol library (ILLUSTRATIVE, original shapes): terminal dots at lead ends for two-terminal symbols', 10)
     cols = 6; sc = 0.9; moved = 0; checked = []
     for i, k in enumerate(kinds):
-        o = create(d, k, 'T%d' % i, App.Vector(0, 0, 0)); d.recompute()
+        o = create(d, k, 'T%d' % i, App.Vector(0, 0, 0)); o.touch(); d.recompute()
+        res.setdefault('edge_counts', {})[k] = [len(o.Shape.Edges), str(o.Shape.isNull()), o.TypeId]
         cx = 120 + (i % cols) * 190; cy = 740 - (i // cols) * 105
         for e in o.Shape.Edges:
             pts = e.discretize(20) if e.Curve.__class__.__name__ != 'Line' else [e.Vertexes[0].Point, e.Vertexes[-1].Point]
