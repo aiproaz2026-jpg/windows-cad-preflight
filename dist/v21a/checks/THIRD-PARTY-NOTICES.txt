@@ -1,0 +1,163 @@
+THIRD-PARTY NOTICES INDEX / فهرس إشعارات المكوّنات الخارجية
+This program bundles FreeCAD (LGPL-2.1-or-later), OpenCASCADE (LGPL-2.1 with exception), Python, Qt (LGPL-3.0), and other open-source components.
+This file is an automatically generated index of the licence and notice files found inside the installed payload. It is NOT a legal opinion and NOT a complete licence review.
+Each listed file is shipped unchanged in the installation folder at the path shown. Count: 158
+
+bin/Lib/site-packages/aiohappyeyeballs-2.6.1.dist-info/LICENSE | 13936 bytes | sha256:3B2F81FE21D181C4 | A. HISTORY OF THE SOFTWARE ==========================
+bin/Lib/site-packages/aiohttp-3.13.2.dist-info/licenses/LICENSE.txt | 588 bytes | sha256:9F80D0DB7D755A94 | Copyright aio-libs contributors.     Licensed under the Apache License, Version 2.0 (the "License");
+bin/Lib/site-packages/aiohttp-3.13.2.dist-info/licenses/vendor/llhttp/LICENSE | 1105 bytes | sha256:EBCA854E0134CD25 | This software is licensed under the MIT License.  Copyright Fedor Indutny, 2018.
+bin/Lib/site-packages/aiosignal-1.4.0.dist-info/licenses/LICENSE | 11332 bytes | sha256:6FD5243E92DD7F98 | Apache License                            Version 2.0, January 2004                         http://w
+bin/Lib/site-packages/attrs-25.4.0.dist-info/licenses/LICENSE | 1109 bytes | sha256:882115C95DFC2AF1 | The MIT License (MIT)  Copyright (c) 2015 Hynek Schlawack and the attrs contributors
+bin/Lib/site-packages/backports_zstd-1.2.0.dist-info/licenses/LICENSE_zstd.txt | 1761 bytes | sha256:836CBDA972F74261 | Depending on how it is built, this package may distribute the zstd library, partially or in its inte
+bin/Lib/site-packages/backports_zstd-1.2.0.dist-info/licenses/LICENSE.txt | 13804 bytes | sha256:B0E25A78CFFB43F4 | A. HISTORY OF THE SOFTWARE ==========================
+bin/Lib/site-packages/blinker-1.9.0.dist-info/LICENSE.txt | 1054 bytes | sha256:9EB73A1F38597A4A | Copyright 2010 Jason Kirtland  Permission is hereby granted, free of charge, to any person obtaining
+bin/Lib/site-packages/brotli-1.2.0.dist-info/licenses/LICENSE | 1084 bytes | sha256:3D180008E36922A4 | Copyright (c) 2009, 2010, 2013-2016 by the Brotli Authors.  Permission is hereby granted, free of ch
+bin/Lib/site-packages/certifi-2025.11.12.dist-info/LICENSE | 989 bytes | sha256:E93716DA6B9C0D5A | This package contains a modified version of ca-bundle.crt:  ca-bundle.crt -- Bundle of CA Root Certi
+bin/Lib/site-packages/charset_normalizer-3.4.4.dist-info/licenses/LICENSE | 1071 bytes | sha256:6D0D41BFE170AC6C | MIT License  Copyright (c) 2025 TAHRI Ahmed R.
+bin/Lib/site-packages/colorama-0.4.6.dist-info/licenses/LICENSE.txt | 1491 bytes | sha256:CAC35C02686E5D04 | Copyright (c) 2010 Jonathan Hartley All rights reserved.
+bin/Lib/site-packages/contourpy-1.3.3.dist-info/LICENSE | 1534 bytes | sha256:34170979FC64F4F5 | BSD 3-Clause License  Copyright (c) 2021-2025, ContourPy Developers.
+bin/Lib/site-packages/cycler-0.12.1.dist-info/licenses/LICENSE | 1497 bytes | sha256:F1218143D766DA3F | Copyright (c) 2015, matplotlib project All rights reserved.
+bin/Lib/site-packages/debugpy-1.8.18.dist-info/licenses/LICENSE | 1200 bytes | sha256:649844F60DA138E5 | debugpy      Copyright (c) Microsoft Corporation
+bin/Lib/site-packages/defusedxml-0.7.1.dist-info/LICENSE | 2409 bytes | sha256:B80CE9DA8C42A1F9 | PYTHON SOFTWARE FOUNDATION LICENSE VERSION 2 --------------------------------------------
+bin/Lib/site-packages/docutils-0.22.3.dist-info/licenses/COPYING.rst | 6075 bytes | sha256:6AB4F27C76C74F96 | .. include:: docs/header0.rst  ==================
+bin/Lib/site-packages/fonttools-4.61.1.dist-info/licenses/LICENSE | 1072 bytes | sha256:6787208F83F659CC | MIT License  Copyright (c) 2017 Just van Rossum
+bin/Lib/site-packages/fonttools-4.61.1.dist-info/licenses/LICENSE.external | 20022 bytes | sha256:94A83AAEE0729A0F | FontTools includes the following font projects for testing purposes, which are under SIL Open Font L
+bin/Lib/site-packages/frozenlist-1.7.0.dist-info/licenses/LICENSE | 11332 bytes | sha256:6FD5243E92DD7F98 | Apache License                            Version 2.0, January 2004                         http://w
+bin/Lib/site-packages/h2-4.3.0.dist-info/licenses/LICENSE | 1102 bytes | sha256:7A65A5AF0CBABF1C | The MIT License (MIT)  Copyright (c) 2015-2020 Cory Benfield and contributors
+bin/Lib/site-packages/hpack-4.1.0.dist-info/LICENSE | 1080 bytes | sha256:763A9342A04DF620 | The MIT License (MIT)  Copyright (c) 2014 Cory Benfield
+bin/Lib/site-packages/hyperframe-6.1.0.dist-info/LICENSE | 1080 bytes | sha256:763A9342A04DF620 | The MIT License (MIT)  Copyright (c) 2014 Cory Benfield
+bin/Lib/site-packages/idna-3.11.dist-info/licenses/LICENSE.md | 1541 bytes | sha256:B7A336ABF3B04E18 | BSD 3-Clause License  Copyright (c) 2013-2025, Kim Davies and contributors.
+bin/Lib/site-packages/ifcopenshell/mvd/LICENSE | 7652 bytes | sha256:E3A994D82E644B03 | GNU LESSER GENERAL PUBLIC LICENSE                        Version 3, 29 June 2007
+bin/Lib/site-packages/kiwisolver-1.4.9.dist-info/licenses/LICENSE | 3289 bytes | sha256:CF20799D32DE0EEF | =========================  The Kiwi licensing terms =========================
+bin/Lib/site-packages/lark-1.3.1.dist-info/licenses/LICENSE | 1055 bytes | sha256:2EEE60F52D4E1135 | Copyright © 2017 Erez Shinan  Permission is hereby granted, free of charge, to any person obtaining 
+bin/Lib/site-packages/matplotlib-3.10.8.dist-info/LICENSE | 4830 bytes | sha256:5A1A81EA301728C8 | License agreement for matplotlib versions 1.3.0 and later ==========================================
+bin/Lib/site-packages/matplotlib/mpl-data/fonts/ttf/LICENSE_DEJAVU | 4816 bytes | sha256:D75938DEC098F06F | Fonts are (c) Bitstream (see below). DejaVu changes are in public domain. Glyphs imported from Arev 
+bin/Lib/site-packages/matplotlib/mpl-data/fonts/ttf/LICENSE_STIX | 5476 bytes | sha256:BAB3D31DFEF07F48 | The STIX fonts distributed with matplotlib have been modified from their canonical form.  They have 
+bin/Lib/site-packages/mpmath-1.3.0.dist-info/LICENSE | 1537 bytes | sha256:C26CAE81DA4508E5 | Copyright (c) 2005-2021 Fredrik Johansson and mpmath contributors  All rights reserved.
+bin/Lib/site-packages/msgpack-1.1.2.dist-info/licenses/COPYING | 614 bytes | sha256:492DEDBA85DA5872 | Copyright (C) 2008-2011 INADA Naoki <songofacandy@gmail.com>     Licensed under the Apache License, 
+bin/Lib/site-packages/multidict-6.7.0.dist-info/licenses/LICENSE | 611 bytes | sha256:93D11A968E2F0F36 | Copyright 2016 Andrew Svetlov and aio-libs contributors     Licensed under the Apache License, Versi
+bin/Lib/site-packages/nine-1.1.0.dist-info/LICENSE.rst | 255 bytes | sha256:A2A81725B4F1ECFD | I, the copyright holder of this work, hereby release it into the public domain. This applies worldwi
+bin/Lib/site-packages/numpy-1.26.4.dist-info/LICENSE.txt | 1543 bytes | sha256:263223390C43A9D4 | Copyright (c) 2005-2023, NumPy Developers. All rights reserved.
+bin/Lib/site-packages/numpy/core/include/numpy/random/LICENSE.txt | 1018 bytes | sha256:FBC539F47D0CF83B | zlib License   ------------
+bin/Lib/site-packages/numpy/ma/LICENSE | 1593 bytes | sha256:05F3B88351988ECF | * Copyright (c) 2006, University of Georgia and Pierre G.F. Gerard-Marchant * All rights reserved. *
+bin/Lib/site-packages/numpy/random/LICENSE.md | 3511 bytes | sha256:103166B62B80443A | **This software is dual-licensed under the The University of Illinois/NCSA Open Source License (NCSA
+bin/Lib/site-packages/OCC/AUTHORS | 453 bytes | sha256:FBCD9C61C3403CE1 | pythonOCC is developed and maintained by Thomas Paviot (tpaviot@gmail.com).  The pythonocc-core pack
+bin/Lib/site-packages/OCC/LICENSE | 7632 bytes | sha256:F97BC4BB9B7AE8A6 | GNU LESSER GENERAL PUBLIC LICENSE                        Version 3, 29 June 2007
+bin/Lib/site-packages/olefile-0.47.dist-info/LICENSE.txt | 2846 bytes | sha256:CF1498D5B834B375 | LICENSE for the olefile package:  olefile (formerly OleFileIO_PL) is copyright (c) 2005-2023 Philipp
+bin/Lib/site-packages/opencamlib-2022.12.18.dist-info/licenses/COPYING | 26530 bytes | sha256:DC626520DCD53A22 | GNU LESSER GENERAL PUBLIC LICENSE                        Version 2.1, February 1999
+bin/Lib/site-packages/packaging-25.0.dist-info/LICENSE | 197 bytes | sha256:CAD1EF5BD340D73E | This software is made available under the terms of *either* of the licenses found in LICENSE.APACHE 
+bin/Lib/site-packages/packaging-25.0.dist-info/LICENSE.APACHE | 10174 bytes | sha256:0D542E0C8804E39A | Apache License                            Version 2.0, January 2004
+bin/Lib/site-packages/packaging-25.0.dist-info/LICENSE.BSD | 1344 bytes | sha256:B70E7E9B742F1CC6 | Copyright (c) Donald Stufft and individual contributors. All rights reserved.
+bin/Lib/site-packages/pandas-2.3.3.dist-info/LICENSE | 1634 bytes | sha256:533EB6D0B98E5BE3 | BSD 3-Clause License  Copyright (c) 2008-2011, AQR Capital Management, LLC, Lambda Foundry, Inc. and
+bin/Lib/site-packages/pillow-12.0.0.dist-info/licenses/LICENSE | 1453 bytes | sha256:17F240AE10114370 | The Python Imaging Library (PIL) is      Copyright © 1997-2011 by Secret Labs AB
+bin/Lib/site-packages/pip-25.3.dist-info/licenses/AUTHORS.txt | 11503 bytes | sha256:1F7D99860167FAAE | @Switch01 A_Rog Aakanksha Agrawal
+bin/Lib/site-packages/pip-25.3.dist-info/licenses/LICENSE.txt | 1093 bytes | sha256:634300A669D49AEA | Copyright (c) 2008-present The pip developers (see AUTHORS.txt file)  Permission is hereby granted, 
+bin/Lib/site-packages/pip-25.3.dist-info/licenses/src/pip/_vendor/cachecontrol/LICENSE.txt | 558 bytes | sha256:86EEEE87BE2A43F3 | Copyright 2012-2021  Eric Larson  Licensed under the Apache License, Version 2.0 (the "License");
+bin/Lib/site-packages/pip-25.3.dist-info/licenses/src/pip/_vendor/certifi/LICENSE | 989 bytes | sha256:E93716DA6B9C0D5A | This package contains a modified version of ca-bundle.crt:  ca-bundle.crt -- Bundle of CA Root Certi
+bin/Lib/site-packages/pip-25.3.dist-info/licenses/src/pip/_vendor/dependency_groups/LICENSE.txt | 1099 bytes | sha256:1AB36E3E2A4BA863 | MIT License  Copyright (c) 2024-present Stephen Rosen <sirosen0@gmail.com>
+bin/Lib/site-packages/pip-25.3.dist-info/licenses/src/pip/_vendor/distlib/LICENSE.txt | 14531 bytes | sha256:808E10C8A6AB8DEB | A. HISTORY OF THE SOFTWARE ==========================
+bin/Lib/site-packages/pip-25.3.dist-info/licenses/src/pip/_vendor/distro/LICENSE | 11325 bytes | sha256:CB5E8E7E5F4A3988 | Apache License                            Version 2.0, January 2004                         http://w
+bin/Lib/site-packages/pip-25.3.dist-info/licenses/src/pip/_vendor/idna/LICENSE.md | 1541 bytes | sha256:A59F0B0EF3635874 | BSD 3-Clause License  Copyright (c) 2013-2024, Kim Davies and contributors.
+bin/Lib/site-packages/pip-25.3.dist-info/licenses/src/pip/_vendor/msgpack/COPYING | 614 bytes | sha256:492DEDBA85DA5872 | Copyright (C) 2008-2011 INADA Naoki <songofacandy@gmail.com>     Licensed under the Apache License, 
+bin/Lib/site-packages/pip-25.3.dist-info/licenses/src/pip/_vendor/packaging/LICENSE | 197 bytes | sha256:CAD1EF5BD340D73E | This software is made available under the terms of *either* of the licenses found in LICENSE.APACHE 
+bin/Lib/site-packages/pip-25.3.dist-info/licenses/src/pip/_vendor/packaging/LICENSE.APACHE | 10174 bytes | sha256:0D542E0C8804E39A | Apache License                            Version 2.0, January 2004
+bin/Lib/site-packages/pip-25.3.dist-info/licenses/src/pip/_vendor/packaging/LICENSE.BSD | 1344 bytes | sha256:B70E7E9B742F1CC6 | Copyright (c) Donald Stufft and individual contributors. All rights reserved.
+bin/Lib/site-packages/pip-25.3.dist-info/licenses/src/pip/_vendor/pkg_resources/LICENSE | 1023 bytes | sha256:86DA0F01AEAE4634 | Permission is hereby granted, free of charge, to any person obtaining a copy of this software and as
+bin/Lib/site-packages/pip-25.3.dist-info/licenses/src/pip/_vendor/platformdirs/LICENSE | 1089 bytes | sha256:29E0FD62E929850E | MIT License  Copyright (c) 2010-202x The platformdirs developers
+bin/Lib/site-packages/pip-25.3.dist-info/licenses/src/pip/_vendor/pygments/LICENSE | 1331 bytes | sha256:A9D66F1D526DF02E | Copyright (c) 2006-2022 by the respective authors (see AUTHORS file). All rights reserved.
+bin/Lib/site-packages/pip-25.3.dist-info/licenses/src/pip/_vendor/pyproject_hooks/LICENSE | 1081 bytes | sha256:1B22B049B5267D6D | The MIT License (MIT)  Copyright (c) 2017 Thomas Kluyver
+bin/Lib/site-packages/pip-25.3.dist-info/licenses/src/pip/_vendor/requests/LICENSE | 10142 bytes | sha256:09E8A9BCEC806710 | Apache License                            Version 2.0, January 2004
+bin/Lib/site-packages/pip-25.3.dist-info/licenses/src/pip/_vendor/resolvelib/LICENSE | 751 bytes | sha256:F388FD38CAD13112 | Copyright (c) 2018, Tzu-ping Chung <uranusjr@gmail.com>  Permission to use, copy, modify, and distri
+bin/Lib/site-packages/pip-25.3.dist-info/licenses/src/pip/_vendor/rich/LICENSE | 1056 bytes | sha256:DEED7C17A4318158 | Copyright (c) 2020 Will McGugan  Permission is hereby granted, free of charge, to any person obtaini
+bin/Lib/site-packages/pip-25.3.dist-info/licenses/src/pip/_vendor/tomli_w/LICENSE | 1072 bytes | sha256:B80816B0D530B8AC | MIT License  Copyright (c) 2021 Taneli Hukkinen
+bin/Lib/site-packages/pip-25.3.dist-info/licenses/src/pip/_vendor/tomli/LICENSE | 1072 bytes | sha256:B80816B0D530B8AC | MIT License  Copyright (c) 2021 Taneli Hukkinen
+bin/Lib/site-packages/pip-25.3.dist-info/licenses/src/pip/_vendor/truststore/LICENSE | 1086 bytes | sha256:33BE7B7E8FA4FD19 | The MIT License (MIT)  Copyright (c) 2022 Seth Michael Larson
+bin/Lib/site-packages/pip-25.3.dist-info/licenses/src/pip/_vendor/urllib3/LICENSE.txt | 1115 bytes | sha256:C37BF186E27CF9DB | MIT License  Copyright (c) 2008-2020 Andrey Petrov and contributors (see CONTRIBUTORS.txt)
+bin/Lib/site-packages/pip/_vendor/cachecontrol/LICENSE.txt | 558 bytes | sha256:86EEEE87BE2A43F3 | Copyright 2012-2021  Eric Larson  Licensed under the Apache License, Version 2.0 (the "License");
+bin/Lib/site-packages/pip/_vendor/certifi/LICENSE | 989 bytes | sha256:E93716DA6B9C0D5A | This package contains a modified version of ca-bundle.crt:  ca-bundle.crt -- Bundle of CA Root Certi
+bin/Lib/site-packages/pip/_vendor/dependency_groups/LICENSE.txt | 1099 bytes | sha256:1AB36E3E2A4BA863 | MIT License  Copyright (c) 2024-present Stephen Rosen <sirosen0@gmail.com>
+bin/Lib/site-packages/pip/_vendor/distlib/LICENSE.txt | 14531 bytes | sha256:808E10C8A6AB8DEB | A. HISTORY OF THE SOFTWARE ==========================
+bin/Lib/site-packages/pip/_vendor/distro/LICENSE | 11325 bytes | sha256:CB5E8E7E5F4A3988 | Apache License                            Version 2.0, January 2004                         http://w
+bin/Lib/site-packages/pip/_vendor/idna/LICENSE.md | 1541 bytes | sha256:A59F0B0EF3635874 | BSD 3-Clause License  Copyright (c) 2013-2024, Kim Davies and contributors.
+bin/Lib/site-packages/pip/_vendor/msgpack/COPYING | 614 bytes | sha256:492DEDBA85DA5872 | Copyright (C) 2008-2011 INADA Naoki <songofacandy@gmail.com>     Licensed under the Apache License, 
+bin/Lib/site-packages/pip/_vendor/packaging/LICENSE | 197 bytes | sha256:CAD1EF5BD340D73E | This software is made available under the terms of *either* of the licenses found in LICENSE.APACHE 
+bin/Lib/site-packages/pip/_vendor/packaging/LICENSE.APACHE | 10174 bytes | sha256:0D542E0C8804E39A | Apache License                            Version 2.0, January 2004
+bin/Lib/site-packages/pip/_vendor/packaging/LICENSE.BSD | 1344 bytes | sha256:B70E7E9B742F1CC6 | Copyright (c) Donald Stufft and individual contributors. All rights reserved.
+bin/Lib/site-packages/pip/_vendor/pkg_resources/LICENSE | 1023 bytes | sha256:86DA0F01AEAE4634 | Permission is hereby granted, free of charge, to any person obtaining a copy of this software and as
+bin/Lib/site-packages/pip/_vendor/platformdirs/LICENSE | 1089 bytes | sha256:29E0FD62E929850E | MIT License  Copyright (c) 2010-202x The platformdirs developers
+bin/Lib/site-packages/pip/_vendor/pygments/LICENSE | 1331 bytes | sha256:A9D66F1D526DF02E | Copyright (c) 2006-2022 by the respective authors (see AUTHORS file). All rights reserved.
+bin/Lib/site-packages/pip/_vendor/pyproject_hooks/LICENSE | 1081 bytes | sha256:1B22B049B5267D6D | The MIT License (MIT)  Copyright (c) 2017 Thomas Kluyver
+bin/Lib/site-packages/pip/_vendor/requests/LICENSE | 10142 bytes | sha256:09E8A9BCEC806710 | Apache License                            Version 2.0, January 2004
+bin/Lib/site-packages/pip/_vendor/resolvelib/LICENSE | 751 bytes | sha256:F388FD38CAD13112 | Copyright (c) 2018, Tzu-ping Chung <uranusjr@gmail.com>  Permission to use, copy, modify, and distri
+bin/Lib/site-packages/pip/_vendor/rich/LICENSE | 1056 bytes | sha256:DEED7C17A4318158 | Copyright (c) 2020 Will McGugan  Permission is hereby granted, free of charge, to any person obtaini
+bin/Lib/site-packages/pip/_vendor/tomli_w/LICENSE | 1072 bytes | sha256:B80816B0D530B8AC | MIT License  Copyright (c) 2021 Taneli Hukkinen
+bin/Lib/site-packages/pip/_vendor/tomli/LICENSE | 1072 bytes | sha256:B80816B0D530B8AC | MIT License  Copyright (c) 2021 Taneli Hukkinen
+bin/Lib/site-packages/pip/_vendor/truststore/LICENSE | 1086 bytes | sha256:33BE7B7E8FA4FD19 | The MIT License (MIT)  Copyright (c) 2022 Seth Michael Larson
+bin/Lib/site-packages/pip/_vendor/urllib3/LICENSE.txt | 1115 bytes | sha256:C37BF186E27CF9DB | MIT License  Copyright (c) 2008-2020 Andrey Petrov and contributors (see CONTRIBUTORS.txt)
+bin/Lib/site-packages/propcache-0.3.1.dist-info/licenses/LICENSE | 11358 bytes | sha256:CFC7749B96F63BD3 | Apache License                            Version 2.0, January 2004
+bin/Lib/site-packages/propcache-0.3.1.dist-info/licenses/NOTICE | 609 bytes | sha256:56D6AC6C8105C0A5 | Copyright 2016-2021, Andrew Svetlov and aio-libs team     Licensed under the Apache License, Version
+bin/Lib/site-packages/pycollada-0.9.2.dist-info/licenses/AUTHORS.md | 428 bytes | sha256:1DAFC3828EF26C0A | Authors (Ordered by date of first contribution) ===============================================
+bin/Lib/site-packages/pycollada-0.9.2.dist-info/licenses/COPYING | 1628 bytes | sha256:101982D97D9BB819 | pycollada 0.2 and above ======================= Copyright (c) 2011, Jeff Terrace and contributors
+bin/Lib/site-packages/pyparsing-3.2.5.dist-info/licenses/LICENSE | 1023 bytes | sha256:10D5120A16805804 | Permission is hereby granted, free of charge, to any person obtaining a copy of this software and as
+bin/Lib/site-packages/PySocks-1.7.1.dist-info/LICENSE | 1401 bytes | sha256:7027E214E014EB78 | Copyright 2006 Dan-Haim. All rights reserved.  Redistribution and use in source and binary forms, wi
+bin/Lib/site-packages/python_dateutil-2.9.0.post0.dist-info/licenses/LICENSE | 2889 bytes | sha256:BA00F51A0D92823B | Copyright 2017- Paul Ganssle <paul@ganssle.io> Copyright 2017- dateutil contributors (see AUTHORS fi
+bin/Lib/site-packages/pytz-2025.2.dist-info/LICENSE.txt | 1088 bytes | sha256:BE8B1A37EBE26C59 | Copyright (c) 2003-2019 Stuart Bishop <stuart@stuartbishop.net>  Permission is hereby granted, free 
+bin/Lib/site-packages/pyyaml-6.0.3.dist-info/licenses/LICENSE | 1101 bytes | sha256:8D3928F9DC4490FD | Copyright (c) 2017-2021 Ingy döt Net Copyright (c) 2006-2016 Kirill Simonov
+bin/Lib/site-packages/requests-2.32.5.dist-info/licenses/LICENSE | 10142 bytes | sha256:09E8A9BCEC806710 | Apache License                            Version 2.0, January 2004
+bin/Lib/site-packages/scipy-1.16.3.dist-info/LICENSE.txt | 1531 bytes | sha256:221E59F5E910FD7F | Copyright (c) 2001-2002 Enthought, Inc. 2003, SciPy Developers. All rights reserved.
+bin/Lib/site-packages/scipy/_lib/_uarray/LICENSE | 1514 bytes | sha256:C80C39B5FCE06BA4 | BSD 3-Clause License  Copyright (c) 2018, Quansight-Labs
+bin/Lib/site-packages/scipy/fft/_pocketfft/LICENSE.md | 1498 bytes | sha256:C254B2B5FD30AE3C | Copyright (C) 2010-2019 Max-Planck-Society All rights reserved.
+bin/Lib/site-packages/scipy/sparse/linalg/_eigen/arpack/COPYING | 1892 bytes | sha256:0926566F9F406178 | BSD Software License
+bin/Lib/site-packages/scipy/spatial/qhull_src/COPYING_QHULL.txt | 1720 bytes | sha256:106D55C931FD6A84 | Qhull, Copyright (c) 1993-2020                                                  C.B. Barber
+bin/Lib/site-packages/setuptools/_vendor/autocommand-2.2.2.dist-info/LICENSE | 7634 bytes | sha256:ADE78D04982D6997 | GNU LESSER GENERAL PUBLIC LICENSE                        Version 3, 29 June 2007
+bin/Lib/site-packages/setuptools/_vendor/backports.tarfile-1.2.0.dist-info/LICENSE | 1023 bytes | sha256:86DA0F01AEAE4634 | Permission is hereby granted, free of charge, to any person obtaining a copy of this software and as
+bin/Lib/site-packages/setuptools/_vendor/importlib_metadata-8.0.0.dist-info/LICENSE | 11358 bytes | sha256:CFC7749B96F63BD3 | Apache License                            Version 2.0, January 2004
+bin/Lib/site-packages/setuptools/_vendor/inflect-7.3.1.dist-info/LICENSE | 1023 bytes | sha256:86DA0F01AEAE4634 | Permission is hereby granted, free of charge, to any person obtaining a copy of this software and as
+bin/Lib/site-packages/setuptools/_vendor/jaraco.collections-5.1.0.dist-info/LICENSE | 1023 bytes | sha256:86DA0F01AEAE4634 | Permission is hereby granted, free of charge, to any person obtaining a copy of this software and as
+bin/Lib/site-packages/setuptools/_vendor/jaraco.context-5.3.0.dist-info/LICENSE | 1023 bytes | sha256:86DA0F01AEAE4634 | Permission is hereby granted, free of charge, to any person obtaining a copy of this software and as
+bin/Lib/site-packages/setuptools/_vendor/jaraco.functools-4.0.1.dist-info/LICENSE | 1023 bytes | sha256:86DA0F01AEAE4634 | Permission is hereby granted, free of charge, to any person obtaining a copy of this software and as
+bin/Lib/site-packages/setuptools/_vendor/jaraco.text-3.12.1.dist-info/LICENSE | 1023 bytes | sha256:86DA0F01AEAE4634 | Permission is hereby granted, free of charge, to any person obtaining a copy of this software and as
+bin/Lib/site-packages/setuptools/_vendor/more_itertools-10.3.0.dist-info/LICENSE | 1053 bytes | sha256:09F1C8C9E941AF3E | Copyright (c) 2012 Erik Rose  Permission is hereby granted, free of charge, to any person obtaining 
+bin/Lib/site-packages/setuptools/_vendor/packaging-24.2.dist-info/LICENSE | 197 bytes | sha256:CAD1EF5BD340D73E | This software is made available under the terms of *either* of the licenses found in LICENSE.APACHE 
+bin/Lib/site-packages/setuptools/_vendor/packaging-24.2.dist-info/LICENSE.APACHE | 10174 bytes | sha256:0D542E0C8804E39A | Apache License                            Version 2.0, January 2004
+bin/Lib/site-packages/setuptools/_vendor/packaging-24.2.dist-info/LICENSE.BSD | 1344 bytes | sha256:B70E7E9B742F1CC6 | Copyright (c) Donald Stufft and individual contributors. All rights reserved.
+bin/Lib/site-packages/setuptools/_vendor/platformdirs-4.2.2.dist-info/licenses/LICENSE | 1089 bytes | sha256:29E0FD62E929850E | MIT License  Copyright (c) 2010-202x The platformdirs developers
+bin/Lib/site-packages/setuptools/_vendor/tomli-2.0.1.dist-info/LICENSE | 1072 bytes | sha256:B80816B0D530B8AC | MIT License  Copyright (c) 2021 Taneli Hukkinen
+bin/Lib/site-packages/setuptools/_vendor/typeguard-4.3.0.dist-info/LICENSE | 1130 bytes | sha256:6163F7987DFB38D6 | This is the MIT license: http://www.opensource.org/licenses/mit-license.php  Copyright (c) Alex Grön
+bin/Lib/site-packages/setuptools/_vendor/typing_extensions-4.12.2.dist-info/LICENSE | 13936 bytes | sha256:3B2F81FE21D181C4 | A. HISTORY OF THE SOFTWARE ==========================
+bin/Lib/site-packages/setuptools/_vendor/wheel-0.45.1.dist-info/LICENSE.txt | 1107 bytes | sha256:30C23618679108F3 | MIT License  Copyright (c) 2012 Daniel Holth <dholth@fastmail.fm> and contributors
+bin/Lib/site-packages/setuptools/_vendor/wheel/vendored/packaging/LICENSE | 197 bytes | sha256:CAD1EF5BD340D73E | This software is made available under the terms of *either* of the licenses found in LICENSE.APACHE 
+bin/Lib/site-packages/setuptools/_vendor/wheel/vendored/packaging/LICENSE.APACHE | 10174 bytes | sha256:0D542E0C8804E39A | Apache License                            Version 2.0, January 2004
+bin/Lib/site-packages/setuptools/_vendor/wheel/vendored/packaging/LICENSE.BSD | 1344 bytes | sha256:B70E7E9B742F1CC6 | Copyright (c) Donald Stufft and individual contributors. All rights reserved.
+bin/Lib/site-packages/setuptools/_vendor/zipp-3.19.2.dist-info/LICENSE | 1023 bytes | sha256:86DA0F01AEAE4634 | Permission is hereby granted, free of charge, to any person obtaining a copy of this software and as
+bin/Lib/site-packages/setuptools/config/_validate_pyproject/NOTICE | 18737 bytes | sha256:5D300DBFA643138B | The code contained in this directory was automatically generated using the following command:
+bin/Lib/site-packages/setuptools/config/NOTICE | 493 bytes | sha256:2DDDF08818297A3B | The following files include code from opensource projects (either as direct copies or modified versi
+bin/Lib/site-packages/shapely-2.1.2.dist-info/licenses/LICENSE.txt | 1583 bytes | sha256:4A207EAC9BF257ED | BSD 3-Clause License  Copyright (c) 2007, Sean C. Gillies. 2019, Casper van der Wel. 2007-2022, Shap
+bin/Lib/site-packages/six-1.17.0.dist-info/licenses/LICENSE | 1066 bytes | sha256:4375BA20E2B9C6C4 | Copyright (c) 2010-2024 Benjamin Peterson  Permission is hereby granted, free of charge, to any pers
+bin/Lib/site-packages/svgwrite-1.4.3.dist-info/LICENSE.TXT | 2282 bytes | sha256:1813A7553DE927E8 | Copyright (c) 2012, Manfred Moitzi  Permission is hereby granted, free of charge, to any person obta
+bin/Lib/site-packages/sympy-1.14.0.dist-info/licenses/AUTHORS | 55779 bytes | sha256:82B1038521B0696C | All people who contributed to SymPy by sending at least a patch or more (in the order of the date of
+bin/Lib/site-packages/sympy-1.14.0.dist-info/licenses/LICENSE | 7885 bytes | sha256:07A5E9819F727B49 | Copyright (c) 2006-2023 SymPy Development Team  All rights reserved.
+bin/Lib/site-packages/sympy/parsing/latex/LICENSE.txt | 1075 bytes | sha256:007BC30A58FA40A9 | The MIT License (MIT)  Copyright 2016, latex2sympy
+bin/Lib/site-packages/typing_extensions-4.15.0.dist-info/licenses/LICENSE | 13936 bytes | sha256:3B2F81FE21D181C4 | A. HISTORY OF THE SOFTWARE ==========================
+bin/Lib/site-packages/tzdata-2025.3.dist-info/licenses/LICENSE | 592 bytes | sha256:33E8E5002D3512D3 | Apache Software License 2.0  Copyright (c) 2020, Paul Ganssle (Google)
+bin/Lib/site-packages/tzdata-2025.3.dist-info/licenses/licenses/LICENSE_APACHE | 11357 bytes | sha256:C71D239DF91726FC | Apache License                            Version 2.0, January 2004                         http://w
+bin/Lib/site-packages/unicodedata2-17.0.0.dist-info/licenses/LICENSE | 11325 bytes | sha256:CB5E8E7E5F4A3988 | Apache License                            Version 2.0, January 2004                         http://w
+bin/Lib/site-packages/urllib3-2.6.2.dist-info/licenses/LICENSE.txt | 1093 bytes | sha256:130E3A64D5FDD5D0 | MIT License  Copyright (c) 2008-2020 Andrey Petrov and contributors.
+bin/Lib/site-packages/wheel-0.45.1.dist-info/LICENSE.txt | 1107 bytes | sha256:30C23618679108F3 | MIT License  Copyright (c) 2012 Daniel Holth <dholth@fastmail.fm> and contributors
+bin/Lib/site-packages/wheel/vendored/packaging/LICENSE | 197 bytes | sha256:CAD1EF5BD340D73E | This software is made available under the terms of *either* of the licenses found in LICENSE.APACHE 
+bin/Lib/site-packages/wheel/vendored/packaging/LICENSE.APACHE | 10174 bytes | sha256:0D542E0C8804E39A | Apache License                            Version 2.0, January 2004
+bin/Lib/site-packages/wheel/vendored/packaging/LICENSE.BSD | 1344 bytes | sha256:B70E7E9B742F1CC6 | Copyright (c) Donald Stufft and individual contributors. All rights reserved.
+bin/Lib/site-packages/win_inet_pton-1.1.0.dist-info/LICENSE | 254 bytes | sha256:2688EBD0BAD28507 | This software released into the public domain. Anyone is free to copy, modify, publish, use, compile
+bin/Lib/site-packages/win32_setctime-1.2.0.dist-info/LICENSE | 1063 bytes | sha256:2F2D766C4CEF27A4 | MIT License  Copyright (c) 2019 Delgan
+bin/Lib/site-packages/wslink/LICENSE | 1483 bytes | sha256:238E141FB90356AC | Copyright (c) 2017, Kitware Inc. All rights reserved.
+bin/Lib/site-packages/xlrd-2.0.2.dist-info/licenses/LICENSE | 3771 bytes | sha256:B5A5DBCE60265E30 | There are two licenses associated with xlrd. This one relates to the bulk of the work done on the li
+bin/Lib/site-packages/yarl-1.22.0.dist-info/licenses/LICENSE | 11358 bytes | sha256:CFC7749B96F63BD3 | Apache License                            Version 2.0, January 2004
+bin/Lib/site-packages/yarl-1.22.0.dist-info/licenses/NOTICE | 609 bytes | sha256:56D6AC6C8105C0A5 | Copyright 2016-2021, Andrew Svetlov and aio-libs team     Licensed under the Apache License, Version
+doc/LICENSE.html | 25763 bytes | sha256:6A7CFDDF089B4AC2 | <!DOCTYPE html> <html lang="en"> 	<head>
+lib/cmake/CGAL/demo/icons/license.txt | 187 bytes | sha256:2772F2386E3B2943 | The following files have been copied from Qt Free Edition version 4.4:   fileNew.png   fileOpen.png
+lib/cmake/Qt6/3rdparty/extra-cmake-modules/COPYING-CMAKE-SCRIPTS | 1327 bytes | sha256:46CDE7DC11E64C78 | Redistribution and use in source and binary forms, with or without modification, are permitted provi
+lib/cmake/Qt6/3rdparty/kwin/COPYING-CMAKE-SCRIPTS | 1327 bytes | sha256:46CDE7DC11E64C78 | Redistribution and use in source and binary forms, with or without modification, are permitted provi
+lib/tk8.6/demos/license.terms | 2267 bytes | sha256:2CDE822B93CA16AE | This software is copyrighted by the Regents of the University of California, Sun Microsystems, Inc.,
+lib/tk8.6/license.terms | 2267 bytes | sha256:2CDE822B93CA16AE | This software is copyrighted by the Regents of the University of California, Sun Microsystems, Inc.,
+Mod/AddonManager/LICENSE | 27030 bytes | sha256:7FFE1954587C77DF | GNU LESSER GENERAL PUBLIC LICENSE                        Version 2.1, February 1999
+Mod/Idf/Idflibs/License.txt | 175 bytes | sha256:9B11AC48078FDA5C | (c) 2010 Milos Koutny (milos.koutny@gmail.com) All parts in this directory are supported by Milos Ko
