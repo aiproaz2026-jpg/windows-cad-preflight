@@ -1,0 +1,84 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 1190.55 841.89] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 3923 >>
+stream
+0 0 0 RG 1.50 w 20.00 20.00 1150.55 801.89 re S
+0.100 0.250 0.500 RG 2.40 w 84.15 536.22 m 297.17 536.22 l S
+0.100 0.250 0.500 RG 2.40 w 312.63 536.22 m 517.92 536.22 l S
+0.100 0.250 0.500 RG 2.40 w 533.38 536.22 m 746.40 536.22 l S
+0.100 0.250 0.500 RG 2.40 w 304.90 528.49 m 304.90 403.77 l S
+0.100 0.250 0.500 RG 2.40 w 525.65 528.49 m 525.65 403.77 l S
+0.100 0.250 0.500 RG 2.40 w 304.90 256.60 m 304.90 131.88 l S
+0.100 0.250 0.500 RG 2.40 w 525.65 256.60 m 525.65 131.88 l S
+0.100 0.250 0.500 RG 2.40 w 84.15 124.15 m 297.17 124.15 l S
+0.100 0.250 0.500 RG 2.40 w 312.63 124.15 m 517.92 124.15 l S
+0.100 0.250 0.500 RG 2.40 w 533.38 124.15 m 746.40 124.15 l S
+0.800 0.200 0.100 RG 1.50 w 300.90 532.22 m 308.90 540.22 l S
+0.800 0.200 0.100 RG 1.50 w 300.90 540.22 m 308.90 532.22 l S
+0.800 0.200 0.100 RG 1.50 w 521.65 532.22 m 529.65 540.22 l S
+0.800 0.200 0.100 RG 1.50 w 521.65 540.22 m 529.65 532.22 l S
+0.800 0.200 0.100 RG 1.50 w 300.90 120.15 m 308.90 128.15 l S
+0.800 0.200 0.100 RG 1.50 w 300.90 128.15 m 308.90 120.15 l S
+0.800 0.200 0.100 RG 1.50 w 521.65 120.15 m 529.65 128.15 l S
+0.800 0.200 0.100 RG 1.50 w 521.65 128.15 m 529.65 120.15 l S
+0 0 0 RG 1.20 w 276.90 256.60 56.00 147.17 re S
+BT 0.000 0.000 0.000 rg /F1 8.0 Tf 280.90 330.18 Td (Pump P1) Tj ET
+BT 0.000 0.000 0.000 rg /F1 6.5 Tf 336.90 320.18 Td (\(symbol only\)) Tj ET
+0 0 0 RG 1.20 w 497.65 256.60 56.00 147.17 re S
+BT 0.000 0.000 0.000 rg /F1 8.0 Tf 501.65 330.18 Td (Pump P2) Tj ET
+BT 0.000 0.000 0.000 rg /F1 6.5 Tf 557.65 320.18 Td (\(symbol only\)) Tj ET
+BT 0.000 0.000 0.000 rg /F1 8.0 Tf 84.15 560.22 Td (Suction header \(in\)) Tj ET
+BT 0.000 0.000 0.000 rg /F1 8.0 Tf 84.15 112.15 Td (Discharge header \(out\)) Tj ET
+BT 0.000 0.000 0.000 rg /F1 7.0 Tf 54.15 536.22 Td (S0) Tj ET
+BT 0.000 0.000 0.000 rg /F1 7.0 Tf 310.90 542.22 Td (S1 [tee_eq]) Tj ET
+BT 0.000 0.000 0.000 rg /F1 7.0 Tf 531.65 542.22 Td (S2 [tee_eq]) Tj ET
+BT 0.000 0.000 0.000 rg /F1 7.0 Tf 752.40 536.22 Td (S3) Tj ET
+BT 0.000 0.000 0.000 rg /F1 7.0 Tf 310.90 391.77 Td (P1s) Tj ET
+BT 0.000 0.000 0.000 rg /F1 7.0 Tf 531.65 391.77 Td (P2s) Tj ET
+BT 0.000 0.000 0.000 rg /F1 7.0 Tf 310.90 262.60 Td (P1d) Tj ET
+BT 0.000 0.000 0.000 rg /F1 7.0 Tf 531.65 262.60 Td (P2d) Tj ET
+BT 0.000 0.000 0.000 rg /F1 7.0 Tf 54.15 124.15 Td (H0) Tj ET
+BT 0.000 0.000 0.000 rg /F1 7.0 Tf 310.90 130.15 Td (H1 [tee_eq]) Tj ET
+BT 0.000 0.000 0.000 rg /F1 7.0 Tf 531.65 130.15 Td (H2 [tee_eq]) Tj ET
+BT 0.000 0.000 0.000 rg /F1 7.0 Tf 752.40 124.15 Td (H3) Tj ET
+BT 0.000 0.000 0.000 rg /F1 9.0 Tf 790.55 781.89 Td (Two-pump station piping, NPS 4, SCH 40 \(ILLUSTRATIVE, generic\)) Tj ET
+BT 0.000 0.000 0.000 rg /F1 8.0 Tf 790.55 765.89 Td (P1  S0-S1  NPS 4 SCH 40 pipe  2895.0 mm) Tj ET
+BT 0.000 0.000 0.000 rg /F1 8.0 Tf 790.55 753.89 Td (P2  S1-S2  NPS 4 SCH 40 pipe  2790.0 mm) Tj ET
+BT 0.000 0.000 0.000 rg /F1 8.0 Tf 790.55 741.89 Td (P3  S2-S3  NPS 4 SCH 40 pipe  2895.0 mm) Tj ET
+BT 0.000 0.000 0.000 rg /F1 8.0 Tf 790.55 729.89 Td (P4  S1-P1s  NPS 4 SCH 40 pipe  1695.0 mm) Tj ET
+BT 0.000 0.000 0.000 rg /F1 8.0 Tf 790.55 717.89 Td (P5  S2-P2s  NPS 4 SCH 40 pipe  1695.0 mm) Tj ET
+BT 0.000 0.000 0.000 rg /F1 8.0 Tf 790.55 705.89 Td (P6  P1d-H1  NPS 4 SCH 40 pipe  1695.0 mm) Tj ET
+BT 0.000 0.000 0.000 rg /F1 8.0 Tf 790.55 693.89 Td (P7  P2d-H2  NPS 4 SCH 40 pipe  1695.0 mm) Tj ET
+BT 0.000 0.000 0.000 rg /F1 8.0 Tf 790.55 681.89 Td (P8  H0-H1  NPS 4 SCH 40 pipe  2895.0 mm) Tj ET
+BT 0.000 0.000 0.000 rg /F1 8.0 Tf 790.55 669.89 Td (P9  H1-H2  NPS 4 SCH 40 pipe  2790.0 mm) Tj ET
+BT 0.000 0.000 0.000 rg /F1 8.0 Tf 790.55 657.89 Td (P10  H2-H3  NPS 4 SCH 40 pipe  2895.0 mm) Tj ET
+BT 0.000 0.000 0.000 rg /F1 8.0 Tf 790.55 637.89 Td (Fittings: tee_eq x4) Tj ET
+BT 0.000 0.000 0.000 rg /F1 8.0 Tf 790.55 625.89 Td (Total straight pipe: 23940.0 mm) Tj ET
+BT 0.000 0.000 0.000 rg /F1 6.5 Tf 790.55 613.89 Td (Pumps are drawn as symbols only. Not a hydraulic design.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000248 00000 n 
+0000004223 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+4293
+%%EOF
