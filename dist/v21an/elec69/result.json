@@ -1,0 +1,64 @@
+{
+ "done": true,
+ "bad": [],
+ "symbols": {
+  "Signal lamp (IEC-style)": {
+   "ok": true,
+   "edges": 9,
+   "terminals": 2
+  },
+  "Flashing beacon (IEC-style)": {
+   "ok": true,
+   "edges": 12,
+   "terminals": 2
+  },
+  "Bell (IEC-style)": {
+   "ok": true,
+   "edges": 9,
+   "terminals": 2
+  },
+  "Buzzer (IEC-style)": {
+   "ok": true,
+   "edges": 12,
+   "terminals": 2
+  },
+  "Horn (IEC-style)": {
+   "ok": true,
+   "edges": 12,
+   "terminals": 2
+  },
+  "Voltmeter (IEC-style)": {
+   "ok": true,
+   "edges": 9,
+   "terminals": 2
+  },
+  "Ammeter (IEC-style)": {
+   "ok": true,
+   "edges": 10,
+   "terminals": 2
+  },
+  "Wattmeter (IEC-style)": {
+   "ok": true,
+   "edges": 11,
+   "terminals": 2
+  },
+  "Frequency meter (IEC-style)": {
+   "ok": true,
+   "edges": 13,
+   "terminals": 2
+  },
+  "Energy meter kWh (IEC-style)": {
+   "ok": true,
+   "edges": 15,
+   "terminals": 4
+  },
+  "Hour counter (IEC-style)": {
+   "ok": true,
+   "edges": 13,
+   "terminals": 2
+  }
+ },
+ "validate_errors": [],
+ "missing_registration": [],
+ "count": 11
+}
