@@ -209,7 +209,8 @@ try:
                                  ('reversing', reversing, 'Reversing starter, 3-phase (ILLUSTRATIVE)')):
         R.uninstall()
         _orig_plan = R.plan
-        R.plan = lambda obj, doc=None: None      # call site disabled: stock drawing
+        _orig_apply = R.apply
+        R.apply = lambda obj: False      # call site disabled: stock drawing
         d0, n = builder()
         d0.recompute()
         if not R.boxes(d0):
@@ -218,28 +219,28 @@ try:
         before_paths = wire_paths(d0)
         R.plan = _orig_plan                       # call site live (core.py patched by CI step)
         calls = {'n': 0}
-        def _counting(obj, doc=None, _o=_orig_plan):
+        def _counting(obj, _o=_orig_apply):
             calls['n'] += 1
-            return _o(obj, doc)
-        R.plan = _counting
+            return _o(obj)
+        R.apply = _counting
         d, n = builder()
         d.recompute()
         if not R.boxes(d):
             d.recompute()
-        R.plan = _orig_plan
+        R.apply = _orig_apply
         diag = {}
         ws = [o for o in d.Objects if hasattr(o, 'SourceTerminal')]
         diag['after_first_recompute'] = [[o.WireId, bool(o.Shape.isNull()), round(o.Shape.Length, 1) if not o.Shape.isNull() else None, str(o.Validation)] for o in ws]
         hooked = measure(d)
         hooked_paths = wire_paths(d)
-        R.plan = _counting
+        R.apply = _counting
         for o in ws:
             try:
                 o.touch()
             except Exception:
                 pass
         d.recompute()
-        R.plan = _orig_plan
+        R.apply = _orig_apply
         diag['calls_after_touch'] = calls['n']
         diag['after_touch'] = [[o.WireId, bool(o.Shape.isNull()), round(o.Shape.Length, 1) if not o.Shape.isNull() else None, str(o.Validation)] for o in ws]
         res.setdefault('diag', {})[name] = diag

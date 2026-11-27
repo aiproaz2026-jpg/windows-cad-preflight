@@ -491,7 +491,7 @@ def install():
             planned = None
         if planned is None:
             return original(self, obj)
-        pts, ok = planned
+        pts, ok = planned[0], planned[1]   # v83 fix: plan() returns (points, ok, reason)
         if len(clean(pts)) < 2:
             return original(self, obj)
         try:
@@ -605,3 +605,23 @@ def crossings(doc):
             if rel and rel[0] == 'cross':
                 hits.append((segs[i][0], segs[j][0]))
     return hits
+
+
+def apply(obj):
+    """v83 addition (not from the writer): plan this wire and write the shape. True when the routed shape was written,
+    False when the stock path must run. plan() only plans; it never writes."""
+    try:
+        planned = plan(obj)
+    except Exception:
+        return False
+    if planned is None:
+        return False
+    pts, ok = planned[0], planned[1]
+    if len(clean(pts)) < 2:
+        return False
+    try:
+        _write(obj, pts)
+        obj.Validation = 'Logical connection only' if ok else 'Route fallback'
+    except Exception:
+        return False
+    return True
