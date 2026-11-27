@@ -159,6 +159,13 @@ def run():
             for i,(kd,pr) in enumerate((('gate_valve','2'),('ball_valve','2'),('check_valve','2'),('weldneck150','2'),('pump','2 1/2 x 2'))):
                 o=E3.create(ds,kd,pr); o.Placement.Base=Vv(900+i*450 if kd!='pump' else 2600,-300 if kd!='pump' else 0,0)
             ds.recompute(); pump(40)
+            nvis=0
+            for o in ds.Objects:
+                try:
+                    if o.isDerivedFrom('Part::Feature') or hasattr(o,'Shape'):
+                        o.ViewObject.Visibility=True; nvis+=1
+                except Exception: pass
+            pump(40); R['eq3d_show_visible']=nvis
             vw=Gui.ActiveDocument.ActiveView; vw.viewIsometric(); vw.fitAll(); pump(80); grab('eq3d_iso')
             App.closeDocument(ds.Name); App.closeDocument(d5.Name)
         except Exception as e:
