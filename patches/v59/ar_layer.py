@@ -113,6 +113,13 @@ def sweep():
         if t2 != tt:
             a.setToolTip(t2)
             cnt += 1
+    for a in mw.findChildren(QtGui.QAction):
+        for get, put in ((a.statusTip, a.setStatusTip), (a.whatsThis, a.setWhatsThis)):
+            v = get()
+            t2 = _tip(v) if v and '<' in v else v
+            if t2 != v:
+                put(t2)
+                cnt += 1
     for m in mw.findChildren(QtWidgets.QMenu):
         r = _lk(_n(m.title()))
         if r and m.title() != r:
