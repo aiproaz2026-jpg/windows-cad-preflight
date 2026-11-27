@@ -1,0 +1,7 @@
+
+try:
+    from DeltaEngineering import elec_libedit as _le
+    _le.register()
+except Exception as _e7:
+    import FreeCAD as _A7
+    _A7.Console.PrintError("library editor failed: " + str(_e7) + "\n")
