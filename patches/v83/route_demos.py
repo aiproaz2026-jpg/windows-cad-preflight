@@ -6,7 +6,7 @@ import sys, json, os, math, traceback
 import FreeCAD as App
 sys.path.insert(0, 'C:/DeltaTest/Mod'); sys.path.insert(0, 'C:/DeltaTest/Mod/DeltaEngineering')
 sys.path.insert(0, 'C:/DeltaTest/Mod/DeltaEngineering/DeltaEngineering')
-OUT = 'C:/seed/route83'; os.makedirs(OUT, exist_ok=True)
+OUT = 'C:/seed/route84'; os.makedirs(OUT, exist_ok=True)
 res = {'done': False}
 try:
     from DeltaEngineering.symbols import create
@@ -227,8 +227,24 @@ try:
         if not R.boxes(d):
             d.recompute()
         R.plan = _orig_plan
+        diag = {}
+        ws = [o for o in d.Objects if hasattr(o, 'SourceTerminal')]
+        diag['after_first_recompute'] = [[o.WireId, bool(o.Shape.isNull()), round(o.Shape.Length, 1) if not o.Shape.isNull() else None, str(o.Validation)] for o in ws]
         hooked = measure(d)
         hooked_paths = wire_paths(d)
+        R.plan = _counting
+        for o in ws:
+            try:
+                o.touch()
+            except Exception:
+                pass
+        d.recompute()
+        R.plan = _orig_plan
+        diag['calls_after_touch'] = calls['n']
+        diag['after_touch'] = [[o.WireId, bool(o.Shape.isNull()), round(o.Shape.Length, 1) if not o.Shape.isNull() else None, str(o.Validation)] for o in ws]
+        res.setdefault('diag', {})[name] = diag
+        res.setdefault('callsite_after_touch', {})[name] = measure(d)
+        res.setdefault('paths_callsite_after_touch', {})[name] = wire_paths(d)
         res.setdefault('plan_calls', {})[name] = calls['n']
         rows = R.reroute(d)
         after = measure(d)
