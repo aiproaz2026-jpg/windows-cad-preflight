@@ -1,0 +1,14 @@
+
+try:
+    from DeltaEngineering import fit_commands as _fc
+    _fc.register()
+except Exception as _e3:
+    import FreeCAD as _A3
+    _A3.Console.PrintError("fitting commands failed: " + str(_e3) + "\n")
+
+try:
+    from DeltaEngineering import brand as _br
+    _br.register()
+except Exception as _e4:
+    import FreeCAD as _A4
+    _A4.Console.PrintError("brand failed: " + str(_e4) + "\n")
