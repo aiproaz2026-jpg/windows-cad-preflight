@@ -26,6 +26,7 @@ try:
     C1 = create(d, 'Terminal (illustr.)', 'L1c', V(4000, -450, 0)); F2 = create(d, 'Fuse (illustr.)', 'F2', V(4400, -450, 0))
     S1 = create(d, 'Float switch (illustr.)', 'S1', V(4800, -450, 0)); KC = create(d, 'Contactor coil (illustr.)', 'KM1-coil', V(5200, -450, 0))
     C2 = create(d, 'Terminal (illustr.)', 'Nc', V(5600, -450, 0)); H1 = create(d, 'Lamp (illustr.)', 'H1', V(5200, -720, 0))
+    set_terminal_sides(d, KC, {'A1': 'Left', 'A2': 'Right'})
     for a, sa, b, sb in ((C1, '1', F2, '1'), (F2, '2', S1, '1'), (S1, '2', KC, 'A1'), (KC, 'A2', C2, '1'), (S1, '2', H1, 'X1'), (H1, 'X2', C2, '1')):
         n += 1; add_terminal_wire(d, a, sa, b, sb, 'W%d' % n)
     d.recompute()
