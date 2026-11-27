@@ -20,7 +20,7 @@ try:
         devs = [create(d, k, t, V(4000 + 400 * i, y, 0)) for i, (k, t) in enumerate(zip(kinds, tags))]
         return devs
     r1 = row(0, ['Terminal (illustr.)', 'Fuse (illustr.)', 'Switch NO (illustr.)', 'Lamp (illustr.)', 'Terminal (illustr.)'], ['L', 'F3', 'S3', 'H2', 'N'])
-    r2 = row(-400, ['Terminal (illustr.)', 'Fuse (illustr.)', 'Pushbutton NO (illustr.)', 'Buzzer (illustr.)', 'Terminal (illustr.)'], ['L', 'F4', 'S4', 'B1', 'N'])
+    r2 = row(-400, ['Terminal (illustr.)', 'Fuse (illustr.)', 'Pushbutton NO (illustr.)', 'Buzzer (illustr.)', 'Terminal (illustr.)'], ['L2', 'F4', 'S4', 'B1', 'N2'])
     for r in (r1, r2):
         t = [('1', '1'), ('2', '1'), ('2', '1'), ('X2', '1')]
         # terminal names per kind
