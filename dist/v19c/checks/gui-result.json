@@ -1,0 +1,2126 @@
+{
+ "stage": "layouts_default",
+ "lib_cmds": [
+  "Delta_Lib_hex_bolt",
+  "Delta_Lib_hex_nut",
+  "Delta_Lib_washer",
+  "Delta_Lib_bearing",
+  "Delta_Lib_ipe",
+  "Delta_Lib_gear"
+ ],
+ "lib_cmd_make": {
+  "hex_bolt": true,
+  "hex_nut": true,
+  "washer": true,
+  "bearing": true,
+  "ipe": true,
+  "gear": true
+ },
+ "toolbars": "['File', 'Edit', 'Clipboard', 'Workbench', 'Macro', 'View', 'Individual Views', 'Structure', 'Help', '\u0627\u0644\u0631\u0633\u0645', '\u0627\u0644\u0645\u0634\u0631\u0648\u0639', '\u0627\u0644\u0645\u0648\u0627\u0633\u064a\u0631', '\u0627\u0644\u0643\u0647\u0631\u0628\u0627\u0621', '\u0627\u0644\u0645\u064a\u0643\u0627\u0646\u064a\u0643\u0627', '\u0645\u0643\u062a\u0628\u0629 \u0627\u0644\u0642\u0637\u0639', '\u0648\u0635\u0644\u0627\u062a \u062b\u0644\u0627\u062b\u064a\u0629 \u0627\u0644\u0623\u0628\u0639\u0627\u062f', '\u0627\u0644\u0645\u0639\u062f\u0627\u062a \u0648\u0627\u0644\u0645\u0633\u0627\u0631\u0627\u062a']",
+ "window_title": "[*] LibCmd - \u0628\u0631\u0646\u0627\u0645\u062c CAD \u0644\u0644\u0645\u0647\u0646\u062f\u0633 \u0645\u062d\u0645\u0648\u062f \u0632\u0647\u064a\u0631",
+ "workbench_menutext": "\u0628\u0631\u0646\u0627\u0645\u062c CAD \u0644\u0644\u0645\u0647\u0646\u062f\u0633 \u0645\u062d\u0645\u0648\u062f \u0632\u0647\u064a\u0631",
+ "fit_cmds": [
+  "Delta_Fit_elbow90lr",
+  "Delta_Fit_elbow90sr",
+  "Delta_Fit_elbow45",
+  "Delta_Fit_tee_eq",
+  "Delta_Fit_reducer",
+  "Delta_Fit_flange150"
+ ],
+ "fit3d": {
+  "elbow90lr|1": {
+   "valid": true,
+   "solids": 1,
+   "vol": 19027.456,
+   "closed": true,
+   "exp": 19027.456,
+   "rel_err": 5.735888294966323e-16,
+   "bbox": [
+    54.65,
+    54.65,
+    33.38
+   ],
+   "prov": true
+  },
+  "elbow90lr|1 1/4": {
+   "valid": true,
+   "solids": 1,
+   "vol": 32549.797,
+   "closed": true,
+   "exp": 32549.797,
+   "rel_err": 1.0058990186739696e-15,
+   "bbox": [
+    69.02,
+    69.02,
+    42.13
+   ],
+   "prov": true
+  },
+  "elbow90lr|1 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 46145.833,
+   "closed": true,
+   "exp": 46145.833,
+   "rel_err": 1.5767312391724937e-16,
+   "bbox": [
+    81.13,
+    81.13,
+    48.26
+   ],
+   "prov": true
+  },
+  "elbow90lr|2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 82721.081,
+   "closed": true,
+   "exp": 82721.081,
+   "rel_err": 5.277463176372883e-16,
+   "bbox": [
+    106.16,
+    106.16,
+    60.32
+   ],
+   "prov": true
+  },
+  "elbow90lr|2 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 164156.057,
+   "closed": true,
+   "exp": 164156.057,
+   "rel_err": 1.7729367398248103e-16,
+   "bbox": [
+    131.39,
+    131.39,
+    72.96
+   ],
+   "prov": true
+  },
+  "elbow90lr|3": {
+   "valid": true,
+   "solids": 1,
+   "vol": 257611.393,
+   "closed": true,
+   "exp": 257611.393,
+   "rel_err": 6.778542689019869e-16,
+   "bbox": [
+    158.45,
+    158.45,
+    88.9
+   ],
+   "prov": true
+  },
+  "elbow90lr|3 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 361135.937,
+   "closed": true,
+   "exp": 361135.937,
+   "rel_err": 6.447174588635301e-16,
+   "bbox": [
+    183.64,
+    183.64,
+    101.52
+   ],
+   "prov": true
+  },
+  "elbow90lr|4": {
+   "valid": true,
+   "solids": 1,
+   "vol": 488942.823,
+   "closed": true,
+   "exp": 488942.823,
+   "rel_err": 1.1904799115175423e-16,
+   "bbox": [
+    208.96,
+    208.96,
+    114.21
+   ],
+   "prov": true
+  },
+  "elbow90sr|1": {
+   "valid": true,
+   "solids": 1,
+   "vol": 12518.063,
+   "closed": true,
+   "exp": 12518.063,
+   "rel_err": 1.4530917013914684e-16,
+   "bbox": [
+    41.66,
+    41.66,
+    33.38
+   ],
+   "prov": true
+  },
+  "elbow90sr|1 1/4": {
+   "valid": true,
+   "solids": 1,
+   "vol": 21699.865,
+   "closed": true,
+   "exp": 21699.865,
+   "rel_err": 1.676498364456616e-16,
+   "bbox": [
+    53.03,
+    53.03,
+    42.13
+   ],
+   "prov": true
+  },
+  "elbow90sr|1 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 30763.889,
+   "closed": true,
+   "exp": 30763.889,
+   "rel_err": 1.1825484293793703e-16,
+   "bbox": [
+    62.07,
+    62.07,
+    48.23
+   ],
+   "prov": true
+  },
+  "elbow90sr|2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 55510.199,
+   "closed": true,
+   "exp": 55510.199,
+   "rel_err": 2.6214849764989487e-16,
+   "bbox": [
+    81.16,
+    81.16,
+    60.32
+   ],
+   "prov": true
+  },
+  "elbow90sr|2 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 110589.344,
+   "closed": true,
+   "exp": 110589.344,
+   "rel_err": 6.579257432943632e-16,
+   "bbox": [
+    100.51,
+    100.51,
+    73.02
+   ],
+   "prov": true
+  },
+  "elbow90sr|3": {
+   "valid": true,
+   "solids": 1,
+   "vol": 171740.929,
+   "closed": true,
+   "exp": 171740.929,
+   "rel_err": 3.3892713445099343e-16,
+   "bbox": [
+    120.45,
+    120.45,
+    88.9
+   ],
+   "prov": true
+  },
+  "elbow90sr|3 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 241662.394,
+   "closed": true,
+   "exp": 241662.394,
+   "rel_err": 1.0838859526118615e-15,
+   "bbox": [
+    139.8,
+    139.8,
+    101.6
+   ],
+   "prov": true
+  },
+  "elbow90sr|4": {
+   "valid": true,
+   "solids": 1,
+   "vol": 328106.368,
+   "closed": true,
+   "exp": 328106.368,
+   "rel_err": 5.322145486784306e-16,
+   "bbox": [
+    159.0,
+    159.0,
+    114.22
+   ],
+   "prov": true
+  },
+  "elbow45|1": {
+   "valid": true,
+   "solids": 1,
+   "vol": 13504.653,
+   "closed": true,
+   "exp": 13504.653,
+   "rel_err": 1.3469352787710806e-16,
+   "bbox": [
+    49.37,
+    44.07,
+    33.4
+   ],
+   "prov": true
+  },
+  "elbow45|1 1/4": {
+   "valid": true,
+   "solids": 1,
+   "vol": 20693.615,
+   "closed": true,
+   "exp": 20693.615,
+   "rel_err": 5.274059769108611e-16,
+   "bbox": [
+    57.58,
+    53.61,
+    42.15
+   ],
+   "prov": true
+  },
+  "elbow45|1 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 28628.665,
+   "closed": true,
+   "exp": 28628.665,
+   "rel_err": 6.353734671359283e-16,
+   "bbox": [
+    66.57,
+    61.64,
+    48.25
+   ],
+   "prov": true
+  },
+  "elbow45|2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 46238.373,
+   "closed": true,
+   "exp": 46238.373,
+   "rel_err": 3.1471512114126253e-16,
+   "bbox": [
+    81.08,
+    76.16,
+    60.3
+   ],
+   "prov": true
+  },
+  "elbow45|2 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 92307.883,
+   "closed": true,
+   "exp": 92307.883,
+   "rel_err": 1.5764542331444114e-15,
+   "bbox": [
+    100.93,
+    93.44,
+    73.02
+   ],
+   "prov": true
+  },
+  "elbow45|3": {
+   "valid": true,
+   "solids": 1,
+   "vol": 139680.524,
+   "closed": true,
+   "exp": 139680.524,
+   "rel_err": 6.250799245556519e-16,
+   "bbox": [
+    118.49,
+    111.84,
+    88.87
+   ],
+   "prov": true
+  },
+  "elbow45|3 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 187169.896,
+   "closed": true,
+   "exp": 187169.896,
+   "rel_err": 4.66482556111911e-16,
+   "bbox": [
+    133.23,
+    126.91,
+    101.57
+   ],
+   "prov": true
+  },
+  "elbow45|4": {
+   "valid": true,
+   "solids": 1,
+   "vol": 248729.015,
+   "closed": true,
+   "exp": 248729.015,
+   "rel_err": 3.5103058391941074e-16,
+   "bbox": [
+    149.67,
+    142.68,
+    114.27
+   ],
+   "prov": true
+  },
+  "tee_eq|1": {
+   "valid": true,
+   "solids": 1,
+   "vol": 30221.907,
+   "closed": true,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    76.0,
+    54.69,
+    33.4
+   ],
+   "prov": true
+  },
+  "tee_eq|1 1/4": {
+   "valid": true,
+   "solids": 1,
+   "vol": 51526.94,
+   "closed": true,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    96.0,
+    69.06,
+    42.16
+   ],
+   "prov": true
+  },
+  "tee_eq|1 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 73471.734,
+   "closed": true,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    114.0,
+    81.11,
+    48.26
+   ],
+   "prov": true
+  },
+  "tee_eq|2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 108116.748,
+   "closed": true,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    128.0,
+    94.16,
+    60.32
+   ],
+   "prov": true
+  },
+  "tee_eq|2 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 203196.999,
+   "closed": true,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    152.0,
+    112.48,
+    73.02
+   ],
+   "prov": true
+  },
+  "tee_eq|3": {
+   "valid": true,
+   "solids": 1,
+   "vol": 294658.364,
+   "closed": true,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    172.0,
+    130.42,
+    88.9
+   ],
+   "prov": true
+  },
+  "tee_eq|3 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 387038.908,
+   "closed": true,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    190.0,
+    145.66,
+    101.6
+   ],
+   "prov": true
+  },
+  "tee_eq|4": {
+   "valid": true,
+   "solids": 1,
+   "vol": 503758.377,
+   "closed": true,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    210.0,
+    161.99,
+    114.3
+   ],
+   "prov": true
+  },
+  "reducer|1 1/4 x 1": {
+   "valid": true,
+   "solids": 1,
+   "vol": 19095.871,
+   "closed": true,
+   "exp": 19095.871,
+   "rel_err": 9.525564143317008e-16,
+   "bbox": [
+    42.12,
+    42.14,
+    51.0
+   ],
+   "prov": true
+  },
+  "reducer|1 1/2 x 1": {
+   "valid": true,
+   "solids": 1,
+   "vol": 26546.81,
+   "closed": true,
+   "exp": 26546.81,
+   "rel_err": 8.222409028598011e-16,
+   "bbox": [
+    48.26,
+    48.26,
+    64.0
+   ],
+   "prov": true
+  },
+  "reducer|1 1/2 x 1 1/4": {
+   "valid": true,
+   "solids": 1,
+   "vol": 30283.063,
+   "closed": true,
+   "exp": 30283.063,
+   "rel_err": 2.4026491529272324e-16,
+   "bbox": [
+    48.26,
+    48.26,
+    64.0
+   ],
+   "prov": true
+  },
+  "reducer|2 x 1": {
+   "valid": true,
+   "solids": 1,
+   "vol": 37887.613,
+   "closed": true,
+   "exp": 37887.613,
+   "rel_err": 3.840810791340869e-16,
+   "bbox": [
+    60.32,
+    60.32,
+    76.0
+   ],
+   "prov": true
+  },
+  "reducer|2 x 1 1/4": {
+   "valid": true,
+   "solids": 1,
+   "vol": 42487.679,
+   "closed": true,
+   "exp": 42487.679,
+   "rel_err": 3.424973007320864e-16,
+   "bbox": [
+    60.32,
+    60.32,
+    76.0
+   ],
+   "prov": true
+  },
+  "reducer|2 x 1 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 45807.563,
+   "closed": true,
+   "exp": 45807.563,
+   "rel_err": 9.5302483959625e-16,
+   "bbox": [
+    60.32,
+    60.32,
+    76.0
+   ],
+   "prov": true
+  },
+  "reducer|2 1/2 x 1": {
+   "valid": true,
+   "solids": 1,
+   "vol": 59998.825,
+   "closed": true,
+   "exp": 59998.825,
+   "rel_err": 0.0,
+   "bbox": [
+    73.02,
+    73.02,
+    89.0
+   ],
+   "prov": true
+  },
+  "reducer|2 1/2 x 1 1/4": {
+   "valid": true,
+   "solids": 1,
+   "vol": 65981.576,
+   "closed": true,
+   "exp": 65981.576,
+   "rel_err": 4.4109026082915517e-16,
+   "bbox": [
+    73.02,
+    73.02,
+    89.0
+   ],
+   "prov": true
+  },
+  "reducer|2 1/2 x 1 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 70281.701,
+   "closed": true,
+   "exp": 70281.701,
+   "rel_err": 1.0352563271247517e-15,
+   "bbox": [
+    73.02,
+    73.02,
+    89.0
+   ],
+   "prov": true
+  },
+  "reducer|2 1/2 x 2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 79120.285,
+   "closed": true,
+   "exp": 79120.285,
+   "rel_err": 7.356856785680575e-16,
+   "bbox": [
+    73.02,
+    73.02,
+    89.0
+   ],
+   "prov": true
+  },
+  "reducer|3 x 1 1/4": {
+   "valid": true,
+   "solids": 1,
+   "vol": 79198.471,
+   "closed": true,
+   "exp": 79198.471,
+   "rel_err": 7.349593981729897e-16,
+   "bbox": [
+    88.9,
+    88.72,
+    89.0
+   ],
+   "prov": true
+  },
+  "reducer|3 x 1 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 83677.514,
+   "closed": true,
+   "exp": 83677.514,
+   "rel_err": 3.478094525780353e-16,
+   "bbox": [
+    88.9,
+    88.72,
+    89.0
+   ],
+   "prov": true
+  },
+  "reducer|3 x 2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 92864.687,
+   "closed": true,
+   "exp": 92864.687,
+   "rel_err": 0.0,
+   "bbox": [
+    88.9,
+    88.72,
+    89.0
+   ],
+   "prov": true
+  },
+  "reducer|3 x 2 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 112730.95,
+   "closed": true,
+   "exp": 112730.95,
+   "rel_err": 0.0,
+   "bbox": [
+    88.9,
+    88.72,
+    89.0
+   ],
+   "prov": true
+  },
+  "reducer|3 1/2 x 1 1/4": {
+   "valid": true,
+   "solids": 1,
+   "vol": 103509.876,
+   "closed": true,
+   "exp": 103509.876,
+   "rel_err": 1.1246784026497296e-15,
+   "bbox": [
+    101.6,
+    101.4,
+    102.0
+   ],
+   "prov": true
+  },
+  "reducer|3 1/2 x 1 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 108802.795,
+   "closed": true,
+   "exp": 108802.795,
+   "rel_err": 5.349831414684879e-16,
+   "bbox": [
+    101.6,
+    101.4,
+    102.0
+   ],
+   "prov": true
+  },
+  "reducer|3 1/2 x 2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 119642.797,
+   "closed": true,
+   "exp": 119642.797,
+   "rel_err": 4.865120384962269e-16,
+   "bbox": [
+    101.6,
+    101.4,
+    102.0
+   ],
+   "prov": true
+  },
+  "reducer|3 1/2 x 2 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 143394.899,
+   "closed": true,
+   "exp": 143394.899,
+   "rel_err": 8.118512066178265e-16,
+   "bbox": [
+    101.6,
+    101.4,
+    102.0
+   ],
+   "prov": true
+  },
+  "reducer|3 1/2 x 3": {
+   "valid": true,
+   "solids": 1,
+   "vol": 161361.968,
+   "closed": true,
+   "exp": 161361.968,
+   "rel_err": 3.607272611128092e-16,
+   "bbox": [
+    101.6,
+    101.4,
+    102.0
+   ],
+   "prov": true
+  },
+  "reducer|4 x 1 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 122763.746,
+   "closed": true,
+   "exp": 122763.746,
+   "rel_err": 4.741437340827494e-16,
+   "bbox": [
+    114.19,
+    114.25,
+    102.0
+   ],
+   "prov": true
+  },
+  "reducer|4 x 2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 133933.216,
+   "closed": true,
+   "exp": 133933.216,
+   "rel_err": 8.692042582352428e-16,
+   "bbox": [
+    114.19,
+    114.25,
+    102.0
+   ],
+   "prov": true
+  },
+  "reducer|4 x 2 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 158685.686,
+   "closed": true,
+   "exp": 158685.686,
+   "rel_err": 1.1004331053567655e-15,
+   "bbox": [
+    114.19,
+    114.25,
+    102.0
+   ],
+   "prov": true
+  },
+  "reducer|4 x 3": {
+   "valid": true,
+   "solids": 1,
+   "vol": 177104.184,
+   "closed": true,
+   "exp": 177104.184,
+   "rel_err": 9.859901575282474e-16,
+   "bbox": [
+    114.19,
+    114.25,
+    102.0
+   ],
+   "prov": true
+  },
+  "reducer|4 x 3 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 192413.323,
+   "closed": true,
+   "exp": 192413.323,
+   "rel_err": 1.210054691497172e-15,
+   "bbox": [
+    114.19,
+    114.25,
+    102.0
+   ],
+   "prov": true
+  },
+  "flange150|1": {
+   "valid": true,
+   "solids": 1,
+   "vol": 96970.416,
+   "closed": true,
+   "exp": 96970.416,
+   "rel_err": 1.5006551344644562e-16,
+   "bbox": [
+    107.92,
+    107.96,
+    14.3
+   ],
+   "prov": true
+  },
+  "flange150|1 1/4": {
+   "valid": true,
+   "solids": 1,
+   "vol": 125708.305,
+   "closed": true,
+   "exp": 125708.305,
+   "rel_err": 2.315187557990199e-16,
+   "bbox": [
+    117.42,
+    117.46,
+    15.8
+   ],
+   "prov": true
+  },
+  "flange150|1 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 163473.403,
+   "closed": true,
+   "exp": 163473.403,
+   "rel_err": 3.560680814405148e-16,
+   "bbox": [
+    126.91,
+    126.95,
+    17.5
+   ],
+   "prov": true
+  },
+  "flange150|2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 255246.989,
+   "closed": true,
+   "exp": 255246.989,
+   "rel_err": 3.420666848526686e-16,
+   "bbox": [
+    152.4,
+    152.4,
+    19.1
+   ],
+   "prov": true
+  },
+  "flange150|2 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 408696.379,
+   "closed": true,
+   "exp": 408696.379,
+   "rel_err": 4.272682408056058e-16,
+   "bbox": [
+    177.8,
+    177.8,
+    22.2
+   ],
+   "prov": true
+  },
+  "flange150|3": {
+   "valid": true,
+   "solids": 1,
+   "vol": 484075.433,
+   "closed": true,
+   "exp": 484075.433,
+   "rel_err": 3.607350648606086e-16,
+   "bbox": [
+    190.37,
+    190.43,
+    24.0
+   ],
+   "prov": true
+  },
+  "flange150|3 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 596038.76,
+   "closed": true,
+   "exp": 596038.76,
+   "rel_err": 3.9063003853112836e-16,
+   "bbox": [
+    215.9,
+    215.9,
+    23.9
+   ],
+   "prov": true
+  },
+  "flange150|4": {
+   "valid": true,
+   "solids": 1,
+   "vol": 652819.447,
+   "closed": true,
+   "exp": 652819.447,
+   "rel_err": 3.566539639431459e-16,
+   "bbox": [
+    228.6,
+    228.6,
+    24.0
+   ],
+   "prov": true
+  }
+ },
+ "fit3d_bad": [],
+ "fit3d_count": 64,
+ "fit3d_tee_bbox_ok": true,
+ "fit3d_edit_od_changes_volume": true,
+ "fit3d_preset_reload": [
+  60.32,
+  64.0
+ ],
+ "fit3d_reopen": [
+  [
+   "\u0643\u0648\u0639 \u0669\u0660\u00b0 \u0646\u0635\u0641 \u0642\u0637\u0631 \u0637\u0648\u064a\u0644 4",
+   true,
+   488942.8
+  ],
+  [
+   "\u0643\u0648\u0639 \u0669\u0660\u00b0 \u0646\u0635\u0641 \u0642\u0637\u0631 \u0642\u0635\u064a\u0631 4",
+   true,
+   328106.4
+  ],
+  [
+   "\u0643\u0648\u0639 \u0664\u0665\u00b0 4",
+   true,
+   248729.0
+  ],
+  [
+   "\u062a\u064a \u0645\u062a\u0633\u0627\u0648\u064a 4",
+   true,
+   108116.7
+  ],
+  [
+   "\u0645\u062e\u0641\u0636 \u0645\u062a\u062d\u062f \u0627\u0644\u0645\u062d\u0648\u0631 4 x 3 1/2",
+   true,
+   192413.3
+  ],
+  [
+   "\u0641\u0644\u0646\u062c\u0629 \u0643\u0644\u0627\u0633 \u0661\u0665\u0660 4",
+   true,
+   652819.4
+  ]
+ ],
+ "images": [
+  "fit3d_iso.png",
+  "eq3d_iso.png",
+  "delta_ar_ui.png",
+  "z_layout_v9.png"
+ ],
+ "eq_cmds": [
+  "Delta_Eq_pipe",
+  "Delta_Eq_weldneck150",
+  "Delta_Eq_gate_valve",
+  "Delta_Eq_ball_valve",
+  "Delta_Eq_check_valve",
+  "Delta_Eq_pump",
+  "Delta_Fit_Route"
+ ],
+ "eq3d": {
+  "pipe|1": {
+   "valid": true,
+   "solids": 1,
+   "vol": 318769.87,
+   "exp": 318769.87,
+   "rel_err": 0.0,
+   "bbox": [
+    1000.0,
+    33.16,
+    33.4
+   ],
+   "generic_note": null
+  },
+  "pipe|1 1/4": {
+   "valid": true,
+   "solids": 1,
+   "vol": 431705.1,
+   "exp": 431705.1,
+   "rel_err": 0.0,
+   "bbox": [
+    1000.0,
+    41.85,
+    42.16
+   ],
+   "generic_note": null
+  },
+  "pipe|1 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 515392.1,
+   "exp": 515392.1,
+   "rel_err": 1.1293859793087227e-16,
+   "bbox": [
+    1000.0,
+    47.91,
+    48.26
+   ],
+   "generic_note": null
+  },
+  "pipe|2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 692919.41,
+   "exp": 692919.41,
+   "rel_err": 6.720280562030728e-16,
+   "bbox": [
+    1000.0,
+    59.88,
+    60.32
+   ],
+   "generic_note": null
+  },
+  "pipe|2 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 1100052.54,
+   "exp": 1100052.54,
+   "rel_err": 2.1165411141029636e-16,
+   "bbox": [
+    1000.0,
+    72.49,
+    73.02
+   ],
+   "generic_note": null
+  },
+  "pipe|3": {
+   "valid": true,
+   "solids": 1,
+   "vol": 1438600.94,
+   "exp": 1438600.94,
+   "rel_err": 6.4738076538163645e-16,
+   "bbox": [
+    1000.0,
+    88.25,
+    88.9
+   ],
+   "generic_note": null
+  },
+  "pipe|3 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 1728618.63,
+   "exp": 1728618.63,
+   "rel_err": 8.081504133302915e-16,
+   "bbox": [
+    1000.0,
+    100.86,
+    101.6
+   ],
+   "generic_note": null
+  },
+  "pipe|4": {
+   "valid": true,
+   "solids": 1,
+   "vol": 2047833.35,
+   "exp": 2047833.35,
+   "rel_err": 1.0232648055522e-15,
+   "bbox": [
+    1000.0,
+    114.11,
+    113.91
+   ],
+   "generic_note": null
+  },
+  "weldneck150|1": {
+   "valid": true,
+   "solids": 1,
+   "vol": 132959.52,
+   "exp": 132959.52,
+   "rel_err": 2.1889241146785356e-16,
+   "bbox": [
+    107.91,
+    107.96,
+    54.0
+   ],
+   "generic_note": null
+  },
+  "weldneck150|1 1/4": {
+   "valid": true,
+   "solids": 1,
+   "vol": 175284.37,
+   "exp": 175284.37,
+   "rel_err": 1.6603779892470053e-16,
+   "bbox": [
+    117.4,
+    117.45,
+    56.0
+   ],
+   "generic_note": null
+  },
+  "weldneck150|1 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 224481.19,
+   "exp": 224481.19,
+   "rel_err": 2.5929861453621615e-16,
+   "bbox": [
+    126.9,
+    126.95,
+    60.0
+   ],
+   "generic_note": null
+  },
+  "weldneck150|2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 337651.44,
+   "exp": 337651.44,
+   "rel_err": 0.0,
+   "bbox": [
+    152.4,
+    152.4,
+    62.0
+   ],
+   "generic_note": null
+  },
+  "weldneck150|2 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 531557.03,
+   "exp": 531557.03,
+   "rel_err": 6.570244459501962e-16,
+   "bbox": [
+    177.8,
+    177.8,
+    68.0
+   ],
+   "generic_note": null
+  },
+  "weldneck150|3": {
+   "valid": true,
+   "solids": 1,
+   "vol": 644780.93,
+   "exp": 644780.93,
+   "rel_err": 1.8055019423906823e-16,
+   "bbox": [
+    190.36,
+    190.43,
+    68.0
+   ],
+   "generic_note": null
+  },
+  "weldneck150|3 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 797108.46,
+   "exp": 797108.46,
+   "rel_err": 0.0,
+   "bbox": [
+    215.74,
+    215.82,
+    70.0
+   ],
+   "generic_note": null
+  },
+  "weldneck150|4": {
+   "valid": true,
+   "solids": 1,
+   "vol": 906899.3,
+   "exp": 906899.3,
+   "rel_err": 1.283663152114058e-16,
+   "bbox": [
+    228.43,
+    228.51,
+    75.0
+   ],
+   "generic_note": null
+  },
+  "gate_valve|1": {
+   "valid": true,
+   "solids": 1,
+   "vol": 444245.43,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    127.0,
+    108.0,
+    180.75
+   ],
+   "generic_note": true,
+   "ff_ok": true
+  },
+  "gate_valve|1 1/4": {
+   "valid": true,
+   "solids": 1,
+   "vol": 678159.54,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    140.0,
+    126.0,
+    217.59
+   ],
+   "generic_note": true,
+   "ff_ok": true
+  },
+  "gate_valve|1 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 958430.73,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    165.0,
+    144.8,
+    244.88
+   ],
+   "generic_note": true,
+   "ff_ok": true
+  },
+  "gate_valve|2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 1523729.77,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    178.0,
+    160.2,
+    301.93
+   ],
+   "generic_note": true,
+   "ff_ok": true
+  },
+  "gate_valve|2 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 2380465.36,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    190.0,
+    177.68,
+    361.17
+   ],
+   "generic_note": true,
+   "ff_ok": true
+  },
+  "gate_valve|3": {
+   "valid": true,
+   "solids": 1,
+   "vol": 3415853.85,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    203.0,
+    189.97,
+    426.08
+   ],
+   "generic_note": true,
+   "ff_ok": true
+  },
+  "gate_valve|4": {
+   "valid": true,
+   "solids": 1,
+   "vol": 5939794.47,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    229.0,
+    227.96,
+    538.23
+   ],
+   "generic_note": true,
+   "ff_ok": true
+  },
+  "ball_valve|1": {
+   "valid": true,
+   "solids": 1,
+   "vol": 369074.7,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    127.0,
+    154.13,
+    115.55
+   ],
+   "generic_note": true,
+   "ff_ok": true
+  },
+  "ball_valve|1 1/4": {
+   "valid": true,
+   "solids": 1,
+   "vol": 539795.36,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    140.0,
+    185.15,
+    135.49
+   ],
+   "generic_note": true,
+   "ff_ok": true
+  },
+  "ball_valve|1 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 759228.25,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    165.0,
+    208.26,
+    150.78
+   ],
+   "generic_note": true,
+   "ff_ok": true
+  },
+  "ball_valve|2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 1210369.4,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    178.0,
+    257.11,
+    184.23
+   ],
+   "generic_note": true,
+   "ff_ok": true
+  },
+  "ball_valve|2 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 1907804.03,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    190.0,
+    307.88,
+    218.88
+   ],
+   "generic_note": true,
+   "ff_ok": true
+  },
+  "ball_valve|3": {
+   "valid": true,
+   "solids": 1,
+   "vol": 2655264.2,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    203.0,
+    361.78,
+    252.68
+   ],
+   "generic_note": true,
+   "ff_ok": true
+  },
+  "ball_valve|4": {
+   "valid": true,
+   "solids": 1,
+   "vol": 4457962.67,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    229.0,
+    456.78,
+    315.43
+   ],
+   "generic_note": true,
+   "ff_ok": true
+  },
+  "check_valve|1": {
+   "valid": true,
+   "solids": 1,
+   "vol": 378738.24,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    127.0,
+    107.94,
+    111.65
+   ],
+   "generic_note": true,
+   "ff_ok": true
+  },
+  "check_valve|1 1/4": {
+   "valid": true,
+   "solids": 1,
+   "vol": 574020.01,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    140.0,
+    117.5,
+    130.09
+   ],
+   "generic_note": true,
+   "ff_ok": true
+  },
+  "check_valve|1 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 819380.25,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    165.0,
+    126.93,
+    144.48
+   ],
+   "generic_note": true,
+   "ff_ok": true
+  },
+  "check_valve|2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 1455115.16,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    203.0,
+    152.31,
+    176.23
+   ],
+   "generic_note": true,
+   "ff_ok": true
+  },
+  "check_valve|2 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 2336551.05,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    216.0,
+    177.7,
+    208.88
+   ],
+   "generic_note": true,
+   "ff_ok": true
+  },
+  "check_valve|3": {
+   "valid": true,
+   "solids": 1,
+   "vol": 3507822.71,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    241.0,
+    190.06,
+    240.28
+   ],
+   "generic_note": true,
+   "ff_ok": true
+  },
+  "check_valve|4": {
+   "valid": true,
+   "solids": 1,
+   "vol": 6503559.71,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    292.0,
+    228.07,
+    299.23
+   ],
+   "generic_note": true,
+   "ff_ok": true
+  },
+  "pump|1 1/4 x 1": {
+   "valid": true,
+   "solids": 1,
+   "vol": 4565789.39,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    438.3,
+    206.5,
+    191.55
+   ],
+   "generic_note": true
+  },
+  "pump|1 1/2 x 1": {
+   "valid": true,
+   "solids": 1,
+   "vol": 6270812.71,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    490.2,
+    224.8,
+    209.9
+   ],
+   "generic_note": true
+  },
+  "pump|1 1/2 x 1 1/4": {
+   "valid": true,
+   "solids": 1,
+   "vol": 6284533.02,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    490.2,
+    224.8,
+    223.0
+   ],
+   "generic_note": true
+  },
+  "pump|2 x 1": {
+   "valid": true,
+   "solids": 1,
+   "vol": 10897021.76,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    592.7,
+    261.0,
+    246.1
+   ],
+   "generic_note": true
+  },
+  "pump|2 x 1 1/4": {
+   "valid": true,
+   "solids": 1,
+   "vol": 10904611.14,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    592.7,
+    261.0,
+    259.2
+   ],
+   "generic_note": true
+  },
+  "pump|2 x 1 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 10924366.2,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    592.7,
+    261.0,
+    268.4
+   ],
+   "generic_note": true
+  },
+  "pump|2 1/2 x 1": {
+   "valid": true,
+   "solids": 1,
+   "vol": 17971212.3,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    700.6,
+    299.1,
+    284.15
+   ],
+   "generic_note": true
+  },
+  "pump|2 1/2 x 1 1/4": {
+   "valid": true,
+   "solids": 1,
+   "vol": 17972126.23,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    700.6,
+    299.1,
+    297.35
+   ],
+   "generic_note": true
+  },
+  "pump|2 1/2 x 1 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 17986091.51,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    700.6,
+    299.1,
+    306.45
+   ],
+   "generic_note": true
+  },
+  "pump|2 1/2 x 2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 18020667.92,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    700.6,
+    299.1,
+    324.55
+   ],
+   "generic_note": true
+  },
+  "pump|3 x 1 1/4": {
+   "valid": true,
+   "solids": 1,
+   "vol": 30350796.52,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    835.7,
+    346.7,
+    344.95
+   ],
+   "generic_note": true
+  },
+  "pump|3 x 1 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 30357801.96,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    835.7,
+    346.7,
+    354.05
+   ],
+   "generic_note": true
+  },
+  "pump|3 x 2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 30375560.25,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    835.7,
+    346.7,
+    372.15
+   ],
+   "generic_note": true
+  },
+  "pump|3 x 2 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 30480749.71,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    835.7,
+    346.7,
+    391.25
+   ],
+   "generic_note": true
+  },
+  "pump|3 1/2 x 1 1/4": {
+   "valid": true,
+   "solids": 1,
+   "vol": 43745729.14,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    943.6,
+    384.8,
+    383.0
+   ],
+   "generic_note": true
+  },
+  "pump|3 1/2 x 1 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 43747199.62,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    943.6,
+    384.8,
+    392.2
+   ],
+   "generic_note": true
+  },
+  "pump|3 1/2 x 2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 43751421.75,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    943.6,
+    384.8,
+    410.3
+   ],
+   "generic_note": true
+  },
+  "pump|3 1/2 x 2 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 43841873.01,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    943.6,
+    384.8,
+    429.3
+   ],
+   "generic_note": true
+  },
+  "pump|3 1/2 x 3": {
+   "valid": true,
+   "solids": 1,
+   "vol": 43765916.3,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    943.6,
+    384.8,
+    453.2
+   ],
+   "generic_note": true
+  },
+  "pump|4 x 1 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 60622756.62,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    1051.5,
+    422.9,
+    430.25
+   ],
+   "generic_note": true
+  },
+  "pump|4 x 2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 60613380.91,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    1051.5,
+    422.9,
+    448.35
+   ],
+   "generic_note": true
+  },
+  "pump|4 x 2 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 60689189.51,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    1051.5,
+    422.9,
+    467.45
+   ],
+   "generic_note": true
+  },
+  "pump|4 x 3": {
+   "valid": true,
+   "solids": 1,
+   "vol": 60586619.32,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    1051.5,
+    422.9,
+    491.25
+   ],
+   "generic_note": true
+  },
+  "pump|4 x 3 1/2": {
+   "valid": true,
+   "solids": 1,
+   "vol": 60532079.35,
+   "exp": null,
+   "rel_err": null,
+   "bbox": [
+    1051.5,
+    422.9,
+    510.25
+   ],
+   "generic_note": true
+  }
+ },
+ "eq3d_count": 61,
+ "eq3d_bad": [],
+ "sched_wall_80": 5.54,
+ "sched_vol_changes": true,
+ "sched_after_size_change": [
+  "SCH 40",
+  6.02,
+  114.3
+ ],
+ "sched_3half_160_ignored": 5.74,
+ "route": {
+  "L90|2|SCH 40": {
+   "pipes": 2,
+   "elbows": 1,
+   "max_joint_gap_mm": 0.0,
+   "all_valid": true
+  },
+  "L90|4|SCH 80": {
+   "pipes": 2,
+   "elbows": 1,
+   "max_joint_gap_mm": 0.0,
+   "all_valid": true
+  },
+  "U|2|SCH 40": {
+   "pipes": 3,
+   "elbows": 2,
+   "max_joint_gap_mm": 1.4210854715202004e-14,
+   "all_valid": true
+  },
+  "U|4|SCH 80": {
+   "pipes": 3,
+   "elbows": 2,
+   "max_joint_gap_mm": 2.842170943040401e-14,
+   "all_valid": true
+  },
+  "stair3d|2|SCH 40": {
+   "pipes": 4,
+   "elbows": 3,
+   "max_joint_gap_mm": 1.1368683772161603e-13,
+   "all_valid": true
+  },
+  "stair3d|4|SCH 80": {
+   "pipes": 4,
+   "elbows": 3,
+   "max_joint_gap_mm": 3.375077994860476e-14,
+   "all_valid": true
+  },
+  "bend45|2|SCH 40": {
+   "pipes": 2,
+   "elbows": 1,
+   "max_joint_gap_mm": 1.2871053789749918e-13,
+   "all_valid": true
+  },
+  "bend45|4|SCH 80": {
+   "pipes": 2,
+   "elbows": 1,
+   "max_joint_gap_mm": 1.2846695683373651e-13,
+   "all_valid": true
+  },
+  "straight|2|SCH 40": {
+   "pipes": 1,
+   "elbows": 0,
+   "max_joint_gap_mm": 0.0,
+   "all_valid": true
+  },
+  "straight|4|SCH 80": {
+   "pipes": 1,
+   "elbows": 0,
+   "max_joint_gap_mm": 0.0,
+   "all_valid": true
+  },
+  "bend60": {
+   "refused": "Bend 1 is 60.0 degrees; only 90 and 45 degree bends have fittings"
+  },
+  "tooshort": {
+   "refused": "Segment 1 is too short (100.0 mm) for the fittings at its ends"
+  }
+ },
+ "route_bad": [],
+ "eq3d_show_visible": 10,
+ "ui_wb_err": {
+  "StartWorkbench": "\"No such workbench 'StartWorkbench'\""
+ },
+ "ui_wbs": [
+  "DeltaWorkbench",
+  "PartWorkbench",
+  "PartDesignWorkbench",
+  "SketcherWorkbench",
+  "DraftWorkbench",
+  "TechDrawWorkbench",
+  "AssemblyWorkbench"
+ ],
+ "ui_en_count": 1635,
+ "sweep_changed_now": 0,
+ "sweep_changed_again": 0,
+ "ar_translator_installed": true,
+ "demo_labels": [
+  "\u0627\u0644\u0645\u064a\u0643\u0627\u0646\u064a\u0643\u0627",
+  "\u0646\u0642\u0637\u0629 \u0627\u0644\u0623\u0635\u0644",
+  "\u0627\u0644\u0645\u062d\u0648\u0631 X",
+  "\u0627\u0644\u0645\u062d\u0648\u0631 Y",
+  "\u0627\u0644\u0645\u062d\u0648\u0631 Z",
+  "\u0627\u0644\u0645\u0633\u062a\u0648\u0649 XY",
+  "\u0627\u0644\u0645\u0633\u062a\u0648\u0649 XZ",
+  "\u0627\u0644\u0645\u0633\u062a\u0648\u0649 YZ",
+  "\u0646\u0642\u0637\u0629 \u0627\u0644\u0623\u0635\u0644 001",
+  "\u0627\u0644\u062c\u0633\u0645 \u0627\u0644\u0623\u0633\u0627\u0633\u064a",
+  "\u0646\u0642\u0637\u0629 \u0627\u0644\u0623\u0635\u0644 004",
+  "\u0627\u0644\u0645\u062d\u0648\u0631 X 001",
+  "\u0627\u0644\u0645\u062d\u0648\u0631 Y 001",
+  "\u0627\u0644\u0645\u062d\u0648\u0631 Z 001",
+  "\u0627\u0644\u0645\u0633\u062a\u0648\u0649 XY 001",
+  "\u0627\u0644\u0645\u0633\u062a\u0648\u0649 XZ 001",
+  "\u0627\u0644\u0645\u0633\u062a\u0648\u0649 YZ 001",
+  "\u0646\u0642\u0637\u0629 \u0627\u0644\u0623\u0635\u0644 003",
+  "\u0627\u0644\u0631\u0633\u0645 \u0627\u0644\u0623\u0633\u0627\u0633\u064a",
+  "\u0642\u0627\u0639\u062f\u0629 \u0645\u064a\u0643\u0627\u0646\u064a\u0643\u064a\u0629 \u062a\u062c\u0631\u064a\u0628\u064a\u0629",
+  "\u0627\u0644\u0645\u0648\u0627\u0633\u064a\u0631",
+  "\u0645\u0633\u0627\u0631 \u0645\u0648\u0627\u0633\u064a\u0631 \u062a\u062c\u0631\u064a\u0628\u064a",
+  "\u0627\u0644\u0643\u0647\u0631\u0628\u0627\u0621",
+  "\u0644\u0648\u062d\u0629 \u062a\u062c\u0631\u064a\u0628\u064a\u0629 P1",
+  "\u0645\u062d\u0631\u0643 \u062a\u062c\u0631\u064a\u0628\u064a M1",
+  "\u062a\u0648\u0635\u064a\u0644 \u0645\u0646\u0637\u0642\u064a W1"
+ ],
+ "demo_labels_latin": [],
+ "default_placement": "search",
+ "layouts_default": {
+  "L": {
+   "crossings_path": 0,
+   "crossings_dim": 0,
+   "values": [
+    800.0,
+    500.0
+   ],
+   "placements": [
+    "default",
+    "default"
+   ],
+   "offsets": [
+    100.0,
+    100.0
+   ],
+   "pdf_mm": 13962
+  },
+  "L_rev": {
+   "crossings_path": 0,
+   "crossings_dim": 0,
+   "values": [
+    500.0,
+    800.0
+   ],
+   "placements": [
+    "default",
+    "default"
+   ],
+   "offsets": [
+    100.0,
+    100.0
+   ]
+  },
+  "L_rot45": {
+   "crossings_path": 0,
+   "crossings_dim": 0,
+   "values": [
+    800.0,
+    500.0
+   ],
+   "placements": [
+    "default",
+    "default"
+   ],
+   "offsets": [
+    100.0,
+    100.0
+   ],
+   "pdf_mm": 14082
+  },
+  "L_rot137": {
+   "crossings_path": 0,
+   "crossings_dim": 0,
+   "values": [
+    800.0,
+    500.0
+   ],
+   "placements": [
+    "default",
+    "default"
+   ],
+   "offsets": [
+    100.0,
+    100.0
+   ]
+  },
+  "U": {
+   "crossings_path": 0,
+   "crossings_dim": 0,
+   "values": [
+    400.0,
+    300.0,
+    400.0
+   ],
+   "placements": [
+    "default",
+    "default",
+    "default"
+   ],
+   "offsets": [
+    100.0,
+    100.0,
+    100.0
+   ]
+  },
+  "Z": {
+   "crossings_path": 0,
+   "crossings_dim": 1,
+   "values": [
+    600.0,
+    670.8204,
+    600.0
+   ],
+   "placements": [
+    "default",
+    "default",
+    "default"
+   ],
+   "offsets": [
+    100.0,
+    300.0,
+    30.0
+   ],
+   "diag": {
+    "lg": [
+     "[(<Part::Feature>, ('Vertex1', 'Vertex2'))]",
+     "[(<Part::Feature>, ('Vertex2', 'Vertex3'))]",
+     "[(<Part::Feature>, ('Vertex3', 'Vertex4'))]"
+    ],
+    "collected": 3,
+    "has_links_to": true,
+    "before": [
+     100.0,
+     300.0,
+     30.0
+    ],
+    "after": [
+     100.0,
+     300.0,
+     30.0
+    ],
+    "after_count": {
+     "path": 0,
+     "dim": 1
+    },
+    "strict_path_hits_incl_overlap": 0,
+    "strict_dim_hits": 1,
+    "sides_offsets": [
+     100.0,
+     300.0,
+     30.0
+    ]
+   },
+   "pdf_mm": 14291
+  },
+  "stair": {
+   "crossings_path": 0,
+   "crossings_dim": 0,
+   "values": [
+    400.0,
+    200.0,
+    200.0,
+    200.0,
+    200.0
+   ],
+   "placements": [
+    "default",
+    "default",
+    "default",
+    "default",
+    "default"
+   ],
+   "offsets": [
+    100.0,
+    100.0,
+    100.0,
+    100.0,
+    100.0
+   ],
+   "diag": {
+    "lg": [
+     "[(<Part::Feature>, ('Vertex1', 'Vertex2'))]",
+     "[(<Part::Feature>, ('Vertex2', 'Vertex3'))]",
+     "[(<Part::Feature>, ('Vertex3', 'Vertex4'))]",
+     "[(<Part::Feature>, ('Vertex4', 'Vertex5'))]",
+     "[(<Part::Feature>, ('Vertex5', 'Vertex6'))]"
+    ],
+    "collected": 5,
+    "has_links_to": true,
+    "before": [
+     100.0,
+     100.0,
+     100.0,
+     100.0,
+     100.0
+    ],
+    "after": [
+     100.0,
+     100.0,
+     100.0,
+     100.0,
+     100.0
+    ],
+    "after_count": {
+     "path": 0,
+     "dim": 0
+    },
+    "strict_path_hits_incl_overlap": 2,
+    "strict_dim_hits": 0,
+    "sides_offsets": [
+     100.0,
+     100.0,
+     100.0,
+     100.0,
+     100.0
+    ]
+   }
+  }
+ },
+ "done": true
+}
