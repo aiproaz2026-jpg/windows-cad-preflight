@@ -1,0 +1,6 @@
+try:
+    from DeltaEngineering import pipe_refine as _pr
+    _pr.register()
+except Exception as _e10:
+    import FreeCAD as _A10
+    _A10.Console.PrintError("pipe refinement failed: " + str(_e10) + "\n")

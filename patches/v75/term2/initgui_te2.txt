@@ -1,0 +1,7 @@
+
+try:
+    from DeltaEngineering import term_ends2 as _te2
+    _te2.install()
+except Exception as _e10:
+    import FreeCAD as _A10
+    _A10.Console.PrintError("terminal ends v72 failed: " + str(_e10) + "\n")
