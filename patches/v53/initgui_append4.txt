@@ -1,0 +1,7 @@
+
+try:
+    from DeltaEngineering import eq_commands as _ec
+    _ec.register()
+except Exception as _e5:
+    import FreeCAD as _A5
+    _A5.Console.PrintError("equipment commands failed: " + str(_e5) + "\n")
