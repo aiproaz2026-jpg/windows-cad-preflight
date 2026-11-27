@@ -1,0 +1,16 @@
+{
+ "done": true,
+ "iec_added": 4,
+ "term_table": 45,
+ "edges": {
+  "Contact NO (illustr.)": 7,
+  "Contact NO (IEC-style)": 7,
+  "Contact NC (illustr.)": 8,
+  "Contact NC (IEC-style)": 8,
+  "Pushbutton NO (illustr.)": 9,
+  "Pushbutton NO (IEC-style)": 14,
+  "Pushbutton NC (illustr.)": 10,
+  "Pushbutton NC (IEC-style)": 15
+ },
+ "pdf_bytes": 11950
+}

@@ -1,0 +1,5184 @@
+{
+ "done": true,
+ "misses": {
+  "(Alt+F11)": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "(Alt+Return)": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "(Ctrl++)": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "(Ctrl+,)": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "(Ctrl+-)": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "(Ctrl+A)": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "(Ctrl+B)": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "(Ctrl+C)": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "(Ctrl+D)": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "(Ctrl+E)": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "(Ctrl+F4)": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "(Ctrl+F6)": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "(Ctrl+N)": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "(Ctrl+O)": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "(Ctrl+P)": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "(Ctrl+S)": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "(Ctrl+Shift+I)": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "(Ctrl+Shift+P)": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "(Ctrl+Shift+S)": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "(Ctrl+Shift+Tab)": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "(Ctrl+Tab)": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "(Ctrl+V)": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "(Ctrl+X)": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "(Ctrl+Y)": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "(Ctrl+Z)": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "(Del)": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "(End)": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "(Esc)": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "(Home)": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "(Shift+B)": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "(Shift+E)": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "(Shift+End)": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "(Shift+F1)": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "(Shift+F6)": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "(Shift+S)": [
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "(Shift+Space)": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "(Space)": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "(e.g. in part containers)": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "1 Start": [
+   "menuitem:menubar"
+  ],
+  "Afrikaans": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "BIM": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "Blender": [
+   "action:DeltaWorkbench",
+   "action:DraftWorkbench",
+   "action:PartDesignWorkbench",
+   "action:PartWorkbench",
+   "action:SketcherWorkbench",
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "CAD": [
+   "action:DeltaWorkbench",
+   "action:DraftWorkbench",
+   "action:PartDesignWorkbench",
+   "action:PartWorkbench",
+   "action:SketcherWorkbench",
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench",
+   "text:IndicatorButton:DeltaWorkbench",
+   "text:IndicatorButton:DraftWorkbench",
+   "text:IndicatorButton:PartDesignWorkbench",
+   "text:IndicatorButton:PartWorkbench",
+   "text:IndicatorButton:SketcherWorkbench",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:IndicatorButton:DeltaWorkbench",
+   "toolTip:IndicatorButton:DraftWorkbench",
+   "toolTip:IndicatorButton:PartDesignWorkbench",
+   "toolTip:IndicatorButton:PartWorkbench",
+   "toolTip:IndicatorButton:SketcherWorkbench"
+  ],
+  "CAM": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "Català": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "Changes the default style for new objects": [
+   "toolTip:QPushButton:DraftWorkbench"
+  ],
+  "Clears the search field": [
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Close dock window": [
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Create objects": [
+   "text:QToolButton:DraftWorkbench"
+  ],
+  "Dansk": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "Datum objects": [
+   "text:QToolButton:PartDesignWorkbench"
+  ],
+  "Delta_Assembly": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_Connect": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_Demo": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_Device": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_DraftingEditor": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_Elbow": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_Elec_LibEdit": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_ElectricalEditor": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_Eq_ball_valve": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_Eq_check_valve": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_Eq_gate_valve": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_Eq_pipe": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_Eq_pump": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_Eq_weldneck150": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_Fit_Route": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_Fit_elbow45": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_Fit_elbow90lr": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_Fit_elbow90sr": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_Fit_flange150": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_Fit_reducer": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_Fit_tee_eq": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_Lib_bearing": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_Lib_gear": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_Lib_hex_bolt": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_Lib_hex_nut": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_Lib_ipe": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_Lib_washer": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_MeasureSelection": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_Net_Demo": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_Net_Export": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_Net_Text": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_Netlist": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_NewProject": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_Pipe": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_ProjectCheck": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_Quantities": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_RouteFromPath": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_Sheets": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_Thr_metric": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_Thr_npt": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Delta_UpdatePiping": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Deutsch": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "Draft": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "Draft_AddConstruction": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_AddNamedGroup": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_AddToGroup": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_AddToLayer": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_AnnotationStyleEditor": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_ApplyStyle": [
+   "menutip:menubar",
+   "tip:DraftWorkbench"
+  ],
+  "Draft_Arc": [
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_ArcTools": [
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Arc_3Points": [
+   "tip:DraftWorkbench"
+  ],
+  "Draft_ArrayTools": [
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_BSpline": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_BezCurve": [
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_BezierTools": [
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Circle": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_CircularArray": [
+   "tip:DraftWorkbench"
+  ],
+  "Draft_Clone": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_CubicBezCurve": [
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Dimension": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Downgrade": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Draft2Sketch": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Edit": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Ellipse": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Facebinder": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Fillet": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_FlipDimension": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Hatch": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Heal": [
+   "menutip:menubar",
+   "tip:DraftWorkbench"
+  ],
+  "Draft_Join": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Label": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Layer": [
+   "menutip:menubar",
+   "tip:DraftWorkbench"
+  ],
+  "Draft_LayerManager": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Line": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Mirror": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Move": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Offset": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_OrthoArray": [
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_PathArray": [
+   "tip:DraftWorkbench"
+  ],
+  "Draft_PathLinkArray": [
+   "tip:DraftWorkbench"
+  ],
+  "Draft_PathTwistedArray": [
+   "tip:DraftWorkbench"
+  ],
+  "Draft_PathTwistedLinkArray": [
+   "tip:DraftWorkbench"
+  ],
+  "Draft_Point": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_PointArray": [
+   "tip:DraftWorkbench"
+  ],
+  "Draft_PointLinkArray": [
+   "tip:DraftWorkbench"
+  ],
+  "Draft_PolarArray": [
+   "tip:DraftWorkbench"
+  ],
+  "Draft_Polygon": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Rectangle": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Rotate": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Scale": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_SelectGroup": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_SelectPlane": [
+   "menutip:menubar",
+   "tip:DraftWorkbench"
+  ],
+  "Draft_SetStyle": [
+   "menutip:menubar",
+   "tip:DraftWorkbench"
+  ],
+  "Draft_Shape2DView": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_ShapeString": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_ShowSnapBar": [
+   "menutip:menubar",
+   "tip:DraftWorkbench"
+  ],
+  "Draft_Slope": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Snap_Angle": [
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Snap_Center": [
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Snap_Dimensions": [
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Snap_Endpoint": [
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Snap_Extension": [
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Snap_Grid": [
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Snap_Intersection": [
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Snap_Lock": [
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Snap_Midpoint": [
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Snap_Near": [
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Snap_Ortho": [
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Snap_Parallel": [
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Snap_Perpendicular": [
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Snap_Special": [
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Snap_WorkingPlane": [
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Split": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Stretch": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_SubelementHighlight": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Text": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_ToggleConstructionMode": [
+   "menutip:menubar",
+   "tip:DraftWorkbench"
+  ],
+  "Draft_ToggleDisplayMode": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_ToggleGrid": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Trimex": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Upgrade": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_Wire": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_WireToBSpline": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Draft_WorkingPlaneProxy": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Edge Tools": [
+   "text:QToolButton:PartDesignWorkbench"
+  ],
+  "English": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "Español": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "Español de España": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "Euskara": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "FEM": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "Face Tools": [
+   "text:QToolButton:PartDesignWorkbench"
+  ],
+  "Filipino": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "Français": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "FreeCAD Classic": [
+   "text:QToolButton:DeltaWorkbench",
+   "text:QToolButton:DraftWorkbench",
+   "text:QToolButton:PartDesignWorkbench",
+   "text:QToolButton:PartWorkbench",
+   "text:QToolButton:SketcherWorkbench"
+  ],
+  "FreeCAD Dark": [
+   "text:QToolButton:DeltaWorkbench",
+   "text:QToolButton:DraftWorkbench",
+   "text:QToolButton:PartDesignWorkbench",
+   "text:QToolButton:PartWorkbench",
+   "text:QToolButton:SketcherWorkbench"
+  ],
+  "FreeCAD Light": [
+   "text:QToolButton:DeltaWorkbench",
+   "text:QToolButton:DraftWorkbench",
+   "text:QToolButton:PartDesignWorkbench",
+   "text:QToolButton:PartWorkbench",
+   "text:QToolButton:SketcherWorkbench"
+  ],
+  "Galego": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "Gesture": [
+   "action:DeltaWorkbench",
+   "action:DraftWorkbench",
+   "action:PartDesignWorkbench",
+   "action:PartWorkbench",
+   "action:SketcherWorkbench",
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Helper Tools": [
+   "text:QToolButton:PartDesignWorkbench"
+  ],
+  "Hrvatski": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "If the quot;Copyquot; option is active, it creates displaced copies.": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "If the quot;Copyquot; option is active, it will create rotated copies.": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Indonesia": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "Input hints": [
+   "windowTitle:QLabel:DeltaWorkbench",
+   "windowTitle:QLabel:DraftWorkbench",
+   "windowTitle:QLabel:PartDesignWorkbench",
+   "windowTitle:QLabel:PartWorkbench",
+   "windowTitle:QLabel:SketcherWorkbench"
+  ],
+  "Italiano": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "Lietuvių": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "Magyar": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "Materials_InspectAppearance": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Materials_InspectMaterial": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "MayaGesture": [
+   "action:DeltaWorkbench",
+   "action:DraftWorkbench",
+   "action:PartDesignWorkbench",
+   "action:PartWorkbench",
+   "action:SketcherWorkbench",
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Melayu": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "Mesh": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "Modeling Tools": [
+   "text:QToolButton:PartDesignWorkbench"
+  ],
+  "Modeling tools": [
+   "text:QToolButton:PartDesignWorkbench"
+  ],
+  "Modify Objects": [
+   "text:QToolButton:DraftWorkbench"
+  ],
+  "Navigation indicator": [
+   "windowTitle:IndicatorButton:DeltaWorkbench",
+   "windowTitle:IndicatorButton:DraftWorkbench",
+   "windowTitle:IndicatorButton:PartDesignWorkbench",
+   "windowTitle:IndicatorButton:PartWorkbench",
+   "windowTitle:IndicatorButton:SketcherWorkbench"
+  ],
+  "Nederlands": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "Norsk bokmål": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "Notification Area": [
+   "windowTitle:QPushButton:DeltaWorkbench",
+   "windowTitle:QPushButton:DraftWorkbench",
+   "windowTitle:QPushButton:PartDesignWorkbench",
+   "windowTitle:QPushButton:PartWorkbench",
+   "windowTitle:QPushButton:SketcherWorkbench"
+  ],
+  "OpenCascade": [
+   "action:DeltaWorkbench",
+   "action:DraftWorkbench",
+   "action:PartDesignWorkbench",
+   "action:PartWorkbench",
+   "action:SketcherWorkbench",
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "OpenInventor": [
+   "action:DeltaWorkbench",
+   "action:DraftWorkbench",
+   "action:PartDesignWorkbench",
+   "action:PartWorkbench",
+   "action:SketcherWorkbench",
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "OpenSCAD": [
+   "action:DeltaWorkbench",
+   "action:DraftWorkbench",
+   "action:PartDesignWorkbench",
+   "action:PartWorkbench",
+   "action:SketcherWorkbench",
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Part": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "PartDesign_AdditiveHelix": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "PartDesign_AdditiveLoft": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "PartDesign_AdditivePipe": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "PartDesign_Body": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "PartDesign_Boolean": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "PartDesign_Chamfer": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "PartDesign_Clone": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "PartDesign_CompPrimitiveAdditive": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "PartDesign_CompPrimitiveSubtractive": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "PartDesign_CoordinateSystem": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench"
+  ],
+  "PartDesign_Draft": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "PartDesign_DuplicateSelection": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "PartDesign_Fillet": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "PartDesign_Groove": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "PartDesign_Hole": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "PartDesign_InvoluteGear": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "PartDesign_Line": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench"
+  ],
+  "PartDesign_LinearPattern": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "PartDesign_Mirrored": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "PartDesign_MultiTransform": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "PartDesign_NewSketch": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench"
+  ],
+  "PartDesign_NewSketch (PartDesign_CompSketches:0)": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "PartDesign_Pad": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "PartDesign_Plane": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench"
+  ],
+  "PartDesign_Pocket": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "PartDesign_Point": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench"
+  ],
+  "PartDesign_PolarPattern": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "PartDesign_Revolution": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "PartDesign_ShapeBinder": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "PartDesign_Sprocket": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "PartDesign_SubShapeBinder": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "PartDesign_SubtractiveHelix": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "PartDesign_SubtractiveLoft": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "PartDesign_SubtractivePipe": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "PartDesign_Thickness": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "PartDesign_WizardShaft": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Part_Boolean": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench"
+  ],
+  "Part_BooleanFragments": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench"
+  ],
+  "Part_Box": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench"
+  ],
+  "Part_BoxSelection": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench"
+  ],
+  "Part_Builder": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench"
+  ],
+  "Part_Chamfer": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench"
+  ],
+  "Part_CheckGeometry": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Part_ColorPerFace": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench"
+  ],
+  "Part_Common": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench"
+  ],
+  "Part_CompCompoundTools": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench"
+  ],
+  "Part_CompJoinFeatures": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench"
+  ],
+  "Part_CompOffset": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench"
+  ],
+  "Part_CompSplitFeatures": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench"
+  ],
+  "Part_Compound": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench"
+  ],
+  "Part_CompoundFilter": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench"
+  ],
+  "Part_Cone": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench"
+  ],
+  "Part_CoordinateSystem": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench"
+  ],
+  "Part_CoordinateSystem (Part_Datums:0)": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Part_CrossSections": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench"
+  ],
+  "Part_Cut": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench"
+  ],
+  "Part_Cylinder": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench"
+  ],
+  "Part_DatumLine": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench"
+  ],
+  "Part_DatumPlane": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench"
+  ],
+  "Part_DatumPoint": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench"
+  ],
+  "Part_Defeaturing": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench"
+  ],
+  "Part_EditAttachment": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench"
+  ],
+  "Part_ElementCopy": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench"
+  ],
+  "Part_ExplodeCompound": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench"
+  ],
+  "Part_Extrude": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench"
+  ],
+  "Part_Fillet": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench"
+  ],
+  "Part_Fuse": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench"
+  ],
+  "Part_JoinConnect": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench"
+  ],
+  "Part_JoinCutout": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench"
+  ],
+  "Part_JoinEmbed": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench"
+  ],
+  "Part_Loft": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench"
+  ],
+  "Part_MakeFace": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench"
+  ],
+  "Part_MakeSolid": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench"
+  ],
+  "Part_Mirror": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench"
+  ],
+  "Part_Offset": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench"
+  ],
+  "Part_Offset2D": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench"
+  ],
+  "Part_PointsFromMesh": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench"
+  ],
+  "Part_Primitives": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench"
+  ],
+  "Part_ProjectionOnSurface": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench"
+  ],
+  "Part_RefineShape": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench"
+  ],
+  "Part_ReverseShape": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench"
+  ],
+  "Part_Revolve": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench"
+  ],
+  "Part_RuledSurface": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench"
+  ],
+  "Part_Scale": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench"
+  ],
+  "Part_Section": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench"
+  ],
+  "Part_SectionCut": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench"
+  ],
+  "Part_SelectFilter": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Part_ShapeFromMesh": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench"
+  ],
+  "Part_SimpleCopy": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench"
+  ],
+  "Part_Slice": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench"
+  ],
+  "Part_SliceApart": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench"
+  ],
+  "Part_Sphere": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench"
+  ],
+  "Part_Sweep": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench"
+  ],
+  "Part_Thickness": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench"
+  ],
+  "Part_ToleranceSet": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench"
+  ],
+  "Part_Torus": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench"
+  ],
+  "Part_TransformedCopy": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench"
+  ],
+  "Part_Tube": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench"
+  ],
+  "Part_XOR": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench"
+  ],
+  "Points": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "Polski": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "Português": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "Português europeu": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "Quick measure": [
+   "windowTitle:QLabel:DeltaWorkbench",
+   "windowTitle:QLabel:DraftWorkbench",
+   "windowTitle:QLabel:PartDesignWorkbench",
+   "windowTitle:QLabel:PartWorkbench",
+   "windowTitle:QLabel:SketcherWorkbench"
+  ],
+  "Reverse Engineering": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "Revit": [
+   "action:DeltaWorkbench",
+   "action:DraftWorkbench",
+   "action:PartDesignWorkbench",
+   "action:PartWorkbench",
+   "action:SketcherWorkbench",
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Română": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "Searches object labels": [
+   "toolTip:QLineEdit:DeltaWorkbench",
+   "toolTip:QLineEdit:DraftWorkbench",
+   "toolTip:QLineEdit:PartDesignWorkbench",
+   "toolTip:QLineEdit:PartWorkbench",
+   "toolTip:QLineEdit:SketcherWorkbench"
+  ],
+  "Set the scale used by Draft annotation tools": [
+   "toolTip:QPushButton:DraftWorkbench"
+  ],
+  "Siemens NX": [
+   "action:DeltaWorkbench",
+   "action:DraftWorkbench",
+   "action:PartDesignWorkbench",
+   "action:PartWorkbench",
+   "action:SketcherWorkbench",
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_ArcOverlay": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_BSplineConvertToNURBS": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_BSplineDecreaseDegree": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_BSplineDecreaseKnotMultiplicity": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_BSplineIncreaseDegree": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_BSplineIncreaseKnotMultiplicity": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_BSplineInsertKnot": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_CarbonCopy": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_CompBSplineShowHideGeometryInformation": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_CompModifyKnotMultiplicity": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_ConstrainAngle": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_ConstrainBlock": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_ConstrainCoincidentUnified": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_ConstrainDiameter": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_ConstrainDistance": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_ConstrainDistanceX": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_ConstrainDistanceY": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_ConstrainEqual": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_ConstrainHorVer": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_ConstrainHorVer (Sketcher_CompHorVer:0)": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_ConstrainHorizontal": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_ConstrainLock": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_ConstrainParallel": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_ConstrainPerpendicular": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_ConstrainRadiam": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_ConstrainRadius": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_ConstrainSnellsLaw": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_ConstrainSymmetric": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_ConstrainTangent": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_ConstrainVertical": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_CopyClipboard": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_Create3PointArc": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_Create3PointCircle": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_CreateArc": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_CreateArc (Sketcher_CompCreateArc:0)": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_CreateArcOfEllipse": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_CreateArcOfHyperbola": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_CreateArcOfParabola": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_CreateArcSlot": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_CreateBSpline": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_CreateBSpline (Sketcher_CompCreateBSpline:0)": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_CreateBSplineByInterpolation": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_CreateChamfer": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_CreateCircle": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_CreateCircle (Sketcher_CompCreateConic:0)": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_CreateEllipseBy3Points": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_CreateEllipseByCenter": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_CreateFillet": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_CreateFillet (Sketcher_CompCreateFillets:0)": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_CreateHeptagon": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_CreateHexagon": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_CreateLine": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_CreateOblong": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_CreateOctagon": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_CreatePentagon": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_CreatePeriodicBSpline": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_CreatePeriodicBSplineByInterpolation": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_CreatePoint": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_CreatePolyline": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_CreateRectangle": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_CreateRectangle (Sketcher_CompCreateRectangles:0)": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_CreateRectangle_Center": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_CreateRegularPolygon": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_CreateSlot": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_CreateSlot (Sketcher_CompSlot:0)": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_CreateSquare": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_CreateTriangle": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_CreateTriangle (Sketcher_CompCreateRegularPolygon:0)": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_Cut": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_DeleteAllConstraints": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_DeleteAllGeometry": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_Dimension": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_Dimension (Sketcher_CompDimensionTools:0)": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_EditSketch": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_Extend": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_Intersection": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_JoinCurves": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_LeaveSketch": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_MapSketch": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_MergeSketches": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_MirrorSketch": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_NewSketch": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_Offset": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_Paste": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_Projection": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_Projection (Sketcher_CompExternal:0)": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_RemoveAxesAlignment": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_ReorientSketch": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_RestoreInternalAlignmentGeometry": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_Rotate": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_Scale": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_SelectConflictingConstraints": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_SelectConstraints": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_SelectElementsAssociatedWithConstraints": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_SelectElementsWithDoFs": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_SelectHorizontalAxis": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_SelectOrigin": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_SelectRedundantConstraints": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_SelectVerticalAxis": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_Split": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_StopOperation": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_SwitchVirtualSpace": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_Symmetry": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_ToggleActiveConstraint": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_ToggleConstruction": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_ToggleDrivingConstraint": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_ToggleDrivingConstraint (Sketcher_CompToggleConstraints:0)": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_Translate": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_Trimming": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Sketcher_Trimming (Sketcher_CompCurveEdition:0)": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_ValidateSketch": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_ViewSection": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Sketcher_ViewSketch": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Slovenčina": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "Slovenščina": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "SolidWorks": [
+   "action:DeltaWorkbench",
+   "action:DraftWorkbench",
+   "action:PartDesignWorkbench",
+   "action:PartWorkbench",
+   "action:SketcherWorkbench",
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Spreadsheet": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "Srpski": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "Start Part": [
+   "text:QToolButton:PartDesignWorkbench"
+  ],
+  "Start_Start": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_About": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ActivateNextWindow": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ActivatePrevWindow": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_AddonMgr": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_AlignToSelection": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_Alignment": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_AxisCross": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_BoxElementSelection": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_BoxSelection": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_CascadeWindows": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ClarifySelection": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_CloseActiveWindow": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_CloseAllWindows": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_Copy": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_Cut": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_Delete": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_DemoMode": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_DependencyGraph": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_DevHandbook": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_DlgCustomize": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_DlgMacroExecute": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_DlgMacroExecuteDirect": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_DlgMacroRecord": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_DlgParameter": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_DlgPreferences": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_DockOverlayAll": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_DockOverlayAll (Std_DockOverlay:0)": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_DockOverlayMouseTransparent": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_DockOverlayToggle": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_DockOverlayToggleBottom": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_DockOverlayToggleLeft": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_DockOverlayToggleRight": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_DockOverlayToggleTop": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_DockOverlayToggleTransparent": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_DockOverlayTransparentAll": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_DockViewMenu": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_DrawStyle": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_DuplicateSelection": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_Edit": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_Export": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ExportDependencyGraph": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_FreeCADDonation": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_FreeCADForum": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_FreeCADUserHub": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_FreeCADWebsite": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_FreezeViews": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_Group": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_HideObjects": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_HideSelection": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_Import": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_LinkImport": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_LinkImportAll": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_LinkMake": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_LinkMake (Std_LinkActions:0)": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_LinkMakeRelative": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_LinkReplace": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_LinkSelectAllLinks": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_LinkSelectLinked": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_LinkSelectLinked (Std_LinkSelectActions:0)": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_LinkSelectLinkedFinal": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_LinkUnlink": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_MacroAttachDebugger": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_MacroStartDebug": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_MacroStepInto": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_MacroStepOver": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_MacroStopDebug": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_MainFullscreen": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_Measure": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_MergeProjects": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_New": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_OnlineHelp": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_Open": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_OrthographicCamera": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_Part": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_Paste": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_PerspectiveCamera": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_Placement": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_Print": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_PrintPdf": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_PrintPreview": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ProjectInfo": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ProjectUtil": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_Properties": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_PythonHelp": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_Quit": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_RandomColor": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_RecallWorkingView": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_RecentFiles": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_RecentMacros": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_Redo": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_Refresh": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_ReportBug": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_RestartInSafeMode": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_Revert": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_Save": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_SaveAll": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_SaveAs": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_SaveCopy": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_SceneInspector": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_SelBack": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_SelBoundingBox": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_SelForward": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_SelectAll": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_SelectVisibleObjects": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_SendToPythonConsole": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_SetAppearance": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_SetMaterial": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ShowObjects": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ShowSelection": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_StoreWorkingView": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_TextDocument": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_TextureMapping": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_TileWindows": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ToggleBreakpoint": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ToggleClipPlane": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ToggleNavigation": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ToggleObjects": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ToggleSelectability": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ToggleTransparency": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ToggleVisibility": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ToolBarMenu": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_TransformManip": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_TreeCollapseDocument": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_TreeDrag": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_TreeMultiDocument": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_TreePreSelection": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_TreeRecordSelection": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_TreeSelection": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_TreeSingleDocument": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_TreeSyncPlacement": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_TreeSyncSelection": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_TreeSyncView": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_TreeSyncView (Std_TreeViewActions:0)": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_Undo": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_UnitsCalculator": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_UserEditMode": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_VarSet": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_ViewBottom": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_ViewBoxZoom": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ViewCreate": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ViewDimetric": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ViewDock": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ViewFitAll": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_ViewFitSelection": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_ViewFront": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_ViewFullscreen": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ViewHome": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ViewIsometric": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_ViewIsometric (Std_ViewGroup:0)": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_ViewIvIssueCamPos": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ViewIvStereoInterleavedColumns": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ViewIvStereoInterleavedRows": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ViewIvStereoOff": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ViewIvStereoQuadBuff": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ViewIvStereoRedGreen": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ViewLeft": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_ViewLoadImage": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ViewRear": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_ViewRight": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_ViewRotateLeft": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ViewRotateRight": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ViewScreenShot": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ViewStatusBar": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ViewTop": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_ViewTrimetric": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ViewUndock": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ViewZoomIn": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_ViewZoomOut": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_WhatsThis": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Std_Windows": [
+   "menutip:menubar",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Std_WindowsMenu": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Suomi": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "Surface": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "Svenska": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "Taqbaylit": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "TechDraw": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "TinkerCAD": [
+   "action:DeltaWorkbench",
+   "action:DraftWorkbench",
+   "action:PartDesignWorkbench",
+   "action:PartWorkbench",
+   "action:SketcherWorkbench",
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Toggle floating window": [
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Toggles construction mode": [
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "Touchpad": [
+   "action:DeltaWorkbench",
+   "action:DraftWorkbench",
+   "action:PartDesignWorkbench",
+   "action:PartWorkbench",
+   "action:SketcherWorkbench",
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench",
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "Transformation Tools": [
+   "text:QToolButton:PartDesignWorkbench"
+  ],
+  "Valencian": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ],
+  "Vertex Tools": [
+   "text:QToolButton:PartDesignWorkbench"
+  ],
+  "[B-Spline Tools]": [
+   "toolTip:QToolBar:DraftWorkbench",
+   "toolTip:QToolBar:PartWorkbench",
+   "toolTip:QToolBar:SketcherWorkbench"
+  ],
+  "[Boolean Tools]": [
+   "toolTip:QToolBar:DraftWorkbench",
+   "toolTip:QToolBar:PartWorkbench"
+  ],
+  "[Clipboard]": [
+   "toolTip:QToolBar:DeltaWorkbench",
+   "toolTip:QToolBar:DraftWorkbench",
+   "toolTip:QToolBar:PartDesignWorkbench",
+   "toolTip:QToolBar:PartWorkbench",
+   "toolTip:QToolBar:SketcherWorkbench"
+  ],
+  "[Constraints]": [
+   "toolTip:QToolBar:DraftWorkbench",
+   "toolTip:QToolBar:PartWorkbench",
+   "toolTip:QToolBar:SketcherWorkbench"
+  ],
+  "[Draft Annotation]": [
+   "toolTip:QToolBar:DraftWorkbench"
+  ],
+  "[Draft Creation]": [
+   "toolTip:QToolBar:DraftWorkbench"
+  ],
+  "[Draft Modification]": [
+   "toolTip:QToolBar:DraftWorkbench"
+  ],
+  "[Draft Snap]": [
+   "toolTip:QToolBar:DraftWorkbench"
+  ],
+  "[Draft Utility]": [
+   "toolTip:QToolBar:DraftWorkbench"
+  ],
+  "[Edit Mode]": [
+   "toolTip:QToolBar:DraftWorkbench",
+   "toolTip:QToolBar:PartWorkbench",
+   "toolTip:QToolBar:SketcherWorkbench"
+  ],
+  "[Edit]": [
+   "toolTip:QToolBar:DeltaWorkbench",
+   "toolTip:QToolBar:DraftWorkbench",
+   "toolTip:QToolBar:PartDesignWorkbench",
+   "toolTip:QToolBar:PartWorkbench",
+   "toolTip:QToolBar:SketcherWorkbench"
+  ],
+  "[Geometries]": [
+   "toolTip:QToolBar:DraftWorkbench",
+   "toolTip:QToolBar:PartWorkbench",
+   "toolTip:QToolBar:SketcherWorkbench"
+  ],
+  "[Help]": [
+   "toolTip:QToolBar:DeltaWorkbench",
+   "toolTip:QToolBar:DraftWorkbench",
+   "toolTip:QToolBar:PartDesignWorkbench",
+   "toolTip:QToolBar:PartWorkbench",
+   "toolTip:QToolBar:SketcherWorkbench"
+  ],
+  "[Individual Views]": [
+   "toolTip:QToolBar:DeltaWorkbench",
+   "toolTip:QToolBar:DraftWorkbench",
+   "toolTip:QToolBar:PartDesignWorkbench",
+   "toolTip:QToolBar:PartWorkbench",
+   "toolTip:QToolBar:SketcherWorkbench"
+  ],
+  "[Macro]": [
+   "toolTip:QToolBar:DeltaWorkbench",
+   "toolTip:QToolBar:DraftWorkbench",
+   "toolTip:QToolBar:PartDesignWorkbench",
+   "toolTip:QToolBar:PartWorkbench",
+   "toolTip:QToolBar:SketcherWorkbench"
+  ],
+  "[Part Design Dress-Up Features]": [
+   "toolTip:QToolBar:DeltaWorkbench",
+   "toolTip:QToolBar:DraftWorkbench",
+   "toolTip:QToolBar:PartDesignWorkbench",
+   "toolTip:QToolBar:PartWorkbench",
+   "toolTip:QToolBar:SketcherWorkbench"
+  ],
+  "[Part Design Helper Features]": [
+   "toolTip:QToolBar:DeltaWorkbench",
+   "toolTip:QToolBar:DraftWorkbench",
+   "toolTip:QToolBar:PartDesignWorkbench",
+   "toolTip:QToolBar:PartWorkbench",
+   "toolTip:QToolBar:SketcherWorkbench"
+  ],
+  "[Part Design Modeling Features]": [
+   "toolTip:QToolBar:DeltaWorkbench",
+   "toolTip:QToolBar:DraftWorkbench",
+   "toolTip:QToolBar:PartDesignWorkbench",
+   "toolTip:QToolBar:PartWorkbench",
+   "toolTip:QToolBar:SketcherWorkbench"
+  ],
+  "[Part Design Transformation Features]": [
+   "toolTip:QToolBar:DeltaWorkbench",
+   "toolTip:QToolBar:DraftWorkbench",
+   "toolTip:QToolBar:PartDesignWorkbench",
+   "toolTip:QToolBar:PartWorkbench",
+   "toolTip:QToolBar:SketcherWorkbench"
+  ],
+  "[Part Tools]": [
+   "toolTip:QToolBar:DraftWorkbench",
+   "toolTip:QToolBar:PartWorkbench"
+  ],
+  "[Sketcher Tools]": [
+   "toolTip:QToolBar:DraftWorkbench",
+   "toolTip:QToolBar:PartWorkbench",
+   "toolTip:QToolBar:SketcherWorkbench"
+  ],
+  "[Sketcher]": [
+   "toolTip:QToolBar:DraftWorkbench",
+   "toolTip:QToolBar:PartWorkbench",
+   "toolTip:QToolBar:SketcherWorkbench"
+  ],
+  "[Structure]": [
+   "toolTip:QToolBar:DeltaWorkbench",
+   "toolTip:QToolBar:DraftWorkbench",
+   "toolTip:QToolBar:PartDesignWorkbench",
+   "toolTip:QToolBar:PartWorkbench",
+   "toolTip:QToolBar:SketcherWorkbench"
+  ],
+  "[Visual Helpers]": [
+   "toolTip:QToolBar:DraftWorkbench",
+   "toolTip:QToolBar:PartWorkbench",
+   "toolTip:QToolBar:SketcherWorkbench"
+  ],
+  "[Workbench]": [
+   "toolTip:QToolBar:DeltaWorkbench",
+   "toolTip:QToolBar:DraftWorkbench",
+   "toolTip:QToolBar:PartDesignWorkbench",
+   "toolTip:QToolBar:PartWorkbench",
+   "toolTip:QToolBar:SketcherWorkbench"
+  ],
+  "and back": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "and scale them": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "as a unit in the 3D view. It is intended to arrange objects that have a part TopoShape, like part primitives, Part Design bodies, and other parts.": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "axis planes": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench"
+  ],
+  "be used as variables": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "body": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "camera position and visibility of objects": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "closest alignment": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "commands": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "constraint relationship of the selection": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "creation": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "filter for each slide": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench"
+  ],
+  "for each shape": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench"
+  ],
+  "if one is selected": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "in another document. Unlike clones, links reference the original shape directly, making them more memory-efficient, which helps with the creation of complex assemblies.": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "inside or outside a body. It tracks relative placements, supports multiple geometry types (solids, faces, edges, vertices), and can work with objects in the same or external documents.": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "layers": [
+   "tip:DraftWorkbench"
+  ],
+  "multiplicity is increased by 1.": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "navigation buttons": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "of external geometry": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "of freedom": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "of the group they are in are selected.": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "of the sketch if only one is selected": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "of working plane proxies and building parts": [
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "offset outward, negative values inward": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "or an angular dimension for 2 straight edges": [
+   "menutip:menubar",
+   "tip:DraftWorkbench",
+   "toolTip:QToolButton:DraftWorkbench"
+  ],
+  "origin if only one is selected": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "position": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench"
+  ],
+  "set to at least a certain minimum value": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench"
+  ],
+  "shapes": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench"
+  ],
+  "sketch or profile": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "the M key.": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "the results in one compound": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench"
+  ],
+  "thickness": [
+   "tip:DraftWorkbench",
+   "tip:PartWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartWorkbench"
+  ],
+  "view, regardless of their data type. It is a simple folder to organize the objects in a model.": [
+   "tip:DeltaWorkbench",
+   "tip:DraftWorkbench",
+   "tip:PartDesignWorkbench",
+   "tip:PartWorkbench",
+   "tip:SketcherWorkbench",
+   "toolTip:QToolButton:DeltaWorkbench",
+   "toolTip:QToolButton:DraftWorkbench",
+   "toolTip:QToolButton:PartDesignWorkbench",
+   "toolTip:QToolButton:PartWorkbench",
+   "toolTip:QToolButton:SketcherWorkbench"
+  ],
+  "Čeština": [
+   "combo:DeltaWorkbench",
+   "combo:DraftWorkbench",
+   "combo:PartDesignWorkbench",
+   "combo:PartWorkbench",
+   "combo:SketcherWorkbench"
+  ]
+ },
+ "seen": 4222,
+ "wb_errors": {
+  "StartWorkbench": "\"No such workbench 'StartWorkbench'\""
+ },
+ "miss_count": 689
+}
