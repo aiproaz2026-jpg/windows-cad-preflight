@@ -1,0 +1,73 @@
+FreeCAD 1.1.4, Libs: 1.1.4R20260928 (Git shallow)
+(C) 2001-2026 FreeCAD contributors
+FreeCAD is free and open-source software licensed under the terms of LGPL2+ license.
+
+Recompute......
+						(50 %)							(100 %)									Recompute......
+						(7 %)							(14 %)							(21 %)							(28 %)							(35 %)							(42 %)							(50 %)							(57 %)							(64 %)							(71 %)							(78 %)							(85 %)							(92 %)	MbD: Assembling system. 
+MbD: Convergence = 302123563.23199952
+MbD: Convergence = 0
+Time = 0
+						(100 %)									MbD: Assembling system. 
+MbD: Convergence = 0
+Time = 0
+Recompute......
+						(7 %)							(14 %)							(21 %)							(28 %)							(35 %)							(42 %)							(50 %)							(57 %)							(64 %)							(71 %)							(78 %)							(85 %)							(92 %)							(100 %)									MbD: Assembling system. 
+MbD: Convergence = 0
+Time = 0
+Recompute......
+						(7 %)							(14 %)							(21 %)							(28 %)							(35 %)							(42 %)							(50 %)							(57 %)							(64 %)							(71 %)							(78 %)							(85 %)							(92 %)	MbD: Assembling system. 
+MbD: Convergence = 0
+Time = 0
+						(100 %)									MbD: Assembling system. 
+MbD: Convergence = 0
+Time = 0
+Recompute......
+						(7 %)							(14 %)							(21 %)							(28 %)							(35 %)							(42 %)							(50 %)							(57 %)							(64 %)							(71 %)							(78 %)							(85 %)							(92 %)	MbD: Assembling system. 
+MbD: Convergence = 0
+Time = 0
+						(100 %)									MbD: Assembling system. 
+MbD: Convergence = 0
+Time = 0
+Recompute......
+						(7 %)							(14 %)							(21 %)							(28 %)							(35 %)							(42 %)							(50 %)							(57 %)							(64 %)							(71 %)							(78 %)							(85 %)							(92 %)	MbD: Assembling system. 
+MbD: Convergence = 0
+Time = 0
+						(100 %)									MbD: Assembling system. 
+MbD: Convergence = 0
+Time = 0
+Recompute......
+						(7 %)							(14 %)							(21 %)							(28 %)							(35 %)							(42 %)							(50 %)							(57 %)							(64 %)							(71 %)							(78 %)							(85 %)							(92 %)	MbD: Assembling system. 
+MbD: Convergence = 0
+Time = 0
+						(100 %)									Recompute......
+						(50 %)							(100 %)									Recompute......
+						(7 %)							(14 %)							(21 %)							(28 %)							(35 %)							(42 %)							(50 %)							(57 %)							(64 %)							(71 %)							(78 %)							(85 %)							(92 %)	MbD: Assembling system. 
+MbD: Convergence = 0
+Time = 0
+						(100 %)									MbD: Assembling system. 
+MbD: Convergence = 0
+Time = 0
+Recompute......
+						(7 %)							(14 %)							(21 %)							(28 %)							(35 %)							(42 %)							(50 %)							(57 %)							(64 %)							(71 %)							(78 %)							(85 %)							(92 %)							(100 %)									MbD: Assembling system. 
+MbD: Convergence = 3.8095280843837152e-22
+Time = 0
+Recompute......
+						(7 %)							(14 %)							(21 %)							(28 %)							(35 %)							(42 %)							(50 %)							(57 %)							(64 %)							(71 %)							(78 %)							(85 %)							(92 %)	MbD: Assembling system. 
+MbD: Convergence = 0
+Time = 0
+						(100 %)									MbD: Assembling system. 
+MbD: Convergence = 3.809528084383718e-22
+Time = 0
+Recompute......
+						(7 %)							(14 %)							(21 %)							(28 %)							(35 %)							(42 %)							(50 %)							(57 %)							(64 %)							(71 %)							(78 %)							(85 %)							(92 %)	MbD: Assembling system. 
+MbD: Convergence = 0
+Time = 0
+						(100 %)									MbD: Assembling system. 
+MbD: Convergence = 3.809528084383718e-22
+Time = 0
+Recompute......
+						(7 %)							(14 %)							(21 %)							(28 %)							(35 %)							(42 %)							(50 %)							(57 %)							(64 %)							(71 %)							(78 %)							(85 %)							(92 %)	MbD: Assembling system. 
+MbD: Convergence = 0
+Time = 0
+						(100 %)									

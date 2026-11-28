@@ -1,0 +1,1 @@
+arabic_chars=634 contains_barnamaj=True
