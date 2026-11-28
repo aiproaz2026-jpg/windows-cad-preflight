@@ -1,0 +1,43 @@
+{
+ "done": true,
+ "sheet": "dol_vertical_A3.pdf",
+ "warnings": [],
+ "term_ends_table": 99,
+ "straight_check": [
+  [
+   "W1",
+   1,
+   110.0
+  ],
+  [
+   "W2",
+   1,
+   110.0
+  ],
+  [
+   "W3",
+   1,
+   110.0
+  ],
+  [
+   "W4",
+   1,
+   110.0
+  ],
+  [
+   "W5",
+   1,
+   110.0
+  ],
+  [
+   "W6",
+   1,
+   110.0
+  ]
+ ],
+ "netlist": 6,
+ "route": 0,
+ "devices": 3,
+ "wires": 6,
+ "pdf_bytes": 17166
+}
