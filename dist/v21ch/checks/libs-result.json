@@ -1,0 +1,51 @@
+{
+ "stage": "start",
+ "libs": {
+  "parts": {
+   "hex_bolt": {
+    "ok": 19,
+    "bad": []
+   },
+   "hex_nut": {
+    "ok": 13,
+    "bad": []
+   },
+   "washer": {
+    "ok": 13,
+    "bad": []
+   },
+   "bearing": {
+    "ok": 21,
+    "bad": []
+   },
+   "ipe": {
+    "ok": 15,
+    "bad": []
+   },
+   "gear": {
+    "ok": 5,
+    "bad": []
+   }
+  },
+  "fittings": {
+   "elbows_lr90": 11,
+   "elbows_45": 11,
+   "elbows_sr90": 11,
+   "tees": 11,
+   "reducers": 38,
+   "flanges": 11,
+   "status_has_sources": true,
+   "flange_nps2_check": true
+  },
+  "edit_test": {
+   "nut_edited_valid": true,
+   "gear_teeth_edited_valid": true
+  },
+  "stamps": {
+   "bolt_sample": {
+    "family": "hex_nut_iso4032"
+   }
+  }
+ },
+ "done": true
+}
