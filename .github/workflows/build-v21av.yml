@@ -584,6 +584,66 @@ jobs:
           if (-not $pr.WaitForExit(900000)) { $pr.Kill(); "timeout" | Set-Content C:/seed/route86/timeout.txt }
           Get-Content C:/seed/route86/unit_test.txt -ErrorAction SilentlyContinue | Select-Object -Last 3
           Get-Content C:/seed/route86/out.txt -ErrorAction SilentlyContinue | Select-Object -Last 3
+
+      - name: Gallery wiring metrics before/after wire_route (installed app, headless FreeCAD)
+        continue-on-error: true
+        timeout-minutes: 45
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force C:/seed/gallerymetrics,C:/gallery_src | Out-Null
+          $cmd = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCADCmd.exe | Select-Object -First 1
+          if (-not $cmd) { throw 'FreeCADCmd.exe not found under C:/DeltaTest' }
+          $env:PYTHONUTF8 = '1'
+          Copy-Item patches/v86/gallery_metrics.py C:/gallery_metrics.py -Force
+          # The gallery = the demo scripts that build a wired sheet. Only the ones present are run;
+          # a missing path is printed and skipped, it does not fail the step.
+          $scripts = @(
+            'patches/v64/gallery_elec2.py',
+            'patches/v64/gallery_elec3.py',
+            'patches/v70_elec4.py',
+            'patches/v71/elec5.py',
+            'patches/v75/demos/gallery_elec6.py',
+            'patches/v75/demos/gallery_elec7.py',
+            'patches/v75/demos/gallery_elec8.py',
+            'patches/v75/term2/gallery_terms.py',
+            'patches/v76/demo_control_panel.py',
+            'patches/v76/demo_motor_starters.py',
+            'patches/v76/demo_dol_vertical.py'
+          )
+          foreach ($s in $scripts) {
+            if (Test-Path $s) { Copy-Item $s ("C:/gallery_src/" + (Split-Path $s -Leaf)) -Force; "staged $s" }
+            else { "missing (skipped): $s" }
+          }
+          $pr = Start-Process $cmd.FullName -ArgumentList "-c","exec(open('C:/gallery_metrics.py',encoding='utf-8').read())" -PassThru -RedirectStandardOutput C:/seed/gallerymetrics/out.txt -RedirectStandardError C:/seed/gallerymetrics/err.txt
+          if (-not $pr.WaitForExit(2400000)) { $pr.Kill(); "timeout" | Set-Content C:/seed/gallerymetrics/timeout.txt }
+          Get-Content C:/seed/gallerymetrics/out.txt -ErrorAction SilentlyContinue
+          Get-Content C:/seed/gallerymetrics/err.txt -ErrorAction SilentlyContinue | Select-Object -Last 40
+
+      - name: Gate gallery wiring metrics
+        if: always()
+        shell: pwsh
+        run: |
+          $f = 'C:/seed/gallerymetrics/result.json'
+          if (-not (Test-Path $f)) { throw 'GALLERY GATE FAIL: no result.json' }
+          if (Test-Path C:/seed/gallerymetrics/timeout.txt) { throw 'GALLERY GATE FAIL: gallery_metrics timed out' }
+          $r = Get-Content $f -Raw -Encoding utf8 | ConvertFrom-Json
+          if (-not $r.done) { throw 'GALLERY GATE FAIL: script did not finish' }
+          if ($r.error) { throw ('GALLERY GATE FAIL: ' + $r.error) }
+          if ($r.sheets_measured -lt 1) { throw 'GALLERY GATE FAIL: no gallery sheet produced wire metrics' }
+          # a demo script that failed to build is reported, not thrown: it is that sheet's bug
+          foreach ($s in @($r.skipped)) { "GALLERY NOTE: $($s.sheet) skipped: $($s.reason)" }
+          foreach ($p in @($r.pass_failures)) { "GALLERY NOTE: $($p.sheet): $($p.reason)" }
+          foreach ($row in @($r.summary)) {
+            $tag = "$($row.sheet)/$($row.pass)"
+            if ($row.after.wires -ne $row.before.wires) { throw "GALLERY GATE FAIL ${tag}: reroute changed the wire count" }
+            if ($row.reroute_plan_matches_shape -ne $row.reroute_rows) {
+              throw "GALLERY GATE FAIL ${tag}: reroute wrote a path that is not the path it reported ($($row.reroute_plan_matches_shape) of $($row.reroute_rows))"
+            }
+            "GALLERY: ${tag} wires=$($row.before.wires) overlaps $($row.before.overlap_pairs)->$($row.after.overlap_pairs) pairs, $($row.before.overlap_mm)->$($row.after.overlap_mm) mm, crossings $($row.before.crossings)->$($row.after.crossings), foreign-box segments $($row.before.segments_in_foreign_box)->$($row.after.segments_in_foreign_box), min clearance $($row.before.min_clearance_mm)->$($row.after.min_clearance_mm) mm, plan matches $($row.after.plan_matches_shape)/$($row.after.plan_checked)"
+          }
+          "GALLERY GATE PASS: $($r.sheets_measured) sheet(s) measured, $($r.sheets_failed) failed"
+
+
       - name: v17 library counts and Z/PDF layout check on the installed v17
         continue-on-error: true
         shell: pwsh
@@ -720,6 +780,7 @@ jobs:
           mkdir -p dist/v21av/elec69; cp /c/seed/elec69/* dist/v21av/elec69/ || true; for f in /c/seed/elec69/*.pdf; do [ -f "$f" ] && base64 -w0 "$f" > dist/v21av/elec69/$(basename "$f").b64; done
           mkdir -p dist/v21av/wr_gui3; cp /c/seed/wr_gui3/* dist/v21av/wr_gui3/ || true; for f in /c/seed/wr_gui3/*.png; do [ -f "$f" ] && base64 -w0 "$f" > dist/v21av/wr_gui3/$(basename "$f").b64; done
           mkdir -p dist/v21av/route86; cp /c/seed/route86/* dist/v21av/route86/ || true; for f in /c/seed/route86/*.pdf; do [ -f "$f" ] && base64 -w0 "$f" > dist/v21av/route86/$(basename "$f").b64; done
+          mkdir -p dist/v21av/gallerymetrics; cp /c/seed/gallerymetrics/* dist/v21av/gallerymetrics/ || true; for f in /c/seed/gallerymetrics/*.pdf; do [ -f "$f" ] && base64 -w0 "$f" > dist/v21av/gallerymetrics/$(basename "$f").b64; done
           mkdir -p dist/v21av/demo76dol; cp /c/seed/demo76dol/* dist/v21av/demo76dol/ || true; for f in /c/seed/demo76dol/*.pdf; do [ -f "$f" ] && base64 -w0 "$f" > dist/v21av/demo76dol/$(basename "$f").b64; done
           mkdir -p dist/v21av/gallery67; cp /c/seed/gallery67/* dist/v21av/gallery67/ || true; [ -f /c/seed/gallery67/symbols_grid_A3.pdf ] && base64 -w0 /c/seed/gallery67/symbols_grid_A3.pdf > dist/v21av/gallery67/symbols_grid_A3.pdf.b64
           mkdir -p dist/v21av/net68; cp /c/seed/net68/* dist/v21av/net68/ || true; [ -f /c/seed/net68/demo_plan_A3.pdf ] && base64 -w0 /c/seed/net68/demo_plan_A3.pdf > dist/v21av/net68/demo_plan_A3.pdf.b64
