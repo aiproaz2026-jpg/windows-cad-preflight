@@ -432,7 +432,7 @@ jobs:
           New-Item -ItemType Directory -Force C:/seed/gallery72 | Out-Null
           $cmd = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCADCmd.exe | Select-Object -First 1
           $env:PYTHONUTF8 = '1'
-          Copy-Item patches/v106/gallery_terms.py C:/gallery_terms.py -Force
+          Copy-Item patches/v108/gallery_terms.py C:/gallery_terms.py -Force
           $pr = Start-Process $cmd.FullName -ArgumentList "-c","exec(open('C:/gallery_terms.py',encoding='utf-8').read())" -PassThru -RedirectStandardOutput C:/seed/gallery72/out-gallery_terms.txt -RedirectStandardError C:/seed/gallery72/err-gallery_terms.txt
           if (-not $pr.WaitForExit(300000)) { $pr.Kill(); "timeout" | Set-Content C:/seed/gallery72/timeout-gallery_terms.txt }
           Get-Content C:/seed/gallery72/out-gallery_terms.txt -ErrorAction SilentlyContinue
@@ -606,7 +606,7 @@ jobs:
             'patches/v75/demos/gallery_elec6.py',
             'patches/v75/demos/gallery_elec7.py',
             'patches/v75/demos/gallery_elec8.py',
-            'patches/v106/gallery_terms.py',
+            'patches/v108/gallery_terms.py',
             'patches/v76/demo_control_panel.py',
             'patches/v76/demo_motor_starters.py',
             'patches/v76/demo_dol_vertical.py'
