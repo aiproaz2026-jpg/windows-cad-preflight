@@ -1,0 +1,1 @@
+[FreeCAD Console mode <Use Ctrl-Z plus Return to exit.>]
