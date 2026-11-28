@@ -1,0 +1,77 @@
+{
+ "steps": {
+  "registration": {
+   "ok": true,
+   "secs": 0.0,
+   "detail": {
+    "registered": true,
+    "menutext": "إعادة توجيه الأسلاك",
+    "patched": true
+   }
+  },
+  "menu_toolbar": {
+   "ok": true,
+   "secs": 0.0,
+   "detail": {
+    "menus": 1,
+    "toolbars": 1,
+    "menu_actions": [
+     "إعادة توجيه الأسلاك"
+    ]
+   }
+  },
+  "command_reroutes_sheet": {
+   "ok": true,
+   "secs": 0.0,
+   "detail": {
+    "before_edges": [
+     2,
+     2,
+     2
+    ],
+    "after_edges": [
+     3,
+     3,
+     3
+    ],
+    "before_validation": [
+     "Logical connection only",
+     "Logical connection only",
+     "Logical connection only"
+    ],
+    "before_overlaps": 2,
+    "before_crossings": 0,
+    "before_lengths": [
+     190.0,
+     190.0,
+     190.0
+    ],
+    "after_lengths": [
+     190.0,
+     190.0,
+     190.0
+    ],
+    "validation": [
+     "Logical connection only",
+     "Logical connection only",
+     "Logical connection only"
+    ],
+    "info": [
+     "عدد الأسلاك: 3"
+    ],
+    "warn": [],
+    "overlaps": 0,
+    "crossings": 2
+   }
+  },
+  "reregister_idempotent": {
+   "ok": true,
+   "secs": 0.0,
+   "detail": {
+    "menus": 1,
+    "toolbars": 1
+   }
+  }
+ },
+ "done": true
+}
