@@ -1,0 +1,126 @@
+{
+ "steps": {
+  "registration_and_resources": {
+   "ok": true,
+   "secs": 0.0,
+   "detail": {
+    "registered": true,
+    "remember_hook_active": true,
+    "workbench_patch_active": true,
+    "menutext": "تصدير مخطط الشبكة وجدولها",
+    "tooltip_nonempty": true,
+    "is_active": true
+   }
+  },
+  "menu_and_toolbar_present": {
+   "ok": true,
+   "secs": 0.12,
+   "detail": {
+    "menu_count": 1,
+    "menu_actions": [
+     "تصدير مخطط الشبكة وجدولها"
+    ],
+    "menu_found": true,
+    "menu_has_command": true,
+    "toolbar_count": 1,
+    "toolbar_actions": [
+     "تصدير مخطط الشبكة وجدولها"
+    ],
+    "toolbar_found": true,
+    "toolbar_visible": true,
+    "all_menu_titles": [
+     "&أدوات",
+     "&التكبير",
+     "&تعديل",
+     "&عرض",
+     "&مساعدة",
+     "&ملف",
+     "أكسونومتري",
+     "إجراءات الشجرة",
+     "إعادة توجيه الأسلاك",
+     "الإعدادات",
+     "التنقل بين الروابط",
+     "الظهور",
+     "القلاووظ (الأسنان)",
+     "الماكرو",
+     "المعدات والمسارات",
+     "المناظر القياسية",
+     "النوافذ",
+     "برنامج CAD للمهندس محمود زهير",
+     "بيئة العمل",
+     "تجميد العرض",
+     "تصدير الشبكة",
+     "تصميم القطع",
+     "رسم تخطيطي",
+     "شبكات المواسير",
+     "عناصر إزالة",
+     "عناصر إضافة",
+     "عناصر التحويل",
+     "عناصر التشطيب",
+     "فتح الأخيرة",
+     "لوحة مثبتة متراكبة",
+     "ماكرو حديثة",
+     "مجسم أولي للإزالة",
+     "مجسم أولي للإضافة",
+     "مجسّم",
+     "مكتبة الرموز",
+     "مكتبة القطع",
+     "نافذة المستند",
+     "نمط الدوران",
+     "نمط الرسم",
+     "وصلات ثلاثية الأبعاد",
+     "وضع التحرير"
+    ]
+   }
+  },
+  "guard_without_network": {
+   "ok": true,
+   "secs": 0.03,
+   "detail": {
+    "warnings": [
+     {
+      "title": "تصدير الشبكة",
+      "text": "أنشئ شبكة مواسير أولاً"
+     }
+    ],
+    "save_dialog_calls": 0,
+    "guard_warning_shown": true,
+    "dialog_not_reached": true,
+    "dispatched_via": "Gui.runCommand"
+   }
+  },
+  "export_with_network_through_command": {
+   "ok": true,
+   "secs": 3.48,
+   "detail": {
+    "last_remembered_after_build": true,
+    "save_dialog_calls": 1,
+    "warnings": [],
+    "info": [
+     {
+      "title": "تم التصدير",
+      "text": "C:/seed/netmenu/out/demo_export_plan_A3.pdf\nC:/seed/netmenu/out/demo_export_schedule.csv"
+     }
+    ],
+    "pdf_exists": true,
+    "csv_exists": true,
+    "pdf_bytes": 3203,
+    "csv_bytes": 420,
+    "pdf_magic_ok": true,
+    "csv_lines": 14,
+    "csv_header_ok": true,
+    "success_info_shown": true
+   }
+  },
+  "reregister_idempotent": {
+   "ok": true,
+   "secs": 0.05,
+   "detail": {
+    "menu_count_after_reregister": 1,
+    "toolbar_count_after_reregister": 1,
+    "command_still_registered": true
+   }
+  }
+ },
+ "done": true
+}
