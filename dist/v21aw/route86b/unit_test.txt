@@ -1,0 +1,15 @@
+PASS straight stays straight
+PASS avoids the body box
+PASS avoids: first and last point
+PASS avoids: more than the L
+PASS no overlap with a used wire
+PASS no overlap: endpoints kept
+PASS second parallel wire clears the first
+PASS fallback returns the L shape
+PASS fallback is flagged
+PASS bottom terminal leaves downward
+PASS bottom route clears both boxes
+PASS deterministic
+SKIP hook test: DeltaEngineering package not importable here
+
+12 checks, 0 failed
