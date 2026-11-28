@@ -1,0 +1,90 @@
+{
+ "steps": {
+  "make": {
+   "solve_result": 0,
+   "ref_a": [
+    "Face5",
+    "Vertex6"
+   ],
+   "ref_b": [
+    "Face5",
+    "Vertex2"
+   ],
+   "dist_a": 0.0,
+   "dist_b": 0.0,
+   "a_pos": "Vector (0.0, 0.0, 0.0)",
+   "b_pos0": "Vector (100.0, 0.0, 0.0)"
+  },
+  "revolute": [
+   {
+    "angle_set": 0,
+    "solve": 0,
+    "b_yaw_deg": 0.0,
+    "b_pivot_vertex": "Vector (100.0, 0.0, 0.0)",
+    "b_placement_base": "Vector (100.0, 0.0, 0.0)",
+    "pivot_dev_mm": 0.0,
+    "a_moved": 0.0
+   },
+   {
+    "angle_set": 30,
+    "solve": 0,
+    "b_yaw_deg": -29.999999999999996,
+    "b_pivot_vertex": "Vector (100.0, 0.0, 0.0)",
+    "b_placement_base": "Vector (100.0, 0.0, 0.0)",
+    "pivot_dev_mm": 0.0,
+    "a_moved": 0.0
+   },
+   {
+    "angle_set": 60,
+    "solve": 0,
+    "b_yaw_deg": -60.00000000000002,
+    "b_pivot_vertex": "Vector (100.0, 0.0, 0.0)",
+    "b_placement_base": "Vector (100.0, 0.0, 0.0)",
+    "pivot_dev_mm": 0.0,
+    "a_moved": 0.0
+   },
+   {
+    "angle_set": -45,
+    "solve": 0,
+    "b_yaw_deg": 45.00000000000004,
+    "b_pivot_vertex": "Vector (100.0, 0.0, 0.0)",
+    "b_placement_base": "Vector (100.0, 0.0, 0.0)",
+    "pivot_dev_mm": 0.0,
+    "a_moved": 0.0
+   }
+  ],
+  "slider_refs": {
+   "ref_a": [
+    "Face2",
+    "Vertex6"
+   ],
+   "ref_b": [
+    "Face1",
+    "Vertex2"
+   ]
+  },
+  "slider": [
+   {
+    "shift_set": 0,
+    "solve": 0,
+    "d_pos": "Vector (99.99999999999994, 0.0, -2.5243548967072372e-29)",
+    "d_min_x": 99.99999999999994
+   },
+   {
+    "shift_set": 25,
+    "solve": 0,
+    "d_pos": "Vector (74.99999999999994, 0.0, 1.1102230246251553e-14)",
+    "d_min_x": 74.99999999999994
+   },
+   {
+    "shift_set": 50,
+    "solve": 0,
+    "d_pos": "Vector (49.99999999999993, 0.0, 2.2204460492503118e-14)",
+    "d_min_x": 49.99999999999993
+   }
+  ]
+ },
+ "revolute_rotation_ok": true,
+ "pivot_ok": true,
+ "done": true
+}

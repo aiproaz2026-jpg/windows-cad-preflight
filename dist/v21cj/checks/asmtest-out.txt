@@ -1,0 +1,84 @@
+FreeCAD 1.1.4, Libs: 1.1.4R20260928 (Git shallow)
+(C) 2001-2026 FreeCAD contributors
+FreeCAD is free and open-source software licensed under the terms of LGPL2+ license.
+
+Recompute......
+						(50 %)							(100 %)									Recompute......
+						(7 %)							(14 %)							(21 %)							(28 %)							(35 %)							(42 %)							(50 %)							(57 %)							(64 %)							(71 %)							(78 %)							(85 %)							(92 %)	MbD: Assembling system. 
+MbD: Convergence = 0
+Time = 0
+						(100 %)									MbD: Assembling system. 
+MbD: Convergence = 0
+Time = 0
+Recompute......
+						(7 %)							(14 %)							(21 %)							(28 %)							(35 %)							(42 %)							(50 %)							(57 %)							(64 %)							(71 %)							(78 %)							(85 %)							(92 %)							(100 %)									MbD: Assembling system. 
+MbD: Convergence = 0
+Time = 0
+Recompute......
+						(7 %)							(14 %)							(21 %)							(28 %)							(35 %)							(42 %)							(50 %)							(57 %)							(64 %)							(71 %)							(78 %)							(85 %)							(92 %)	MbD: Assembling system. 
+MbD: Convergence = 0
+Time = 0
+						(100 %)									MbD: Assembling system. 
+MbD: Convergence = 0
+Time = 0
+Recompute......
+						(7 %)							(14 %)							(21 %)							(28 %)							(35 %)							(42 %)							(50 %)							(57 %)							(64 %)							(71 %)							(78 %)							(85 %)							(92 %)	MbD: Assembling system. 
+MbD: Convergence = 0
+Time = 0
+						(100 %)									MbD: Assembling system. 
+MbD: Convergence = 1.9940474721818234e-14
+MbD: Convergence = 2.6715130425894589e-15
+MbD: Convergence = 5.9642407211617959e-20
+Time = 0
+Recompute......
+						(7 %)							(14 %)							(21 %)							(28 %)							(35 %)							(42 %)							(50 %)							(57 %)							(64 %)							(71 %)							(78 %)							(85 %)							(92 %)	MbD: Assembling system. 
+MbD: Convergence = 0
+Time = 0
+						(100 %)									MbD: Assembling system. 
+MbD: Convergence = 1.7529766083625895e-14
+MbD: Convergence = 1.3343717119402613e-15
+MbD: Convergence = 4.0129648663485215e-20
+Time = 0
+Recompute......
+						(7 %)							(14 %)							(21 %)							(28 %)							(35 %)							(42 %)							(50 %)							(57 %)							(64 %)							(71 %)							(78 %)							(85 %)							(92 %)	MbD: Assembling system. 
+MbD: Convergence = 0
+Time = 0
+						(100 %)									Recompute......
+						(50 %)							(100 %)									Recompute......
+						(7 %)							(14 %)							(21 %)							(28 %)							(35 %)							(42 %)							(50 %)							(57 %)							(64 %)							(71 %)							(78 %)							(85 %)							(92 %)	MbD: Assembling system. 
+MbD: Convergence = 1.225982267288908e-11
+MbD: Convergence = 1.5788773204987951e-27
+Time = 0
+						(100 %)									MbD: Assembling system. 
+MbD: Convergence = 1.225982267288908e-11
+MbD: Convergence = 1.5788773204987953e-27
+Time = 0
+Recompute......
+						(7 %)							(14 %)							(21 %)							(28 %)							(35 %)							(42 %)							(50 %)							(57 %)							(64 %)							(71 %)							(78 %)							(85 %)							(92 %)							(100 %)									MbD: Assembling system. 
+MbD: Convergence = 1.2259822673236829e-11
+MbD: Convergence = 2.6500638516958272e-27
+Time = 0
+Recompute......
+						(7 %)							(14 %)							(21 %)							(28 %)							(35 %)							(42 %)							(50 %)							(57 %)							(64 %)							(71 %)							(78 %)							(85 %)							(92 %)	MbD: Assembling system. 
+MbD: Convergence = 1.2259822673236829e-11
+MbD: Convergence = 2.6500638516974225e-27
+Time = 0
+						(100 %)									MbD: Assembling system. 
+MbD: Convergence = 2.5408959885329304e-07
+MbD: Convergence = 6.5140681257016572e-23
+Time = 0
+Recompute......
+						(7 %)							(14 %)							(21 %)							(28 %)							(35 %)							(42 %)							(50 %)							(57 %)							(64 %)							(71 %)							(78 %)							(85 %)							(92 %)	MbD: Assembling system. 
+MbD: Convergence = 1.2259822672889077e-11
+MbD: Convergence = 1.9007809025849617e-27
+Time = 0
+						(100 %)									MbD: Assembling system. 
+MbD: Convergence = 3.6708982300259561e-07
+MbD: Convergence = 1.2985754768671029e-22
+Time = 0
+Recompute......
+						(7 %)							(14 %)							(21 %)							(28 %)							(35 %)							(42 %)							(50 %)							(57 %)							(64 %)							(71 %)							(78 %)							(85 %)							(92 %)	MbD: Assembling system. 
+MbD: Convergence = 1.2259822672889077e-11
+MbD: Convergence = 3.4244215423463143e-27
+Time = 0
+						(100 %)									
