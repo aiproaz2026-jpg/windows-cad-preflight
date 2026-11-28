@@ -1,0 +1,98 @@
+PASS straight stays straight
+PASS avoids the body box
+PASS avoids: first and last point
+PASS avoids: more than the L
+PASS no overlap with a used wire
+PASS no overlap: endpoints kept
+PASS second parallel wire clears the first
+PASS fallback returns the L shape
+PASS fallback is flagged
+PASS bottom terminal leaves downward
+PASS bottom route clears both boxes
+PASS deterministic
+SKIP hook test: DeltaEngineering package not importable here
+PASS a plain crossing keeps the straight run
+PASS a straight run does not cut across a stub
+PASS going round the stub still reaches both ends
+PASS a short shadow keeps the straight run
+PASS a long shadow still gives way
+PASS fan: 6 terminals on one face fan with an unknown DeviceType
+PASS fan: lengths follow terminal order, not geometry
+PASS fan: one constant step, at least LANE, distinct for every terminal
+PASS fan: 5 terminals of an unknown type stay unfanned
+PASS fan: a PLC type fans a two-terminal face
+PASS fan: 6 terminals spread 3/3 over two faces stay unfanned
+PASS fan: a 10 mm pitch face gets a 12 mm step
+PASS fan: a 14 mm pitch face is dense and steps 14 mm
+PASS fan: an 18 mm pitch face keeps the 8 mm step
+PASS fan: counting the whole device fans the split 3/3 block
+PASS fan: FanStubs False wins over the terminal count
+PASS fan: FanStubs True fans a two-terminal face
+PASS stub share: 20 mm at a terminal is still a node
+PASS stub share: exactly 2 * STUB is allowed
+PASS stub share: 30 mm is not a node on a plain 14 mm stub
+PASS stub share: 30 mm is a node on a 30 mm fanned stub
+PASS stub share: a 30 mm stub is not ridden past the junction zone
+PASS stub share: the detour keeps both ends
+PASS stub share: the junction zone itself stays allowed
+PASS shared 30 mm run: three pairs, all of them the node into A1.M
+PASS shared 30 mm run: each pair is 30 mm
+PASS shared 20 mm run: still one pair of 20 mm
+PASS corridor: the clear wire stays straight
+PASS corridor: three wires through one gap, no overlap between them
+PASS corridor: every wire still reaches both ends
+PASS gap: two parallel segments 2 mm apart
+PASS gap: touching segments read 0
+PASS gap: separated in x as well
+PASS lane pitch: open space keeps 4 mm from the wire beside it
+PASS lane pitch: a corridor too narrow for 4 mm still routes
+PASS lane pitch: the tight fallback is reported, not hidden
+PASS length: a two-leg path adds its legs
+PASS corridor: an empty sheet reads as the limit
+PASS corridor: a neighbour 220 mm away reads 220
+PASS corridor: a box 20 mm in front reads 20
+PASS corridor: a box beside the exit line is not counted
+PASS pitch: a wide gap keeps the 4 mm lane
+PASS pitch: six terminals in a 20 mm gap ask for less than 4 mm
+PASS pitch: and never tighter than the floor
+PASS pitch: the gap it measured is reported
+PASS route_ex: a wire can be given its own space_min
+PASS route_ex: the tight pitch is floored, not taken as asked
+PASS wrap: a clean path may not be more than a third longer
+PASS wrap: a wire that never entered the clean pass carries no wrap flag
+PASS wrap: a wire that never needed the clean pass reports no wrap
+PASS lanes: LANE is wider than SPACE_MIN, and SPACE_MIN wider than the tight pitch
+PASS lanes: a routed wire reports which lane it settled on
+PASS lanes: the clean pass reports whether a crossing blocked it
+PASS lanes: the clean pass is on, so the wide tier is reachable
+PASS lanes: a wire beside a bundle keeps a lane, not a hairline
+PASS report: a wire beside a bundle reports the crowding it started with
+PASS report: the crowding after the clean pass is reported too
+PASS report: the tiers tried are named, with the reason for each
+PASS report: the pops the clean pass spent are reported
+PASS report: an open wire does not inherit the crowded wire flags
+PASS report: an open wire reports no crowding of its own
+PASS stub: a run inside a long terminal stub is not counted as crowding
+PASS stub: a run squeezed beside a wire outside any stub is counted
+PASS budget: the clean pass has a per-document cap
+PASS narrow: the clean pass triggers on a run shorter than a lane, not on 4 mm crowding
+PASS spread: a 2 mm band is the case the pass exists for
+spread: moves=2 mm=12.0 refused=0 ms=0 why=
+PASS spread: a band in open space is nudged apart
+PASS spread: the nudge is reported per wire
+PASS spread: the nudged wires keep their ends and their bends
+PASS spread: a nudge only lengthens the neighbours, so the run stays square
+spread: moves=7 mm=16.4 refused=4 ms=0 why=box=4
+PASS spread: a nudge into a symbol box is refused
+PASS spread: a refused nudge leaves the wire that was refused where it was
+PASS spread: the wire with room on the open side still moves
+PASS spread: a refused nudge is counted
+spread: moves=5 mm=6.5 refused=3 ms=0 why=cross=3
+PASS spread: no nudge is bought with a crossing
+PASS spread: the crossing guard is not vacuous - the band still moved somewhere
+PASS blocked: the box a wire is hemmed against is named with its gap
+PASS blocked: the wire's own boxes are not blamed
+PASS blocked: a wire is hemmed by its neighbour, not by a box 400 mm away
+PASS blocked: a nearer box wins over a further wire
+
+92 checks, 0 failed
