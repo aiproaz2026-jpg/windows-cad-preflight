@@ -1,0 +1,28 @@
+{
+  "window_found": true,
+  "title": "برنامج CAD للمهندس محمود زهير",
+  "menu_items": [
+    "System",
+    "ملف",
+    "تعديل",
+    "عرض",
+    "أدوات",
+    "الماكرو",
+    "برنامج CAD للمهندس محمود زهير",
+    "مكتبة القطع",
+    "إعادة توجيه الأسلاك",
+    "مكتبة الرموز",
+    "شبكات المواسير",
+    "تصدير الشبكة",
+    "وصلات ثلاثية الأبعاد",
+    "المعدات والمسارات",
+    "القلاووظ (الأسنان)",
+    "النوافذ",
+    "مساعدة"
+  ],
+  "menu_item_count": 17,
+  "arabic_menu_items": 16,
+  "button_names": 51,
+  "any_element_named_program": true,
+  "capture_error": "System.Drawing.Common is not supported on this platform."
+}
