@@ -1,0 +1,2 @@
+libs exited=True
+gui exited=False waited=84
