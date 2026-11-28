@@ -1,0 +1,14 @@
+{
+ "done": true,
+ "sheet": "motor_starter_variants_A3.pdf",
+ "warnings": [],
+ "term_ends_table": 89,
+ "netlist": 39,
+ "route": 25,
+ "devices": 24,
+ "wires": 39,
+ "pdf_bytes": 74028,
+ "devices_a": 7,
+ "devices_b": 8,
+ "devices_b_control": 9
+}
