@@ -1,0 +1,311 @@
+{
+ "legacy": {
+  "netlist": [
+   [
+    "W1",
+    "Q1",
+    "2",
+    "KM1",
+    "1"
+   ],
+   [
+    "W2",
+    "Q1",
+    "4",
+    "KM1",
+    "3"
+   ],
+   [
+    "W3",
+    "Q1",
+    "6",
+    "KM1",
+    "5"
+   ],
+   [
+    "W4",
+    "KM1",
+    "2",
+    "F1",
+    "1"
+   ],
+   [
+    "W5",
+    "KM1",
+    "4",
+    "F1",
+    "3"
+   ],
+   [
+    "W6",
+    "KM1",
+    "6",
+    "F1",
+    "5"
+   ],
+   [
+    "W7",
+    "F1",
+    "2",
+    "M1",
+    "U"
+   ],
+   [
+    "W8",
+    "F1",
+    "4",
+    "M1",
+    "V"
+   ],
+   [
+    "W9",
+    "F1",
+    "6",
+    "M1",
+    "W"
+   ]
+  ],
+  "route": {
+   "wires": 9,
+   "findings": [
+    {
+     "kind": "crossing",
+     "wires": [
+      "W4",
+      "W5"
+     ],
+     "at": [
+      4489.0,
+      14.0
+     ]
+    },
+    {
+     "kind": "crossing",
+     "wires": [
+      "W4",
+      "W5"
+     ],
+     "at": [
+      4320.0,
+      -170.0
+     ]
+    },
+    {
+     "kind": "crossing",
+     "wires": [
+      "W4",
+      "W6"
+     ],
+     "at": [
+      4489.0,
+      0.0
+     ]
+    },
+    {
+     "kind": "crossing",
+     "wires": [
+      "W4",
+      "W6"
+     ],
+     "at": [
+      4320.0,
+      -196.0
+     ]
+    },
+    {
+     "kind": "crossing",
+     "wires": [
+      "W5",
+      "W6"
+     ],
+     "at": [
+      4507.0,
+      0.0
+     ]
+    },
+    {
+     "kind": "crossing",
+     "wires": [
+      "W5",
+      "W6"
+     ],
+     "at": [
+      4302.0,
+      -196.0
+     ]
+    },
+    {
+     "kind": "crossing",
+     "wires": [
+      "W7",
+      "W8"
+     ],
+     "at": [
+      4489.0,
+      -300.0
+     ]
+    },
+    {
+     "kind": "crossing",
+     "wires": [
+      "W7",
+      "W8"
+     ],
+     "at": [
+      4320.0,
+      -474.0
+     ]
+    },
+    {
+     "kind": "crossing",
+     "wires": [
+      "W7",
+      "W9"
+     ],
+     "at": [
+      4489.0,
+      -314.0
+     ]
+    },
+    {
+     "kind": "crossing",
+     "wires": [
+      "W7",
+      "W9"
+     ],
+     "at": [
+      4320.0,
+      -499.0
+     ]
+    },
+    {
+     "kind": "crossing",
+     "wires": [
+      "W8",
+      "W9"
+     ],
+     "at": [
+      4507.0,
+      -314.0
+     ]
+    },
+    {
+     "kind": "crossing",
+     "wires": [
+      "W8",
+      "W9"
+     ],
+     "at": [
+      4311.0,
+      -499.0
+     ]
+    }
+   ],
+   "count": 12,
+   "scope": "Geometry report only. No electrical meaning, no junction inference, nothing is changed."
+  },
+  "connectivity_nets": 15,
+  "reopen_netlist_equal": true,
+  "reopen_route_count": 12,
+  "reopen_wire_lengths": [
+   294.0,
+   294.0,
+   294.0,
+   532.0,
+   604.0,
+   676.0,
+   514.0,
+   566.0,
+   618.0
+  ]
+ },
+ "new": {
+  "netlist": [
+   [
+    "W1",
+    "Q1",
+    "2",
+    "KM1",
+    "1"
+   ],
+   [
+    "W2",
+    "Q1",
+    "4",
+    "KM1",
+    "3"
+   ],
+   [
+    "W3",
+    "Q1",
+    "6",
+    "KM1",
+    "5"
+   ],
+   [
+    "W4",
+    "KM1",
+    "2",
+    "F1",
+    "1"
+   ],
+   [
+    "W5",
+    "KM1",
+    "4",
+    "F1",
+    "3"
+   ],
+   [
+    "W6",
+    "KM1",
+    "6",
+    "F1",
+    "5"
+   ],
+   [
+    "W7",
+    "F1",
+    "2",
+    "M1",
+    "U"
+   ],
+   [
+    "W8",
+    "F1",
+    "4",
+    "M1",
+    "V"
+   ],
+   [
+    "W9",
+    "F1",
+    "6",
+    "M1",
+    "W"
+   ]
+  ],
+  "route": {
+   "wires": 9,
+   "findings": [],
+   "count": 0,
+   "scope": "Geometry report only. No electrical meaning, no junction inference, nothing is changed."
+  },
+  "connectivity_nets": 15,
+  "reopen_netlist_equal": true,
+  "reopen_route_count": 0,
+  "reopen_wire_lengths": [
+   294.0,
+   294.0,
+   294.0,
+   294.0,
+   294.0,
+   294.0,
+   284.0,
+   286.0,
+   288.0
+  ]
+ },
+ "endpoints_equal_legacy_vs_new": true,
+ "wire_ids_equal": true
+}

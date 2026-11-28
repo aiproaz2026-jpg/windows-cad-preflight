@@ -1,0 +1,147 @@
+{
+ "steps": {
+  "paths": {
+   "ok": true,
+   "value": {
+    "resource": "C:\\DeltaTest\\data\\",
+    "exists": [
+     true,
+     false
+    ],
+    "files": [
+     "Resources"
+    ]
+   }
+  },
+  "import_Assembly": {
+   "ok": true,
+   "value": [
+    "AssemblyApp",
+    "__builtins__",
+    "__cached__",
+    "__doc__",
+    "__file__",
+    "__loader__",
+    "__name__",
+    "__package__",
+    "__path__",
+    "__spec__"
+   ]
+  },
+  "import_JointObject": {
+   "ok": true,
+   "value": {
+    "JointTypes": [
+     "Fixed",
+     "Revolute",
+     "Cylindrical",
+     "Slider",
+     "Ball",
+     "Distance",
+     "Parallel",
+     "Perpendicular",
+     "Angle",
+     "RackPinion",
+     "Screw",
+     "Gears",
+     "Belt"
+    ],
+    "has_Joint": true,
+    "has_Grounded": true
+   }
+  },
+  "build_objects": {
+   "ok": true,
+   "value": {
+    "asm_group": [
+     "Joints",
+     "BoxA",
+     "BoxB"
+    ],
+    "type": "Assembly::AssemblyObject"
+   }
+  },
+  "ground_first_part": {
+   "ok": true,
+   "value": {
+    "type": "App::FeaturePython",
+    "ref": "<Part::Feature>"
+   }
+  },
+  "add_joint": {
+   "ok": true,
+   "value": {
+    "JointType": "Revolute"
+   }
+  },
+  "solve": {
+   "ok": true,
+   "value": {
+    "solve_result": 0,
+    "b_placement": "Placement [Pos=(100,20,0), Yaw-Pitch-Roll=(0,0,0)]",
+    "a_placement": "Placement [Pos=(0,0,0), Yaw-Pitch-Roll=(0,0,0)]"
+   }
+  },
+  "move_by_angle": {
+   "ok": true,
+   "value": {
+    "angle_0": "(0.0, 0.0, 0.0)",
+    "angle_30": "(0.0, 0.0, 0.0)",
+    "angle_60": "(0.0, 0.0, 0.0)"
+   }
+  },
+  "props": {
+   "ok": true,
+   "value": {
+    "asm_props": [
+     "Color",
+     "ExpressionEngine",
+     "Group",
+     "Id",
+     "Label",
+     "Label2",
+     "License",
+     "LicenseURL",
+     "Material",
+     "Meta",
+     "Origin",
+     "Placement",
+     "Type",
+     "Uid",
+     "Visibility",
+     "_ElementMapVersion",
+     "_GroupTouched"
+    ],
+    "joint_props": [
+     "Angle",
+     "AngleMax",
+     "AngleMin",
+     "Detach1",
+     "Detach2",
+     "Distance",
+     "Distance2",
+     "EnableAngleMax",
+     "EnableAngleMin",
+     "EnableLengthMax",
+     "EnableLengthMin",
+     "ExpressionEngine",
+     "JointType",
+     "Label",
+     "Label2",
+     "LengthMax",
+     "LengthMin",
+     "Offset1",
+     "Offset2",
+     "Placement1",
+     "Placement2",
+     "Proxy",
+     "Reference1",
+     "Reference2",
+     "Suppressed",
+     "Visibility"
+    ]
+   }
+  }
+ },
+ "done": true
+}
