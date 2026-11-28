@@ -1,0 +1,14 @@
+{
+ "done": true,
+ "sheet": "control_panel_A3.pdf",
+ "warnings": [],
+ "term_ends_table": 89,
+ "netlist": 22,
+ "route": 53,
+ "devices": 17,
+ "wires": 22,
+ "pdf_bytes": 42075,
+ "devices_supply": 7,
+ "devices_front": 5,
+ "devices_logic": 5
+}

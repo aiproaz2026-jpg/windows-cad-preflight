@@ -1,0 +1,313 @@
+{
+ "done": true,
+ "module_file": "C:\\DeltaTest\\Mod\\DeltaEngineering\\DeltaEngineering\\wire_route.py",
+ "module_sha256": "7b9fb81eaa8f35c58d0cdace6b6afa574e0918a4ea85504e4a9ced883cf3efc6",
+ "rows": [
+  {
+   "wire": "W1",
+   "points": 5,
+   "routed": true,
+   "reason": "routed",
+   "segments_in_foreign_box": 0,
+   "ms": 15.6,
+   "strict": "strict"
+  },
+  {
+   "wire": "W2",
+   "points": 4,
+   "routed": true,
+   "reason": "routed",
+   "segments_in_foreign_box": 0,
+   "ms": 15.6,
+   "strict": "strict"
+  },
+  {
+   "wire": "W3",
+   "points": 5,
+   "routed": true,
+   "reason": "routed",
+   "segments_in_foreign_box": 0,
+   "ms": 46.9,
+   "strict": "strict"
+  },
+  {
+   "wire": "W4",
+   "points": 6,
+   "routed": true,
+   "reason": "routed",
+   "segments_in_foreign_box": 0,
+   "ms": 70.5,
+   "strict": "strict"
+  },
+  {
+   "wire": "W5",
+   "points": 4,
+   "routed": true,
+   "reason": "routed",
+   "segments_in_foreign_box": 0,
+   "ms": 8.1,
+   "strict": "strict"
+  },
+  {
+   "wire": "W6",
+   "points": 6,
+   "routed": true,
+   "reason": "routed",
+   "segments_in_foreign_box": 0,
+   "ms": 703.5,
+   "strict": "strict"
+  },
+  {
+   "wire": "W7",
+   "points": 4,
+   "routed": true,
+   "reason": "routed",
+   "segments_in_foreign_box": 0,
+   "ms": 48.0,
+   "strict": "strict"
+  },
+  {
+   "wire": "W8",
+   "points": 6,
+   "routed": true,
+   "reason": "routed",
+   "segments_in_foreign_box": 0,
+   "ms": 2206.6,
+   "strict": "strict"
+  },
+  {
+   "wire": "W9",
+   "points": 2,
+   "routed": true,
+   "reason": "straight",
+   "segments_in_foreign_box": 0,
+   "ms": 15.6,
+   "strict": "strict"
+  },
+  {
+   "wire": "W10",
+   "points": 4,
+   "routed": true,
+   "reason": "routed",
+   "segments_in_foreign_box": 0,
+   "ms": 110.3,
+   "strict": "strict"
+  },
+  {
+   "wire": "W11",
+   "points": 6,
+   "routed": true,
+   "reason": "routed",
+   "segments_in_foreign_box": 0,
+   "ms": 110.7,
+   "strict": "strict"
+  },
+  {
+   "wire": "W12",
+   "points": 6,
+   "routed": true,
+   "reason": "routed",
+   "segments_in_foreign_box": 0,
+   "ms": 2628.2,
+   "strict": "strict"
+  },
+  {
+   "wire": "W13",
+   "points": 4,
+   "routed": true,
+   "reason": "routed",
+   "segments_in_foreign_box": 0,
+   "ms": 0.0,
+   "strict": "strict"
+  },
+  {
+   "wire": "W14",
+   "points": 5,
+   "routed": true,
+   "reason": "routed",
+   "segments_in_foreign_box": 0,
+   "ms": 219.3,
+   "strict": "strict"
+  },
+  {
+   "wire": "W15",
+   "points": 7,
+   "routed": true,
+   "reason": "routed",
+   "segments_in_foreign_box": 0,
+   "ms": 516.1,
+   "strict": "strict"
+  },
+  {
+   "wire": "W16",
+   "points": 4,
+   "routed": true,
+   "reason": "routed",
+   "segments_in_foreign_box": 0,
+   "ms": 125.5,
+   "strict": "strict"
+  },
+  {
+   "wire": "W17",
+   "points": 8,
+   "routed": true,
+   "reason": "routed",
+   "segments_in_foreign_box": 0,
+   "ms": 500.5,
+   "strict": "strict"
+  },
+  {
+   "wire": "W18",
+   "points": 6,
+   "routed": true,
+   "reason": "routed",
+   "segments_in_foreign_box": 0,
+   "ms": 609.5,
+   "strict": "strict"
+  },
+  {
+   "wire": "W19",
+   "points": 12,
+   "routed": true,
+   "reason": "routed",
+   "segments_in_foreign_box": 0,
+   "ms": 4384.0,
+   "strict": "strict"
+  },
+  {
+   "wire": "W20",
+   "points": 7,
+   "routed": true,
+   "reason": "routed",
+   "segments_in_foreign_box": 0,
+   "ms": 390.7,
+   "strict": "strict"
+  },
+  {
+   "wire": "W21",
+   "points": 6,
+   "routed": true,
+   "reason": "routed",
+   "segments_in_foreign_box": 0,
+   "ms": 172.4,
+   "strict": "strict"
+  },
+  {
+   "wire": "W22",
+   "points": 5,
+   "routed": true,
+   "reason": "routed",
+   "segments_in_foreign_box": 0,
+   "ms": 3304.2,
+   "strict": "strict"
+  }
+ ],
+ "loose_pass_wires": [],
+ "unrouted_wires": [],
+ "paths_of_loose": {},
+ "overlaps": [
+  [
+   "W6",
+   "W8",
+   14.0,
+   true
+  ],
+  [
+   "W6",
+   "W12",
+   14.0,
+   true
+  ],
+  [
+   "W6",
+   "W20",
+   6.0,
+   true
+  ],
+  [
+   "W7",
+   "W15",
+   28.0,
+   true
+  ],
+  [
+   "W7",
+   "W17",
+   28.0,
+   true
+  ],
+  [
+   "W7",
+   "W19",
+   30.0,
+   false
+  ],
+  [
+   "W7",
+   "W22",
+   30.0,
+   false
+  ],
+  [
+   "W8",
+   "W12",
+   14.0,
+   true
+  ],
+  [
+   "W8",
+   "W20",
+   6.0,
+   true
+  ],
+  [
+   "W12",
+   "W20",
+   6.0,
+   true
+  ],
+  [
+   "W15",
+   "W17",
+   28.0,
+   true
+  ],
+  [
+   "W15",
+   "W19",
+   28.0,
+   true
+  ],
+  [
+   "W15",
+   "W22",
+   28.0,
+   true
+  ],
+  [
+   "W16",
+   "W18",
+   22.0,
+   true
+  ],
+  [
+   "W17",
+   "W19",
+   28.0,
+   true
+  ],
+  [
+   "W17",
+   "W22",
+   28.0,
+   true
+  ],
+  [
+   "W19",
+   "W22",
+   30.0,
+   false
+  ]
+ ],
+ "clearance_pairs": []
+}
