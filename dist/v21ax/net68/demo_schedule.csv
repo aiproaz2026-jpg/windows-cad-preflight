@@ -1,0 +1,14 @@
+﻿رقم,من-إلى,الوصف,الطول (مم)
+P1,A-B,NPS 4 SCH 40 pipe,1895.0
+P2,B-C,NPS 4 SCH 40 pipe,1790.0
+P3,C-D,NPS 4 SCH 40 pipe,1743.0
+P4,B-B2,NPS 4 SCH 40 pipe,1395.0
+P5,C-C2,NPS 4 SCH 40 pipe,1395.0
+P6,D-E,NPS 4 SCH 40 pipe,1784.0
+P7,E-F,NPS 4 SCH 40 pipe,1350.2
+
+الوصلات,العدد
+tee_eq,2
+elbow90lr,1
+elbow45,1
+إجمالي طول المواسير المستقيمة (مم),11352.2

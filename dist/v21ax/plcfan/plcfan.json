@@ -1,0 +1,29 @@
+{
+ "done": true,
+ "device_type": "PLC block (illustr.)",
+ "FanStubs": "None",
+ "wants_fan": true,
+ "FAN": true,
+ "rect": [
+  5537.0,
+  -495.0,
+  5663.0,
+  -405.0
+ ],
+ "fan_lengths": {
+  "I0.1": 14.0,
+  "I0.0": 22.0,
+  "L+": 30.0,
+  "Q0.1": 14.0,
+  "Q0.0": 22.0,
+  "M": 30.0
+ },
+ "terminals": [
+  "L+",
+  "M",
+  "I0.0",
+  "I0.1",
+  "Q0.0",
+  "Q0.1"
+ ]
+}

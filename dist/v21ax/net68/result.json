@@ -1,0 +1,16 @@
+{
+ "done": true,
+ "remembered": "register not run",
+ "files": [
+  "demo_plan_A3.pdf",
+  "demo_schedule.csv"
+ ],
+ "pdf_bytes": 3203,
+ "csv_bytes": 420,
+ "csv_head": [
+  "رقم,من-إلى,الوصف,الطول (مم)",
+  "P1,A-B,NPS 4 SCH 40 pipe,1895.0",
+  "P2,B-C,NPS 4 SCH 40 pipe,1790.0"
+ ],
+ "csv_lines": 14
+}
