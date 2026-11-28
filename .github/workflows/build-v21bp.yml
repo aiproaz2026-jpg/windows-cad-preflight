@@ -74,10 +74,10 @@ jobs:
           cp patches/v101/term_ends2.py $M/term_ends2.py
           cat patches/v75/term2/initgui_te2.txt >> C:/delta/DeltaEngineering/package/Mod/DeltaEngineering/InitGui.py
           python -m py_compile $M/term_ends2.py
-          cp patches/v102/wire_route.py $M/wire_route.py
-          python patches/v102/core_callsite_patch.py $M/core.py
-          cp patches/v102/wire_reroute_cmd.py $M/wire_reroute_cmd.py
-          cat patches/v102/initgui_wr.txt >> C:/delta/DeltaEngineering/package/Mod/DeltaEngineering/InitGui.py
+          cp patches/v105/wire_route.py $M/wire_route.py
+          python patches/v105/core_callsite_patch.py $M/core.py
+          cp patches/v105/wire_reroute_cmd.py $M/wire_reroute_cmd.py
+          cat patches/v105/initgui_wr.txt >> C:/delta/DeltaEngineering/package/Mod/DeltaEngineering/InitGui.py
           python -m py_compile $M/wire_route.py $M/wire_reroute_cmd.py $M/core.py && echo wire route build patches compile ok
           cp patches/v78/iec_full/elec_lib_iec_full.py $M/elec_lib_iec_full.py
           cp patches/v78/iec45/elec_lib_iec4.py $M/elec_lib_iec4.py
@@ -556,7 +556,7 @@ jobs:
           New-Item -ItemType Directory -Force C:/seed/wr_gui23 | Out-Null
           $exe = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
           $root = $exe.Directory.Parent.FullName
-          Copy-Item "$env:GITHUB_WORKSPACE/patches/v102/reroute_gui_test.py" "$root\WrGuiTest.FCMacro" -Force
+          Copy-Item "$env:GITHUB_WORKSPACE/patches/v105/reroute_gui_test.py" "$root\WrGuiTest.FCMacro" -Force
           $env:DELTA_OUT = 'C:/seed/wr_gui23'; $env:GALLIUM_DRIVER = 'llvmpipe'; $env:MESA_GL_VERSION_OVERRIDE = '4.5'; $env:PYTHONUTF8 = '1'
           Start-Process $exe.FullName -ArgumentList "`"$root\WrGuiTest.FCMacro`"" -RedirectStandardOutput C:/seed/wr_gui23/fc-out.txt -RedirectStandardError C:/seed/wr_gui19/fc-err.txt
           $t = 0
@@ -568,18 +568,18 @@ jobs:
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Force C:/seed/route105p | Out-Null
-          Push-Location patches/v102
+          Push-Location patches/v105
           python test_wire_route.py *> C:/seed/route105p/unit_test.txt
           Pop-Location
           $te = Get-ChildItem C:/DeltaTest -Recurse -Filter term_ends2.py | Select-Object -First 1
           $te.FullName | Set-Content C:/seed/route105p/where.txt
-          Copy-Item patches/v102/wire_route.py (Join-Path $te.DirectoryName 'wire_route.py') -Force
-          python patches/v102/core_callsite_patch.py (Join-Path $te.DirectoryName 'core.py') *> C:/seed/route105p/core_patch.txt
+          Copy-Item patches/v105/wire_route.py (Join-Path $te.DirectoryName 'wire_route.py') -Force
+          python patches/v105/core_callsite_patch.py (Join-Path $te.DirectoryName 'core.py') *> C:/seed/route105p/core_patch.txt
           python -m py_compile (Join-Path $te.DirectoryName 'core.py')
           Select-String -Path (Join-Path $te.DirectoryName 'core.py') -Pattern 'wire_route' | Select-Object -First 3 | ForEach-Object { $_.Line } | Set-Content C:/seed/route105p/core_grep.txt
           $cmd = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCADCmd.exe | Select-Object -First 1
           $env:PYTHONUTF8 = '1'
-          Copy-Item patches/v102/route_demos.py C:/route_demos.py -Force
+          Copy-Item patches/v105/route_demos.py C:/route_demos.py -Force
           $pr = Start-Process $cmd.FullName -ArgumentList "-c","exec(open('C:/route_demos.py',encoding='utf-8').read())" -PassThru -RedirectStandardOutput C:/seed/route105p/out.txt -RedirectStandardError C:/seed/route105p/err.txt
           if (-not $pr.WaitForExit(900000)) { $pr.Kill(); "timeout" | Set-Content C:/seed/route105p/timeout.txt }
           Get-Content C:/seed/route105p/unit_test.txt -ErrorAction SilentlyContinue | Select-Object -Last 3
@@ -595,7 +595,7 @@ jobs:
           if (-not $cmd) { throw 'FreeCADCmd.exe not found under C:/DeltaTest' }
           $env:PYTHONUTF8 = '1'
           $env:GALLERY_PASSES = 'off,on'
-          Copy-Item patches/v102/gallery_metrics.py C:/gallery_metrics.py -Force
+          Copy-Item patches/v105/gallery_metrics.py C:/gallery_metrics.py -Force
           # The gallery = the demo scripts that build a wired sheet. Only the ones present are run;
           # a missing path is printed and skipped, it does not fail the step.
           $scripts = @(
@@ -654,7 +654,7 @@ jobs:
           New-Item -ItemType Directory -Force C:/seed/plcfan15 | Out-Null
           $cmd = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCADCmd.exe | Select-Object -First 1
           $env:PYTHONUTF8 = '1'
-          Copy-Item patches/v102/plc_fan_diag3.py C:/plc_fan_diag3.py -Force
+          Copy-Item patches/v105/plc_fan_diag3.py C:/plc_fan_diag3.py -Force
           Copy-Item patches/v76/gallery_elec7.py C:/gallery_elec7.py -Force
           $pr = Start-Process $cmd.FullName -ArgumentList "-c","exec(open('C:/plc_fan_diag3.py',encoding='utf-8').read())" -PassThru -RedirectStandardOutput C:/seed/plcfan15/out.txt -RedirectStandardError C:/seed/plcfan11/err.txt
           if (-not $pr.WaitForExit(300000)) { $pr.Kill() }
@@ -667,7 +667,7 @@ jobs:
           New-Item -ItemType Directory -Force C:/seed/cpwire | Out-Null
           $cmd = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCADCmd.exe | Select-Object -First 1
           $env:PYTHONUTF8 = '1'
-          Copy-Item patches/v102/cp_wire_diag.py C:/cp_wire_diag.py -Force
+          Copy-Item patches/v105/cp_wire_diag.py C:/cp_wire_diag.py -Force
           Copy-Item patches/v76/demo_control_panel.py C:/demo_control_panel.py -Force
           $pr = Start-Process $cmd.FullName -ArgumentList "-c","exec(open('C:/cp_wire_diag.py',encoding='utf-8').read())" -PassThru -RedirectStandardOutput C:/seed/cpwire/out.txt -RedirectStandardError C:/seed/cpwire/err.txt
           if (-not $pr.WaitForExit(300000)) { $pr.Kill() }
