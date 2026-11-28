@@ -1,0 +1,12 @@
+{
+ "done": true,
+ "pipes": 14,
+ "fittings": {
+  "tee_eq": 6
+ },
+ "total_pipe_mm": 32910.0,
+ "max_joint_gap_mm": 3.326880744395831e-14,
+ "bad": [],
+ "step_bytes": 113513,
+ "pdf_bytes": 5849
+}

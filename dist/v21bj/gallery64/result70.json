@@ -1,0 +1,12 @@
+{
+ "done": true,
+ "pipes": 5,
+ "fittings": {
+  "elbow90lr": 4
+ },
+ "total_pipe_mm": 11784.0,
+ "max_joint_gap_mm": 3.343760349408784e-14,
+ "bad": [],
+ "step_bytes": 35274,
+ "pdf_bytes": 2712
+}
