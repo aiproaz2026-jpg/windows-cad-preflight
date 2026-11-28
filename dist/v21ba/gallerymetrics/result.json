@@ -1,0 +1,10269 @@
+{
+ "done": true,
+ "note": "UNTESTED: written by a code-only writer; CI has not run this file.",
+ "out": "C:/seed/gallerymetrics",
+ "scripts_dir": "C:/gallery_src",
+ "passes": [
+  "off",
+  "on"
+ ],
+ "sheets_measured": 11,
+ "sheets_failed": 0,
+ "skipped": [],
+ "pass_failures": [],
+ "summary": [
+  {
+   "sheet": "demo_control_panel",
+   "pass": "off",
+   "before": {
+    "wires": 22,
+    "overlap_pairs": 20,
+    "overlap_mm": 6672.0,
+    "junction_overlaps": 0,
+    "junction_mm": 0,
+    "crossings": 27,
+    "segments_in_foreign_box": 16,
+    "min_clearance_mm": 0.0,
+    "plan_matches_shape": 1,
+    "plan_checked": 22,
+    "device_boxes": 17,
+    "label_boxes": 54
+   },
+   "after": {
+    "wires": 22,
+    "overlap_pairs": 0,
+    "overlap_mm": 0,
+    "junction_overlaps": 18,
+    "junction_mm": 305.0,
+    "crossings": 37,
+    "segments_in_foreign_box": 0,
+    "min_clearance_mm": 0.0,
+    "plan_matches_shape": 22,
+    "plan_checked": 22,
+    "device_boxes": 17,
+    "label_boxes": 54
+   },
+   "reroute_rows": 22,
+   "reroute_plan_matches_shape": 22,
+   "wires_changed_by_reroute": 21,
+   "pdf": "C:/seed/gallerymetrics/demo_control_panel_A3.pdf"
+  },
+  {
+   "sheet": "demo_control_panel",
+   "pass": "on",
+   "before": {
+    "wires": 22,
+    "overlap_pairs": 0,
+    "overlap_mm": 0,
+    "junction_overlaps": 18,
+    "junction_mm": 305.0,
+    "crossings": 37,
+    "segments_in_foreign_box": 0,
+    "min_clearance_mm": 0.0,
+    "plan_matches_shape": 22,
+    "plan_checked": 22,
+    "device_boxes": 17,
+    "label_boxes": 54
+   },
+   "after": {
+    "wires": 22,
+    "overlap_pairs": 0,
+    "overlap_mm": 0,
+    "junction_overlaps": 18,
+    "junction_mm": 305.0,
+    "crossings": 37,
+    "segments_in_foreign_box": 0,
+    "min_clearance_mm": 0.0,
+    "plan_matches_shape": 22,
+    "plan_checked": 22,
+    "device_boxes": 17,
+    "label_boxes": 54
+   },
+   "reroute_rows": 22,
+   "reroute_plan_matches_shape": 22,
+   "wires_changed_by_reroute": 0,
+   "pdf": "C:/seed/gallerymetrics/demo_control_panel_A3.pdf"
+  },
+  {
+   "sheet": "demo_dol_vertical",
+   "pass": "off",
+   "before": {
+    "wires": 6,
+    "overlap_pairs": 0,
+    "overlap_mm": 0,
+    "junction_overlaps": 0,
+    "junction_mm": 0,
+    "crossings": 0,
+    "segments_in_foreign_box": 0,
+    "min_clearance_mm": 177.0,
+    "plan_matches_shape": 6,
+    "plan_checked": 6,
+    "device_boxes": 3,
+    "label_boxes": 25
+   },
+   "after": {
+    "wires": 6,
+    "overlap_pairs": 0,
+    "overlap_mm": 0,
+    "junction_overlaps": 0,
+    "junction_mm": 0,
+    "crossings": 0,
+    "segments_in_foreign_box": 0,
+    "min_clearance_mm": 177.0,
+    "plan_matches_shape": 6,
+    "plan_checked": 6,
+    "device_boxes": 3,
+    "label_boxes": 25
+   },
+   "reroute_rows": 6,
+   "reroute_plan_matches_shape": 6,
+   "wires_changed_by_reroute": 0,
+   "pdf": "C:/seed/gallerymetrics/demo_dol_vertical_A3.pdf"
+  },
+  {
+   "sheet": "demo_dol_vertical",
+   "pass": "on",
+   "before": {
+    "wires": 6,
+    "overlap_pairs": 0,
+    "overlap_mm": 0,
+    "junction_overlaps": 0,
+    "junction_mm": 0,
+    "crossings": 0,
+    "segments_in_foreign_box": 0,
+    "min_clearance_mm": 177.0,
+    "plan_matches_shape": 6,
+    "plan_checked": 6,
+    "device_boxes": 3,
+    "label_boxes": 25
+   },
+   "after": {
+    "wires": 6,
+    "overlap_pairs": 0,
+    "overlap_mm": 0,
+    "junction_overlaps": 0,
+    "junction_mm": 0,
+    "crossings": 0,
+    "segments_in_foreign_box": 0,
+    "min_clearance_mm": 177.0,
+    "plan_matches_shape": 6,
+    "plan_checked": 6,
+    "device_boxes": 3,
+    "label_boxes": 25
+   },
+   "reroute_rows": 6,
+   "reroute_plan_matches_shape": 6,
+   "wires_changed_by_reroute": 0,
+   "pdf": "C:/seed/gallerymetrics/demo_dol_vertical_A3.pdf"
+  },
+  {
+   "sheet": "demo_motor_starters",
+   "pass": "off",
+   "before": {
+    "wires": 39,
+    "overlap_pairs": 10,
+    "overlap_mm": 1345.5,
+    "junction_overlaps": 0,
+    "junction_mm": 0,
+    "crossings": 11,
+    "segments_in_foreign_box": 2,
+    "min_clearance_mm": 0.0,
+    "plan_matches_shape": 1,
+    "plan_checked": 39,
+    "device_boxes": 24,
+    "label_boxes": 106
+   },
+   "after": {
+    "wires": 39,
+    "overlap_pairs": 1,
+    "overlap_mm": 1.0,
+    "junction_overlaps": 9,
+    "junction_mm": 110.0,
+    "crossings": 15,
+    "segments_in_foreign_box": 0,
+    "min_clearance_mm": 14.0,
+    "plan_matches_shape": 39,
+    "plan_checked": 39,
+    "device_boxes": 24,
+    "label_boxes": 106
+   },
+   "reroute_rows": 39,
+   "reroute_plan_matches_shape": 39,
+   "wires_changed_by_reroute": 38,
+   "pdf": "C:/seed/gallerymetrics/demo_motor_starters_A3.pdf"
+  },
+  {
+   "sheet": "demo_motor_starters",
+   "pass": "on",
+   "before": {
+    "wires": 39,
+    "overlap_pairs": 1,
+    "overlap_mm": 1.0,
+    "junction_overlaps": 9,
+    "junction_mm": 110.0,
+    "crossings": 15,
+    "segments_in_foreign_box": 0,
+    "min_clearance_mm": 14.0,
+    "plan_matches_shape": 37,
+    "plan_checked": 39,
+    "device_boxes": 24,
+    "label_boxes": 106
+   },
+   "after": {
+    "wires": 39,
+    "overlap_pairs": 1,
+    "overlap_mm": 1.0,
+    "junction_overlaps": 9,
+    "junction_mm": 110.0,
+    "crossings": 15,
+    "segments_in_foreign_box": 0,
+    "min_clearance_mm": 14.0,
+    "plan_matches_shape": 39,
+    "plan_checked": 39,
+    "device_boxes": 24,
+    "label_boxes": 106
+   },
+   "reroute_rows": 39,
+   "reroute_plan_matches_shape": 39,
+   "wires_changed_by_reroute": 4,
+   "pdf": "C:/seed/gallerymetrics/demo_motor_starters_A3.pdf"
+  },
+  {
+   "sheet": "elec5",
+   "pass": "off",
+   "before": {
+    "wires": 12,
+    "overlap_pairs": 0,
+    "overlap_mm": 0,
+    "junction_overlaps": 0,
+    "junction_mm": 0,
+    "crossings": 0,
+    "segments_in_foreign_box": 0,
+    "min_clearance_mm": 317.0,
+    "plan_matches_shape": 0,
+    "plan_checked": 12,
+    "device_boxes": 15,
+    "label_boxes": 39
+   },
+   "after": {
+    "wires": 12,
+    "overlap_pairs": 0,
+    "overlap_mm": 0,
+    "junction_overlaps": 0,
+    "junction_mm": 0,
+    "crossings": 0,
+    "segments_in_foreign_box": 0,
+    "min_clearance_mm": 303.0,
+    "plan_matches_shape": 12,
+    "plan_checked": 12,
+    "device_boxes": 15,
+    "label_boxes": 39
+   },
+   "reroute_rows": 12,
+   "reroute_plan_matches_shape": 12,
+   "wires_changed_by_reroute": 12,
+   "pdf": "C:/seed/gallerymetrics/elec5_A3.pdf"
+  },
+  {
+   "sheet": "elec5",
+   "pass": "on",
+   "before": {
+    "wires": 12,
+    "overlap_pairs": 0,
+    "overlap_mm": 0,
+    "junction_overlaps": 0,
+    "junction_mm": 0,
+    "crossings": 0,
+    "segments_in_foreign_box": 0,
+    "min_clearance_mm": 303.0,
+    "plan_matches_shape": 11,
+    "plan_checked": 12,
+    "device_boxes": 15,
+    "label_boxes": 39
+   },
+   "after": {
+    "wires": 12,
+    "overlap_pairs": 0,
+    "overlap_mm": 0,
+    "junction_overlaps": 0,
+    "junction_mm": 0,
+    "crossings": 0,
+    "segments_in_foreign_box": 0,
+    "min_clearance_mm": 303.0,
+    "plan_matches_shape": 12,
+    "plan_checked": 12,
+    "device_boxes": 15,
+    "label_boxes": 39
+   },
+   "reroute_rows": 12,
+   "reroute_plan_matches_shape": 12,
+   "wires_changed_by_reroute": 1,
+   "pdf": "C:/seed/gallerymetrics/elec5_A3.pdf"
+  },
+  {
+   "sheet": "gallery_elec2",
+   "pass": "off",
+   "before": {
+    "wires": 10,
+    "overlap_pairs": 1,
+    "overlap_mm": 156.5,
+    "junction_overlaps": 0,
+    "junction_mm": 0,
+    "crossings": 0,
+    "segments_in_foreign_box": 2,
+    "min_clearance_mm": 0.0,
+    "plan_matches_shape": 0,
+    "plan_checked": 10,
+    "device_boxes": 11,
+    "label_boxes": 30
+   },
+   "after": {
+    "wires": 10,
+    "overlap_pairs": 0,
+    "overlap_mm": 0,
+    "junction_overlaps": 2,
+    "junction_mm": 28.0,
+    "crossings": 0,
+    "segments_in_foreign_box": 0,
+    "min_clearance_mm": 230.0,
+    "plan_matches_shape": 10,
+    "plan_checked": 10,
+    "device_boxes": 11,
+    "label_boxes": 30
+   },
+   "reroute_rows": 10,
+   "reroute_plan_matches_shape": 10,
+   "wires_changed_by_reroute": 10,
+   "pdf": "C:/seed/gallerymetrics/gallery_elec2_A3.pdf"
+  },
+  {
+   "sheet": "gallery_elec2",
+   "pass": "on",
+   "before": {
+    "wires": 10,
+    "overlap_pairs": 0,
+    "overlap_mm": 0,
+    "junction_overlaps": 2,
+    "junction_mm": 28.0,
+    "crossings": 0,
+    "segments_in_foreign_box": 0,
+    "min_clearance_mm": 230.0,
+    "plan_matches_shape": 9,
+    "plan_checked": 10,
+    "device_boxes": 11,
+    "label_boxes": 30
+   },
+   "after": {
+    "wires": 10,
+    "overlap_pairs": 0,
+    "overlap_mm": 0,
+    "junction_overlaps": 2,
+    "junction_mm": 28.0,
+    "crossings": 0,
+    "segments_in_foreign_box": 0,
+    "min_clearance_mm": 230.0,
+    "plan_matches_shape": 10,
+    "plan_checked": 10,
+    "device_boxes": 11,
+    "label_boxes": 30
+   },
+   "reroute_rows": 10,
+   "reroute_plan_matches_shape": 10,
+   "wires_changed_by_reroute": 1,
+   "pdf": "C:/seed/gallerymetrics/gallery_elec2_A3.pdf"
+  },
+  {
+   "sheet": "gallery_elec3",
+   "pass": "off",
+   "before": {
+    "wires": 8,
+    "overlap_pairs": 0,
+    "overlap_mm": 0,
+    "junction_overlaps": 0,
+    "junction_mm": 0,
+    "crossings": 0,
+    "segments_in_foreign_box": 0,
+    "min_clearance_mm": 365.0,
+    "plan_matches_shape": 2,
+    "plan_checked": 8,
+    "device_boxes": 10,
+    "label_boxes": 26
+   },
+   "after": {
+    "wires": 8,
+    "overlap_pairs": 0,
+    "overlap_mm": 0,
+    "junction_overlaps": 0,
+    "junction_mm": 0,
+    "crossings": 0,
+    "segments_in_foreign_box": 0,
+    "min_clearance_mm": 352.17,
+    "plan_matches_shape": 8,
+    "plan_checked": 8,
+    "device_boxes": 10,
+    "label_boxes": 26
+   },
+   "reroute_rows": 8,
+   "reroute_plan_matches_shape": 8,
+   "wires_changed_by_reroute": 6,
+   "pdf": "C:/seed/gallerymetrics/gallery_elec3_A3.pdf"
+  },
+  {
+   "sheet": "gallery_elec3",
+   "pass": "on",
+   "before": {
+    "wires": 8,
+    "overlap_pairs": 0,
+    "overlap_mm": 0,
+    "junction_overlaps": 0,
+    "junction_mm": 0,
+    "crossings": 0,
+    "segments_in_foreign_box": 0,
+    "min_clearance_mm": 352.17,
+    "plan_matches_shape": 8,
+    "plan_checked": 8,
+    "device_boxes": 10,
+    "label_boxes": 26
+   },
+   "after": {
+    "wires": 8,
+    "overlap_pairs": 0,
+    "overlap_mm": 0,
+    "junction_overlaps": 0,
+    "junction_mm": 0,
+    "crossings": 0,
+    "segments_in_foreign_box": 0,
+    "min_clearance_mm": 352.17,
+    "plan_matches_shape": 8,
+    "plan_checked": 8,
+    "device_boxes": 10,
+    "label_boxes": 26
+   },
+   "reroute_rows": 8,
+   "reroute_plan_matches_shape": 8,
+   "wires_changed_by_reroute": 0,
+   "pdf": "C:/seed/gallerymetrics/gallery_elec3_A3.pdf"
+  },
+  {
+   "sheet": "gallery_elec6",
+   "pass": "off",
+   "before": {
+    "wires": 14,
+    "overlap_pairs": 5,
+    "overlap_mm": 966.3,
+    "junction_overlaps": 0,
+    "junction_mm": 0,
+    "crossings": 7,
+    "segments_in_foreign_box": 2,
+    "min_clearance_mm": 0.0,
+    "plan_matches_shape": 1,
+    "plan_checked": 14,
+    "device_boxes": 10,
+    "label_boxes": 40
+   },
+   "after": {
+    "wires": 14,
+    "overlap_pairs": 0,
+    "overlap_mm": 0,
+    "junction_overlaps": 2,
+    "junction_mm": 28.0,
+    "crossings": 8,
+    "segments_in_foreign_box": 0,
+    "min_clearance_mm": 230.0,
+    "plan_matches_shape": 14,
+    "plan_checked": 14,
+    "device_boxes": 10,
+    "label_boxes": 40
+   },
+   "reroute_rows": 14,
+   "reroute_plan_matches_shape": 14,
+   "wires_changed_by_reroute": 13,
+   "pdf": "C:/seed/gallerymetrics/gallery_elec6_A3.pdf"
+  },
+  {
+   "sheet": "gallery_elec6",
+   "pass": "on",
+   "before": {
+    "wires": 14,
+    "overlap_pairs": 0,
+    "overlap_mm": 0,
+    "junction_overlaps": 2,
+    "junction_mm": 28.0,
+    "crossings": 8,
+    "segments_in_foreign_box": 0,
+    "min_clearance_mm": 230.0,
+    "plan_matches_shape": 14,
+    "plan_checked": 14,
+    "device_boxes": 10,
+    "label_boxes": 40
+   },
+   "after": {
+    "wires": 14,
+    "overlap_pairs": 0,
+    "overlap_mm": 0,
+    "junction_overlaps": 2,
+    "junction_mm": 28.0,
+    "crossings": 8,
+    "segments_in_foreign_box": 0,
+    "min_clearance_mm": 230.0,
+    "plan_matches_shape": 14,
+    "plan_checked": 14,
+    "device_boxes": 10,
+    "label_boxes": 40
+   },
+   "reroute_rows": 14,
+   "reroute_plan_matches_shape": 14,
+   "wires_changed_by_reroute": 0,
+   "pdf": "C:/seed/gallerymetrics/gallery_elec6_A3.pdf"
+  },
+  {
+   "sheet": "gallery_elec7",
+   "pass": "off",
+   "before": {
+    "wires": 12,
+    "overlap_pairs": 3,
+    "overlap_mm": 1191.0,
+    "junction_overlaps": 0,
+    "junction_mm": 0,
+    "crossings": 0,
+    "segments_in_foreign_box": 4,
+    "min_clearance_mm": 0.0,
+    "plan_matches_shape": 0,
+    "plan_checked": 12,
+    "device_boxes": 9,
+    "label_boxes": 29
+   },
+   "after": {
+    "wires": 12,
+    "overlap_pairs": 0,
+    "overlap_mm": 0,
+    "junction_overlaps": 6,
+    "junction_mm": 68.0,
+    "crossings": 2,
+    "segments_in_foreign_box": 0,
+    "min_clearance_mm": 1.0,
+    "plan_matches_shape": 12,
+    "plan_checked": 12,
+    "device_boxes": 9,
+    "label_boxes": 29
+   },
+   "reroute_rows": 12,
+   "reroute_plan_matches_shape": 12,
+   "wires_changed_by_reroute": 12,
+   "pdf": "C:/seed/gallerymetrics/gallery_elec7_A3.pdf"
+  },
+  {
+   "sheet": "gallery_elec7",
+   "pass": "on",
+   "before": {
+    "wires": 12,
+    "overlap_pairs": 0,
+    "overlap_mm": 0,
+    "junction_overlaps": 6,
+    "junction_mm": 68.0,
+    "crossings": 2,
+    "segments_in_foreign_box": 0,
+    "min_clearance_mm": 1.0,
+    "plan_matches_shape": 12,
+    "plan_checked": 12,
+    "device_boxes": 9,
+    "label_boxes": 29
+   },
+   "after": {
+    "wires": 12,
+    "overlap_pairs": 0,
+    "overlap_mm": 0,
+    "junction_overlaps": 6,
+    "junction_mm": 68.0,
+    "crossings": 2,
+    "segments_in_foreign_box": 0,
+    "min_clearance_mm": 1.0,
+    "plan_matches_shape": 12,
+    "plan_checked": 12,
+    "device_boxes": 9,
+    "label_boxes": 29
+   },
+   "reroute_rows": 12,
+   "reroute_plan_matches_shape": 12,
+   "wires_changed_by_reroute": 0,
+   "pdf": "C:/seed/gallerymetrics/gallery_elec7_A3.pdf"
+  },
+  {
+   "sheet": "gallery_elec8",
+   "pass": "off",
+   "before": {
+    "wires": 10,
+    "overlap_pairs": 2,
+    "overlap_mm": 500.5,
+    "junction_overlaps": 0,
+    "junction_mm": 0,
+    "crossings": 5,
+    "segments_in_foreign_box": 2,
+    "min_clearance_mm": 0.0,
+    "plan_matches_shape": 0,
+    "plan_checked": 10,
+    "device_boxes": 9,
+    "label_boxes": 27
+   },
+   "after": {
+    "wires": 10,
+    "overlap_pairs": 0,
+    "overlap_mm": 0,
+    "junction_overlaps": 3,
+    "junction_mm": 29.0,
+    "crossings": 2,
+    "segments_in_foreign_box": 0,
+    "min_clearance_mm": 0.0,
+    "plan_matches_shape": 10,
+    "plan_checked": 10,
+    "device_boxes": 9,
+    "label_boxes": 27
+   },
+   "reroute_rows": 10,
+   "reroute_plan_matches_shape": 10,
+   "wires_changed_by_reroute": 10,
+   "pdf": "C:/seed/gallerymetrics/gallery_elec8_A3.pdf"
+  },
+  {
+   "sheet": "gallery_elec8",
+   "pass": "on",
+   "before": {
+    "wires": 10,
+    "overlap_pairs": 0,
+    "overlap_mm": 0,
+    "junction_overlaps": 3,
+    "junction_mm": 29.0,
+    "crossings": 2,
+    "segments_in_foreign_box": 0,
+    "min_clearance_mm": 0.0,
+    "plan_matches_shape": 10,
+    "plan_checked": 10,
+    "device_boxes": 9,
+    "label_boxes": 27
+   },
+   "after": {
+    "wires": 10,
+    "overlap_pairs": 0,
+    "overlap_mm": 0,
+    "junction_overlaps": 3,
+    "junction_mm": 29.0,
+    "crossings": 2,
+    "segments_in_foreign_box": 0,
+    "min_clearance_mm": 0.0,
+    "plan_matches_shape": 10,
+    "plan_checked": 10,
+    "device_boxes": 9,
+    "label_boxes": 27
+   },
+   "reroute_rows": 10,
+   "reroute_plan_matches_shape": 10,
+   "wires_changed_by_reroute": 0,
+   "pdf": "C:/seed/gallerymetrics/gallery_elec8_A3.pdf"
+  },
+  {
+   "sheet": "gallery_terms",
+   "pass": "off",
+   "before": {
+    "wires": 9,
+    "overlap_pairs": 3,
+    "overlap_mm": 685.0,
+    "junction_overlaps": 0,
+    "junction_mm": 0,
+    "crossings": 0,
+    "segments_in_foreign_box": 276,
+    "min_clearance_mm": 0.0,
+    "plan_matches_shape": 9,
+    "plan_checked": 9,
+    "device_boxes": 104,
+    "label_boxes": 400
+   },
+   "after": {
+    "wires": 9,
+    "overlap_pairs": 3,
+    "overlap_mm": 685.0,
+    "junction_overlaps": 0,
+    "junction_mm": 0,
+    "crossings": 0,
+    "segments_in_foreign_box": 276,
+    "min_clearance_mm": 0.0,
+    "plan_matches_shape": 9,
+    "plan_checked": 9,
+    "device_boxes": 104,
+    "label_boxes": 400
+   },
+   "reroute_rows": 9,
+   "reroute_plan_matches_shape": 9,
+   "wires_changed_by_reroute": 0,
+   "pdf": "C:/seed/gallerymetrics/gallery_terms_A3.pdf"
+  },
+  {
+   "sheet": "gallery_terms",
+   "pass": "on",
+   "before": {
+    "wires": 9,
+    "overlap_pairs": 3,
+    "overlap_mm": 685.0,
+    "junction_overlaps": 0,
+    "junction_mm": 0,
+    "crossings": 0,
+    "segments_in_foreign_box": 276,
+    "min_clearance_mm": 0.0,
+    "plan_matches_shape": 9,
+    "plan_checked": 9,
+    "device_boxes": 104,
+    "label_boxes": 400
+   },
+   "after": {
+    "wires": 9,
+    "overlap_pairs": 3,
+    "overlap_mm": 685.0,
+    "junction_overlaps": 0,
+    "junction_mm": 0,
+    "crossings": 0,
+    "segments_in_foreign_box": 276,
+    "min_clearance_mm": 0.0,
+    "plan_matches_shape": 9,
+    "plan_checked": 9,
+    "device_boxes": 104,
+    "label_boxes": 400
+   },
+   "reroute_rows": 9,
+   "reroute_plan_matches_shape": 9,
+   "wires_changed_by_reroute": 0,
+   "pdf": "C:/seed/gallerymetrics/gallery_terms_A3.pdf"
+  },
+  {
+   "sheet": "v70_elec4",
+   "pass": "off",
+   "before": {
+    "wires": 12,
+    "overlap_pairs": 0,
+    "overlap_mm": 0,
+    "junction_overlaps": 0,
+    "junction_mm": 0,
+    "crossings": 0,
+    "segments_in_foreign_box": 0,
+    "min_clearance_mm": 352.0,
+    "plan_matches_shape": 0,
+    "plan_checked": 12,
+    "device_boxes": 15,
+    "label_boxes": 41
+   },
+   "after": {
+    "wires": 12,
+    "overlap_pairs": 0,
+    "overlap_mm": 0,
+    "junction_overlaps": 0,
+    "junction_mm": 0,
+    "crossings": 0,
+    "segments_in_foreign_box": 0,
+    "min_clearance_mm": 338.0,
+    "plan_matches_shape": 12,
+    "plan_checked": 12,
+    "device_boxes": 15,
+    "label_boxes": 41
+   },
+   "reroute_rows": 12,
+   "reroute_plan_matches_shape": 12,
+   "wires_changed_by_reroute": 12,
+   "pdf": "C:/seed/gallerymetrics/v70_elec4_A3.pdf"
+  },
+  {
+   "sheet": "v70_elec4",
+   "pass": "on",
+   "before": {
+    "wires": 12,
+    "overlap_pairs": 0,
+    "overlap_mm": 0,
+    "junction_overlaps": 0,
+    "junction_mm": 0,
+    "crossings": 0,
+    "segments_in_foreign_box": 0,
+    "min_clearance_mm": 338.0,
+    "plan_matches_shape": 12,
+    "plan_checked": 12,
+    "device_boxes": 15,
+    "label_boxes": 41
+   },
+   "after": {
+    "wires": 12,
+    "overlap_pairs": 0,
+    "overlap_mm": 0,
+    "junction_overlaps": 0,
+    "junction_mm": 0,
+    "crossings": 0,
+    "segments_in_foreign_box": 0,
+    "min_clearance_mm": 338.0,
+    "plan_matches_shape": 12,
+    "plan_checked": 12,
+    "device_boxes": 15,
+    "label_boxes": 41
+   },
+   "reroute_rows": 12,
+   "reroute_plan_matches_shape": 12,
+   "wires_changed_by_reroute": 0,
+   "pdf": "C:/seed/gallerymetrics/v70_elec4_A3.pdf"
+  }
+ ],
+ "sheets": {
+  "demo_control_panel": {
+   "script": "C:/gallery_src\\demo_control_panel.py",
+   "doc": "CP",
+   "passes": {
+    "off": {
+     "before": {
+      "wires": 22,
+      "overlap_pairs": 20,
+      "overlap_mm": 6672.0,
+      "junction_overlaps": 0,
+      "junction_mm": 0,
+      "crossings": 27,
+      "segments_in_foreign_box": 16,
+      "min_clearance_mm": 0.0,
+      "plan_matches_shape": 1,
+      "plan_checked": 22,
+      "device_boxes": 17,
+      "label_boxes": 54
+     },
+     "after": {
+      "wires": 22,
+      "overlap_pairs": 0,
+      "overlap_mm": 0,
+      "junction_overlaps": 18,
+      "junction_mm": 305.0,
+      "crossings": 37,
+      "segments_in_foreign_box": 0,
+      "min_clearance_mm": 0.0,
+      "plan_matches_shape": 22,
+      "plan_checked": 22,
+      "device_boxes": 17,
+      "label_boxes": 54
+     },
+     "wires_changed_by_reroute": 21,
+     "routed": 22,
+     "fallback": [],
+     "reroute_plan_matches_shape": 22,
+     "hook_installed_at_build": false,
+     "per_wire": [
+      {
+       "wire": "W1",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4000.0,
+         25.0
+        ],
+        [
+         4000.0,
+         39.0
+        ],
+        [
+         4226.0,
+         39.0
+        ],
+        [
+         4226.0,
+         10.0
+        ],
+        [
+         4240.0,
+         10.0
+        ]
+       ]
+      },
+      {
+       "wire": "W2",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4360.0,
+         -10.0
+        ],
+        [
+         4526.0,
+         -10.0
+        ],
+        [
+         4526.0,
+         18.0
+        ],
+        [
+         4540.0,
+         18.0
+        ]
+       ]
+      },
+      {
+       "wire": "W3",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 46.9,
+       "path": [
+        [
+         4660.0,
+         6.0
+        ],
+        [
+         4937.0,
+         6.0
+        ],
+        [
+         4937.0,
+         39.0
+        ],
+        [
+         4950.0,
+         39.0
+        ],
+        [
+         4950.0,
+         25.0
+        ]
+       ]
+      },
+      {
+       "wire": "W4",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 62.6,
+       "path": [
+        [
+         4660.0,
+         -6.0
+        ],
+        [
+         4942.0,
+         -6.0
+        ],
+        [
+         4942.0,
+         -7.0
+        ],
+        [
+         5196.0,
+         -7.0
+        ],
+        [
+         5196.0,
+         0.0
+        ],
+        [
+         5210.0,
+         0.0
+        ]
+       ]
+      },
+      {
+       "wire": "W5",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4000.0,
+         -195.0
+        ],
+        [
+         4000.0,
+         -178.0
+        ],
+        [
+         4300.0,
+         -178.0
+        ],
+        [
+         4300.0,
+         -192.0
+        ]
+       ]
+      },
+      {
+       "wire": "W6",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 813.7,
+       "path": [
+        [
+         5290.0,
+         0.0
+        ],
+        [
+         5304.0,
+         0.0
+        ],
+        [
+         5304.0,
+         -934.0
+        ],
+        [
+         4576.0,
+         -934.0
+        ],
+        [
+         4576.0,
+         -945.0
+        ],
+        [
+         4590.0,
+         -945.0
+        ]
+       ]
+      },
+      {
+       "wire": "W7",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 62.5,
+       "path": [
+        [
+         4540.0,
+         -18.0
+        ],
+        [
+         4526.0,
+         -18.0
+        ],
+        [
+         4526.0,
+         -959.0
+        ],
+        [
+         4590.0,
+         -959.0
+        ]
+       ]
+      },
+      {
+       "wire": "W8",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 2564.7,
+       "path": [
+        [
+         5290.0,
+         0.0
+        ],
+        [
+         5304.0,
+         0.0
+        ],
+        [
+         5304.0,
+         54.0
+        ],
+        [
+         3951.0,
+         54.0
+        ],
+        [
+         3951.0,
+         -520.0
+        ],
+        [
+         3965.0,
+         -520.0
+        ]
+       ]
+      },
+      {
+       "wire": "W9",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4035.0,
+         -520.0
+        ],
+        [
+         4345.0,
+         -520.0
+        ]
+       ]
+      },
+      {
+       "wire": "W10",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 78.2,
+       "path": [
+        [
+         4415.0,
+         -498.0
+        ],
+        [
+         4711.0,
+         -498.0
+        ],
+        [
+         4711.0,
+         -520.0
+        ],
+        [
+         4725.0,
+         -520.0
+        ]
+       ]
+      },
+      {
+       "wire": "W11",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 125.0,
+       "path": [
+        [
+         4795.0,
+         -520.0
+        ],
+        [
+         4809.0,
+         -520.0
+        ],
+        [
+         4809.0,
+         -921.0
+        ],
+        [
+         4560.0,
+         -921.0
+        ],
+        [
+         4560.0,
+         -973.0
+        ],
+        [
+         4590.0,
+         -973.0
+        ]
+       ]
+      },
+      {
+       "wire": "W12",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 3583.4,
+       "path": [
+        [
+         5290.0,
+         0.0
+        ],
+        [
+         5312.0,
+         0.0
+        ],
+        [
+         5312.0,
+         -467.0
+        ],
+        [
+         3945.0,
+         -467.0
+        ],
+        [
+         3945.0,
+         -980.0
+        ],
+        [
+         3965.0,
+         -980.0
+        ]
+       ]
+      },
+      {
+       "wire": "W13",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4035.0,
+         -980.0
+        ],
+        [
+         4552.0,
+         -980.0
+        ],
+        [
+         4552.0,
+         -987.0
+        ],
+        [
+         4590.0,
+         -987.0
+        ]
+       ]
+      },
+      {
+       "wire": "W14",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 250.0,
+       "path": [
+        [
+         4710.0,
+         -1001.0
+        ],
+        [
+         5336.0,
+         -1001.0
+        ],
+        [
+         5336.0,
+         -926.0
+        ],
+        [
+         5350.0,
+         -926.0
+        ],
+        [
+         5350.0,
+         -940.0
+        ]
+       ]
+      },
+      {
+       "wire": "W15",
+       "points": 7,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 640.8,
+       "path": [
+        [
+         5350.0,
+         -1020.0
+        ],
+        [
+         5350.0,
+         -1034.0
+        ],
+        [
+         4544.0,
+         -1034.0
+        ],
+        [
+         4544.0,
+         -965.0
+        ],
+        [
+         4568.0,
+         -965.0
+        ],
+        [
+         4568.0,
+         -959.0
+        ],
+        [
+         4590.0,
+         -959.0
+        ]
+       ]
+      },
+      {
+       "wire": "W16",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 109.9,
+       "path": [
+        [
+         4710.0,
+         -1015.0
+        ],
+        [
+         5086.0,
+         -1015.0
+        ],
+        [
+         5086.0,
+         -520.0
+        ],
+        [
+         5100.0,
+         -520.0
+        ]
+       ]
+      },
+      {
+       "wire": "W17",
+       "points": 8,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 735.5,
+       "path": [
+        [
+         5180.0,
+         -520.0
+        ],
+        [
+         5194.0,
+         -520.0
+        ],
+        [
+         5194.0,
+         -941.0
+        ],
+        [
+         4713.0,
+         -941.0
+        ],
+        [
+         4713.0,
+         -915.0
+        ],
+        [
+         4568.0,
+         -915.0
+        ],
+        [
+         4568.0,
+         -959.0
+        ],
+        [
+         4590.0,
+         -959.0
+        ]
+       ]
+      },
+      {
+       "wire": "W18",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 751.5,
+       "path": [
+        [
+         4710.0,
+         -1015.0
+        ],
+        [
+         4732.0,
+         -1015.0
+        ],
+        [
+         4732.0,
+         -947.0
+        ],
+        [
+         5330.0,
+         -947.0
+        ],
+        [
+         5330.0,
+         -520.0
+        ],
+        [
+         5480.0,
+         -520.0
+        ]
+       ]
+      },
+      {
+       "wire": "W19",
+       "points": 12,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 4254.2,
+       "path": [
+        [
+         5560.0,
+         -520.0
+        ],
+        [
+         5574.0,
+         -520.0
+        ],
+        [
+         5574.0,
+         -485.0
+        ],
+        [
+         4718.0,
+         -485.0
+        ],
+        [
+         4718.0,
+         -909.0
+        ],
+        [
+         4582.0,
+         -909.0
+        ],
+        [
+         4582.0,
+         -965.0
+        ],
+        [
+         4570.0,
+         -965.0
+        ],
+        [
+         4570.0,
+         -960.0
+        ],
+        [
+         4568.0,
+         -960.0
+        ],
+        [
+         4568.0,
+         -959.0
+        ],
+        [
+         4590.0,
+         -959.0
+        ]
+       ]
+      },
+      {
+       "wire": "W20",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 109.3,
+       "path": [
+        [
+         5290.0,
+         0.0
+        ],
+        [
+         5296.0,
+         0.0
+        ],
+        [
+         5296.0,
+         -1226.0
+        ],
+        [
+         5350.0,
+         -1226.0
+        ],
+        [
+         5350.0,
+         -1240.0
+        ]
+       ]
+      },
+      {
+       "wire": "W21",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 187.7,
+       "path": [
+        [
+         5350.0,
+         -1280.0
+        ],
+        [
+         5350.0,
+         -1294.0
+        ],
+        [
+         5630.0,
+         -1294.0
+        ],
+        [
+         5630.0,
+         -926.0
+        ],
+        [
+         5650.0,
+         -926.0
+        ],
+        [
+         5650.0,
+         -940.0
+        ]
+       ]
+      },
+      {
+       "wire": "W22",
+       "points": 7,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 2860.2,
+       "path": [
+        [
+         5650.0,
+         -1020.0
+        ],
+        [
+         5650.0,
+         -1042.0
+        ],
+        [
+         4536.0,
+         -1042.0
+        ],
+        [
+         4536.0,
+         -953.0
+        ],
+        [
+         4566.0,
+         -953.0
+        ],
+        [
+         4566.0,
+         -959.0
+        ],
+        [
+         4590.0,
+         -959.0
+        ]
+       ]
+      }
+     ]
+    },
+    "on": {
+     "before": {
+      "wires": 22,
+      "overlap_pairs": 0,
+      "overlap_mm": 0,
+      "junction_overlaps": 18,
+      "junction_mm": 305.0,
+      "crossings": 37,
+      "segments_in_foreign_box": 0,
+      "min_clearance_mm": 0.0,
+      "plan_matches_shape": 22,
+      "plan_checked": 22,
+      "device_boxes": 17,
+      "label_boxes": 54
+     },
+     "after": {
+      "wires": 22,
+      "overlap_pairs": 0,
+      "overlap_mm": 0,
+      "junction_overlaps": 18,
+      "junction_mm": 305.0,
+      "crossings": 37,
+      "segments_in_foreign_box": 0,
+      "min_clearance_mm": 0.0,
+      "plan_matches_shape": 22,
+      "plan_checked": 22,
+      "device_boxes": 17,
+      "label_boxes": 54
+     },
+     "wires_changed_by_reroute": 0,
+     "routed": 22,
+     "fallback": [],
+     "reroute_plan_matches_shape": 22,
+     "hook_installed_at_build": true,
+     "per_wire": [
+      {
+       "wire": "W1",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4000.0,
+         25.0
+        ],
+        [
+         4000.0,
+         39.0
+        ],
+        [
+         4226.0,
+         39.0
+        ],
+        [
+         4226.0,
+         10.0
+        ],
+        [
+         4240.0,
+         10.0
+        ]
+       ]
+      },
+      {
+       "wire": "W2",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 17.3,
+       "path": [
+        [
+         4360.0,
+         -10.0
+        ],
+        [
+         4526.0,
+         -10.0
+        ],
+        [
+         4526.0,
+         18.0
+        ],
+        [
+         4540.0,
+         18.0
+        ]
+       ]
+      },
+      {
+       "wire": "W3",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 45.4,
+       "path": [
+        [
+         4660.0,
+         6.0
+        ],
+        [
+         4937.0,
+         6.0
+        ],
+        [
+         4937.0,
+         39.0
+        ],
+        [
+         4950.0,
+         39.0
+        ],
+        [
+         4950.0,
+         25.0
+        ]
+       ]
+      },
+      {
+       "wire": "W4",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 78.1,
+       "path": [
+        [
+         4660.0,
+         -6.0
+        ],
+        [
+         4942.0,
+         -6.0
+        ],
+        [
+         4942.0,
+         -7.0
+        ],
+        [
+         5196.0,
+         -7.0
+        ],
+        [
+         5196.0,
+         0.0
+        ],
+        [
+         5210.0,
+         0.0
+        ]
+       ]
+      },
+      {
+       "wire": "W5",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4000.0,
+         -195.0
+        ],
+        [
+         4000.0,
+         -178.0
+        ],
+        [
+         4300.0,
+         -178.0
+        ],
+        [
+         4300.0,
+         -192.0
+        ]
+       ]
+      },
+      {
+       "wire": "W6",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 813.7,
+       "path": [
+        [
+         5290.0,
+         0.0
+        ],
+        [
+         5304.0,
+         0.0
+        ],
+        [
+         5304.0,
+         -934.0
+        ],
+        [
+         4576.0,
+         -934.0
+        ],
+        [
+         4576.0,
+         -945.0
+        ],
+        [
+         4590.0,
+         -945.0
+        ]
+       ]
+      },
+      {
+       "wire": "W7",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 63.0,
+       "path": [
+        [
+         4540.0,
+         -18.0
+        ],
+        [
+         4526.0,
+         -18.0
+        ],
+        [
+         4526.0,
+         -959.0
+        ],
+        [
+         4590.0,
+         -959.0
+        ]
+       ]
+      },
+      {
+       "wire": "W8",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 2597.3,
+       "path": [
+        [
+         5290.0,
+         0.0
+        ],
+        [
+         5304.0,
+         0.0
+        ],
+        [
+         5304.0,
+         54.0
+        ],
+        [
+         3951.0,
+         54.0
+        ],
+        [
+         3951.0,
+         -520.0
+        ],
+        [
+         3965.0,
+         -520.0
+        ]
+       ]
+      },
+      {
+       "wire": "W9",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4035.0,
+         -520.0
+        ],
+        [
+         4345.0,
+         -520.0
+        ]
+       ]
+      },
+      {
+       "wire": "W10",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 78.7,
+       "path": [
+        [
+         4415.0,
+         -498.0
+        ],
+        [
+         4711.0,
+         -498.0
+        ],
+        [
+         4711.0,
+         -520.0
+        ],
+        [
+         4725.0,
+         -520.0
+        ]
+       ]
+      },
+      {
+       "wire": "W11",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 125.0,
+       "path": [
+        [
+         4795.0,
+         -520.0
+        ],
+        [
+         4809.0,
+         -520.0
+        ],
+        [
+         4809.0,
+         -921.0
+        ],
+        [
+         4560.0,
+         -921.0
+        ],
+        [
+         4560.0,
+         -973.0
+        ],
+        [
+         4590.0,
+         -973.0
+        ]
+       ]
+      },
+      {
+       "wire": "W12",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 3597.7,
+       "path": [
+        [
+         5290.0,
+         0.0
+        ],
+        [
+         5312.0,
+         0.0
+        ],
+        [
+         5312.0,
+         -467.0
+        ],
+        [
+         3945.0,
+         -467.0
+        ],
+        [
+         3945.0,
+         -980.0
+        ],
+        [
+         3965.0,
+         -980.0
+        ]
+       ]
+      },
+      {
+       "wire": "W13",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.7,
+       "path": [
+        [
+         4035.0,
+         -980.0
+        ],
+        [
+         4552.0,
+         -980.0
+        ],
+        [
+         4552.0,
+         -987.0
+        ],
+        [
+         4590.0,
+         -987.0
+        ]
+       ]
+      },
+      {
+       "wire": "W14",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 234.3,
+       "path": [
+        [
+         4710.0,
+         -1001.0
+        ],
+        [
+         5336.0,
+         -1001.0
+        ],
+        [
+         5336.0,
+         -926.0
+        ],
+        [
+         5350.0,
+         -926.0
+        ],
+        [
+         5350.0,
+         -940.0
+        ]
+       ]
+      },
+      {
+       "wire": "W15",
+       "points": 7,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 626.0,
+       "path": [
+        [
+         5350.0,
+         -1020.0
+        ],
+        [
+         5350.0,
+         -1034.0
+        ],
+        [
+         4544.0,
+         -1034.0
+        ],
+        [
+         4544.0,
+         -965.0
+        ],
+        [
+         4568.0,
+         -965.0
+        ],
+        [
+         4568.0,
+         -959.0
+        ],
+        [
+         4590.0,
+         -959.0
+        ]
+       ]
+      },
+      {
+       "wire": "W16",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 110.4,
+       "path": [
+        [
+         4710.0,
+         -1015.0
+        ],
+        [
+         5086.0,
+         -1015.0
+        ],
+        [
+         5086.0,
+         -520.0
+        ],
+        [
+         5100.0,
+         -520.0
+        ]
+       ]
+      },
+      {
+       "wire": "W17",
+       "points": 8,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 797.4,
+       "path": [
+        [
+         5180.0,
+         -520.0
+        ],
+        [
+         5194.0,
+         -520.0
+        ],
+        [
+         5194.0,
+         -941.0
+        ],
+        [
+         4713.0,
+         -941.0
+        ],
+        [
+         4713.0,
+         -915.0
+        ],
+        [
+         4568.0,
+         -915.0
+        ],
+        [
+         4568.0,
+         -959.0
+        ],
+        [
+         4590.0,
+         -959.0
+        ]
+       ]
+      },
+      {
+       "wire": "W18",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 828.9,
+       "path": [
+        [
+         4710.0,
+         -1015.0
+        ],
+        [
+         4732.0,
+         -1015.0
+        ],
+        [
+         4732.0,
+         -947.0
+        ],
+        [
+         5330.0,
+         -947.0
+        ],
+        [
+         5330.0,
+         -520.0
+        ],
+        [
+         5480.0,
+         -520.0
+        ]
+       ]
+      },
+      {
+       "wire": "W19",
+       "points": 12,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 4615.2,
+       "path": [
+        [
+         5560.0,
+         -520.0
+        ],
+        [
+         5574.0,
+         -520.0
+        ],
+        [
+         5574.0,
+         -485.0
+        ],
+        [
+         4718.0,
+         -485.0
+        ],
+        [
+         4718.0,
+         -909.0
+        ],
+        [
+         4582.0,
+         -909.0
+        ],
+        [
+         4582.0,
+         -965.0
+        ],
+        [
+         4570.0,
+         -965.0
+        ],
+        [
+         4570.0,
+         -960.0
+        ],
+        [
+         4568.0,
+         -960.0
+        ],
+        [
+         4568.0,
+         -959.0
+        ],
+        [
+         4590.0,
+         -959.0
+        ]
+       ]
+      },
+      {
+       "wire": "W20",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 125.0,
+       "path": [
+        [
+         5290.0,
+         0.0
+        ],
+        [
+         5296.0,
+         0.0
+        ],
+        [
+         5296.0,
+         -1226.0
+        ],
+        [
+         5350.0,
+         -1226.0
+        ],
+        [
+         5350.0,
+         -1240.0
+        ]
+       ]
+      },
+      {
+       "wire": "W21",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 187.5,
+       "path": [
+        [
+         5350.0,
+         -1280.0
+        ],
+        [
+         5350.0,
+         -1294.0
+        ],
+        [
+         5630.0,
+         -1294.0
+        ],
+        [
+         5630.0,
+         -926.0
+        ],
+        [
+         5650.0,
+         -926.0
+        ],
+        [
+         5650.0,
+         -940.0
+        ]
+       ]
+      },
+      {
+       "wire": "W22",
+       "points": 7,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 3081.8,
+       "path": [
+        [
+         5650.0,
+         -1020.0
+        ],
+        [
+         5650.0,
+         -1042.0
+        ],
+        [
+         4536.0,
+         -1042.0
+        ],
+        [
+         4536.0,
+         -953.0
+        ],
+        [
+         4566.0,
+         -953.0
+        ],
+        [
+         4566.0,
+         -959.0
+        ],
+        [
+         4590.0,
+         -959.0
+        ]
+       ]
+      }
+     ]
+    }
+   },
+   "pdf": "C:/seed/gallerymetrics/demo_control_panel_A3.pdf",
+   "pdf_bytes": 35577,
+   "demo": {
+    "error": null,
+    "demo_done": true,
+    "demo_error": null,
+    "demo_sheet": "control_panel_A3.pdf",
+    "demo_route_findings": 61,
+    "stdout_tail": "{\"done\": true, \"sheet\": \"control_panel_A3.pdf\", \"warnings\": [], \"term_ends_table\": 89, \"netlist\": 22, \"route\": 61, \"devices\": 17, \"wires\": 22, \"pdf_bytes\": 39421, \"devices_supply\": 7, \"devices_front\": 5, \"devices_logic\": 5}\n"
+   }
+  },
+  "demo_dol_vertical": {
+   "script": "C:/gallery_src\\demo_dol_vertical.py",
+   "doc": "MSV",
+   "passes": {
+    "off": {
+     "before": {
+      "wires": 6,
+      "overlap_pairs": 0,
+      "overlap_mm": 0,
+      "junction_overlaps": 0,
+      "junction_mm": 0,
+      "crossings": 0,
+      "segments_in_foreign_box": 0,
+      "min_clearance_mm": 177.0,
+      "plan_matches_shape": 6,
+      "plan_checked": 6,
+      "device_boxes": 3,
+      "label_boxes": 25
+     },
+     "after": {
+      "wires": 6,
+      "overlap_pairs": 0,
+      "overlap_mm": 0,
+      "junction_overlaps": 0,
+      "junction_mm": 0,
+      "crossings": 0,
+      "segments_in_foreign_box": 0,
+      "min_clearance_mm": 177.0,
+      "plan_matches_shape": 6,
+      "plan_checked": 6,
+      "device_boxes": 3,
+      "label_boxes": 25
+     },
+     "wires_changed_by_reroute": 0,
+     "routed": 6,
+     "fallback": [],
+     "reroute_plan_matches_shape": 6,
+     "hook_installed_at_build": false,
+     "per_wire": [
+      {
+       "wire": "W1",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4370.0,
+         -35.0
+        ],
+        [
+         4370.0,
+         -145.0
+        ]
+       ]
+      },
+      {
+       "wire": "W2",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4400.0,
+         -35.0
+        ],
+        [
+         4400.0,
+         -145.0
+        ]
+       ]
+      },
+      {
+       "wire": "W3",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4430.0,
+         -35.0
+        ],
+        [
+         4430.0,
+         -145.0
+        ]
+       ]
+      },
+      {
+       "wire": "W4",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4370.0,
+         -215.0
+        ],
+        [
+         4370.0,
+         -325.0
+        ]
+       ]
+      },
+      {
+       "wire": "W5",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4400.0,
+         -215.0
+        ],
+        [
+         4400.0,
+         -325.0
+        ]
+       ]
+      },
+      {
+       "wire": "W6",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4430.0,
+         -215.0
+        ],
+        [
+         4430.0,
+         -325.0
+        ]
+       ]
+      }
+     ]
+    },
+    "on": {
+     "before": {
+      "wires": 6,
+      "overlap_pairs": 0,
+      "overlap_mm": 0,
+      "junction_overlaps": 0,
+      "junction_mm": 0,
+      "crossings": 0,
+      "segments_in_foreign_box": 0,
+      "min_clearance_mm": 177.0,
+      "plan_matches_shape": 6,
+      "plan_checked": 6,
+      "device_boxes": 3,
+      "label_boxes": 25
+     },
+     "after": {
+      "wires": 6,
+      "overlap_pairs": 0,
+      "overlap_mm": 0,
+      "junction_overlaps": 0,
+      "junction_mm": 0,
+      "crossings": 0,
+      "segments_in_foreign_box": 0,
+      "min_clearance_mm": 177.0,
+      "plan_matches_shape": 6,
+      "plan_checked": 6,
+      "device_boxes": 3,
+      "label_boxes": 25
+     },
+     "wires_changed_by_reroute": 0,
+     "routed": 6,
+     "fallback": [],
+     "reroute_plan_matches_shape": 6,
+     "hook_installed_at_build": true,
+     "per_wire": [
+      {
+       "wire": "W1",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4370.0,
+         -35.0
+        ],
+        [
+         4370.0,
+         -145.0
+        ]
+       ]
+      },
+      {
+       "wire": "W2",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4400.0,
+         -35.0
+        ],
+        [
+         4400.0,
+         -145.0
+        ]
+       ]
+      },
+      {
+       "wire": "W3",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4430.0,
+         -35.0
+        ],
+        [
+         4430.0,
+         -145.0
+        ]
+       ]
+      },
+      {
+       "wire": "W4",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4370.0,
+         -215.0
+        ],
+        [
+         4370.0,
+         -325.0
+        ]
+       ]
+      },
+      {
+       "wire": "W5",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4400.0,
+         -215.0
+        ],
+        [
+         4400.0,
+         -325.0
+        ]
+       ]
+      },
+      {
+       "wire": "W6",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4430.0,
+         -215.0
+        ],
+        [
+         4430.0,
+         -325.0
+        ]
+       ]
+      }
+     ]
+    }
+   },
+   "pdf": "C:/seed/gallerymetrics/demo_dol_vertical_A3.pdf",
+   "pdf_bytes": 14461,
+   "demo": {
+    "error": null,
+    "demo_done": true,
+    "demo_error": null,
+    "demo_sheet": "dol_vertical_A3.pdf",
+    "demo_route_findings": 0,
+    "stdout_tail": "{\"done\": true, \"sheet\": \"dol_vertical_A3.pdf\", \"warnings\": [], \"term_ends_table\": 89, \"straight_check\": [[\"W1\", 1, 110.0], [\"W2\", 1, 110.0], [\"W3\", 1, 110.0], [\"W4\", 1, 110.0], [\"W5\", 1, 110.0], [\"W6\", 1, 110.0]], \"netlist\": 6, \"route\": 0, \"devices\": 3, \"wires\": 6, \"pdf_bytes\": 17166}\n"
+   }
+  },
+  "demo_motor_starters": {
+   "script": "C:/gallery_src\\demo_motor_starters.py",
+   "doc": "MSV",
+   "passes": {
+    "off": {
+     "before": {
+      "wires": 39,
+      "overlap_pairs": 10,
+      "overlap_mm": 1345.5,
+      "junction_overlaps": 0,
+      "junction_mm": 0,
+      "crossings": 11,
+      "segments_in_foreign_box": 2,
+      "min_clearance_mm": 0.0,
+      "plan_matches_shape": 1,
+      "plan_checked": 39,
+      "device_boxes": 24,
+      "label_boxes": 106
+     },
+     "after": {
+      "wires": 39,
+      "overlap_pairs": 1,
+      "overlap_mm": 1.0,
+      "junction_overlaps": 9,
+      "junction_mm": 110.0,
+      "crossings": 15,
+      "segments_in_foreign_box": 0,
+      "min_clearance_mm": 14.0,
+      "plan_matches_shape": 39,
+      "plan_checked": 39,
+      "device_boxes": 24,
+      "label_boxes": 106
+     },
+     "wires_changed_by_reroute": 38,
+     "routed": 39,
+     "fallback": [],
+     "reroute_plan_matches_shape": 39,
+     "hook_installed_at_build": false,
+     "per_wire": [
+      {
+       "wire": "W1",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 31.3,
+       "path": [
+        [
+         4000.0,
+         25.0
+        ],
+        [
+         4000.0,
+         39.0
+        ],
+        [
+         4326.0,
+         39.0
+        ],
+        [
+         4326.0,
+         -115.0
+        ],
+        [
+         4340.0,
+         -115.0
+        ]
+       ]
+      },
+      {
+       "wire": "W2",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 49.5,
+       "path": [
+        [
+         4000.0,
+         -125.0
+        ],
+        [
+         4000.0,
+         -111.0
+        ],
+        [
+         4320.0,
+         -111.0
+        ],
+        [
+         4320.0,
+         -143.0
+        ],
+        [
+         4340.0,
+         -143.0
+        ]
+       ]
+      },
+      {
+       "wire": "W3",
+       "points": 3,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 13.0,
+       "path": [
+        [
+         4000.0,
+         -275.0
+        ],
+        [
+         4000.0,
+         -171.0
+        ],
+        [
+         4340.0,
+         -171.0
+        ]
+       ]
+      },
+      {
+       "wire": "W4",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.7,
+       "path": [
+        [
+         4460.0,
+         -129.0
+        ],
+        [
+         4726.0,
+         -129.0
+        ],
+        [
+         4726.0,
+         -101.0
+        ],
+        [
+         4740.0,
+         -101.0
+        ]
+       ]
+      },
+      {
+       "wire": "W5",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 31.2,
+       "path": [
+        [
+         4460.0,
+         -157.0
+        ],
+        [
+         4726.0,
+         -157.0
+        ],
+        [
+         4726.0,
+         -129.0
+        ],
+        [
+         4740.0,
+         -129.0
+        ]
+       ]
+      },
+      {
+       "wire": "W6",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4460.0,
+         -185.0
+        ],
+        [
+         4726.0,
+         -185.0
+        ],
+        [
+         4726.0,
+         -157.0
+        ],
+        [
+         4740.0,
+         -157.0
+        ]
+       ]
+      },
+      {
+       "wire": "W7",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4860.0,
+         -115.0
+        ],
+        [
+         5126.0,
+         -115.0
+        ],
+        [
+         5126.0,
+         -101.0
+        ],
+        [
+         5140.0,
+         -101.0
+        ]
+       ]
+      },
+      {
+       "wire": "W8",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4860.0,
+         -143.0
+        ],
+        [
+         5126.0,
+         -143.0
+        ],
+        [
+         5126.0,
+         -129.0
+        ],
+        [
+         5140.0,
+         -129.0
+        ]
+       ]
+      },
+      {
+       "wire": "W9",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4860.0,
+         -171.0
+        ],
+        [
+         5126.0,
+         -171.0
+        ],
+        [
+         5126.0,
+         -157.0
+        ],
+        [
+         5140.0,
+         -157.0
+        ]
+       ]
+      },
+      {
+       "wire": "W10",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 63.0,
+       "path": [
+        [
+         5260.0,
+         -115.0
+        ],
+        [
+         5562.5,
+         -115.0
+        ],
+        [
+         5562.5,
+         -194.3
+        ],
+        [
+         5582.5,
+         -194.3
+        ],
+        [
+         5582.5,
+         -180.3
+        ]
+       ]
+      },
+      {
+       "wire": "W11",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 109.4,
+       "path": [
+        [
+         5260.0,
+         -143.0
+        ],
+        [
+         5554.5,
+         -143.0
+        ],
+        [
+         5554.5,
+         -202.0
+        ],
+        [
+         5600.0,
+         -202.0
+        ],
+        [
+         5600.0,
+         -185.0
+        ]
+       ]
+      },
+      {
+       "wire": "W12",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 120.0,
+       "path": [
+        [
+         5260.0,
+         -171.0
+        ],
+        [
+         5546.5,
+         -171.0
+        ],
+        [
+         5546.5,
+         -208.0
+        ],
+        [
+         5617.5,
+         -208.0
+        ],
+        [
+         5617.5,
+         -180.3
+        ]
+       ]
+      },
+      {
+       "wire": "W13",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 52.4,
+       "path": [
+        [
+         4000.0,
+         -625.0
+        ],
+        [
+         4000.0,
+         -611.0
+        ],
+        [
+         4326.0,
+         -611.0
+        ],
+        [
+         4326.0,
+         -765.0
+        ],
+        [
+         4340.0,
+         -765.0
+        ]
+       ]
+      },
+      {
+       "wire": "W14",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 46.9,
+       "path": [
+        [
+         4000.0,
+         -775.0
+        ],
+        [
+         4000.0,
+         -761.0
+        ],
+        [
+         4320.0,
+         -761.0
+        ],
+        [
+         4320.0,
+         -793.0
+        ],
+        [
+         4340.0,
+         -793.0
+        ]
+       ]
+      },
+      {
+       "wire": "W15",
+       "points": 3,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 31.3,
+       "path": [
+        [
+         4000.0,
+         -925.0
+        ],
+        [
+         4000.0,
+         -821.0
+        ],
+        [
+         4340.0,
+         -821.0
+        ]
+       ]
+      },
+      {
+       "wire": "W16",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 62.5,
+       "path": [
+        [
+         4460.0,
+         -779.0
+        ],
+        [
+         4726.0,
+         -779.0
+        ],
+        [
+         4726.0,
+         -631.0
+        ],
+        [
+         4740.0,
+         -631.0
+        ]
+       ]
+      },
+      {
+       "wire": "W17",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 187.5,
+       "path": [
+        [
+         4460.0,
+         -807.0
+        ],
+        [
+         4734.0,
+         -807.0
+        ],
+        [
+         4734.0,
+         -660.0
+        ],
+        [
+         4720.0,
+         -660.0
+        ],
+        [
+         4720.0,
+         -659.0
+        ],
+        [
+         4740.0,
+         -659.0
+        ]
+       ]
+      },
+      {
+       "wire": "W18",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 218.8,
+       "path": [
+        [
+         4460.0,
+         -835.0
+        ],
+        [
+         4742.0,
+         -835.0
+        ],
+        [
+         4742.0,
+         -732.0
+        ],
+        [
+         4720.0,
+         -732.0
+        ],
+        [
+         4720.0,
+         -687.0
+        ],
+        [
+         4740.0,
+         -687.0
+        ]
+       ]
+      },
+      {
+       "wire": "W19",
+       "points": 8,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 234.9,
+       "path": [
+        [
+         4460.0,
+         -779.0
+        ],
+        [
+         4474.0,
+         -779.0
+        ],
+        [
+         4474.0,
+         -801.0
+        ],
+        [
+         4750.0,
+         -801.0
+        ],
+        [
+         4750.0,
+         -914.0
+        ],
+        [
+         4726.0,
+         -914.0
+        ],
+        [
+         4726.0,
+         -987.0
+        ],
+        [
+         4740.0,
+         -987.0
+        ]
+       ]
+      },
+      {
+       "wire": "W20",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 281.3,
+       "path": [
+        [
+         4460.0,
+         -807.0
+        ],
+        [
+         4474.0,
+         -807.0
+        ],
+        [
+         4474.0,
+         -959.0
+        ],
+        [
+         4740.0,
+         -959.0
+        ]
+       ]
+      },
+      {
+       "wire": "W21",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 46.9,
+       "path": [
+        [
+         4460.0,
+         -835.0
+        ],
+        [
+         4466.0,
+         -835.0
+        ],
+        [
+         4466.0,
+         -931.0
+        ],
+        [
+         4740.0,
+         -931.0
+        ]
+       ]
+      },
+      {
+       "wire": "W22",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 31.3,
+       "path": [
+        [
+         4860.0,
+         -645.0
+        ],
+        [
+         5126.0,
+         -645.0
+        ],
+        [
+         5126.0,
+         -781.0
+        ],
+        [
+         5140.0,
+         -781.0
+        ]
+       ]
+      },
+      {
+       "wire": "W23",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 78.1,
+       "path": [
+        [
+         4860.0,
+         -673.0
+        ],
+        [
+         5120.0,
+         -673.0
+        ],
+        [
+         5120.0,
+         -809.0
+        ],
+        [
+         5140.0,
+         -809.0
+        ]
+       ]
+      },
+      {
+       "wire": "W24",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 78.1,
+       "path": [
+        [
+         4860.0,
+         -701.0
+        ],
+        [
+         5112.0,
+         -701.0
+        ],
+        [
+         5112.0,
+         -837.0
+        ],
+        [
+         5140.0,
+         -837.0
+        ]
+       ]
+      },
+      {
+       "wire": "W25",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 109.5,
+       "path": [
+        [
+         4860.0,
+         -945.0
+        ],
+        [
+         5104.0,
+         -945.0
+        ],
+        [
+         5104.0,
+         -781.0
+        ],
+        [
+         5140.0,
+         -781.0
+        ]
+       ]
+      },
+      {
+       "wire": "W26",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4860.0,
+         -973.0
+        ],
+        [
+         5126.0,
+         -973.0
+        ],
+        [
+         5126.0,
+         -809.0
+        ],
+        [
+         5140.0,
+         -809.0
+        ]
+       ]
+      },
+      {
+       "wire": "W27",
+       "points": 8,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 672.9,
+       "path": [
+        [
+         4860.0,
+         -1001.0
+        ],
+        [
+         5134.0,
+         -1001.0
+        ],
+        [
+         5134.0,
+         -837.0
+        ],
+        [
+         5128.0,
+         -837.0
+        ],
+        [
+         5128.0,
+         -838.0
+        ],
+        [
+         5126.0,
+         -838.0
+        ],
+        [
+         5126.0,
+         -837.0
+        ],
+        [
+         5140.0,
+         -837.0
+        ]
+       ]
+      },
+      {
+       "wire": "W28",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 62.5,
+       "path": [
+        [
+         5260.0,
+         -795.0
+        ],
+        [
+         5562.5,
+         -795.0
+        ],
+        [
+         5562.5,
+         -874.3
+        ],
+        [
+         5582.5,
+         -874.3
+        ],
+        [
+         5582.5,
+         -860.3
+        ]
+       ]
+      },
+      {
+       "wire": "W29",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 109.4,
+       "path": [
+        [
+         5260.0,
+         -823.0
+        ],
+        [
+         5554.5,
+         -823.0
+        ],
+        [
+         5554.5,
+         -882.0
+        ],
+        [
+         5600.0,
+         -882.0
+        ],
+        [
+         5600.0,
+         -865.0
+        ]
+       ]
+      },
+      {
+       "wire": "W30",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 109.4,
+       "path": [
+        [
+         5260.0,
+         -851.0
+        ],
+        [
+         5546.5,
+         -851.0
+        ],
+        [
+         5546.5,
+         -888.0
+        ],
+        [
+         5617.5,
+         -888.0
+        ],
+        [
+         5617.5,
+         -860.3
+        ]
+       ]
+      },
+      {
+       "wire": "W31",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4000.0,
+         -1275.0
+        ],
+        [
+         4000.0,
+         -1261.0
+        ],
+        [
+         4251.0,
+         -1261.0
+        ],
+        [
+         4251.0,
+         -1300.0
+        ],
+        [
+         4265.0,
+         -1300.0
+        ]
+       ]
+      },
+      {
+       "wire": "W32",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4335.0,
+         -1300.0
+        ],
+        [
+         4565.0,
+         -1300.0
+        ]
+       ]
+      },
+      {
+       "wire": "W33",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 46.9,
+       "path": [
+        [
+         4635.0,
+         -1300.0
+        ],
+        [
+         4896.0,
+         -1300.0
+        ],
+        [
+         4896.0,
+         -1266.0
+        ],
+        [
+         4900.0,
+         -1266.0
+        ],
+        [
+         4900.0,
+         -1280.0
+        ]
+       ]
+      },
+      {
+       "wire": "W34",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 62.6,
+       "path": [
+        [
+         4900.0,
+         -1320.0
+        ],
+        [
+         4900.0,
+         -1334.0
+        ],
+        [
+         5186.0,
+         -1334.0
+        ],
+        [
+         5186.0,
+         -1246.0
+        ],
+        [
+         5200.0,
+         -1246.0
+        ],
+        [
+         5200.0,
+         -1260.0
+        ]
+       ]
+      },
+      {
+       "wire": "W35",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 62.4,
+       "path": [
+        [
+         5200.0,
+         -1340.0
+        ],
+        [
+         5200.0,
+         -1354.0
+        ],
+        [
+         5487.0,
+         -1354.0
+        ],
+        [
+         5487.0,
+         -1261.0
+        ],
+        [
+         5500.0,
+         -1261.0
+        ],
+        [
+         5500.0,
+         -1275.0
+        ]
+       ]
+      },
+      {
+       "wire": "W36",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 31.3,
+       "path": [
+        [
+         4335.0,
+         -1300.0
+        ],
+        [
+         4349.0,
+         -1300.0
+        ],
+        [
+         4349.0,
+         -1500.0
+        ],
+        [
+         4565.0,
+         -1500.0
+        ]
+       ]
+      },
+      {
+       "wire": "W37",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 31.2,
+       "path": [
+        [
+         4635.0,
+         -1500.0
+        ],
+        [
+         4896.0,
+         -1500.0
+        ],
+        [
+         4896.0,
+         -1466.0
+        ],
+        [
+         4900.0,
+         -1466.0
+        ],
+        [
+         4900.0,
+         -1480.0
+        ]
+       ]
+      },
+      {
+       "wire": "W38",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 46.9,
+       "path": [
+        [
+         4900.0,
+         -1520.0
+        ],
+        [
+         4900.0,
+         -1534.0
+        ],
+        [
+         5186.0,
+         -1534.0
+        ],
+        [
+         5186.0,
+         -1446.0
+        ],
+        [
+         5200.0,
+         -1446.0
+        ],
+        [
+         5200.0,
+         -1460.0
+        ]
+       ]
+      },
+      {
+       "wire": "W39",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 156.3,
+       "path": [
+        [
+         5200.0,
+         -1540.0
+        ],
+        [
+         5200.0,
+         -1554.0
+        ],
+        [
+         5508.0,
+         -1554.0
+        ],
+        [
+         5508.0,
+         -1261.0
+        ],
+        [
+         5500.0,
+         -1261.0
+        ],
+        [
+         5500.0,
+         -1275.0
+        ]
+       ]
+      }
+     ]
+    },
+    "on": {
+     "before": {
+      "wires": 39,
+      "overlap_pairs": 1,
+      "overlap_mm": 1.0,
+      "junction_overlaps": 9,
+      "junction_mm": 110.0,
+      "crossings": 15,
+      "segments_in_foreign_box": 0,
+      "min_clearance_mm": 14.0,
+      "plan_matches_shape": 37,
+      "plan_checked": 39,
+      "device_boxes": 24,
+      "label_boxes": 106
+     },
+     "after": {
+      "wires": 39,
+      "overlap_pairs": 1,
+      "overlap_mm": 1.0,
+      "junction_overlaps": 9,
+      "junction_mm": 110.0,
+      "crossings": 15,
+      "segments_in_foreign_box": 0,
+      "min_clearance_mm": 14.0,
+      "plan_matches_shape": 39,
+      "plan_checked": 39,
+      "device_boxes": 24,
+      "label_boxes": 106
+     },
+     "wires_changed_by_reroute": 4,
+     "routed": 39,
+     "fallback": [],
+     "reroute_plan_matches_shape": 39,
+     "hook_installed_at_build": true,
+     "per_wire": [
+      {
+       "wire": "W1",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 31.3,
+       "path": [
+        [
+         4000.0,
+         25.0
+        ],
+        [
+         4000.0,
+         39.0
+        ],
+        [
+         4326.0,
+         39.0
+        ],
+        [
+         4326.0,
+         -115.0
+        ],
+        [
+         4340.0,
+         -115.0
+        ]
+       ]
+      },
+      {
+       "wire": "W2",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 46.9,
+       "path": [
+        [
+         4000.0,
+         -125.0
+        ],
+        [
+         4000.0,
+         -111.0
+        ],
+        [
+         4320.0,
+         -111.0
+        ],
+        [
+         4320.0,
+         -143.0
+        ],
+        [
+         4340.0,
+         -143.0
+        ]
+       ]
+      },
+      {
+       "wire": "W3",
+       "points": 3,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 31.3,
+       "path": [
+        [
+         4000.0,
+         -275.0
+        ],
+        [
+         4000.0,
+         -171.0
+        ],
+        [
+         4340.0,
+         -171.0
+        ]
+       ]
+      },
+      {
+       "wire": "W4",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4460.0,
+         -129.0
+        ],
+        [
+         4726.0,
+         -129.0
+        ],
+        [
+         4726.0,
+         -101.0
+        ],
+        [
+         4740.0,
+         -101.0
+        ]
+       ]
+      },
+      {
+       "wire": "W5",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4460.0,
+         -157.0
+        ],
+        [
+         4726.0,
+         -157.0
+        ],
+        [
+         4726.0,
+         -129.0
+        ],
+        [
+         4740.0,
+         -129.0
+        ]
+       ]
+      },
+      {
+       "wire": "W6",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4460.0,
+         -185.0
+        ],
+        [
+         4726.0,
+         -185.0
+        ],
+        [
+         4726.0,
+         -157.0
+        ],
+        [
+         4740.0,
+         -157.0
+        ]
+       ]
+      },
+      {
+       "wire": "W7",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.7,
+       "path": [
+        [
+         4860.0,
+         -115.0
+        ],
+        [
+         5126.0,
+         -115.0
+        ],
+        [
+         5126.0,
+         -101.0
+        ],
+        [
+         5140.0,
+         -101.0
+        ]
+       ]
+      },
+      {
+       "wire": "W8",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4860.0,
+         -143.0
+        ],
+        [
+         5126.0,
+         -143.0
+        ],
+        [
+         5126.0,
+         -129.0
+        ],
+        [
+         5140.0,
+         -129.0
+        ]
+       ]
+      },
+      {
+       "wire": "W9",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4860.0,
+         -171.0
+        ],
+        [
+         5126.0,
+         -171.0
+        ],
+        [
+         5126.0,
+         -157.0
+        ],
+        [
+         5140.0,
+         -157.0
+        ]
+       ]
+      },
+      {
+       "wire": "W10",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 62.5,
+       "path": [
+        [
+         5260.0,
+         -115.0
+        ],
+        [
+         5562.5,
+         -115.0
+        ],
+        [
+         5562.5,
+         -194.3
+        ],
+        [
+         5582.5,
+         -194.3
+        ],
+        [
+         5582.5,
+         -180.3
+        ]
+       ]
+      },
+      {
+       "wire": "W11",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 125.0,
+       "path": [
+        [
+         5260.0,
+         -143.0
+        ],
+        [
+         5554.5,
+         -143.0
+        ],
+        [
+         5554.5,
+         -202.0
+        ],
+        [
+         5600.0,
+         -202.0
+        ],
+        [
+         5600.0,
+         -185.0
+        ]
+       ]
+      },
+      {
+       "wire": "W12",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 109.4,
+       "path": [
+        [
+         5260.0,
+         -171.0
+        ],
+        [
+         5546.5,
+         -171.0
+        ],
+        [
+         5546.5,
+         -208.0
+        ],
+        [
+         5617.5,
+         -208.0
+        ],
+        [
+         5617.5,
+         -180.3
+        ]
+       ]
+      },
+      {
+       "wire": "W13",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 62.5,
+       "path": [
+        [
+         4000.0,
+         -625.0
+        ],
+        [
+         4000.0,
+         -611.0
+        ],
+        [
+         4326.0,
+         -611.0
+        ],
+        [
+         4326.0,
+         -765.0
+        ],
+        [
+         4340.0,
+         -765.0
+        ]
+       ]
+      },
+      {
+       "wire": "W14",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 46.9,
+       "path": [
+        [
+         4000.0,
+         -775.0
+        ],
+        [
+         4000.0,
+         -761.0
+        ],
+        [
+         4320.0,
+         -761.0
+        ],
+        [
+         4320.0,
+         -793.0
+        ],
+        [
+         4340.0,
+         -793.0
+        ]
+       ]
+      },
+      {
+       "wire": "W15",
+       "points": 3,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 31.4,
+       "path": [
+        [
+         4000.0,
+         -925.0
+        ],
+        [
+         4000.0,
+         -821.0
+        ],
+        [
+         4340.0,
+         -821.0
+        ]
+       ]
+      },
+      {
+       "wire": "W16",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 62.5,
+       "path": [
+        [
+         4460.0,
+         -779.0
+        ],
+        [
+         4726.0,
+         -779.0
+        ],
+        [
+         4726.0,
+         -631.0
+        ],
+        [
+         4740.0,
+         -631.0
+        ]
+       ]
+      },
+      {
+       "wire": "W17",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 187.1,
+       "path": [
+        [
+         4460.0,
+         -807.0
+        ],
+        [
+         4734.0,
+         -807.0
+        ],
+        [
+         4734.0,
+         -660.0
+        ],
+        [
+         4720.0,
+         -660.0
+        ],
+        [
+         4720.0,
+         -659.0
+        ],
+        [
+         4740.0,
+         -659.0
+        ]
+       ]
+      },
+      {
+       "wire": "W18",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 234.5,
+       "path": [
+        [
+         4460.0,
+         -835.0
+        ],
+        [
+         4742.0,
+         -835.0
+        ],
+        [
+         4742.0,
+         -732.0
+        ],
+        [
+         4720.0,
+         -732.0
+        ],
+        [
+         4720.0,
+         -687.0
+        ],
+        [
+         4740.0,
+         -687.0
+        ]
+       ]
+      },
+      {
+       "wire": "W19",
+       "points": 8,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 234.4,
+       "path": [
+        [
+         4460.0,
+         -779.0
+        ],
+        [
+         4474.0,
+         -779.0
+        ],
+        [
+         4474.0,
+         -801.0
+        ],
+        [
+         4750.0,
+         -801.0
+        ],
+        [
+         4750.0,
+         -914.0
+        ],
+        [
+         4726.0,
+         -914.0
+        ],
+        [
+         4726.0,
+         -987.0
+        ],
+        [
+         4740.0,
+         -987.0
+        ]
+       ]
+      },
+      {
+       "wire": "W20",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 281.5,
+       "path": [
+        [
+         4460.0,
+         -807.0
+        ],
+        [
+         4474.0,
+         -807.0
+        ],
+        [
+         4474.0,
+         -959.0
+        ],
+        [
+         4740.0,
+         -959.0
+        ]
+       ]
+      },
+      {
+       "wire": "W21",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 46.9,
+       "path": [
+        [
+         4460.0,
+         -835.0
+        ],
+        [
+         4466.0,
+         -835.0
+        ],
+        [
+         4466.0,
+         -931.0
+        ],
+        [
+         4740.0,
+         -931.0
+        ]
+       ]
+      },
+      {
+       "wire": "W22",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 31.2,
+       "path": [
+        [
+         4860.0,
+         -645.0
+        ],
+        [
+         5126.0,
+         -645.0
+        ],
+        [
+         5126.0,
+         -781.0
+        ],
+        [
+         5140.0,
+         -781.0
+        ]
+       ]
+      },
+      {
+       "wire": "W23",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 62.5,
+       "path": [
+        [
+         4860.0,
+         -673.0
+        ],
+        [
+         5120.0,
+         -673.0
+        ],
+        [
+         5120.0,
+         -809.0
+        ],
+        [
+         5140.0,
+         -809.0
+        ]
+       ]
+      },
+      {
+       "wire": "W24",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 78.1,
+       "path": [
+        [
+         4860.0,
+         -701.0
+        ],
+        [
+         5112.0,
+         -701.0
+        ],
+        [
+         5112.0,
+         -837.0
+        ],
+        [
+         5140.0,
+         -837.0
+        ]
+       ]
+      },
+      {
+       "wire": "W25",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 109.9,
+       "path": [
+        [
+         4860.0,
+         -945.0
+        ],
+        [
+         5104.0,
+         -945.0
+        ],
+        [
+         5104.0,
+         -781.0
+        ],
+        [
+         5140.0,
+         -781.0
+        ]
+       ]
+      },
+      {
+       "wire": "W26",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 31.4,
+       "path": [
+        [
+         4860.0,
+         -973.0
+        ],
+        [
+         5126.0,
+         -973.0
+        ],
+        [
+         5126.0,
+         -809.0
+        ],
+        [
+         5140.0,
+         -809.0
+        ]
+       ]
+      },
+      {
+       "wire": "W27",
+       "points": 8,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 657.1,
+       "path": [
+        [
+         4860.0,
+         -1001.0
+        ],
+        [
+         5134.0,
+         -1001.0
+        ],
+        [
+         5134.0,
+         -837.0
+        ],
+        [
+         5128.0,
+         -837.0
+        ],
+        [
+         5128.0,
+         -838.0
+        ],
+        [
+         5126.0,
+         -838.0
+        ],
+        [
+         5126.0,
+         -837.0
+        ],
+        [
+         5140.0,
+         -837.0
+        ]
+       ]
+      },
+      {
+       "wire": "W28",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 62.5,
+       "path": [
+        [
+         5260.0,
+         -795.0
+        ],
+        [
+         5562.5,
+         -795.0
+        ],
+        [
+         5562.5,
+         -874.3
+        ],
+        [
+         5582.5,
+         -874.3
+        ],
+        [
+         5582.5,
+         -860.3
+        ]
+       ]
+      },
+      {
+       "wire": "W29",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 109.4,
+       "path": [
+        [
+         5260.0,
+         -823.0
+        ],
+        [
+         5554.5,
+         -823.0
+        ],
+        [
+         5554.5,
+         -882.0
+        ],
+        [
+         5600.0,
+         -882.0
+        ],
+        [
+         5600.0,
+         -865.0
+        ]
+       ]
+      },
+      {
+       "wire": "W30",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 109.4,
+       "path": [
+        [
+         5260.0,
+         -851.0
+        ],
+        [
+         5546.5,
+         -851.0
+        ],
+        [
+         5546.5,
+         -888.0
+        ],
+        [
+         5617.5,
+         -888.0
+        ],
+        [
+         5617.5,
+         -860.3
+        ]
+       ]
+      },
+      {
+       "wire": "W31",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4000.0,
+         -1275.0
+        ],
+        [
+         4000.0,
+         -1261.0
+        ],
+        [
+         4251.0,
+         -1261.0
+        ],
+        [
+         4251.0,
+         -1300.0
+        ],
+        [
+         4265.0,
+         -1300.0
+        ]
+       ]
+      },
+      {
+       "wire": "W32",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4335.0,
+         -1300.0
+        ],
+        [
+         4565.0,
+         -1300.0
+        ]
+       ]
+      },
+      {
+       "wire": "W33",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 34.4,
+       "path": [
+        [
+         4635.0,
+         -1300.0
+        ],
+        [
+         4896.0,
+         -1300.0
+        ],
+        [
+         4896.0,
+         -1266.0
+        ],
+        [
+         4900.0,
+         -1266.0
+        ],
+        [
+         4900.0,
+         -1280.0
+        ]
+       ]
+      },
+      {
+       "wire": "W34",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 60.4,
+       "path": [
+        [
+         4900.0,
+         -1320.0
+        ],
+        [
+         4900.0,
+         -1334.0
+        ],
+        [
+         5186.0,
+         -1334.0
+        ],
+        [
+         5186.0,
+         -1246.0
+        ],
+        [
+         5200.0,
+         -1246.0
+        ],
+        [
+         5200.0,
+         -1260.0
+        ]
+       ]
+      },
+      {
+       "wire": "W35",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 62.5,
+       "path": [
+        [
+         5200.0,
+         -1340.0
+        ],
+        [
+         5200.0,
+         -1354.0
+        ],
+        [
+         5487.0,
+         -1354.0
+        ],
+        [
+         5487.0,
+         -1261.0
+        ],
+        [
+         5500.0,
+         -1261.0
+        ],
+        [
+         5500.0,
+         -1275.0
+        ]
+       ]
+      },
+      {
+       "wire": "W36",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 46.9,
+       "path": [
+        [
+         4335.0,
+         -1300.0
+        ],
+        [
+         4349.0,
+         -1300.0
+        ],
+        [
+         4349.0,
+         -1500.0
+        ],
+        [
+         4565.0,
+         -1500.0
+        ]
+       ]
+      },
+      {
+       "wire": "W37",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4635.0,
+         -1500.0
+        ],
+        [
+         4896.0,
+         -1500.0
+        ],
+        [
+         4896.0,
+         -1466.0
+        ],
+        [
+         4900.0,
+         -1466.0
+        ],
+        [
+         4900.0,
+         -1480.0
+        ]
+       ]
+      },
+      {
+       "wire": "W38",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 62.5,
+       "path": [
+        [
+         4900.0,
+         -1520.0
+        ],
+        [
+         4900.0,
+         -1534.0
+        ],
+        [
+         5186.0,
+         -1534.0
+        ],
+        [
+         5186.0,
+         -1446.0
+        ],
+        [
+         5200.0,
+         -1446.0
+        ],
+        [
+         5200.0,
+         -1460.0
+        ]
+       ]
+      },
+      {
+       "wire": "W39",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 156.2,
+       "path": [
+        [
+         5200.0,
+         -1540.0
+        ],
+        [
+         5200.0,
+         -1554.0
+        ],
+        [
+         5508.0,
+         -1554.0
+        ],
+        [
+         5508.0,
+         -1261.0
+        ],
+        [
+         5500.0,
+         -1261.0
+        ],
+        [
+         5500.0,
+         -1275.0
+        ]
+       ]
+      }
+     ]
+    }
+   },
+   "pdf": "C:/seed/gallerymetrics/demo_motor_starters_A3.pdf",
+   "pdf_bytes": 64085,
+   "demo": {
+    "error": null,
+    "demo_done": true,
+    "demo_error": null,
+    "demo_sheet": "motor_starter_variants_A3.pdf",
+    "demo_route_findings": 24,
+    "stdout_tail": "{\"done\": true, \"sheet\": \"motor_starter_variants_A3.pdf\", \"warnings\": [], \"term_ends_table\": 89, \"netlist\": 39, \"route\": 24, \"devices\": 24, \"wires\": 39, \"pdf_bytes\": 71624, \"devices_a\": 7, \"devices_b\": 8, \"devices_b_control\": 9}\n"
+   }
+  },
+  "elec5": {
+   "script": "C:/gallery_src\\elec5.py",
+   "doc": "VT",
+   "passes": {
+    "off": {
+     "before": {
+      "wires": 12,
+      "overlap_pairs": 0,
+      "overlap_mm": 0,
+      "junction_overlaps": 0,
+      "junction_mm": 0,
+      "crossings": 0,
+      "segments_in_foreign_box": 0,
+      "min_clearance_mm": 317.0,
+      "plan_matches_shape": 0,
+      "plan_checked": 12,
+      "device_boxes": 15,
+      "label_boxes": 39
+     },
+     "after": {
+      "wires": 12,
+      "overlap_pairs": 0,
+      "overlap_mm": 0,
+      "junction_overlaps": 0,
+      "junction_mm": 0,
+      "crossings": 0,
+      "segments_in_foreign_box": 0,
+      "min_clearance_mm": 303.0,
+      "plan_matches_shape": 12,
+      "plan_checked": 12,
+      "device_boxes": 15,
+      "label_boxes": 39
+     },
+     "wires_changed_by_reroute": 12,
+     "routed": 12,
+     "fallback": [],
+     "reroute_plan_matches_shape": 12,
+     "hook_installed_at_build": false,
+     "per_wire": [
+      {
+       "wire": "W1",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4000.0,
+         25.0
+        ],
+        [
+         4000.0,
+         39.0
+        ],
+        [
+         4346.0,
+         39.0
+        ],
+        [
+         4346.0,
+         0.0
+        ],
+        [
+         4360.0,
+         0.0
+        ]
+       ]
+      },
+      {
+       "wire": "W2",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4440.0,
+         0.0
+        ],
+        [
+         4796.0,
+         0.0
+        ],
+        [
+         4796.0,
+         34.0
+        ],
+        [
+         4800.0,
+         34.0
+        ],
+        [
+         4800.0,
+         20.0
+        ]
+       ]
+      },
+      {
+       "wire": "W3",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4800.0,
+         -20.0
+        ],
+        [
+         4800.0,
+         -34.0
+        ],
+        [
+         5146.0,
+         -34.0
+        ],
+        [
+         5146.0,
+         0.0
+        ],
+        [
+         5160.0,
+         0.0
+        ]
+       ]
+      },
+      {
+       "wire": "W4",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         5240.0,
+         0.0
+        ],
+        [
+         5588.0,
+         0.0
+        ],
+        [
+         5588.0,
+         39.0
+        ],
+        [
+         5600.0,
+         39.0
+        ],
+        [
+         5600.0,
+         25.0
+        ]
+       ]
+      },
+      {
+       "wire": "W5",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4000.0,
+         -375.0
+        ],
+        [
+         4000.0,
+         -361.0
+        ],
+        [
+         4351.0,
+         -361.0
+        ],
+        [
+         4351.0,
+         -400.0
+        ],
+        [
+         4365.0,
+         -400.0
+        ]
+       ]
+      },
+      {
+       "wire": "W6",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4435.0,
+         -400.0
+        ],
+        [
+         4783.0,
+         -400.0
+        ],
+        [
+         4783.0,
+         -346.0
+        ],
+        [
+         4800.0,
+         -346.0
+        ],
+        [
+         4800.0,
+         -360.0
+        ]
+       ]
+      },
+      {
+       "wire": "W7",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4800.0,
+         -440.0
+        ],
+        [
+         4800.0,
+         -454.0
+        ],
+        [
+         5146.0,
+         -454.0
+        ],
+        [
+         5146.0,
+         -400.0
+        ],
+        [
+         5160.0,
+         -400.0
+        ]
+       ]
+      },
+      {
+       "wire": "W8",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         5240.0,
+         -400.0
+        ],
+        [
+         5588.0,
+         -400.0
+        ],
+        [
+         5588.0,
+         -361.0
+        ],
+        [
+         5600.0,
+         -361.0
+        ],
+        [
+         5600.0,
+         -375.0
+        ]
+       ]
+      },
+      {
+       "wire": "W9",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4000.0,
+         -775.0
+        ],
+        [
+         4000.0,
+         -746.0
+        ],
+        [
+         4400.0,
+         -746.0
+        ],
+        [
+         4400.0,
+         -760.0
+        ]
+       ]
+      },
+      {
+       "wire": "W10",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 78.2,
+       "path": [
+        [
+         4400.0,
+         -840.0
+        ],
+        [
+         4400.0,
+         -854.0
+        ],
+        [
+         4783.0,
+         -854.0
+        ],
+        [
+         4783.0,
+         -746.0
+        ],
+        [
+         4800.0,
+         -746.0
+        ],
+        [
+         4800.0,
+         -760.0
+        ]
+       ]
+      },
+      {
+       "wire": "W11",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 46.9,
+       "path": [
+        [
+         4800.0,
+         -840.0
+        ],
+        [
+         4800.0,
+         -854.0
+        ],
+        [
+         5183.0,
+         -854.0
+        ],
+        [
+         5183.0,
+         -746.0
+        ],
+        [
+         5200.0,
+         -746.0
+        ],
+        [
+         5200.0,
+         -760.0
+        ]
+       ]
+      },
+      {
+       "wire": "W12",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 31.3,
+       "path": [
+        [
+         5200.0,
+         -840.0
+        ],
+        [
+         5200.0,
+         -854.0
+        ],
+        [
+         5588.0,
+         -854.0
+        ],
+        [
+         5588.0,
+         -761.0
+        ],
+        [
+         5600.0,
+         -761.0
+        ],
+        [
+         5600.0,
+         -775.0
+        ]
+       ]
+      }
+     ]
+    },
+    "on": {
+     "before": {
+      "wires": 12,
+      "overlap_pairs": 0,
+      "overlap_mm": 0,
+      "junction_overlaps": 0,
+      "junction_mm": 0,
+      "crossings": 0,
+      "segments_in_foreign_box": 0,
+      "min_clearance_mm": 303.0,
+      "plan_matches_shape": 11,
+      "plan_checked": 12,
+      "device_boxes": 15,
+      "label_boxes": 39
+     },
+     "after": {
+      "wires": 12,
+      "overlap_pairs": 0,
+      "overlap_mm": 0,
+      "junction_overlaps": 0,
+      "junction_mm": 0,
+      "crossings": 0,
+      "segments_in_foreign_box": 0,
+      "min_clearance_mm": 303.0,
+      "plan_matches_shape": 12,
+      "plan_checked": 12,
+      "device_boxes": 15,
+      "label_boxes": 39
+     },
+     "wires_changed_by_reroute": 1,
+     "routed": 12,
+     "fallback": [],
+     "reroute_plan_matches_shape": 12,
+     "hook_installed_at_build": true,
+     "per_wire": [
+      {
+       "wire": "W1",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.7,
+       "path": [
+        [
+         4000.0,
+         25.0
+        ],
+        [
+         4000.0,
+         39.0
+        ],
+        [
+         4346.0,
+         39.0
+        ],
+        [
+         4346.0,
+         0.0
+        ],
+        [
+         4360.0,
+         0.0
+        ]
+       ]
+      },
+      {
+       "wire": "W2",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.7,
+       "path": [
+        [
+         4440.0,
+         0.0
+        ],
+        [
+         4796.0,
+         0.0
+        ],
+        [
+         4796.0,
+         34.0
+        ],
+        [
+         4800.0,
+         34.0
+        ],
+        [
+         4800.0,
+         20.0
+        ]
+       ]
+      },
+      {
+       "wire": "W3",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4800.0,
+         -20.0
+        ],
+        [
+         4800.0,
+         -34.0
+        ],
+        [
+         5146.0,
+         -34.0
+        ],
+        [
+         5146.0,
+         0.0
+        ],
+        [
+         5160.0,
+         0.0
+        ]
+       ]
+      },
+      {
+       "wire": "W4",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 16.2,
+       "path": [
+        [
+         5240.0,
+         0.0
+        ],
+        [
+         5588.0,
+         0.0
+        ],
+        [
+         5588.0,
+         39.0
+        ],
+        [
+         5600.0,
+         39.0
+        ],
+        [
+         5600.0,
+         25.0
+        ]
+       ]
+      },
+      {
+       "wire": "W5",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.7,
+       "path": [
+        [
+         4000.0,
+         -375.0
+        ],
+        [
+         4000.0,
+         -361.0
+        ],
+        [
+         4351.0,
+         -361.0
+        ],
+        [
+         4351.0,
+         -400.0
+        ],
+        [
+         4365.0,
+         -400.0
+        ]
+       ]
+      },
+      {
+       "wire": "W6",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.7,
+       "path": [
+        [
+         4435.0,
+         -400.0
+        ],
+        [
+         4783.0,
+         -400.0
+        ],
+        [
+         4783.0,
+         -346.0
+        ],
+        [
+         4800.0,
+         -346.0
+        ],
+        [
+         4800.0,
+         -360.0
+        ]
+       ]
+      },
+      {
+       "wire": "W7",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4800.0,
+         -440.0
+        ],
+        [
+         4800.0,
+         -454.0
+        ],
+        [
+         5146.0,
+         -454.0
+        ],
+        [
+         5146.0,
+         -400.0
+        ],
+        [
+         5160.0,
+         -400.0
+        ]
+       ]
+      },
+      {
+       "wire": "W8",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         5240.0,
+         -400.0
+        ],
+        [
+         5588.0,
+         -400.0
+        ],
+        [
+         5588.0,
+         -361.0
+        ],
+        [
+         5600.0,
+         -361.0
+        ],
+        [
+         5600.0,
+         -375.0
+        ]
+       ]
+      },
+      {
+       "wire": "W9",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4000.0,
+         -775.0
+        ],
+        [
+         4000.0,
+         -746.0
+        ],
+        [
+         4400.0,
+         -746.0
+        ],
+        [
+         4400.0,
+         -760.0
+        ]
+       ]
+      },
+      {
+       "wire": "W10",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 62.5,
+       "path": [
+        [
+         4400.0,
+         -840.0
+        ],
+        [
+         4400.0,
+         -854.0
+        ],
+        [
+         4783.0,
+         -854.0
+        ],
+        [
+         4783.0,
+         -746.0
+        ],
+        [
+         4800.0,
+         -746.0
+        ],
+        [
+         4800.0,
+         -760.0
+        ]
+       ]
+      },
+      {
+       "wire": "W11",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 63.6,
+       "path": [
+        [
+         4800.0,
+         -840.0
+        ],
+        [
+         4800.0,
+         -854.0
+        ],
+        [
+         5183.0,
+         -854.0
+        ],
+        [
+         5183.0,
+         -746.0
+        ],
+        [
+         5200.0,
+         -746.0
+        ],
+        [
+         5200.0,
+         -760.0
+        ]
+       ]
+      },
+      {
+       "wire": "W12",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 31.2,
+       "path": [
+        [
+         5200.0,
+         -840.0
+        ],
+        [
+         5200.0,
+         -854.0
+        ],
+        [
+         5588.0,
+         -854.0
+        ],
+        [
+         5588.0,
+         -761.0
+        ],
+        [
+         5600.0,
+         -761.0
+        ],
+        [
+         5600.0,
+         -775.0
+        ]
+       ]
+      }
+     ]
+    }
+   },
+   "pdf": "C:/seed/gallerymetrics/elec5_A3.pdf",
+   "pdf_bytes": 23644,
+   "demo": {
+    "error": null,
+    "demo_done": true,
+    "demo_error": null,
+    "demo_sheet": null,
+    "demo_route_findings": 2,
+    "stdout_tail": "{\"done\": true, \"term_table\": 71, \"netlist\": 12, \"route\": 2, \"devices\": 15, \"wires\": 12, \"pdf_bytes\": 23150}\n"
+   }
+  },
+  "gallery_elec2": {
+   "script": "C:/gallery_src\\gallery_elec2.py",
+   "doc": "PC",
+   "passes": {
+    "off": {
+     "before": {
+      "wires": 10,
+      "overlap_pairs": 1,
+      "overlap_mm": 156.5,
+      "junction_overlaps": 0,
+      "junction_mm": 0,
+      "crossings": 0,
+      "segments_in_foreign_box": 2,
+      "min_clearance_mm": 0.0,
+      "plan_matches_shape": 0,
+      "plan_checked": 10,
+      "device_boxes": 11,
+      "label_boxes": 30
+     },
+     "after": {
+      "wires": 10,
+      "overlap_pairs": 0,
+      "overlap_mm": 0,
+      "junction_overlaps": 2,
+      "junction_mm": 28.0,
+      "crossings": 0,
+      "segments_in_foreign_box": 0,
+      "min_clearance_mm": 230.0,
+      "plan_matches_shape": 10,
+      "plan_checked": 10,
+      "device_boxes": 11,
+      "label_boxes": 30
+     },
+     "wires_changed_by_reroute": 10,
+     "routed": 10,
+     "fallback": [],
+     "reroute_plan_matches_shape": 10,
+     "hook_installed_at_build": false,
+     "per_wire": [
+      {
+       "wire": "W1",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4000.0,
+         25.0
+        ],
+        [
+         4000.0,
+         39.0
+        ],
+        [
+         4346.0,
+         39.0
+        ],
+        [
+         4346.0,
+         0.0
+        ],
+        [
+         4360.0,
+         0.0
+        ]
+       ]
+      },
+      {
+       "wire": "W2",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4440.0,
+         0.0
+        ],
+        [
+         4726.0,
+         0.0
+        ],
+        [
+         4726.0,
+         10.0
+        ],
+        [
+         4740.0,
+         10.0
+        ]
+       ]
+      },
+      {
+       "wire": "W3",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4860.0,
+         -10.0
+        ],
+        [
+         5126.0,
+         -10.0
+        ],
+        [
+         5126.0,
+         15.0
+        ],
+        [
+         5140.0,
+         15.0
+        ]
+       ]
+      },
+      {
+       "wire": "W4",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         5260.0,
+         0.0
+        ],
+        [
+         5588.0,
+         0.0
+        ],
+        [
+         5588.0,
+         39.0
+        ],
+        [
+         5600.0,
+         39.0
+        ],
+        [
+         5600.0,
+         25.0
+        ]
+       ]
+      },
+      {
+       "wire": "W5",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4000.0,
+         -425.0
+        ],
+        [
+         4000.0,
+         -411.0
+        ],
+        [
+         4346.0,
+         -411.0
+        ],
+        [
+         4346.0,
+         -450.0
+        ],
+        [
+         4360.0,
+         -450.0
+        ]
+       ]
+      },
+      {
+       "wire": "W6",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4440.0,
+         -450.0
+        ],
+        [
+         4765.0,
+         -450.0
+        ]
+       ]
+      },
+      {
+       "wire": "W7",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4835.0,
+         -450.0
+        ],
+        [
+         5126.0,
+         -450.0
+        ],
+        [
+         5126.0,
+         -440.0
+        ],
+        [
+         5140.0,
+         -440.0
+        ]
+       ]
+      },
+      {
+       "wire": "W8",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 31.2,
+       "path": [
+        [
+         5260.0,
+         -460.0
+        ],
+        [
+         5588.0,
+         -460.0
+        ],
+        [
+         5588.0,
+         -411.0
+        ],
+        [
+         5600.0,
+         -411.0
+        ],
+        [
+         5600.0,
+         -425.0
+        ]
+       ]
+      },
+      {
+       "wire": "W9",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4835.0,
+         -450.0
+        ],
+        [
+         4849.0,
+         -450.0
+        ],
+        [
+         4849.0,
+         -720.0
+        ],
+        [
+         5160.0,
+         -720.0
+        ]
+       ]
+      },
+      {
+       "wire": "W10",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 109.4,
+       "path": [
+        [
+         5240.0,
+         -720.0
+        ],
+        [
+         5608.0,
+         -720.0
+        ],
+        [
+         5608.0,
+         -411.0
+        ],
+        [
+         5600.0,
+         -411.0
+        ],
+        [
+         5600.0,
+         -425.0
+        ]
+       ]
+      }
+     ]
+    },
+    "on": {
+     "before": {
+      "wires": 10,
+      "overlap_pairs": 0,
+      "overlap_mm": 0,
+      "junction_overlaps": 2,
+      "junction_mm": 28.0,
+      "crossings": 0,
+      "segments_in_foreign_box": 0,
+      "min_clearance_mm": 230.0,
+      "plan_matches_shape": 9,
+      "plan_checked": 10,
+      "device_boxes": 11,
+      "label_boxes": 30
+     },
+     "after": {
+      "wires": 10,
+      "overlap_pairs": 0,
+      "overlap_mm": 0,
+      "junction_overlaps": 2,
+      "junction_mm": 28.0,
+      "crossings": 0,
+      "segments_in_foreign_box": 0,
+      "min_clearance_mm": 230.0,
+      "plan_matches_shape": 10,
+      "plan_checked": 10,
+      "device_boxes": 11,
+      "label_boxes": 30
+     },
+     "wires_changed_by_reroute": 1,
+     "routed": 10,
+     "fallback": [],
+     "reroute_plan_matches_shape": 10,
+     "hook_installed_at_build": true,
+     "per_wire": [
+      {
+       "wire": "W1",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4000.0,
+         25.0
+        ],
+        [
+         4000.0,
+         39.0
+        ],
+        [
+         4346.0,
+         39.0
+        ],
+        [
+         4346.0,
+         0.0
+        ],
+        [
+         4360.0,
+         0.0
+        ]
+       ]
+      },
+      {
+       "wire": "W2",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4440.0,
+         0.0
+        ],
+        [
+         4726.0,
+         0.0
+        ],
+        [
+         4726.0,
+         10.0
+        ],
+        [
+         4740.0,
+         10.0
+        ]
+       ]
+      },
+      {
+       "wire": "W3",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 7.7,
+       "path": [
+        [
+         4860.0,
+         -10.0
+        ],
+        [
+         5126.0,
+         -10.0
+        ],
+        [
+         5126.0,
+         15.0
+        ],
+        [
+         5140.0,
+         15.0
+        ]
+       ]
+      },
+      {
+       "wire": "W4",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 8.0,
+       "path": [
+        [
+         5260.0,
+         0.0
+        ],
+        [
+         5588.0,
+         0.0
+        ],
+        [
+         5588.0,
+         39.0
+        ],
+        [
+         5600.0,
+         39.0
+        ],
+        [
+         5600.0,
+         25.0
+        ]
+       ]
+      },
+      {
+       "wire": "W5",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.7,
+       "path": [
+        [
+         4000.0,
+         -425.0
+        ],
+        [
+         4000.0,
+         -411.0
+        ],
+        [
+         4346.0,
+         -411.0
+        ],
+        [
+         4346.0,
+         -450.0
+        ],
+        [
+         4360.0,
+         -450.0
+        ]
+       ]
+      },
+      {
+       "wire": "W6",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4440.0,
+         -450.0
+        ],
+        [
+         4765.0,
+         -450.0
+        ]
+       ]
+      },
+      {
+       "wire": "W7",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4835.0,
+         -450.0
+        ],
+        [
+         5126.0,
+         -450.0
+        ],
+        [
+         5126.0,
+         -440.0
+        ],
+        [
+         5140.0,
+         -440.0
+        ]
+       ]
+      },
+      {
+       "wire": "W8",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         5260.0,
+         -460.0
+        ],
+        [
+         5588.0,
+         -460.0
+        ],
+        [
+         5588.0,
+         -411.0
+        ],
+        [
+         5600.0,
+         -411.0
+        ],
+        [
+         5600.0,
+         -425.0
+        ]
+       ]
+      },
+      {
+       "wire": "W9",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4835.0,
+         -450.0
+        ],
+        [
+         4849.0,
+         -450.0
+        ],
+        [
+         4849.0,
+         -720.0
+        ],
+        [
+         5160.0,
+         -720.0
+        ]
+       ]
+      },
+      {
+       "wire": "W10",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 109.4,
+       "path": [
+        [
+         5240.0,
+         -720.0
+        ],
+        [
+         5608.0,
+         -720.0
+        ],
+        [
+         5608.0,
+         -411.0
+        ],
+        [
+         5600.0,
+         -411.0
+        ],
+        [
+         5600.0,
+         -425.0
+        ]
+       ]
+      }
+     ]
+    }
+   },
+   "pdf": "C:/seed/gallerymetrics/gallery_elec2_A3.pdf",
+   "pdf_bytes": 18838,
+   "demo": {
+    "error": null,
+    "demo_done": true,
+    "demo_error": null,
+    "demo_sheet": null,
+    "demo_route_findings": 1,
+    "stdout_tail": "{\"done\": true, \"term_table\": 71, \"netlist\": 10, \"route\": 1, \"devices\": 11, \"wires\": 10, \"pdf_bytes\": 19207}\n"
+   }
+  },
+  "gallery_elec3": {
+   "script": "C:/gallery_src\\gallery_elec3.py",
+   "doc": "LT",
+   "passes": {
+    "off": {
+     "before": {
+      "wires": 8,
+      "overlap_pairs": 0,
+      "overlap_mm": 0,
+      "junction_overlaps": 0,
+      "junction_mm": 0,
+      "crossings": 0,
+      "segments_in_foreign_box": 0,
+      "min_clearance_mm": 365.0,
+      "plan_matches_shape": 2,
+      "plan_checked": 8,
+      "device_boxes": 10,
+      "label_boxes": 26
+     },
+     "after": {
+      "wires": 8,
+      "overlap_pairs": 0,
+      "overlap_mm": 0,
+      "junction_overlaps": 0,
+      "junction_mm": 0,
+      "crossings": 0,
+      "segments_in_foreign_box": 0,
+      "min_clearance_mm": 352.17,
+      "plan_matches_shape": 8,
+      "plan_checked": 8,
+      "device_boxes": 10,
+      "label_boxes": 26
+     },
+     "wires_changed_by_reroute": 6,
+     "routed": 6,
+     "fallback": [
+      "W1",
+      "W4"
+     ],
+     "reroute_plan_matches_shape": 8,
+     "hook_installed_at_build": false,
+     "per_wire": [
+      {
+       "wire": "W1",
+       "points": 3,
+       "routed": false,
+       "reason": "no path",
+       "segments_in_foreign_box": 0,
+       "ms": 93.7,
+       "path": [
+        [
+         4000.0,
+         25.0
+        ],
+        [
+         4360.0,
+         25.0
+        ],
+        [
+         4360.0,
+         0.0
+        ]
+       ]
+      },
+      {
+       "wire": "W2",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4440.0,
+         0.0
+        ],
+        [
+         4765.0,
+         0.0
+        ]
+       ]
+      },
+      {
+       "wire": "W3",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4835.0,
+         0.0
+        ],
+        [
+         5160.0,
+         0.0
+        ]
+       ]
+      },
+      {
+       "wire": "W4",
+       "points": 3,
+       "routed": false,
+       "reason": "no path",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         5240.0,
+         0.0
+        ],
+        [
+         5600.0,
+         0.0
+        ],
+        [
+         5600.0,
+         25.0
+        ]
+       ]
+      },
+      {
+       "wire": "W5",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4000.0,
+         -375.0
+        ],
+        [
+         4000.0,
+         -361.0
+        ],
+        [
+         4346.0,
+         -361.0
+        ],
+        [
+         4346.0,
+         -400.0
+        ],
+        [
+         4360.0,
+         -400.0
+        ]
+       ]
+      },
+      {
+       "wire": "W6",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4440.0,
+         -400.0
+        ],
+        [
+         4765.0,
+         -400.0
+        ]
+       ]
+      },
+      {
+       "wire": "W7",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4835.0,
+         -400.0
+        ],
+        [
+         5160.0,
+         -400.0
+        ]
+       ]
+      },
+      {
+       "wire": "W8",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         5240.0,
+         -400.0
+        ],
+        [
+         5588.0,
+         -400.0
+        ],
+        [
+         5588.0,
+         -361.0
+        ],
+        [
+         5600.0,
+         -361.0
+        ],
+        [
+         5600.0,
+         -375.0
+        ]
+       ]
+      }
+     ]
+    },
+    "on": {
+     "before": {
+      "wires": 8,
+      "overlap_pairs": 0,
+      "overlap_mm": 0,
+      "junction_overlaps": 0,
+      "junction_mm": 0,
+      "crossings": 0,
+      "segments_in_foreign_box": 0,
+      "min_clearance_mm": 352.17,
+      "plan_matches_shape": 8,
+      "plan_checked": 8,
+      "device_boxes": 10,
+      "label_boxes": 26
+     },
+     "after": {
+      "wires": 8,
+      "overlap_pairs": 0,
+      "overlap_mm": 0,
+      "junction_overlaps": 0,
+      "junction_mm": 0,
+      "crossings": 0,
+      "segments_in_foreign_box": 0,
+      "min_clearance_mm": 352.17,
+      "plan_matches_shape": 8,
+      "plan_checked": 8,
+      "device_boxes": 10,
+      "label_boxes": 26
+     },
+     "wires_changed_by_reroute": 0,
+     "routed": 6,
+     "fallback": [
+      "W1",
+      "W4"
+     ],
+     "reroute_plan_matches_shape": 8,
+     "hook_installed_at_build": true,
+     "per_wire": [
+      {
+       "wire": "W1",
+       "points": 3,
+       "routed": false,
+       "reason": "no path",
+       "segments_in_foreign_box": 0,
+       "ms": 110.4,
+       "path": [
+        [
+         4000.0,
+         25.0
+        ],
+        [
+         4360.0,
+         25.0
+        ],
+        [
+         4360.0,
+         0.0
+        ]
+       ]
+      },
+      {
+       "wire": "W2",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4440.0,
+         0.0
+        ],
+        [
+         4765.0,
+         0.0
+        ]
+       ]
+      },
+      {
+       "wire": "W3",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4835.0,
+         0.0
+        ],
+        [
+         5160.0,
+         0.0
+        ]
+       ]
+      },
+      {
+       "wire": "W4",
+       "points": 3,
+       "routed": false,
+       "reason": "no path",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         5240.0,
+         0.0
+        ],
+        [
+         5600.0,
+         0.0
+        ],
+        [
+         5600.0,
+         25.0
+        ]
+       ]
+      },
+      {
+       "wire": "W5",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.5,
+       "path": [
+        [
+         4000.0,
+         -375.0
+        ],
+        [
+         4000.0,
+         -361.0
+        ],
+        [
+         4346.0,
+         -361.0
+        ],
+        [
+         4346.0,
+         -400.0
+        ],
+        [
+         4360.0,
+         -400.0
+        ]
+       ]
+      },
+      {
+       "wire": "W6",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4440.0,
+         -400.0
+        ],
+        [
+         4765.0,
+         -400.0
+        ]
+       ]
+      },
+      {
+       "wire": "W7",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4835.0,
+         -400.0
+        ],
+        [
+         5160.0,
+         -400.0
+        ]
+       ]
+      },
+      {
+       "wire": "W8",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.7,
+       "path": [
+        [
+         5240.0,
+         -400.0
+        ],
+        [
+         5588.0,
+         -400.0
+        ],
+        [
+         5588.0,
+         -361.0
+        ],
+        [
+         5600.0,
+         -361.0
+        ],
+        [
+         5600.0,
+         -375.0
+        ]
+       ]
+      }
+     ]
+    }
+   },
+   "pdf": "C:/seed/gallerymetrics/gallery_elec3_A3.pdf",
+   "pdf_bytes": 15127,
+   "demo": {
+    "error": null,
+    "demo_done": true,
+    "demo_error": null,
+    "demo_sheet": null,
+    "demo_route_findings": 0,
+    "stdout_tail": "{\"done\": true, \"term_table\": 71, \"netlist\": 8, \"route\": 0, \"devices\": 10, \"wires\": 8, \"pdf_bytes\": 15530}\n"
+   }
+  },
+  "gallery_elec6": {
+   "script": "C:/gallery_src\\gallery_elec6.py",
+   "doc": "VF",
+   "passes": {
+    "off": {
+     "before": {
+      "wires": 14,
+      "overlap_pairs": 5,
+      "overlap_mm": 966.3,
+      "junction_overlaps": 0,
+      "junction_mm": 0,
+      "crossings": 7,
+      "segments_in_foreign_box": 2,
+      "min_clearance_mm": 0.0,
+      "plan_matches_shape": 1,
+      "plan_checked": 14,
+      "device_boxes": 10,
+      "label_boxes": 40
+     },
+     "after": {
+      "wires": 14,
+      "overlap_pairs": 0,
+      "overlap_mm": 0,
+      "junction_overlaps": 2,
+      "junction_mm": 28.0,
+      "crossings": 8,
+      "segments_in_foreign_box": 0,
+      "min_clearance_mm": 230.0,
+      "plan_matches_shape": 14,
+      "plan_checked": 14,
+      "device_boxes": 10,
+      "label_boxes": 40
+     },
+     "wires_changed_by_reroute": 13,
+     "routed": 14,
+     "fallback": [],
+     "reroute_plan_matches_shape": 14,
+     "hook_installed_at_build": false,
+     "per_wire": [
+      {
+       "wire": "W1",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 46.9,
+       "path": [
+        [
+         3970.0,
+         -35.0
+        ],
+        [
+         3970.0,
+         -49.0
+        ],
+        [
+         4426.0,
+         -49.0
+        ],
+        [
+         4426.0,
+         42.0
+        ],
+        [
+         4440.0,
+         42.0
+        ]
+       ]
+      },
+      {
+       "wire": "W2",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 46.9,
+       "path": [
+        [
+         4000.0,
+         -35.0
+        ],
+        [
+         4000.0,
+         -55.0
+        ],
+        [
+         4418.0,
+         -55.0
+        ],
+        [
+         4418.0,
+         28.0
+        ],
+        [
+         4440.0,
+         28.0
+        ]
+       ]
+      },
+      {
+       "wire": "W3",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4030.0,
+         -35.0
+        ],
+        [
+         4030.0,
+         -39.0
+        ],
+        [
+         4410.0,
+         -39.0
+        ],
+        [
+         4410.0,
+         14.0
+        ],
+        [
+         4440.0,
+         14.0
+        ]
+       ]
+      },
+      {
+       "wire": "W4",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 31.9,
+       "path": [
+        [
+         4560.0,
+         0.0
+        ],
+        [
+         5059.0,
+         0.0
+        ],
+        [
+         5059.0,
+         -44.3
+        ],
+        [
+         5082.5,
+         -44.3
+        ],
+        [
+         5082.5,
+         -30.3
+        ]
+       ]
+      },
+      {
+       "wire": "W5",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 62.4,
+       "path": [
+        [
+         4560.0,
+         -14.0
+        ],
+        [
+         5051.0,
+         -14.0
+        ],
+        [
+         5051.0,
+         -51.0
+        ],
+        [
+         5100.0,
+         -51.0
+        ],
+        [
+         5100.0,
+         -35.0
+        ]
+       ]
+      },
+      {
+       "wire": "W6",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 62.5,
+       "path": [
+        [
+         4560.0,
+         -28.0
+        ],
+        [
+         5043.0,
+         -28.0
+        ],
+        [
+         5043.0,
+         -59.0
+        ],
+        [
+         5117.5,
+         -59.0
+        ],
+        [
+         5117.5,
+         -30.3
+        ]
+       ]
+      },
+      {
+       "wire": "W7",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 140.6,
+       "path": [
+        [
+         4440.0,
+         -42.0
+        ],
+        [
+         4402.0,
+         -42.0
+        ],
+        [
+         4402.0,
+         59.0
+        ],
+        [
+         5100.0,
+         59.0
+        ],
+        [
+         5100.0,
+         35.0
+        ]
+       ]
+      },
+      {
+       "wire": "W8",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 31.2,
+       "path": [
+        [
+         4000.0,
+         -425.0
+        ],
+        [
+         4000.0,
+         -411.0
+        ],
+        [
+         4346.0,
+         -411.0
+        ],
+        [
+         4346.0,
+         -450.0
+        ],
+        [
+         4360.0,
+         -450.0
+        ]
+       ]
+      },
+      {
+       "wire": "W9",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4440.0,
+         -450.0
+        ],
+        [
+         4765.0,
+         -450.0
+        ]
+       ]
+      },
+      {
+       "wire": "W10",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4835.0,
+         -428.0
+        ],
+        [
+         5151.0,
+         -428.0
+        ],
+        [
+         5151.0,
+         -450.0
+        ],
+        [
+         5165.0,
+         -450.0
+        ]
+       ]
+      },
+      {
+       "wire": "W11",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         5235.0,
+         -450.0
+        ],
+        [
+         5526.0,
+         -450.0
+        ],
+        [
+         5526.0,
+         -440.0
+        ],
+        [
+         5540.0,
+         -440.0
+        ]
+       ]
+      },
+      {
+       "wire": "W12",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         5660.0,
+         -460.0
+        ],
+        [
+         5987.0,
+         -460.0
+        ],
+        [
+         5987.0,
+         -411.0
+        ],
+        [
+         6000.0,
+         -411.0
+        ],
+        [
+         6000.0,
+         -425.0
+        ]
+       ]
+      },
+      {
+       "wire": "W13",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         5235.0,
+         -450.0
+        ],
+        [
+         5249.0,
+         -450.0
+        ],
+        [
+         5249.0,
+         -720.0
+        ],
+        [
+         5560.0,
+         -720.0
+        ]
+       ]
+      },
+      {
+       "wire": "W14",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 93.7,
+       "path": [
+        [
+         5640.0,
+         -720.0
+        ],
+        [
+         6008.0,
+         -720.0
+        ],
+        [
+         6008.0,
+         -411.0
+        ],
+        [
+         6000.0,
+         -411.0
+        ],
+        [
+         6000.0,
+         -425.0
+        ]
+       ]
+      }
+     ]
+    },
+    "on": {
+     "before": {
+      "wires": 14,
+      "overlap_pairs": 0,
+      "overlap_mm": 0,
+      "junction_overlaps": 2,
+      "junction_mm": 28.0,
+      "crossings": 8,
+      "segments_in_foreign_box": 0,
+      "min_clearance_mm": 230.0,
+      "plan_matches_shape": 14,
+      "plan_checked": 14,
+      "device_boxes": 10,
+      "label_boxes": 40
+     },
+     "after": {
+      "wires": 14,
+      "overlap_pairs": 0,
+      "overlap_mm": 0,
+      "junction_overlaps": 2,
+      "junction_mm": 28.0,
+      "crossings": 8,
+      "segments_in_foreign_box": 0,
+      "min_clearance_mm": 230.0,
+      "plan_matches_shape": 14,
+      "plan_checked": 14,
+      "device_boxes": 10,
+      "label_boxes": 40
+     },
+     "wires_changed_by_reroute": 0,
+     "routed": 14,
+     "fallback": [],
+     "reroute_plan_matches_shape": 14,
+     "hook_installed_at_build": true,
+     "per_wire": [
+      {
+       "wire": "W1",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 31.3,
+       "path": [
+        [
+         3970.0,
+         -35.0
+        ],
+        [
+         3970.0,
+         -49.0
+        ],
+        [
+         4426.0,
+         -49.0
+        ],
+        [
+         4426.0,
+         42.0
+        ],
+        [
+         4440.0,
+         42.0
+        ]
+       ]
+      },
+      {
+       "wire": "W2",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 46.9,
+       "path": [
+        [
+         4000.0,
+         -35.0
+        ],
+        [
+         4000.0,
+         -55.0
+        ],
+        [
+         4418.0,
+         -55.0
+        ],
+        [
+         4418.0,
+         28.0
+        ],
+        [
+         4440.0,
+         28.0
+        ]
+       ]
+      },
+      {
+       "wire": "W3",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 31.2,
+       "path": [
+        [
+         4030.0,
+         -35.0
+        ],
+        [
+         4030.0,
+         -39.0
+        ],
+        [
+         4410.0,
+         -39.0
+        ],
+        [
+         4410.0,
+         14.0
+        ],
+        [
+         4440.0,
+         14.0
+        ]
+       ]
+      },
+      {
+       "wire": "W4",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4560.0,
+         0.0
+        ],
+        [
+         5059.0,
+         0.0
+        ],
+        [
+         5059.0,
+         -44.3
+        ],
+        [
+         5082.5,
+         -44.3
+        ],
+        [
+         5082.5,
+         -30.3
+        ]
+       ]
+      },
+      {
+       "wire": "W5",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 62.5,
+       "path": [
+        [
+         4560.0,
+         -14.0
+        ],
+        [
+         5051.0,
+         -14.0
+        ],
+        [
+         5051.0,
+         -51.0
+        ],
+        [
+         5100.0,
+         -51.0
+        ],
+        [
+         5100.0,
+         -35.0
+        ]
+       ]
+      },
+      {
+       "wire": "W6",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 63.0,
+       "path": [
+        [
+         4560.0,
+         -28.0
+        ],
+        [
+         5043.0,
+         -28.0
+        ],
+        [
+         5043.0,
+         -59.0
+        ],
+        [
+         5117.5,
+         -59.0
+        ],
+        [
+         5117.5,
+         -30.3
+        ]
+       ]
+      },
+      {
+       "wire": "W7",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 140.6,
+       "path": [
+        [
+         4440.0,
+         -42.0
+        ],
+        [
+         4402.0,
+         -42.0
+        ],
+        [
+         4402.0,
+         59.0
+        ],
+        [
+         5100.0,
+         59.0
+        ],
+        [
+         5100.0,
+         35.0
+        ]
+       ]
+      },
+      {
+       "wire": "W8",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 31.2,
+       "path": [
+        [
+         4000.0,
+         -425.0
+        ],
+        [
+         4000.0,
+         -411.0
+        ],
+        [
+         4346.0,
+         -411.0
+        ],
+        [
+         4346.0,
+         -450.0
+        ],
+        [
+         4360.0,
+         -450.0
+        ]
+       ]
+      },
+      {
+       "wire": "W9",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4440.0,
+         -450.0
+        ],
+        [
+         4765.0,
+         -450.0
+        ]
+       ]
+      },
+      {
+       "wire": "W10",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4835.0,
+         -428.0
+        ],
+        [
+         5151.0,
+         -428.0
+        ],
+        [
+         5151.0,
+         -450.0
+        ],
+        [
+         5165.0,
+         -450.0
+        ]
+       ]
+      },
+      {
+       "wire": "W11",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         5235.0,
+         -450.0
+        ],
+        [
+         5526.0,
+         -450.0
+        ],
+        [
+         5526.0,
+         -440.0
+        ],
+        [
+         5540.0,
+         -440.0
+        ]
+       ]
+      },
+      {
+       "wire": "W12",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         5660.0,
+         -460.0
+        ],
+        [
+         5987.0,
+         -460.0
+        ],
+        [
+         5987.0,
+         -411.0
+        ],
+        [
+         6000.0,
+         -411.0
+        ],
+        [
+         6000.0,
+         -425.0
+        ]
+       ]
+      },
+      {
+       "wire": "W13",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.7,
+       "path": [
+        [
+         5235.0,
+         -450.0
+        ],
+        [
+         5249.0,
+         -450.0
+        ],
+        [
+         5249.0,
+         -720.0
+        ],
+        [
+         5560.0,
+         -720.0
+        ]
+       ]
+      },
+      {
+       "wire": "W14",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 93.7,
+       "path": [
+        [
+         5640.0,
+         -720.0
+        ],
+        [
+         6008.0,
+         -720.0
+        ],
+        [
+         6008.0,
+         -411.0
+        ],
+        [
+         6000.0,
+         -411.0
+        ],
+        [
+         6000.0,
+         -425.0
+        ]
+       ]
+      }
+     ]
+    }
+   },
+   "pdf": "C:/seed/gallerymetrics/gallery_elec6_A3.pdf",
+   "pdf_bytes": 26151,
+   "demo": {
+    "error": null,
+    "demo_done": true,
+    "demo_error": null,
+    "demo_sheet": null,
+    "demo_route_findings": 16,
+    "stdout_tail": "{\"done\": true, \"term_table\": 71, \"netlist\": 14, \"route\": 16, \"devices\": 10, \"wires\": 14, \"pdf_bytes\": 26789}\n"
+   }
+  },
+  "gallery_elec7": {
+   "script": "C:/gallery_src\\gallery_elec7.py",
+   "doc": "PL",
+   "passes": {
+    "off": {
+     "before": {
+      "wires": 12,
+      "overlap_pairs": 3,
+      "overlap_mm": 1191.0,
+      "junction_overlaps": 0,
+      "junction_mm": 0,
+      "crossings": 0,
+      "segments_in_foreign_box": 4,
+      "min_clearance_mm": 0.0,
+      "plan_matches_shape": 0,
+      "plan_checked": 12,
+      "device_boxes": 9,
+      "label_boxes": 29
+     },
+     "after": {
+      "wires": 12,
+      "overlap_pairs": 0,
+      "overlap_mm": 0,
+      "junction_overlaps": 6,
+      "junction_mm": 68.0,
+      "crossings": 2,
+      "segments_in_foreign_box": 0,
+      "min_clearance_mm": 1.0,
+      "plan_matches_shape": 12,
+      "plan_checked": 12,
+      "device_boxes": 9,
+      "label_boxes": 29
+     },
+     "wires_changed_by_reroute": 12,
+     "routed": 12,
+     "fallback": [],
+     "reroute_plan_matches_shape": 12,
+     "hook_installed_at_build": false,
+     "per_wire": [
+      {
+       "wire": "W1",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4000.0,
+         25.0
+        ],
+        [
+         4000.0,
+         54.0
+        ],
+        [
+         4400.0,
+         54.0
+        ],
+        [
+         4400.0,
+         40.0
+        ]
+       ]
+      },
+      {
+       "wire": "W2",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4400.0,
+         -40.0
+        ],
+        [
+         4400.0,
+         -54.0
+        ],
+        [
+         4746.0,
+         -54.0
+        ],
+        [
+         4746.0,
+         0.0
+        ],
+        [
+         4760.0,
+         0.0
+        ]
+       ]
+      },
+      {
+       "wire": "W3",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4840.0,
+         0.0
+        ],
+        [
+         5526.0,
+         0.0
+        ],
+        [
+         5526.0,
+         -415.0
+        ],
+        [
+         5540.0,
+         -415.0
+        ]
+       ]
+      },
+      {
+       "wire": "W4",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 156.8,
+       "path": [
+        [
+         4840.0,
+         0.0
+        ],
+        [
+         4854.0,
+         0.0
+        ],
+        [
+         4854.0,
+         -415.0
+        ],
+        [
+         4351.0,
+         -415.0
+        ],
+        [
+         4351.0,
+         -450.0
+        ],
+        [
+         4365.0,
+         -450.0
+        ]
+       ]
+      },
+      {
+       "wire": "W5",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4435.0,
+         -450.0
+        ],
+        [
+         5518.0,
+         -450.0
+        ],
+        [
+         5518.0,
+         -443.0
+        ],
+        [
+         5540.0,
+         -443.0
+        ]
+       ]
+      },
+      {
+       "wire": "W6",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 297.4,
+       "path": [
+        [
+         4840.0,
+         0.0
+        ],
+        [
+         4846.0,
+         0.0
+        ],
+        [
+         4846.0,
+         -858.0
+        ],
+        [
+         4351.0,
+         -858.0
+        ],
+        [
+         4351.0,
+         -900.0
+        ],
+        [
+         4365.0,
+         -900.0
+        ]
+       ]
+      },
+      {
+       "wire": "W7",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 46.9,
+       "path": [
+        [
+         4435.0,
+         -900.0
+        ],
+        [
+         5510.0,
+         -900.0
+        ],
+        [
+         5510.0,
+         -457.0
+        ],
+        [
+         5540.0,
+         -457.0
+        ]
+       ]
+      },
+      {
+       "wire": "W8",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         5660.0,
+         -471.0
+        ],
+        [
+         6326.0,
+         -471.0
+        ],
+        [
+         6326.0,
+         -440.0
+        ],
+        [
+         6340.0,
+         -440.0
+        ]
+       ]
+      },
+      {
+       "wire": "W9",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         6460.0,
+         -460.0
+        ],
+        [
+         6987.0,
+         -460.0
+        ],
+        [
+         6987.0,
+         -411.0
+        ],
+        [
+         7000.0,
+         -411.0
+        ],
+        [
+         7000.0,
+         -425.0
+        ]
+       ]
+      },
+      {
+       "wire": "W10",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         5660.0,
+         -485.0
+        ],
+        [
+         6336.0,
+         -485.0
+        ],
+        [
+         6336.0,
+         -900.0
+        ],
+        [
+         6360.0,
+         -900.0
+        ]
+       ]
+      },
+      {
+       "wire": "W11",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 140.6,
+       "path": [
+        [
+         6440.0,
+         -900.0
+        ],
+        [
+         7008.0,
+         -900.0
+        ],
+        [
+         7008.0,
+         -411.0
+        ],
+        [
+         7000.0,
+         -411.0
+        ],
+        [
+         7000.0,
+         -425.0
+        ]
+       ]
+      },
+      {
+       "wire": "W12",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 109.4,
+       "path": [
+        [
+         5660.0,
+         -429.0
+        ],
+        [
+         6336.0,
+         -429.0
+        ],
+        [
+         6336.0,
+         -396.0
+        ],
+        [
+         7000.0,
+         -396.0
+        ],
+        [
+         7000.0,
+         -425.0
+        ]
+       ]
+      }
+     ]
+    },
+    "on": {
+     "before": {
+      "wires": 12,
+      "overlap_pairs": 0,
+      "overlap_mm": 0,
+      "junction_overlaps": 6,
+      "junction_mm": 68.0,
+      "crossings": 2,
+      "segments_in_foreign_box": 0,
+      "min_clearance_mm": 1.0,
+      "plan_matches_shape": 12,
+      "plan_checked": 12,
+      "device_boxes": 9,
+      "label_boxes": 29
+     },
+     "after": {
+      "wires": 12,
+      "overlap_pairs": 0,
+      "overlap_mm": 0,
+      "junction_overlaps": 6,
+      "junction_mm": 68.0,
+      "crossings": 2,
+      "segments_in_foreign_box": 0,
+      "min_clearance_mm": 1.0,
+      "plan_matches_shape": 12,
+      "plan_checked": 12,
+      "device_boxes": 9,
+      "label_boxes": 29
+     },
+     "wires_changed_by_reroute": 0,
+     "routed": 12,
+     "fallback": [],
+     "reroute_plan_matches_shape": 12,
+     "hook_installed_at_build": true,
+     "per_wire": [
+      {
+       "wire": "W1",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4000.0,
+         25.0
+        ],
+        [
+         4000.0,
+         54.0
+        ],
+        [
+         4400.0,
+         54.0
+        ],
+        [
+         4400.0,
+         40.0
+        ]
+       ]
+      },
+      {
+       "wire": "W2",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4400.0,
+         -40.0
+        ],
+        [
+         4400.0,
+         -54.0
+        ],
+        [
+         4746.0,
+         -54.0
+        ],
+        [
+         4746.0,
+         0.0
+        ],
+        [
+         4760.0,
+         0.0
+        ]
+       ]
+      },
+      {
+       "wire": "W3",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4840.0,
+         0.0
+        ],
+        [
+         5526.0,
+         0.0
+        ],
+        [
+         5526.0,
+         -415.0
+        ],
+        [
+         5540.0,
+         -415.0
+        ]
+       ]
+      },
+      {
+       "wire": "W4",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 140.7,
+       "path": [
+        [
+         4840.0,
+         0.0
+        ],
+        [
+         4854.0,
+         0.0
+        ],
+        [
+         4854.0,
+         -415.0
+        ],
+        [
+         4351.0,
+         -415.0
+        ],
+        [
+         4351.0,
+         -450.0
+        ],
+        [
+         4365.0,
+         -450.0
+        ]
+       ]
+      },
+      {
+       "wire": "W5",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4435.0,
+         -450.0
+        ],
+        [
+         5518.0,
+         -450.0
+        ],
+        [
+         5518.0,
+         -443.0
+        ],
+        [
+         5540.0,
+         -443.0
+        ]
+       ]
+      },
+      {
+       "wire": "W6",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 297.4,
+       "path": [
+        [
+         4840.0,
+         0.0
+        ],
+        [
+         4846.0,
+         0.0
+        ],
+        [
+         4846.0,
+         -858.0
+        ],
+        [
+         4351.0,
+         -858.0
+        ],
+        [
+         4351.0,
+         -900.0
+        ],
+        [
+         4365.0,
+         -900.0
+        ]
+       ]
+      },
+      {
+       "wire": "W7",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 31.2,
+       "path": [
+        [
+         4435.0,
+         -900.0
+        ],
+        [
+         5510.0,
+         -900.0
+        ],
+        [
+         5510.0,
+         -457.0
+        ],
+        [
+         5540.0,
+         -457.0
+        ]
+       ]
+      },
+      {
+       "wire": "W8",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         5660.0,
+         -471.0
+        ],
+        [
+         6326.0,
+         -471.0
+        ],
+        [
+         6326.0,
+         -440.0
+        ],
+        [
+         6340.0,
+         -440.0
+        ]
+       ]
+      },
+      {
+       "wire": "W9",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         6460.0,
+         -460.0
+        ],
+        [
+         6987.0,
+         -460.0
+        ],
+        [
+         6987.0,
+         -411.0
+        ],
+        [
+         7000.0,
+         -411.0
+        ],
+        [
+         7000.0,
+         -425.0
+        ]
+       ]
+      },
+      {
+       "wire": "W10",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         5660.0,
+         -485.0
+        ],
+        [
+         6336.0,
+         -485.0
+        ],
+        [
+         6336.0,
+         -900.0
+        ],
+        [
+         6360.0,
+         -900.0
+        ]
+       ]
+      },
+      {
+       "wire": "W11",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 140.6,
+       "path": [
+        [
+         6440.0,
+         -900.0
+        ],
+        [
+         7008.0,
+         -900.0
+        ],
+        [
+         7008.0,
+         -411.0
+        ],
+        [
+         7000.0,
+         -411.0
+        ],
+        [
+         7000.0,
+         -425.0
+        ]
+       ]
+      },
+      {
+       "wire": "W12",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 109.4,
+       "path": [
+        [
+         5660.0,
+         -429.0
+        ],
+        [
+         6336.0,
+         -429.0
+        ],
+        [
+         6336.0,
+         -396.0
+        ],
+        [
+         7000.0,
+         -396.0
+        ],
+        [
+         7000.0,
+         -425.0
+        ]
+       ]
+      }
+     ]
+    }
+   },
+   "pdf": "C:/seed/gallerymetrics/gallery_elec7_A3.pdf",
+   "pdf_bytes": 18427,
+   "demo": {
+    "error": null,
+    "demo_done": true,
+    "demo_error": null,
+    "demo_sheet": null,
+    "demo_route_findings": 6,
+    "stdout_tail": "{\"done\": true, \"term_table\": 71, \"netlist\": 12, \"route\": 6, \"devices\": 9, \"wires\": 12, \"pdf_bytes\": 18365}\n"
+   }
+  },
+  "gallery_elec8": {
+   "script": "C:/gallery_src\\gallery_elec8.py",
+   "doc": "TR",
+   "passes": {
+    "off": {
+     "before": {
+      "wires": 10,
+      "overlap_pairs": 2,
+      "overlap_mm": 500.5,
+      "junction_overlaps": 0,
+      "junction_mm": 0,
+      "crossings": 5,
+      "segments_in_foreign_box": 2,
+      "min_clearance_mm": 0.0,
+      "plan_matches_shape": 0,
+      "plan_checked": 10,
+      "device_boxes": 9,
+      "label_boxes": 27
+     },
+     "after": {
+      "wires": 10,
+      "overlap_pairs": 0,
+      "overlap_mm": 0,
+      "junction_overlaps": 3,
+      "junction_mm": 29.0,
+      "crossings": 2,
+      "segments_in_foreign_box": 0,
+      "min_clearance_mm": 0.0,
+      "plan_matches_shape": 10,
+      "plan_checked": 10,
+      "device_boxes": 9,
+      "label_boxes": 27
+     },
+     "wires_changed_by_reroute": 10,
+     "routed": 10,
+     "fallback": [],
+     "reroute_plan_matches_shape": 10,
+     "hook_installed_at_build": false,
+     "per_wire": [
+      {
+       "wire": "W1",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4000.0,
+         25.0
+        ],
+        [
+         4000.0,
+         54.0
+        ],
+        [
+         4400.0,
+         54.0
+        ],
+        [
+         4400.0,
+         40.0
+        ]
+       ]
+      },
+      {
+       "wire": "W2",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 31.3,
+       "path": [
+        [
+         4400.0,
+         -40.0
+        ],
+        [
+         4400.0,
+         -54.0
+        ],
+        [
+         4826.0,
+         -54.0
+        ],
+        [
+         4826.0,
+         18.0
+        ],
+        [
+         4840.0,
+         18.0
+        ]
+       ]
+      },
+      {
+       "wire": "W3",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.5,
+       "path": [
+        [
+         4840.0,
+         6.0
+        ],
+        [
+         4818.0,
+         6.0
+        ],
+        [
+         4818.0,
+         39.0
+        ],
+        [
+         5400.0,
+         39.0
+        ],
+        [
+         5400.0,
+         25.0
+        ]
+       ]
+      },
+      {
+       "wire": "W4",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 109.4,
+       "path": [
+        [
+         4960.0,
+         -6.0
+        ],
+        [
+         4974.0,
+         -6.0
+        ],
+        [
+         4974.0,
+         -411.0
+        ],
+        [
+         4346.0,
+         -411.0
+        ],
+        [
+         4346.0,
+         -450.0
+        ],
+        [
+         4360.0,
+         -450.0
+        ]
+       ]
+      },
+      {
+       "wire": "W5",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4440.0,
+         -450.0
+        ],
+        [
+         4765.0,
+         -450.0
+        ]
+       ]
+      },
+      {
+       "wire": "W6",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4835.0,
+         -450.0
+        ],
+        [
+         5165.0,
+         -450.0
+        ]
+       ]
+      },
+      {
+       "wire": "W7",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         5235.0,
+         -450.0
+        ],
+        [
+         5526.0,
+         -450.0
+        ],
+        [
+         5526.0,
+         -440.0
+        ],
+        [
+         5540.0,
+         -440.0
+        ]
+       ]
+      },
+      {
+       "wire": "W8",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 63.0,
+       "path": [
+        [
+         5660.0,
+         -460.0
+        ],
+        [
+         5674.0,
+         -460.0
+        ],
+        [
+         5674.0,
+         -18.0
+        ],
+        [
+         4960.0,
+         -18.0
+        ]
+       ]
+      },
+      {
+       "wire": "W9",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 31.3,
+       "path": [
+        [
+         5235.0,
+         -450.0
+        ],
+        [
+         5249.0,
+         -450.0
+        ],
+        [
+         5249.0,
+         -720.0
+        ],
+        [
+         5560.0,
+         -720.0
+        ]
+       ]
+      },
+      {
+       "wire": "W10",
+       "points": 8,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 1501.6,
+       "path": [
+        [
+         5640.0,
+         -720.0
+        ],
+        [
+         5682.0,
+         -720.0
+        ],
+        [
+         5682.0,
+         -10.0
+        ],
+        [
+         4982.0,
+         -10.0
+        ],
+        [
+         4982.0,
+         -17.0
+        ],
+        [
+         4974.0,
+         -17.0
+        ],
+        [
+         4974.0,
+         -18.0
+        ],
+        [
+         4960.0,
+         -18.0
+        ]
+       ]
+      }
+     ]
+    },
+    "on": {
+     "before": {
+      "wires": 10,
+      "overlap_pairs": 0,
+      "overlap_mm": 0,
+      "junction_overlaps": 3,
+      "junction_mm": 29.0,
+      "crossings": 2,
+      "segments_in_foreign_box": 0,
+      "min_clearance_mm": 0.0,
+      "plan_matches_shape": 10,
+      "plan_checked": 10,
+      "device_boxes": 9,
+      "label_boxes": 27
+     },
+     "after": {
+      "wires": 10,
+      "overlap_pairs": 0,
+      "overlap_mm": 0,
+      "junction_overlaps": 3,
+      "junction_mm": 29.0,
+      "crossings": 2,
+      "segments_in_foreign_box": 0,
+      "min_clearance_mm": 0.0,
+      "plan_matches_shape": 10,
+      "plan_checked": 10,
+      "device_boxes": 9,
+      "label_boxes": 27
+     },
+     "wires_changed_by_reroute": 0,
+     "routed": 10,
+     "fallback": [],
+     "reroute_plan_matches_shape": 10,
+     "hook_installed_at_build": true,
+     "per_wire": [
+      {
+       "wire": "W1",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4000.0,
+         25.0
+        ],
+        [
+         4000.0,
+         54.0
+        ],
+        [
+         4400.0,
+         54.0
+        ],
+        [
+         4400.0,
+         40.0
+        ]
+       ]
+      },
+      {
+       "wire": "W2",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4400.0,
+         -40.0
+        ],
+        [
+         4400.0,
+         -54.0
+        ],
+        [
+         4826.0,
+         -54.0
+        ],
+        [
+         4826.0,
+         18.0
+        ],
+        [
+         4840.0,
+         18.0
+        ]
+       ]
+      },
+      {
+       "wire": "W3",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4840.0,
+         6.0
+        ],
+        [
+         4818.0,
+         6.0
+        ],
+        [
+         4818.0,
+         39.0
+        ],
+        [
+         5400.0,
+         39.0
+        ],
+        [
+         5400.0,
+         25.0
+        ]
+       ]
+      },
+      {
+       "wire": "W4",
+       "points": 6,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 109.9,
+       "path": [
+        [
+         4960.0,
+         -6.0
+        ],
+        [
+         4974.0,
+         -6.0
+        ],
+        [
+         4974.0,
+         -411.0
+        ],
+        [
+         4346.0,
+         -411.0
+        ],
+        [
+         4346.0,
+         -450.0
+        ],
+        [
+         4360.0,
+         -450.0
+        ]
+       ]
+      },
+      {
+       "wire": "W5",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4440.0,
+         -450.0
+        ],
+        [
+         4765.0,
+         -450.0
+        ]
+       ]
+      },
+      {
+       "wire": "W6",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4835.0,
+         -450.0
+        ],
+        [
+         5165.0,
+         -450.0
+        ]
+       ]
+      },
+      {
+       "wire": "W7",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         5235.0,
+         -450.0
+        ],
+        [
+         5526.0,
+         -450.0
+        ],
+        [
+         5526.0,
+         -440.0
+        ],
+        [
+         5540.0,
+         -440.0
+        ]
+       ]
+      },
+      {
+       "wire": "W8",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 62.5,
+       "path": [
+        [
+         5660.0,
+         -460.0
+        ],
+        [
+         5674.0,
+         -460.0
+        ],
+        [
+         5674.0,
+         -18.0
+        ],
+        [
+         4960.0,
+         -18.0
+        ]
+       ]
+      },
+      {
+       "wire": "W9",
+       "points": 4,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         5235.0,
+         -450.0
+        ],
+        [
+         5249.0,
+         -450.0
+        ],
+        [
+         5249.0,
+         -720.0
+        ],
+        [
+         5560.0,
+         -720.0
+        ]
+       ]
+      },
+      {
+       "wire": "W10",
+       "points": 8,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 1491.6,
+       "path": [
+        [
+         5640.0,
+         -720.0
+        ],
+        [
+         5682.0,
+         -720.0
+        ],
+        [
+         5682.0,
+         -10.0
+        ],
+        [
+         4982.0,
+         -10.0
+        ],
+        [
+         4982.0,
+         -17.0
+        ],
+        [
+         4974.0,
+         -17.0
+        ],
+        [
+         4974.0,
+         -18.0
+        ],
+        [
+         4960.0,
+         -18.0
+        ]
+       ]
+      }
+     ]
+    }
+   },
+   "pdf": "C:/seed/gallerymetrics/gallery_elec8_A3.pdf",
+   "pdf_bytes": 18917,
+   "demo": {
+    "error": null,
+    "demo_done": true,
+    "demo_error": null,
+    "demo_sheet": null,
+    "demo_route_findings": 9,
+    "stdout_tail": "{\"done\": true, \"term_table\": 71, \"netlist\": 10, \"route\": 9, \"devices\": 9, \"wires\": 10, \"pdf_bytes\": 19244}\n"
+   }
+  },
+  "gallery_terms": {
+   "script": "C:/gallery_src\\gallery_terms.py",
+   "doc": "TR",
+   "passes": {
+    "off": {
+     "before": {
+      "wires": 9,
+      "overlap_pairs": 3,
+      "overlap_mm": 685.0,
+      "junction_overlaps": 0,
+      "junction_mm": 0,
+      "crossings": 0,
+      "segments_in_foreign_box": 276,
+      "min_clearance_mm": 0.0,
+      "plan_matches_shape": 9,
+      "plan_checked": 9,
+      "device_boxes": 104,
+      "label_boxes": 400
+     },
+     "after": {
+      "wires": 9,
+      "overlap_pairs": 3,
+      "overlap_mm": 685.0,
+      "junction_overlaps": 0,
+      "junction_mm": 0,
+      "crossings": 0,
+      "segments_in_foreign_box": 276,
+      "min_clearance_mm": 0.0,
+      "plan_matches_shape": 9,
+      "plan_checked": 9,
+      "device_boxes": 104,
+      "label_boxes": 400
+     },
+     "wires_changed_by_reroute": 0,
+     "routed": 6,
+     "fallback": [
+      "W7",
+      "W8",
+      "W9"
+     ],
+     "reroute_plan_matches_shape": 9,
+     "hook_installed_at_build": false,
+     "per_wire": [
+      {
+       "wire": "W1",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         -30.0,
+         605.0
+        ],
+        [
+         -30.0,
+         375.0
+        ]
+       ]
+      },
+      {
+       "wire": "W2",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         0.0,
+         605.0
+        ],
+        [
+         0.0,
+         375.0
+        ]
+       ]
+      },
+      {
+       "wire": "W3",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         30.0,
+         605.0
+        ],
+        [
+         30.0,
+         375.0
+        ]
+       ]
+      },
+      {
+       "wire": "W4",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         -30.0,
+         305.0
+        ],
+        [
+         -30.0,
+         75.0
+        ]
+       ]
+      },
+      {
+       "wire": "W5",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         0.0,
+         305.0
+        ],
+        [
+         0.0,
+         75.0
+        ]
+       ]
+      },
+      {
+       "wire": "W6",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         30.0,
+         305.0
+        ],
+        [
+         30.0,
+         75.0
+        ]
+       ]
+      },
+      {
+       "wire": "W7",
+       "points": 3,
+       "routed": false,
+       "reason": "no path",
+       "segments_in_foreign_box": 98,
+       "ms": 0.0,
+       "path": [
+        [
+         -30.0,
+         5.0
+        ],
+        [
+         242.5,
+         5.0
+        ],
+        [
+         242.5,
+         -260.3
+        ]
+       ]
+      },
+      {
+       "wire": "W8",
+       "points": 3,
+       "routed": false,
+       "reason": "no path",
+       "segments_in_foreign_box": 98,
+       "ms": 0.0,
+       "path": [
+        [
+         0.0,
+         5.0
+        ],
+        [
+         260.0,
+         5.0
+        ],
+        [
+         260.0,
+         -265.0
+        ]
+       ]
+      },
+      {
+       "wire": "W9",
+       "points": 3,
+       "routed": false,
+       "reason": "no path",
+       "segments_in_foreign_box": 80,
+       "ms": 0.0,
+       "path": [
+        [
+         30.0,
+         5.0
+        ],
+        [
+         277.5,
+         5.0
+        ],
+        [
+         277.5,
+         -260.3
+        ]
+       ]
+      }
+     ]
+    },
+    "on": {
+     "before": {
+      "wires": 9,
+      "overlap_pairs": 3,
+      "overlap_mm": 685.0,
+      "junction_overlaps": 0,
+      "junction_mm": 0,
+      "crossings": 0,
+      "segments_in_foreign_box": 276,
+      "min_clearance_mm": 0.0,
+      "plan_matches_shape": 9,
+      "plan_checked": 9,
+      "device_boxes": 104,
+      "label_boxes": 400
+     },
+     "after": {
+      "wires": 9,
+      "overlap_pairs": 3,
+      "overlap_mm": 685.0,
+      "junction_overlaps": 0,
+      "junction_mm": 0,
+      "crossings": 0,
+      "segments_in_foreign_box": 276,
+      "min_clearance_mm": 0.0,
+      "plan_matches_shape": 9,
+      "plan_checked": 9,
+      "device_boxes": 104,
+      "label_boxes": 400
+     },
+     "wires_changed_by_reroute": 0,
+     "routed": 6,
+     "fallback": [
+      "W7",
+      "W8",
+      "W9"
+     ],
+     "reroute_plan_matches_shape": 9,
+     "hook_installed_at_build": true,
+     "per_wire": [
+      {
+       "wire": "W1",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         -30.0,
+         605.0
+        ],
+        [
+         -30.0,
+         375.0
+        ]
+       ]
+      },
+      {
+       "wire": "W2",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         0.0,
+         605.0
+        ],
+        [
+         0.0,
+         375.0
+        ]
+       ]
+      },
+      {
+       "wire": "W3",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         30.0,
+         605.0
+        ],
+        [
+         30.0,
+         375.0
+        ]
+       ]
+      },
+      {
+       "wire": "W4",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         -30.0,
+         305.0
+        ],
+        [
+         -30.0,
+         75.0
+        ]
+       ]
+      },
+      {
+       "wire": "W5",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         0.0,
+         305.0
+        ],
+        [
+         0.0,
+         75.0
+        ]
+       ]
+      },
+      {
+       "wire": "W6",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         30.0,
+         305.0
+        ],
+        [
+         30.0,
+         75.0
+        ]
+       ]
+      },
+      {
+       "wire": "W7",
+       "points": 3,
+       "routed": false,
+       "reason": "no path",
+       "segments_in_foreign_box": 98,
+       "ms": 0.0,
+       "path": [
+        [
+         -30.0,
+         5.0
+        ],
+        [
+         242.5,
+         5.0
+        ],
+        [
+         242.5,
+         -260.3
+        ]
+       ]
+      },
+      {
+       "wire": "W8",
+       "points": 3,
+       "routed": false,
+       "reason": "no path",
+       "segments_in_foreign_box": 98,
+       "ms": 0.0,
+       "path": [
+        [
+         0.0,
+         5.0
+        ],
+        [
+         260.0,
+         5.0
+        ],
+        [
+         260.0,
+         -265.0
+        ]
+       ]
+      },
+      {
+       "wire": "W9",
+       "points": 3,
+       "routed": false,
+       "reason": "no path",
+       "segments_in_foreign_box": 80,
+       "ms": 15.6,
+       "path": [
+        [
+         30.0,
+         5.0
+        ],
+        [
+         277.5,
+         5.0
+        ],
+        [
+         277.5,
+         -260.3
+        ]
+       ]
+      }
+     ]
+    }
+   },
+   "pdf": "C:/seed/gallerymetrics/gallery_terms_A3.pdf",
+   "pdf_bytes": 233034,
+   "demo": {
+    "error": null,
+    "demo_done": true,
+    "demo_error": null,
+    "demo_sheet": null,
+    "demo_route_findings": null,
+    "stdout_tail": "{\"done\": true, \"table\": 89, \"pdf_symbols\": 292060, \"symbols\": 100, \"terminals\": 270, \"terminals_moved\": 249, \"stock_left\": [\"Ground (IEC-style)\", \"Terminal (IEC-style)\", \"Selector switch (IEC-style)\", \"Motor 3-phase (IEC-style)\", \"Motor 1-phase (IEC-style)\", \"Transformer (IEC-style)\", \"Energy meter kWh (IEC-style)\"], \"duplicate_positions\": [], \"outside_bounds\": [], \"block_netlist\": 9, \"block_route_findings\": 34, \"pdf_blocks\": 26522}\n"
+   }
+  },
+  "v70_elec4": {
+   "script": "C:/gallery_src\\v70_elec4.py",
+   "doc": "CP",
+   "passes": {
+    "off": {
+     "before": {
+      "wires": 12,
+      "overlap_pairs": 0,
+      "overlap_mm": 0,
+      "junction_overlaps": 0,
+      "junction_mm": 0,
+      "crossings": 0,
+      "segments_in_foreign_box": 0,
+      "min_clearance_mm": 352.0,
+      "plan_matches_shape": 0,
+      "plan_checked": 12,
+      "device_boxes": 15,
+      "label_boxes": 41
+     },
+     "after": {
+      "wires": 12,
+      "overlap_pairs": 0,
+      "overlap_mm": 0,
+      "junction_overlaps": 0,
+      "junction_mm": 0,
+      "crossings": 0,
+      "segments_in_foreign_box": 0,
+      "min_clearance_mm": 338.0,
+      "plan_matches_shape": 12,
+      "plan_checked": 12,
+      "device_boxes": 15,
+      "label_boxes": 41
+     },
+     "wires_changed_by_reroute": 12,
+     "routed": 12,
+     "fallback": [],
+     "reroute_plan_matches_shape": 12,
+     "hook_installed_at_build": false,
+     "per_wire": [
+      {
+       "wire": "W1",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4040.0,
+         0.0
+        ],
+        [
+         4360.0,
+         0.0
+        ]
+       ]
+      },
+      {
+       "wire": "W2",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4440.0,
+         0.0
+        ],
+        [
+         4760.0,
+         0.0
+        ]
+       ]
+      },
+      {
+       "wire": "W3",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4840.0,
+         0.0
+        ],
+        [
+         5160.0,
+         0.0
+        ]
+       ]
+      },
+      {
+       "wire": "W4",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         5240.0,
+         0.0
+        ],
+        [
+         5564.0,
+         0.0
+        ],
+        [
+         5564.0,
+         42.0
+        ],
+        [
+         5600.0,
+         42.0
+        ],
+        [
+         5600.0,
+         28.0
+        ]
+       ]
+      },
+      {
+       "wire": "W5",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4040.0,
+         -400.0
+        ],
+        [
+         4360.0,
+         -400.0
+        ]
+       ]
+      },
+      {
+       "wire": "W6",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4440.0,
+         -400.0
+        ],
+        [
+         4760.0,
+         -400.0
+        ]
+       ]
+      },
+      {
+       "wire": "W7",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4840.0,
+         -400.0
+        ],
+        [
+         5160.0,
+         -400.0
+        ]
+       ]
+      },
+      {
+       "wire": "W8",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         5240.0,
+         -400.0
+        ],
+        [
+         5564.0,
+         -400.0
+        ],
+        [
+         5564.0,
+         -358.0
+        ],
+        [
+         5600.0,
+         -358.0
+        ],
+        [
+         5600.0,
+         -372.0
+        ]
+       ]
+      },
+      {
+       "wire": "W9",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         4000.0,
+         -775.0
+        ],
+        [
+         4000.0,
+         -761.0
+        ],
+        [
+         4346.0,
+         -761.0
+        ],
+        [
+         4346.0,
+         -800.0
+        ],
+        [
+         4360.0,
+         -800.0
+        ]
+       ]
+      },
+      {
+       "wire": "W10",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4440.0,
+         -800.0
+        ],
+        [
+         4760.0,
+         -800.0
+        ]
+       ]
+      },
+      {
+       "wire": "W11",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4840.0,
+         -800.0
+        ],
+        [
+         5160.0,
+         -800.0
+        ]
+       ]
+      },
+      {
+       "wire": "W12",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         5240.0,
+         -800.0
+        ],
+        [
+         5588.0,
+         -800.0
+        ],
+        [
+         5588.0,
+         -761.0
+        ],
+        [
+         5600.0,
+         -761.0
+        ],
+        [
+         5600.0,
+         -775.0
+        ]
+       ]
+      }
+     ]
+    },
+    "on": {
+     "before": {
+      "wires": 12,
+      "overlap_pairs": 0,
+      "overlap_mm": 0,
+      "junction_overlaps": 0,
+      "junction_mm": 0,
+      "crossings": 0,
+      "segments_in_foreign_box": 0,
+      "min_clearance_mm": 338.0,
+      "plan_matches_shape": 12,
+      "plan_checked": 12,
+      "device_boxes": 15,
+      "label_boxes": 41
+     },
+     "after": {
+      "wires": 12,
+      "overlap_pairs": 0,
+      "overlap_mm": 0,
+      "junction_overlaps": 0,
+      "junction_mm": 0,
+      "crossings": 0,
+      "segments_in_foreign_box": 0,
+      "min_clearance_mm": 338.0,
+      "plan_matches_shape": 12,
+      "plan_checked": 12,
+      "device_boxes": 15,
+      "label_boxes": 41
+     },
+     "wires_changed_by_reroute": 0,
+     "routed": 12,
+     "fallback": [],
+     "reroute_plan_matches_shape": 12,
+     "hook_installed_at_build": true,
+     "per_wire": [
+      {
+       "wire": "W1",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4040.0,
+         0.0
+        ],
+        [
+         4360.0,
+         0.0
+        ]
+       ]
+      },
+      {
+       "wire": "W2",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4440.0,
+         0.0
+        ],
+        [
+         4760.0,
+         0.0
+        ]
+       ]
+      },
+      {
+       "wire": "W3",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4840.0,
+         0.0
+        ],
+        [
+         5160.0,
+         0.0
+        ]
+       ]
+      },
+      {
+       "wire": "W4",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         5240.0,
+         0.0
+        ],
+        [
+         5564.0,
+         0.0
+        ],
+        [
+         5564.0,
+         42.0
+        ],
+        [
+         5600.0,
+         42.0
+        ],
+        [
+         5600.0,
+         28.0
+        ]
+       ]
+      },
+      {
+       "wire": "W5",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4040.0,
+         -400.0
+        ],
+        [
+         4360.0,
+         -400.0
+        ]
+       ]
+      },
+      {
+       "wire": "W6",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4440.0,
+         -400.0
+        ],
+        [
+         4760.0,
+         -400.0
+        ]
+       ]
+      },
+      {
+       "wire": "W7",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4840.0,
+         -400.0
+        ],
+        [
+         5160.0,
+         -400.0
+        ]
+       ]
+      },
+      {
+       "wire": "W8",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         5240.0,
+         -400.0
+        ],
+        [
+         5564.0,
+         -400.0
+        ],
+        [
+         5564.0,
+         -358.0
+        ],
+        [
+         5600.0,
+         -358.0
+        ],
+        [
+         5600.0,
+         -372.0
+        ]
+       ]
+      },
+      {
+       "wire": "W9",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4000.0,
+         -775.0
+        ],
+        [
+         4000.0,
+         -761.0
+        ],
+        [
+         4346.0,
+         -761.0
+        ],
+        [
+         4346.0,
+         -800.0
+        ],
+        [
+         4360.0,
+         -800.0
+        ]
+       ]
+      },
+      {
+       "wire": "W10",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4440.0,
+         -800.0
+        ],
+        [
+         4760.0,
+         -800.0
+        ]
+       ]
+      },
+      {
+       "wire": "W11",
+       "points": 2,
+       "routed": true,
+       "reason": "straight",
+       "segments_in_foreign_box": 0,
+       "ms": 0.0,
+       "path": [
+        [
+         4840.0,
+         -800.0
+        ],
+        [
+         5160.0,
+         -800.0
+        ]
+       ]
+      },
+      {
+       "wire": "W12",
+       "points": 5,
+       "routed": true,
+       "reason": "routed",
+       "segments_in_foreign_box": 0,
+       "ms": 15.6,
+       "path": [
+        [
+         5240.0,
+         -800.0
+        ],
+        [
+         5588.0,
+         -800.0
+        ],
+        [
+         5588.0,
+         -761.0
+        ],
+        [
+         5600.0,
+         -761.0
+        ],
+        [
+         5600.0,
+         -775.0
+        ]
+       ]
+      }
+     ]
+    }
+   },
+   "pdf": "C:/seed/gallerymetrics/v70_elec4_A3.pdf",
+   "pdf_bytes": 24950,
+   "demo": {
+    "error": null,
+    "demo_done": true,
+    "demo_error": null,
+    "demo_sheet": null,
+    "demo_route_findings": 0,
+    "stdout_tail": "{\"done\": true, \"term_table\": 71, \"netlist\": 12, \"route\": 0, \"devices\": 15, \"wires\": 12, \"pdf_bytes\": 25805}\n"
+   }
+  }
+ },
+ "freecad": "1.1.4",
+ "preset_name": "balanced",
+ "preset": {
+  "NEAR": 12.0,
+  "LANE": 8.0,
+  "CROSS": 120.0,
+  "OVERLAP": 250.0,
+  "STUB": 14.0
+ },
+ "call_site_present": true,
+ "scripts_seen": [
+  "demo_control_panel.py",
+  "demo_dol_vertical.py",
+  "demo_motor_starters.py",
+  "elec5.py",
+  "gallery_elec2.py",
+  "gallery_elec3.py",
+  "gallery_elec6.py",
+  "gallery_elec7.py",
+  "gallery_elec8.py",
+  "gallery_terms.py",
+  "v70_elec4.py"
+ ]
+}

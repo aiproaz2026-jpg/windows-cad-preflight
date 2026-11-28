@@ -1,0 +1,72 @@
+{
+ "done": true,
+ "bad": [],
+ "symbols": {
+  "Fuse (IEC)": {
+   "ok": true,
+   "edges": 9,
+   "terminals": 2
+  },
+  "Switch NO (IEC)": {
+   "ok": true,
+   "edges": 9,
+   "terminals": 2
+  },
+  "Switch NC (IEC)": {
+   "ok": true,
+   "edges": 10,
+   "terminals": 2
+  },
+  "Disconnector (IEC)": {
+   "ok": true,
+   "edges": 10,
+   "terminals": 2
+  },
+  "Breaker 1P (IEC)": {
+   "ok": true,
+   "edges": 11,
+   "terminals": 2
+  },
+  "Motor protection breaker (IEC)": {
+   "ok": true,
+   "edges": 16,
+   "terminals": 2
+  },
+  "Breaker 3P (IEC)": {
+   "ok": true,
+   "edges": 40,
+   "terminals": 6
+  },
+  "Contactor NO contact (IEC)": {
+   "ok": true,
+   "edges": 10,
+   "terminals": 2
+  },
+  "Contactor NC contact (IEC)": {
+   "ok": true,
+   "edges": 11,
+   "terminals": 2
+  },
+  "Contactor 3P (IEC)": {
+   "ok": true,
+   "edges": 41,
+   "terminals": 8
+  }
+ },
+ "iec_count": 10,
+ "registered": [
+  "Fuse (IEC)",
+  "Switch NO (IEC)",
+  "Switch NC (IEC)",
+  "Disconnector (IEC)",
+  "Breaker 1P (IEC)",
+  "Motor protection breaker (IEC)",
+  "Breaker 3P (IEC)",
+  "Contactor NO contact (IEC)",
+  "Contactor NC contact (IEC)",
+  "Contactor 3P (IEC)"
+ ],
+ "missing": [],
+ "iec_netlist": 6,
+ "iec_route": 3
+}
