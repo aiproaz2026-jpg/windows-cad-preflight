@@ -74,10 +74,10 @@ jobs:
           cp patches/v75/term2/term_ends2.py $M/term_ends2.py
           cat patches/v75/term2/initgui_te2.txt >> C:/delta/DeltaEngineering/package/Mod/DeltaEngineering/InitGui.py
           python -m py_compile $M/term_ends2.py
-          cp patches/v89/wire_route.py $M/wire_route.py
-          python patches/v89/core_callsite_patch.py $M/core.py
-          cp patches/v89/wire_reroute_cmd.py $M/wire_reroute_cmd.py
-          cat patches/v89/initgui_wr.txt >> C:/delta/DeltaEngineering/package/Mod/DeltaEngineering/InitGui.py
+          cp patches/v90/wire_route.py $M/wire_route.py
+          python patches/v90/core_callsite_patch.py $M/core.py
+          cp patches/v90/wire_reroute_cmd.py $M/wire_reroute_cmd.py
+          cat patches/v90/initgui_wr.txt >> C:/delta/DeltaEngineering/package/Mod/DeltaEngineering/InitGui.py
           python -m py_compile $M/wire_route.py $M/wire_reroute_cmd.py $M/core.py && echo wire route build patches compile ok
           cp patches/v78/iec_full/elec_lib_iec_full.py $M/elec_lib_iec_full.py
           cp patches/v78/iec45/elec_lib_iec4.py $M/elec_lib_iec4.py
@@ -556,7 +556,7 @@ jobs:
           New-Item -ItemType Directory -Force C:/seed/wr_gui8 | Out-Null
           $exe = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCAD.exe | Where-Object { $_.Directory.Name -eq 'bin' } | Select-Object -First 1
           $root = $exe.Directory.Parent.FullName
-          Copy-Item "$env:GITHUB_WORKSPACE/patches/v89/reroute_gui_test.py" "$root\WrGuiTest.FCMacro" -Force
+          Copy-Item "$env:GITHUB_WORKSPACE/patches/v90/reroute_gui_test.py" "$root\WrGuiTest.FCMacro" -Force
           $env:DELTA_OUT = 'C:/seed/wr_gui8'; $env:GALLIUM_DRIVER = 'llvmpipe'; $env:MESA_GL_VERSION_OVERRIDE = '4.5'; $env:PYTHONUTF8 = '1'
           Start-Process $exe.FullName -ArgumentList "`"$root\WrGuiTest.FCMacro`"" -RedirectStandardOutput C:/seed/wr_gui8/fc-out.txt -RedirectStandardError C:/seed/wr_gui8/fc-err.txt
           $t = 0
@@ -567,23 +567,23 @@ jobs:
         continue-on-error: true
         shell: pwsh
         run: |
-          New-Item -ItemType Directory -Force C:/seed/route89c | Out-Null
-          Push-Location patches/v89
-          python test_wire_route.py *> C:/seed/route89c/unit_test.txt
+          New-Item -ItemType Directory -Force C:/seed/route90 | Out-Null
+          Push-Location patches/v90
+          python test_wire_route.py *> C:/seed/route90/unit_test.txt
           Pop-Location
           $te = Get-ChildItem C:/DeltaTest -Recurse -Filter term_ends2.py | Select-Object -First 1
-          $te.FullName | Set-Content C:/seed/route89c/where.txt
-          Copy-Item patches/v89/wire_route.py (Join-Path $te.DirectoryName 'wire_route.py') -Force
-          python patches/v89/core_callsite_patch.py (Join-Path $te.DirectoryName 'core.py') *> C:/seed/route89c/core_patch.txt
+          $te.FullName | Set-Content C:/seed/route90/where.txt
+          Copy-Item patches/v90/wire_route.py (Join-Path $te.DirectoryName 'wire_route.py') -Force
+          python patches/v90/core_callsite_patch.py (Join-Path $te.DirectoryName 'core.py') *> C:/seed/route90/core_patch.txt
           python -m py_compile (Join-Path $te.DirectoryName 'core.py')
-          Select-String -Path (Join-Path $te.DirectoryName 'core.py') -Pattern 'wire_route' | Select-Object -First 3 | ForEach-Object { $_.Line } | Set-Content C:/seed/route89c/core_grep.txt
+          Select-String -Path (Join-Path $te.DirectoryName 'core.py') -Pattern 'wire_route' | Select-Object -First 3 | ForEach-Object { $_.Line } | Set-Content C:/seed/route90/core_grep.txt
           $cmd = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCADCmd.exe | Select-Object -First 1
           $env:PYTHONUTF8 = '1'
-          Copy-Item patches/v89/route_demos.py C:/route_demos.py -Force
-          $pr = Start-Process $cmd.FullName -ArgumentList "-c","exec(open('C:/route_demos.py',encoding='utf-8').read())" -PassThru -RedirectStandardOutput C:/seed/route89c/out.txt -RedirectStandardError C:/seed/route89c/err.txt
-          if (-not $pr.WaitForExit(900000)) { $pr.Kill(); "timeout" | Set-Content C:/seed/route89c/timeout.txt }
-          Get-Content C:/seed/route89c/unit_test.txt -ErrorAction SilentlyContinue | Select-Object -Last 3
-          Get-Content C:/seed/route89c/out.txt -ErrorAction SilentlyContinue | Select-Object -Last 3
+          Copy-Item patches/v90/route_demos.py C:/route_demos.py -Force
+          $pr = Start-Process $cmd.FullName -ArgumentList "-c","exec(open('C:/route_demos.py',encoding='utf-8').read())" -PassThru -RedirectStandardOutput C:/seed/route90/out.txt -RedirectStandardError C:/seed/route90/err.txt
+          if (-not $pr.WaitForExit(900000)) { $pr.Kill(); "timeout" | Set-Content C:/seed/route90/timeout.txt }
+          Get-Content C:/seed/route90/unit_test.txt -ErrorAction SilentlyContinue | Select-Object -Last 3
+          Get-Content C:/seed/route90/out.txt -ErrorAction SilentlyContinue | Select-Object -Last 3
 
       - name: Gallery wiring metrics before/after wire_route (installed app, headless FreeCAD)
         continue-on-error: true
@@ -594,8 +594,8 @@ jobs:
           $cmd = Get-ChildItem C:/DeltaTest -Recurse -Filter FreeCADCmd.exe | Select-Object -First 1
           if (-not $cmd) { throw 'FreeCADCmd.exe not found under C:/DeltaTest' }
           $env:PYTHONUTF8 = '1'
-          $env:GALLERY_PASSES = 'off'
-          Copy-Item patches/v89/gallery_metrics.py C:/gallery_metrics.py -Force
+          $env:GALLERY_PASSES = 'off,on'
+          Copy-Item patches/v90/gallery_metrics.py C:/gallery_metrics.py -Force
           # The gallery = the demo scripts that build a wired sheet. Only the ones present are run;
           # a missing path is printed and skipped, it does not fail the step.
           $scripts = @(
@@ -781,7 +781,7 @@ jobs:
           mkdir -p dist/v21ba/elec_iec4; cp /c/seed/elec_iec4/* dist/v21ba/elec_iec4/ || true; for f in /c/seed/elec_iec4/*.pdf; do [ -f "$f" ] && base64 -w0 "$f" > dist/v21ba/elec_iec4/$(basename "$f").b64; done
           mkdir -p dist/v21ba/elec69; cp /c/seed/elec69/* dist/v21ba/elec69/ || true; for f in /c/seed/elec69/*.pdf; do [ -f "$f" ] && base64 -w0 "$f" > dist/v21ba/elec69/$(basename "$f").b64; done
           mkdir -p dist/v21ba/wr_gui8; cp /c/seed/wr_gui8/* dist/v21ba/wr_gui8/ || true; for f in /c/seed/wr_gui8/*.png; do [ -f "$f" ] && base64 -w0 "$f" > dist/v21ba/wr_gui8/$(basename "$f").b64; done
-          mkdir -p dist/v21ba/route89c; cp /c/seed/route89c/* dist/v21ba/route89c/ || true; for f in /c/seed/route89c/*.pdf; do [ -f "$f" ] && base64 -w0 "$f" > dist/v21ba/route89c/$(basename "$f").b64; done
+          mkdir -p dist/v21ba/route90; cp /c/seed/route90/* dist/v21ba/route90/ || true; for f in /c/seed/route90/*.pdf; do [ -f "$f" ] && base64 -w0 "$f" > dist/v21ba/route90/$(basename "$f").b64; done
           mkdir -p dist/v21ba/gallerymetrics; cp /c/seed/gallerymetrics/* dist/v21ba/gallerymetrics/ || true; for f in /c/seed/gallerymetrics/*.pdf; do [ -f "$f" ] && base64 -w0 "$f" > dist/v21ba/gallerymetrics/$(basename "$f").b64; done
           mkdir -p dist/v21ba/demo76dol; cp /c/seed/demo76dol/* dist/v21ba/demo76dol/ || true; for f in /c/seed/demo76dol/*.pdf; do [ -f "$f" ] && base64 -w0 "$f" > dist/v21ba/demo76dol/$(basename "$f").b64; done
           mkdir -p dist/v21ba/gallery67; cp /c/seed/gallery67/* dist/v21ba/gallery67/ || true; [ -f /c/seed/gallery67/symbols_grid_A3.pdf ] && base64 -w0 /c/seed/gallery67/symbols_grid_A3.pdf > dist/v21ba/gallery67/symbols_grid_A3.pdf.b64
