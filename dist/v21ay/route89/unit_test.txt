@@ -1,0 +1,24 @@
+PASS straight stays straight
+PASS avoids the body box
+PASS avoids: first and last point
+PASS avoids: more than the L
+PASS no overlap with a used wire
+PASS no overlap: endpoints kept
+PASS second parallel wire clears the first
+PASS fallback returns the L shape
+PASS fallback is flagged
+PASS bottom terminal leaves downward
+PASS bottom route clears both boxes
+PASS deterministic
+SKIP hook test: DeltaEngineering package not importable here
+PASS fan: 6 terminals on one face fan with an unknown DeviceType
+PASS fan: lengths follow terminal order, not geometry
+PASS fan: lengths are distinct and LANE apart
+PASS fan: 5 terminals of an unknown type stay unfanned
+PASS fan: a PLC type fans a two-terminal face
+PASS fan: 6 terminals spread 3/3 over two faces stay unfanned
+PASS fan: counting the whole device fans the split 3/3 block
+PASS fan: FanStubs False wins over the terminal count
+PASS fan: FanStubs True fans a two-terminal face
+
+21 checks, 0 failed
