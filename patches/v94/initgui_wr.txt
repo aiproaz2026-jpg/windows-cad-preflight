@@ -1,0 +1,7 @@
+
+try:
+    from DeltaEngineering import wire_reroute_cmd as _wr12
+    _wr12.register()
+except Exception as _e12:
+    import FreeCAD as _A12
+    _A12.Console.PrintError("wire reroute command failed: " + str(_e12) + "\n")
